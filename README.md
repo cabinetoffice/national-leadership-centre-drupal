@@ -7,17 +7,17 @@ This project is an Alpha phase prototype for the National Leadership Centre (NLC
 The prototype is primarily focused on the following:
 
 1. **The data structure needed to support a user directory**
-  - What person data does the NLC's digital service need?
-  - … in particular to support the user directory?
+    - What person data does the NLC's digital service need?
+    - … in particular to support the user directory?
 2. **The user interface(s) needed to support a user directory**
-  - Given the data and data structure, how does one develop the interface(s) that support users finding people in a directory? 
-  - Related to defined user needs and user research, as appropriate 
+    - Given the data and data structure, how does one develop the interface(s) that support users finding people in a directory? 
+    - Related to defined user needs and user research, as appropriate 
 3. **Ease of set-up, build, etc.**
-  - Both the Alpha and Beta phases are short, so any build work needs to be very efficient
-  - How easy is it to get the thing in place, develop on it, etc.?
+    - Both the Alpha and Beta phases are short, so any build work needs to be very efficient
+    - How easy is it to get the thing in place, develop on it, etc.?
 4. **Privacy, security and access controls**
-  - How much control does this platform give over privacy and data security?
-  - The digital service will be holding personal data, some of which may be sensitive. Does the platform support privacy and access controls over data and publishing?
+    - How much control does this platform give over privacy and data security?
+    - The digital service will be holding personal data, some of which may be sensitive. Does the platform support privacy and access controls over data and publishing?
 
 ## Prototype Outcomes
 
