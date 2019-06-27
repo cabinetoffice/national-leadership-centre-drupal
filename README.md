@@ -1,6 +1,6 @@
 # National Leadership Centre Alpha Prototype: Based on Drupal
 
-This project is an Alpha phase prototype for the National Leadership Centre (NLC).
+This project is an Alpha phase prototype for the National Leadership Centre (NLC). This prototype is based on [Drupal](https://www.drupal.org/) 8.
 
 ## Prototype Objectives
 
