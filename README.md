@@ -51,6 +51,12 @@ It is presumed that you will use Docker to run this project. This project uses C
   ```
   $ composer install
   ```
+  or
+  ```
+  docker run --rm --interactive --tty \
+    --volume $PWD:/app \
+    composer install --ignore-platform-reqs
+  ```
 3. **Add a `settings.local.php` file.**
   … in the `./web/sites/default/` directory. You may like to copy and adapt the `./web/sites/example.settings.local.php` file as a starting point.
 4. **Edit .env settings to suit your needs.*- 
