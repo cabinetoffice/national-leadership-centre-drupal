@@ -1,145 +1,100 @@
-# Composer template for Drupal projects
+# National Leadership Centre Alpha Prototype: Based on Drupal
 
-[![Build Status](https://travis-ci.org/drupal-composer/drupal-project.svg?branch=8.x)](https://travis-ci.org/drupal-composer/drupal-project)
+This project is an Alpha phase prototype for the National Leadership Centre (NLC).
 
-This project template provides a starter kit for managing your site
-dependencies with [Composer](https://getcomposer.org/).
+## Prototype Objectives
 
-If you want to know how to use it as replacement for
-[Drush Make](https://github.com/drush-ops/drush/blob/8.x/docs/make.md) visit
-the [Documentation on drupal.org](https://www.drupal.org/node/2471553).
+The prototype is primarily focused on the following:
 
-## Usage
+1. **The data structure needed to support a user directory**
+  - What person data does the NLC's digital service need?
+  - … in particular to support the user directory?
+2. **The user interface(s) needed to support a user directory**
+  - Given the data and data structure, how does one develop the interface(s) that support users finding people in a directory? 
+  - Related to defined user needs and user research, as appropriate 
+3. **Ease of set-up, build, etc.**
+  - Both the Alpha and Beta phases are short, so any build work needs to be very efficient
+  - How easy is it to get the thing in place, develop on it, etc.?
+4. **Privacy, security and access controls**
+  - How much control does this platform give over privacy and data security?
+  - The digital service will be holding personal data, some of which may be sensitive. Does the platform support privacy and access controls over data and publishing?
 
-First you need to [install composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx).
+## Prototype Outcomes
 
-> Note: The instructions below refer to the [global composer installation](https://getcomposer.org/doc/00-intro.md#globally).
-You might need to replace `composer` with `php composer.phar` (or similar) 
-for your setup.
+1. Description or outline of the data structure
+2. Models of user interface(s), with testing outcomes and feedback
+3. Assessment of ease and speed of build — backend; frontend
+4. Assessment of privacy, access and data security
 
-After that you can create the project:
+# Usage
+
+## Repository Architecture
+
+The repository architecture is based on [Composer template for Drupal projects](https://github.com/drupal-composer/drupal-project). View the README for introductory instructions on usage.
+
+It is presumed that you will use Docker to run this project. This project uses Composer for package management. 
+
+#### Assumptions:
+
+- Docker is installed locally already.
+  - Check out the [Docker documentation for an installation guide](https://docs.docker.com/install/), if necessary. 
+- You have Composer installed.
+  - Check out the [Composer documentation for an installation guide](https://getcomposer.org/download/), if necessary.
+
+### Getting started
+
+#### Installation and configuration
+
+1. **Clone this repository.**
+2. **Install packages with Composer.**
+  In the root directory of your cloned repo:
+  ```
+  $ composer install
+  ```
+3. **Add a `settings.local.php` file.**
+  … in the `./web/sites/default/` directory. You may like to copy and adapt the `./web/sites/example.settings.local.php` file as a starting point.
+4. **Edit .env settings to suit your needs.*- 
+  This is the environment for your local Docker. Most settings should be obvious and/or self-evident. The default values are probably fine.
+5. **If you want to start with a default pre-populated database:**
+  See 'Import an initial MySQL DB' below.
+6. **Start it up!**
+
+The `Makefile` and `docker.mk` included in this project provide some easy CLI tools to work with this Docker stack for Drupal.
+
+**To start your Docker stack:**
 
 ```
-composer create-project drupal-composer/drupal-project:8.x-dev some-dir --no-interaction
+$ make up
 ```
 
-With `composer require ...` you can download new dependencies to your 
-installation.
+**To stop your Docker stack:**
 
 ```
-cd some-dir
-composer require drupal/devel:~1.0
+$ make down
 ```
 
-The `composer create-project` command passes ownership of all files to the 
-project that is created. You should create a new git repository, and commit 
-all files not excluded by the .gitignore file.
+#### Make commands:
 
-## What does the template do?
-
-When installing the given `composer.json` some tasks are taken care of:
-
-* Drupal will be installed in the `web`-directory.
-* Autoloader is implemented to use the generated composer autoloader in `vendor/autoload.php`,
-  instead of the one provided by Drupal (`web/vendor/autoload.php`).
-* Modules (packages of type `drupal-module`) will be placed in `web/modules/contrib/`
-* Theme (packages of type `drupal-theme`) will be placed in `web/themes/contrib/`
-* Profiles (packages of type `drupal-profile`) will be placed in `web/profiles/contrib/`
-* Creates default writable versions of `settings.php` and `services.yml`.
-* Creates `web/sites/default/files`-directory.
-* Latest version of drush is installed locally for use at `vendor/bin/drush`.
-* Latest version of DrupalConsole is installed locally for use at `vendor/bin/drupal`.
-* Creates environment variables based on your .env file. See [.env.example](.env.example).
-
-## Updating Drupal Core
-
-This project will attempt to keep all of your Drupal Core files up-to-date; the 
-project [drupal-composer/drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) 
-is used to ensure that your scaffold files are updated every time drupal/core is 
-updated. If you customize any of the "scaffolding" files (commonly .htaccess), 
-you may need to merge conflicts if any of your modified files are updated in a 
-new release of Drupal core.
-
-Follow the steps below to update your core files.
-
-1. Run `composer update drupal/core webflo/drupal-core-require-dev "symfony/*" --with-dependencies` to update Drupal Core and its dependencies.
-1. Run `git diff` to determine if any of the scaffolding files have changed. 
-   Review the files for any changes and restore any customizations to 
-  `.htaccess` or `robots.txt`.
-1. Commit everything all together in a single commit, so `web` will remain in
-   sync with the `core` when checking out branches or running `git bisect`.
-1. In the event that there are non-trivial conflicts in step 2, you may wish 
-   to perform these steps on a branch, and use `git merge` to combine the 
-   updated core files with your customized files. This facilitates the use 
-   of a [three-way merge tool such as kdiff3](http://www.gitshah.com/2010/12/how-to-setup-kdiff-as-diff-tool-for-git.html). This setup is not necessary if your changes are simple; 
-   keeping all of your modifications at the beginning or end of the file is a 
-   good strategy to keep merges easy.
-
-## Generate composer.json from existing project
-
-With using [the "Composer Generate" drush extension](https://www.drupal.org/project/composer_generate)
-you can now generate a basic `composer.json` file from an existing project. Note
-that the generated `composer.json` might differ from this project's file.
-
-
-## FAQ
-
-### Should I commit the contrib modules I download?
-
-Composer recommends **no**. They provide [argumentation against but also 
-workrounds if a project decides to do it anyway](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).
-
-### Should I commit the scaffolding files?
-
-The [drupal-scaffold](https://github.com/drupal-composer/drupal-scaffold) plugin can download the scaffold files (like
-index.php, update.php, …) to the web/ directory of your project. If you have not customized those files you could choose
-to not check them into your version control system (e.g. git). If that is the case for your project it might be
-convenient to automatically run the drupal-scaffold plugin after every install or update of your project. You can
-achieve that by registering `@composer drupal:scaffold` as post-install and post-update command in your composer.json:
-
-```json
-"scripts": {
-    "post-install-cmd": [
-        "@composer drupal:scaffold",
-        "..."
-    ],
-    "post-update-cmd": [
-        "@composer drupal:scaffold",
-        "..."
-    ]
-},
+Usage:
 ```
-### How can I apply patches to downloaded modules?
-
-If you need to apply patches (depending on the project being modified, a pull 
-request is often a better solution), you can do so with the 
-[composer-patches](https://github.com/cweagans/composer-patches) plugin.
-
-To add a patch to drupal module foobar insert the patches section in the extra 
-section of composer.json:
-```json
-"extra": {
-    "patches": {
-        "drupal/foobar": {
-            "Patch description": "URL or local path to patch"
-        }
-    }
-}
+$ make {command}
 ```
-### How do I switch from packagist.drupal-composer.org to packages.drupal.org?
-
-Follow the instructions in the [documentation on drupal.org](https://www.drupal.org/docs/develop/using-composer/using-packagesdrupalorg).
-
-### How do I specify a PHP version ?
-
-This project supports PHP 5.6 as minimum version (see [Drupal 8 PHP requirements](https://www.drupal.org/docs/8/system-requirements/drupal-8-php-requirements)), however it's possible that a `composer update` will upgrade some package that will then require PHP 7+.
-
-To prevent this you can add this code to specify the PHP version you want to use in the `config` section of `composer.json`:
-```json
-"config": {
-    "sort-packages": true,
-    "platform": {
-        "php": "5.6.40"
-    }
-},
 ```
+Commands:
+    up              Start up all container from the current docker-compose.yml 
+    stop            Stop all containers for the current docker-compose.yml (docker-compose stop) 
+    down            Same as stop
+    prune           Stop and remove containers, networks, images, and volumes (docker-compose down)
+    ps              List container for the current project (docker ps with filter by name)
+    shell           Enter PHP container as default user (docker exec -ti $CID sh)
+    drush [command] Execute drush command (runs with -r /var/www/html/web, you can override it via DRUPAL_ROOT=PATH)
+    logs [service]  Show containers logs, use [service] to show logs of specific service
+```
+
+##### Import an initial MySQL DB into MariaDB:
+
+If you want to import your database, in the volume directory `./mariadb-init` in the root of this repository, put your `.sql` `.sql.gz` `.sh` file(s). All SQL files will be automatically imported once MariaDB container has started. Databases will be created with the names of the `.sql` `.sql.gz` `.sh` file(s).
+
+The default setting in `.env` is connection to a database named `drupal` so the initial import file should be named e.g. `drupal.sql` (see line 22ff).
+
+For other import/export options, see: https://wodby.com/stacks/drupal/docs/local/import-export/ 
