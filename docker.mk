@@ -35,7 +35,7 @@ logs:
 	@docker-compose logs -f $(filter-out $@,$(MAKECMDGOALS))
 
 composer:
-	docker run --rm --interactive --tty --volume $(shell pwd):/app composer --ignore-platform-reqs $(filter-out $@,$(MAKECMDGOALS))
+	docker run --interactive --tty --volume $(shell pwd):/app composer --ignore-platform-reqs $(filter-out $@,$(MAKECMDGOALS))
 
 # https://stackoverflow.com/a/6273809/1826109
 %:
