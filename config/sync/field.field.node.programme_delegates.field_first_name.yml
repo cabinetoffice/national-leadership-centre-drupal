@@ -1,0 +1,19 @@
+uuid: 9a31f6e2-97f1-4d24-a8de-7648f839f73e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_first_name
+    - node.type.programme_delegates
+id: node.programme_delegates.field_first_name
+field_name: field_first_name
+entity_type: node
+bundle: programme_delegates
+label: 'First Name'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

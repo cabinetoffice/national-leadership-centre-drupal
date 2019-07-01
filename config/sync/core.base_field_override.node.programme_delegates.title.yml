@@ -1,0 +1,18 @@
+uuid: 983beb9f-fae1-425b-abfd-0caf1a7f74ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.programme_delegates
+id: node.programme_delegates.title
+field_name: title
+entity_type: node
+bundle: programme_delegates
+label: 'Cohort Number'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

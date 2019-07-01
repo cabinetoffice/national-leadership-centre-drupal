@@ -1,0 +1,20 @@
+uuid: dc183ca3-f71d-4874-aa43-80a97dd22b3e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.programme_delegates
+  module:
+    - user
+id: node.programme_delegates.teaser
+targetEntityType: node
+bundle: programme_delegates
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }
