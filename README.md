@@ -59,7 +59,7 @@ It is presumed that you will use Docker to run this project. This project uses C
   ```
 3. **Add a `settings.local.php` file.**
   … in the `./web/sites/default/` directory. You may like to copy and adapt the `./web/sites/example.settings.local.php` file as a starting point.
-4. **Edit .env settings to suit your needs.*- 
+4. **Copy-and-paste `.env.example` to `.env` and edit settings to suit your needs.**
   This is the environment for your local Docker. Most settings should be obvious and/or self-evident. The default values are probably fine.
 5. **If you want to start with a default pre-populated database:**
   See 'Import an initial MySQL DB' below.
