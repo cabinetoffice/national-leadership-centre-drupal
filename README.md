@@ -103,4 +103,29 @@ If you want to import your database, in the volume directory `./mariadb-init` in
 
 The default setting in `.env` is connection to a database named `drupal` so the initial import file should be named e.g. `drupal.sql` (see line 22ff).
 
-For other import/export options, see: https://wodby.com/stacks/drupal/docs/local/import-export/ 
+For other import/export options, see: https://wodby.com/stacks/drupal/docs/local/import-export/
+
+# Working with Drupal
+
+This is a Drupal 8 installation. Here's some guidance on specific aspects of working with Drupal.
+
+## Configuration Management
+
+Configuration in this system is managed using the [Configuration Split](https://www.drupal.org/project/config_split) contrib moduile (which dependes on [Config Filter](https://www.drupal.org/project/config_filter) module). This allows configuration that should be used in specific environments only to be separated out from others.
+
+This installation has two environments:
+
+- general configruation, in `./config/sync`
+- local development configuration, in `./config/devel`, with a machine name of `devel`
+
+To enable a particular config with Configuration Split module, add the following to your `settings.php` (or `settings.local.php`) file:
+
+```php
+$config['config_split.config_split.MACHINE_NAME']['status'] = TRUE;
+```
+
+So, to enable the `devel` config:
+
+```php
+$config['config_split.config_split.devel']['status'] = TRUE;
+```
