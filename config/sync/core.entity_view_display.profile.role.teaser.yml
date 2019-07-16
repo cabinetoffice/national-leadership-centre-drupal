@@ -1,20 +1,19 @@
-uuid: da1b626f-bbe8-4a9c-ade4-9a5c601707b7
+uuid: a1071509-7d2e-43f7-a43d-6b5dee4dca4b
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.profile.teaser
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email
     - field.field.profile.role.field_time_in_role
     - profile.type.role
-  module:
-    - address
-id: profile.role.default
+id: profile.role.teaser
 targetEntityType: profile
 bundle: role
-mode: default
+mode: teaser
 content:
   field_job_title:
     weight: 0
@@ -24,13 +23,6 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_location:
-    weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: address_default
-    region: content
   field_organisation:
     weight: 1
     label: hidden
@@ -39,20 +31,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_pa_email:
-    weight: 4
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_time_in_role:
-    weight: 2
-    label: inline
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_integer
-    region: content
-hidden: {  }
+hidden:
+  field_location: true
+  field_pa_email: true
+  field_time_in_role: true
