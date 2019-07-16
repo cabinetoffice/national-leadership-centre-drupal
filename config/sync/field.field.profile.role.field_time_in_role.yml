@@ -1,0 +1,23 @@
+uuid: a758093b-14a5-4783-baf0-292669788b31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_time_in_role
+    - profile.type.role
+id: profile.role.field_time_in_role
+field_name: field_time_in_role
+entity_type: profile
+bundle: role
+label: 'Time in role'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: yrs
+field_type: integer
