@@ -1,18 +1,16 @@
-uuid: a16f296f-8ba8-4bd9-812d-a2d8377c0509
+uuid: cb5cc0f2-86a9-41ea-acde-3bd6f897d9f1
 langcode: en
 status: true
 dependencies:
   module:
+    - name
     - user
-id: user.field_last_name
-field_name: field_last_name
+id: user.field_name
+field_name: field_name
 entity_type: user
-type: string
-settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+type: name
+settings: {  }
+module: name
 locked: false
 cardinality: 1
 translatable: true

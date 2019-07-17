@@ -3,11 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_first_name
     - field.field.user.user.field_gender
-    - field.field.user.user.field_last_name
-    - field.field.user.user.field_title
+    - field.field.user.user.field_name
   module:
+    - name
     - select_or_other
     - user
 id: user.user.default
@@ -20,45 +19,52 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_first_name:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_gender:
-    weight: 4
+    weight: 2
     settings:
       select_element_type: select_or_other_select
       sort_options: ''
     third_party_settings: {  }
     type: select_or_other_list
     region: content
-  field_last_name:
-    weight: 3
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_title:
+  field_name:
     weight: 1
     settings:
-      size: 60
-      placeholder: ''
+      labels:
+        title: Title
+        given: Given
+        middle: 'Middle name(s)'
+        family: Family
+        generational: Generational
+        credentials: Credentials
+      size:
+        title: 6
+        given: 20
+        middle: 20
+        family: 20
+        generational: 5
+        credentials: 35
+      title_display:
+        title: description
+        given: description
+        middle: description
+        family: description
+        generational: description
+        credentials: description
+      widget_layout: stacked
+      show_component_required_marker: false
+      credentials_inline: false
+      override_field_settings: false
     third_party_settings: {  }
-    type: string_textfield
+    type: name_default
     region: content
   language:
-    weight: 5
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   timezone:
-    weight: 6
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
