@@ -6,36 +6,22 @@ dependencies:
     - field.field.user.user.field_gender
     - field.field.user.user.field_name
   module:
-    - name
     - user
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
-  field_name:
+  role_profiles:
+    type: entity_reference_entity_view
     weight: 0
-    label: above
-    settings:
-      format: default
-      markup: none
-      list_format: ''
-      link_target: ''
-      preferred_field_reference: ''
-      preferred_field_reference_separator: ', '
-      alternative_field_reference: ''
-      alternative_field_reference_separator: ', '
-    third_party_settings: {  }
-    type: name_default
     region: content
-  member_for:
-    weight: 1
-    region: content
-    label: above
+    label: hidden
     settings:
+      link: true
       view_mode: default
-      link: false
     third_party_settings: {  }
 hidden:
   field_gender: true
-  role_profiles: true
+  field_name: true
+  member_for: true

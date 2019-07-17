@@ -5,11 +5,10 @@ dependencies:
   config:
     - field.storage.profile.field_job_title
     - field.storage.profile.field_organisation
-    - field.storage.user.field_first_name
-    - field.storage.user.field_last_name
-    - field.storage.user.field_title
+    - field.storage.user.field_name
     - system.menu.main
   module:
+    - name
     - profile
     - user
 id: directory
@@ -150,146 +149,20 @@ display:
           entity_type: user
           entity_field: uid
           plugin_id: field
-        field_title:
-          id: field_title
-          table: user__field_title
-          field: field_title
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_first_name:
-          id: field_first_name
-          table: user__field_first_name
-          field: field_first_name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: true
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_last_name:
-          id: field_last_name
-          table: user__field_last_name
-          field: field_last_name
+        field_name:
+          id: field_name
+          table: user__field_name
+          field: field_name
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: true
-            text: '{{ field_title }} {{ field_first_name }} {{ field_last_name }}'
-            make_link: true
-            path: 'user/{{ uid }}'
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
@@ -324,11 +197,18 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: title
+          type: name_default
           settings:
-            link_to_entity: false
-          group_column: value
+            format: default
+            list_format: ''
+            markup: none
+            link_target: _self
+            preferred_field_reference: ''
+            preferred_field_reference_separator: ', '
+            alternative_field_reference: ''
+            alternative_field_reference_separator: ', '
+          group_column: ''
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -350,7 +230,7 @@ display:
           exclude: false
           alter:
             alter_text: false
-            text: ''
+            text: '{{ field_job_title }}'
             make_link: false
             path: ''
             absolute: false
@@ -560,9 +440,7 @@ display:
       tags:
         - 'config:field.storage.profile.field_job_title'
         - 'config:field.storage.profile.field_organisation'
-        - 'config:field.storage.user.field_first_name'
-        - 'config:field.storage.user.field_last_name'
-        - 'config:field.storage.user.field_title'
+        - 'config:field.storage.user.field_name'
   page_1:
     display_plugin: page
     id: page_1
@@ -585,6 +463,4 @@ display:
       tags:
         - 'config:field.storage.profile.field_job_title'
         - 'config:field.storage.profile.field_organisation'
-        - 'config:field.storage.user.field_first_name'
-        - 'config:field.storage.user.field_last_name'
-        - 'config:field.storage.user.field_title'
+        - 'config:field.storage.user.field_name'
