@@ -1,0 +1,14 @@
+uuid: ff01a25b-26e8-4ec7-ad2a-f4ece4ec9231
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nlc_staff
+  module:
+    - user
+id: user_add_role_action.nlc_staff
+label: 'Add the NLC Staff role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: nlc_staff

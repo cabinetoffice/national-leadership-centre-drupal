@@ -16,7 +16,7 @@ bundle: user
 mode: default
 content:
   field_first_name:
-    weight: 6
+    weight: 1
     label: inline
     settings:
       link_to_entity: false
@@ -24,14 +24,14 @@ content:
     type: string
     region: content
   field_gender:
-    weight: 9
+    weight: 3
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: content
   field_last_name:
-    weight: 7
+    weight: 2
     label: inline
     settings:
       link_to_entity: false
@@ -39,17 +39,21 @@ content:
     type: string
     region: content
   field_title:
-    weight: 8
+    weight: 0
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  member_for:
-    weight: 5
+  role_profiles:
+    type: entity_reference_entity_view
+    weight: 4
     region: content
-    settings: {  }
+    label: above
+    settings:
+      view_mode: default
+      link: false
     third_party_settings: {  }
 hidden:
-  role_profiles: true
+  member_for: true
