@@ -1,0 +1,169 @@
+uuid: 893d1d6a-7f89-40c2-b2b6-e35c047c3d67
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_job_title
+    - field.storage.profile.field_location
+    - field.storage.profile.field_organisation
+    - field.storage.profile.field_pa_email
+    - field.storage.user.field_gender
+    - field.storage.user.field_name
+    - search_api.server.database
+  module:
+    - user
+    - profile
+    - node
+    - search_api
+id: main_index
+name: 'Main index'
+description: ''
+read_only: false
+field_settings:
+  country_code:
+    label: 'Location » The two-letter country code.'
+    datasource_id: 'entity:profile'
+    property_path: 'field_location:country_code'
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_location
+  dependent_locality:
+    label: 'Location » The dependent locality (i.e. neighbourhood).'
+    datasource_id: 'entity:profile'
+    property_path: 'field_location:dependent_locality'
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_location
+  firstname:
+    label: 'Name » Given'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:given'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  gender:
+    label: Gender
+    datasource_id: 'entity:user'
+    property_path: field_gender
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_gender
+  job_title:
+    label: 'Job Title'
+    datasource_id: 'entity:profile'
+    property_path: field_job_title
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_job_title
+  lastname:
+    label: 'Name » Family'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:family'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  locality:
+    label: 'Location » The locality (i.e. city).'
+    datasource_id: 'entity:profile'
+    property_path: 'field_location:locality'
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_location
+  mail:
+    label: Email
+    datasource_id: 'entity:user'
+    property_path: mail
+    type: text
+    dependencies:
+      module:
+        - user
+  name:
+    label: Name
+    datasource_id: 'entity:user'
+    property_path: name
+    type: text
+    dependencies:
+      module:
+        - user
+  org_job_title:
+    label: 'Role profiles » Profile » Job Title'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_job_title'
+    type: text
+    dependencies:
+      module:
+        - profile
+        - profile
+      config:
+        - field.storage.profile.field_job_title
+  org_name:
+    label: 'Role profiles » Profile » Organisation » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:title'
+    type: text
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - node
+      config:
+        - field.storage.profile.field_organisation
+  organisation:
+    label: Organisation
+    datasource_id: 'entity:profile'
+    property_path: field_organisation
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+  pa_email:
+    label: 'PA email'
+    datasource_id: 'entity:profile'
+    property_path: field_pa_email
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_pa_email
+  title:
+    label: 'Name » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_name
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:profile':
+    bundles:
+      default: true
+      selected: {  }
+  'entity:user':
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: database

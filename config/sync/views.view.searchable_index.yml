@@ -1,6 +1,6 @@
-uuid: 90136b72-3dbe-43aa-a875-937768326c47
+uuid: 645be8f9-0fda-4016-8831-e4963b7ea3a5
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.profile.field_job_title
@@ -10,7 +10,7 @@ dependencies:
     - node
     - profile
     - search_api
-id: directory
+id: searchable_index
 label: 'Members Directory'
 module: views
 description: ''
@@ -380,45 +380,6 @@ display:
             multi_separator: ', '
           plugin_id: search_api_field
       filters:
-        search_api_datasource:
-          id: search_api_datasource
-          table: search_api_index_main_index
-          field: search_api_datasource
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            'entity:user': 'entity:user'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_datasource
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_main_index
@@ -461,12 +422,58 @@ display:
           parse_mode: terms
           min_length: null
           fields:
+            - country_code
+            - dependent_locality
             - firstname
+            - job_title
             - lastname
+            - locality
+            - mail
+            - name
             - org_job_title
             - org_name
+            - organisation
             - title
           plugin_id: search_api_fulltext
+        search_api_datasource:
+          id: search_api_datasource
+          table: search_api_index_main_index
+          field: search_api_datasource
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            'entity:user': 'entity:user'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: search_api_datasource
       sorts:
         lastname:
           id: lastname
@@ -521,10 +528,6 @@ display:
       arguments: {  }
       display_extenders: {  }
       title: 'Members Directory'
-      filter_groups:
-        operator: AND
-        groups:
-          1: AND
     cache_metadata:
       max-age: -1
       contexts:
