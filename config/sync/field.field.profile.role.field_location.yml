@@ -1,0 +1,45 @@
+uuid: e5482b93-1096-4471-b34b-59c27c571cf4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_location
+    - profile.type.role
+  module:
+    - address
+id: profile.role.field_location
+field_name: field_location
+entity_type: profile
+bundle: role
+label: Location
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    langcode: ''
+    country_code: GB
+    administrative_area: null
+    locality: ''
+    dependent_locality: null
+    postal_code: ''
+    sorting_code: null
+    address_line1: ''
+    address_line2: ''
+    organization: ''
+    given_name: ''
+    additional_name: null
+    family_name: ''
+default_value_callback: ''
+settings:
+  available_countries: {  }
+  langcode_override: ''
+  field_overrides:
+    givenName:
+      override: hidden
+    additionalName:
+      override: hidden
+    familyName:
+      override: hidden
+  fields: {  }
+field_type: address

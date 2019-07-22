@@ -1,0 +1,20 @@
+uuid: 09425d79-079c-41ab-92a5-93db228924da
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_time_in_role
+field_name: field_time_in_role
+entity_type: profile
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

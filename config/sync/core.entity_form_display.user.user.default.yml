@@ -1,0 +1,72 @@
+uuid: 39724146-7b6b-48a9-b8d3-a630b7674aa2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_gender
+    - field.field.user.user.field_name
+  module:
+    - name
+    - select_or_other
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_gender:
+    weight: 2
+    settings:
+      select_element_type: select_or_other_select
+      sort_options: ''
+    third_party_settings: {  }
+    type: select_or_other_list
+    region: content
+  field_name:
+    weight: 1
+    settings:
+      labels:
+        title: Title
+        given: Given
+        middle: 'Middle name(s)'
+        family: Family
+        generational: Generational
+        credentials: Credentials
+      size:
+        title: 6
+        given: 20
+        middle: 20
+        family: 20
+        generational: 5
+        credentials: 35
+      title_display:
+        title: description
+        given: description
+        middle: description
+        family: description
+        generational: description
+        credentials: description
+      widget_layout: stacked
+      show_component_required_marker: false
+      credentials_inline: false
+      override_field_settings: false
+    third_party_settings: {  }
+    type: name_default
+    region: content
+  language:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  role_profiles: true

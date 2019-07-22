@@ -1,0 +1,19 @@
+uuid: 237939aa-c034-4110-8339-fc9cdc10805f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_job_title
+    - profile.type.role
+id: profile.role.field_job_title
+field_name: field_job_title
+entity_type: profile
+bundle: role
+label: 'Job Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
