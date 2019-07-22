@@ -1,0 +1,14 @@
+uuid: 4b849936-6067-4367-93fd-2986255a5bff
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.nlc_staff
+  module:
+    - user
+id: user_remove_role_action.nlc_staff
+label: 'Remove the NLC Staff role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: nlc_staff
