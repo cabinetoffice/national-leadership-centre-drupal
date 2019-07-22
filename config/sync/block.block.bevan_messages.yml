@@ -1,0 +1,22 @@
+uuid: ab8f05da-1d93-4178-a75e-ae991f4a8112
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bevan
+_core:
+  default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
+id: bevan_messages
+theme: bevan
+region: pre_content
+weight: -2
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

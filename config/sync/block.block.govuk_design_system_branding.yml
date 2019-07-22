@@ -1,17 +1,17 @@
-uuid: 07dfc09f-1d29-4ee4-8323-7b7d4f770d7a
+uuid: ca758ef5-b3ba-4f77-a76a-ee89eb42fcb4
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bartik
+    - govuk_design_system
 _core:
-  default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
-id: bartik_branding
-theme: bartik
+  default_config_hash: PJT2VmjtW1ZkRDwUpl1d_LLwrDRGO_IAgBaAwrQU1RM
+id: govuk_design_system_branding
+theme: govuk_design_system
 region: header
-weight: -3
+weight: -6
 provider: null
 plugin: system_branding_block
 settings:
@@ -21,5 +21,5 @@ settings:
   label_display: '0'
   use_site_logo: true
   use_site_name: true
-  use_site_slogan: true
+  use_site_slogan: false
 visibility: {  }

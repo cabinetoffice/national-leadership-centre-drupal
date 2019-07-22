@@ -1,4 +1,4 @@
-uuid: 3cf830fb-fba8-4e13-8172-f99674d8a52a
+uuid: c9ab313d-a786-4e0c-a51e-18b208b255ff
 langcode: en
 status: false
 dependencies:
@@ -7,12 +7,12 @@ dependencies:
   module:
     - system
   theme:
-    - bartik
+    - bevan
 _core:
   default_config_hash: OFEDxrButmQ8Vac1kiVr1gtw6vYKuSJPr9cJQZVKCKg
-id: bartik_admin
-theme: bartik
-region: sidebar_first
+id: bevan_admin
+theme: bevan
+region: header
 weight: 1
 provider: null
 plugin: 'system_menu_block:admin'

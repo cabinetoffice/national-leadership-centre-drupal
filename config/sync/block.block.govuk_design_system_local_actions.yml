@@ -1,0 +1,20 @@
+uuid: c59b7f6e-26cc-4011-b6fb-596e0cf39449
+langcode: en
+status: true
+dependencies:
+  theme:
+    - govuk_design_system
+_core:
+  default_config_hash: 4lRElJOUL0Wsd3qeEkCyHINm7JMUjMPPntMghliLoFk
+id: govuk_design_system_local_actions
+theme: govuk_design_system
+region: pre_content
+weight: -2
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

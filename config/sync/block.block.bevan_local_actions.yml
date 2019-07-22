@@ -1,15 +1,15 @@
-uuid: 96ca5c01-4fa8-4ae4-bb10-49f63fa83dec
+uuid: 1cdec63f-a109-42fa-a1bb-d7afe441fbe9
 langcode: en
 status: true
 dependencies:
   theme:
-    - bartik
+    - bevan
 _core:
   default_config_hash: PffmQ-ABSz5tFjWmVsR7NesunDnEivvopnJnBjl8KNE
-id: bartik_local_actions
-theme: bartik
-region: content
-weight: -10
+id: bevan_local_actions
+theme: bevan
+region: pre_content
+weight: 1
 provider: null
 plugin: local_actions_block
 settings:
