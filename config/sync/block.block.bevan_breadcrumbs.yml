@@ -1,15 +1,15 @@
-uuid: f4efbcac-b040-4592-887c-c3c9e953d3c8
+uuid: 8d1b0c6f-a3a3-43b8-8485-5f53b3241c8c
 langcode: en
 status: true
 dependencies:
   module:
     - system
   theme:
-    - bartik
-id: breadcrumbs
-theme: bartik
-region: breadcrumb
-weight: 0
+    - bevan
+id: bevan_breadcrumbs
+theme: bevan
+region: pre_content
+weight: -3
 provider: null
 plugin: system_breadcrumb_block
 settings:

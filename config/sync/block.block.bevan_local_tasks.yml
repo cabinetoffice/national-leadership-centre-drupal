@@ -1,0 +1,22 @@
+uuid: 89a67917-4555-4a3d-9d90-e9947c32258f
+langcode: en
+status: true
+dependencies:
+  theme:
+    - bevan
+_core:
+  default_config_hash: c-06bbElRY5sKmglk74ppgTW93Et4-EJFyNiUZMb8JY
+id: bevan_local_tasks
+theme: bevan
+region: pre_content
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

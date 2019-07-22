@@ -1,15 +1,15 @@
-uuid: 616d0b80-4b4b-4bc9-9a54-05a601216479
+uuid: 7c70a5e6-6150-4a07-b40c-3c4635958db8
 langcode: en
 status: true
 dependencies:
   theme:
-    - bartik
+    - govuk_design_system
 _core:
-  default_config_hash: c-06bbElRY5sKmglk74ppgTW93Et4-EJFyNiUZMb8JY
-id: bartik_local_tasks
-theme: bartik
-region: content
-weight: -20
+  default_config_hash: LtazjNRvK2NF0y9DfC86MU1GRTF6gyE4GYxBVGoUn6k
+id: govuk_design_system_local_tasks
+theme: govuk_design_system
+region: pre_content
+weight: -3
 provider: null
 plugin: local_tasks_block
 settings:

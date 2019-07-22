@@ -1,4 +1,4 @@
-uuid: 63062c37-df6c-450c-b40a-ca961abf2745
+uuid: 447890c6-b785-4abd-b97c-daf70b942377
 langcode: en
 status: true
 dependencies:
@@ -7,18 +7,18 @@ dependencies:
   module:
     - system
   theme:
-    - bartik
-id: mainnavigation
-theme: bartik
+    - bevan
+id: bevan_mainnavigation
+theme: bevan
 region: header
-weight: -2
+weight: -4
 provider: null
 plugin: 'system_menu_block:main'
 settings:
   id: 'system_menu_block:main'
   label: 'Main navigation'
   provider: system
-  label_display: visible
+  label_display: '0'
   level: 1
   depth: 0
   expand_all_items: false
