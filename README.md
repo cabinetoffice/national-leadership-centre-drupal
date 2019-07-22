@@ -129,3 +129,21 @@ So, to enable the `devel` config:
 ```php
 $config['config_split.config_split.devel']['status'] = TRUE;
 ```
+
+### To import configuration:
+
+```bash
+$ make drush cim
+
+```
+
+#### To import exported taxonomy terms:
+
+```bash
+$ make shell
+$ cd ./web
+$ drush import-taxonomies --choice=safe
+
+```
+
+(because `make` doesn't pass options to the command)
