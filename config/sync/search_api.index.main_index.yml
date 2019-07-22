@@ -2,19 +2,21 @@ uuid: 893d1d6a-7f89-40c2-b2b6-e35c047c3d67
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.storage.profile.field_location
-    - field.storage.user.field_name
-    - field.storage.user.field_gender
-    - field.storage.profile.field_job_title
-    - field.storage.profile.field_organisation
-    - field.storage.profile.field_pa_email
-    - search_api.server.database
   module:
+    - node
+    - taxonomy
     - user
     - profile
-    - node
     - search_api
+  config:
+    - field.storage.profile.field_job_title
+    - field.storage.profile.field_location
+    - field.storage.profile.field_organisation
+    - field.storage.profile.field_pa_email
+    - field.storage.user.field_gender
+    - field.storage.user.field_name
+    - field.storage.node.field_sector
+    - search_api.server.database
 id: main_index
 name: 'Main index'
 description: ''
@@ -147,8 +149,23 @@ field_settings:
     dependencies:
       module:
         - user
+  sector:
+    label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
+    type: text
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
   status:
-    label: null
+    label: status
     datasource_id: 'entity:node'
     property_path: status
     type: boolean
@@ -157,6 +174,14 @@ field_settings:
     dependencies:
       module:
         - node
+  term_name:
+    label: Name
+    datasource_id: 'entity:taxonomy_term'
+    property_path: name
+    type: string
+    dependencies:
+      module:
+        - taxonomy
   title:
     label: 'Name » Title'
     datasource_id: 'entity:user'
@@ -166,7 +191,7 @@ field_settings:
       config:
         - field.storage.user.field_name
   uid:
-    label: null
+    label: uid
     datasource_id: 'entity:node'
     property_path: uid
     type: integer
@@ -187,6 +212,13 @@ datasource_settings:
     bundles:
       default: true
       selected: {  }
+  'entity:taxonomy_term':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
   'entity:user':
     languages:
       default: true
@@ -200,7 +232,7 @@ processor_settings:
   entity_status: {  }
   highlight:
     highlight: always
-    highlight_partial: false
+    highlight_partial: true
     excerpt: true
     excerpt_length: 256
     exclude_fields: {  }
@@ -225,6 +257,8 @@ processor_settings:
       - organisation
       - pa_email
       - roles
+      - sector
+      - term_name
       - title
     weights:
       preprocess_index: -20
@@ -247,6 +281,8 @@ processor_settings:
       - organisation
       - pa_email
       - roles
+      - sector
+      - term_name
       - title
     weights:
       preprocess_index: -20
