@@ -17,4 +17,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-hidden: {  }
+hidden:
+  field_email: true
+  field_first_name: true
+  field_gender: true
+  field_job_title: true
+  field_last_name: true
+  field_location: true
+  field_name_of_organisation: true
+  field_pa_email: true
+  field_time_in_role: true
