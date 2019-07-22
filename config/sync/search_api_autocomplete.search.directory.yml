@@ -13,14 +13,7 @@ label: 'Members Directory'
 index_id: main_index
 suggester_settings:
   server:
-    fields:
-      - firstname
-      - lastname
-      - mail
-      - name
-      - org_job_title
-      - org_name
-      - title
+    fields: {  }
 suggester_weights:
   server: 0
 suggester_limits: {  }
