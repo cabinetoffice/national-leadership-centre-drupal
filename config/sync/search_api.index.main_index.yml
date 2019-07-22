@@ -3,12 +3,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.profile.field_job_title
     - field.storage.profile.field_location
+    - field.storage.user.field_name
+    - field.storage.user.field_gender
+    - field.storage.profile.field_job_title
     - field.storage.profile.field_organisation
     - field.storage.profile.field_pa_email
-    - field.storage.user.field_gender
-    - field.storage.user.field_name
     - search_api.server.database
   module:
     - user
@@ -92,6 +92,13 @@ field_settings:
     dependencies:
       module:
         - user
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
   org_job_title:
     label: 'Role profiles » Profile » Job Title'
     datasource_id: 'entity:user'
@@ -132,6 +139,24 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_pa_email
+  roles:
+    label: Roles
+    datasource_id: 'entity:user'
+    property_path: roles
+    type: text
+    dependencies:
+      module:
+        - user
+  status:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
   title:
     label: 'Name » Title'
     datasource_id: 'entity:user'
@@ -140,6 +165,16 @@ field_settings:
     dependencies:
       config:
         - field.storage.user.field_name
+  uid:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
 datasource_settings:
   'entity:node':
     bundles:
@@ -159,7 +194,63 @@ datasource_settings:
 processor_settings:
   add_url: {  }
   aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  ignorecase:
+    all_fields: true
+    fields:
+      - country_code
+      - dependent_locality
+      - firstname
+      - gender
+      - job_title
+      - lastname
+      - locality
+      - mail
+      - name
+      - org_job_title
+      - org_name
+      - organisation
+      - pa_email
+      - roles
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
   rendered_item: {  }
+  transliteration:
+    all_fields: true
+    fields:
+      - country_code
+      - dependent_locality
+      - firstname
+      - gender
+      - job_title
+      - lastname
+      - locality
+      - mail
+      - name
+      - org_job_title
+      - org_name
+      - organisation
+      - pa_email
+      - roles
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
 tracker_settings:
   default:
     indexing_order: fifo
