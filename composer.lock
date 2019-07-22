@@ -3133,6 +3133,57 @@
             }
         },
         {
+            "name": "drupal/govuk_design_system",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/govuk_design_system.git",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/govuk_design_system-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "a07899f49fdedcaac9fbf5505f4c98c3755632cc"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "suggest": {
+                "drupal/govuk_inline_form_errors": "Display inline form error messages according to GOVUK Design System."
+            },
+            "type": "drupal-theme",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1548341885",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Leon Kessler",
+                    "homepage": "https://www.drupal.org/u/leonkessler",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Integrates Drupal with the GOVUK Design System.",
+            "homepage": "https://www.drupal.org/project/govuk_design_system",
+            "support": {
+                "source": "https://git.drupalcode.org/project/govuk_design_system"
+            }
+        },
+        {
             "name": "drupal/key",
             "version": "1.8.0",
             "source": {
@@ -9115,7 +9166,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/encrypt": 5
+        "drupal/encrypt": 5,
+        "drupal/govuk_design_system": 10
     },
     "prefer-stable": true,
     "prefer-lowest": false,
