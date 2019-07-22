@@ -4,21 +4,19 @@ module:
   block: 0
   breakpoint: 0
   ckeditor: 0
+  config_filter: 0
+  config_split: 0
   contextual: 0
   datetime: 0
   dblog: 0
-  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   entity: 0
   field: 0
-  field_ui: 0
   file: 0
   filter: 0
   inline_form_errors: 0
   link: 0
-  menu_ui: 0
-  name: 0
   node: 0
   options: 0
   page_cache: 0
@@ -35,7 +33,6 @@ module:
   toolbar: 0
   update: 0
   user: 0
-  views_ui: 0
   menu_link_content: 1
   views: 10
   minimal: 1000

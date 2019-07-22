@@ -1,0 +1,20 @@
+uuid: b0d9defb-45f7-403a-b27d-8b9ecc13a77e
+langcode: en
+status: true
+dependencies: {  }
+id: devel
+label: Development
+description: 'Configuration settings specifically for development environments'
+folder: ../config/devel
+module:
+  config: 0
+  devel_generate: 0
+  field_ui: 0
+  menu_ui: 0
+  views_ui: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
