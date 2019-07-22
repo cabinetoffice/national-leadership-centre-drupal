@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.organisation.field_sector
     - node.type.organisation
   module:
     - path
@@ -17,6 +18,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_sector:
+    weight: 121
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   path:
     type: path
     weight: 30
