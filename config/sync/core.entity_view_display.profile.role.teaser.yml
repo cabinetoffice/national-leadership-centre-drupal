@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.profile.teaser
+    - field.field.profile.role.field_email
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email
+    - field.field.profile.role.field_phone
     - field.field.profile.role.field_time_in_role
     - profile.type.role
 id: profile.role.teaser
@@ -32,6 +34,9 @@ content:
     type: entity_reference_label
     region: content
 hidden:
+  field_email: true
   field_location: true
   field_pa_email: true
+  field_phone: true
   field_time_in_role: true
+  search_api_excerpt: true
