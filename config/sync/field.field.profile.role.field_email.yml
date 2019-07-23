@@ -1,0 +1,19 @@
+uuid: 2f576011-6549-448a-9af7-6b4c81e2ec79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_email
+    - profile.type.role
+id: profile.role.field_email
+field_name: field_email
+entity_type: profile
+bundle: role
+label: 'Email address in role'
+description: 'Your email address at this role. May differ from your account email address.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

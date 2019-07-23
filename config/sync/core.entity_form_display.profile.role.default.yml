@@ -3,19 +3,30 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.profile.role.field_email
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email
+    - field.field.profile.role.field_phone
     - field.field.profile.role.field_time_in_role
     - profile.type.role
   module:
     - address
+    - telephone
 id: profile.role.default
 targetEntityType: profile
 bundle: role
 mode: default
 content:
+  field_email:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
+    region: content
   field_job_title:
     weight: 1
     settings:
@@ -40,15 +51,22 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_pa_email:
-    weight: 4
+    weight: 5
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: email_default
     region: content
+  field_phone:
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
   field_time_in_role:
-    weight: 3
+    weight: 6
     settings:
       placeholder: ''
     third_party_settings: {  }
