@@ -1,0 +1,50 @@
+uuid: cb391382-bc51-4c0f-8c7c-c364f2c5c1be
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.social_media.field_facebook
+    - field.field.profile.social_media.field_linkedin
+    - field.field.profile.social_media.field_twitter
+    - field.field.profile.social_media.field_website
+    - profile.type.social_media
+  module:
+    - link
+id: profile.social_media.default
+targetEntityType: profile
+bundle: social_media
+mode: default
+content:
+  field_facebook:
+    weight: 1
+    settings:
+      placeholder_url: 'https://www.facebook.com/'
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_linkedin:
+    weight: 2
+    settings:
+      placeholder_url: 'https://www.linkedin.com/in/'
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_twitter:
+    weight: 0
+    settings:
+      placeholder_url: 'https://twitter.com/'
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_website:
+    weight: 3
+    settings:
+      placeholder_url: 'https://www.example.com/'
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+hidden: {  }
