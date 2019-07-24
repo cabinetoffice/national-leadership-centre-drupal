@@ -1,0 +1,7 @@
+nlc_prototype.directory.token_access:
+  path: '/directory/access'
+  defaults:
+    _title: 'Request a link for access to senior leaders directory'
+    _form: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm'
+  requirements:
+    _permission: 'access content'
