@@ -27,8 +27,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access user profiles'
       cache:
         type: tag
         options: {  }
@@ -808,6 +809,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
   page_1:
@@ -824,7 +826,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: 0
+        weight: -50
         context: '0'
         menu_name: main
     cache_metadata:
@@ -834,5 +836,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'

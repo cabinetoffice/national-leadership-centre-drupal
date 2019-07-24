@@ -153,7 +153,7 @@ field_settings:
     label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
-    type: text
+    type: string
     dependencies:
       module:
         - profile

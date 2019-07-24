@@ -3,8 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.organisation.field_sector
+    - field.field.node.organisation.field_website
     - node.type.organisation
   module:
+    - link
     - path
 id: node.organisation.default
 targetEntityType: node
@@ -17,6 +20,20 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_sector:
+    weight: 121
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_website:
+    weight: 122
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   path:
     type: path
     weight: 30
