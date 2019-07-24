@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ * Functions to support theming in the bevan theme.
+ */
+use Drupal\Core\Form\FormStateInterface;
+
+function bevan_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-directory-page-1') {
+    $form['sector']['#type'] = 'select';
+    $form['sector']['#options'] = ['~Select~'];
+    $form['sector']['#multiple'] = FALSE;
+    $form['sector']['#value'] = $form_state->getUserInput()['sector'];
+    $terms = \Drupal::entityManager()
+      ->getStorage('taxonomy_term')
+      ->loadTree('sector');
+    foreach ($terms as $term) {
+      $form['sector']['#options'][$term->name] = $term->name;
+    }
+  }
+}

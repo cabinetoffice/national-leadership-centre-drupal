@@ -1,6 +1,7 @@
 name: Bevan
 description: The NLC theme, a sub-theme of the GOV.UK Design System base theme
 type: theme
+package: Other
 core: 8.x
 base theme: govuk_design_system
 # Regions
