@@ -124,10 +124,10 @@ class DirectoryTokenAccessForm extends FormBase {
     if ($result['result'] !== true) {
       $this->messenger()->addError($this->t('There was a problem sending your message and it was not sent.'));
     }
-
-    $rendered_message = Markup::create('You will receive a secure link to your email address.');
-
-    $this->messenger()->addStatus($rendered_message);
+//
+//    $rendered_message = Markup::create('You will receive a secure link to your email address.');
+//
+//    $this->messenger()->addStatus($rendered_message);
     $form_state->setRedirect('nlc_prototype.directory.token_access.confirm');
 
   }

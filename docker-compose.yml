@@ -67,9 +67,9 @@ services:
     image: mailhog/mailhog
     container_name: "${PROJECT_NAME}_mailhog"
     labels:
-      - 'traefik.backend=mailhog'
+      - 'traefik.backend=${PROJECT_NAME}_mailhog'
       - 'traefik.port=8025'
-      - "traefik.frontend.rule=Host:mailhog.${COMPOSE_PROJECT_NAME}.docker.localhost"
+      - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
 
   # varnish:
   #   image: wodby/drupal-varnish:$VARNISH_TAG

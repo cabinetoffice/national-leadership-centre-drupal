@@ -44,6 +44,13 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   public function build() {
 
     $build = [];
+    $format = filter_default_format();
+    $build['intro'] = [
+      '#type' => 'processed_text',
+      '#text' => $this->t('You will receive a secure link to your email address.'),
+      '#format' => $format,
+    ];
+
     $url = Url::fromRoute('nlc_prototype.directory.token_access');
     $build['form_link'] = [
       '#type' => 'link',
@@ -54,6 +61,11 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
     return $build;
   }
 
+  /**
+   * Access check for the access form confirm page.
+   *
+   * @return \Drupal\Core\Access\AccessResult
+   */
   public function access() {
     return AccessResult::allowedIf($this->store->get('email'));
   }

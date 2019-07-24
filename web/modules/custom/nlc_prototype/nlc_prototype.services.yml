@@ -1,0 +1,5 @@
+services:
+  nlc_prototype.route_subscriber:
+    class: Drupal\nlc_prototype\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
