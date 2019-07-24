@@ -5,3 +5,11 @@ nlc_prototype.directory.token_access:
     _form: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm'
   requirements:
     _permission: 'access content'
+nlc_prototype.directory.token_access.confirm:
+  path: '/directory/access/confirm'
+  defaults:
+    _title: 'Request a link for access to senior leaders directory'
+    _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::build'
+  requirements:
+    _permission: 'access content'
+    _custom_access: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::access'
