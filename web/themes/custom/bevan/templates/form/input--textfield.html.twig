@@ -1,0 +1,7 @@
+{%
+  set classes = [
+    'govuk-input',
+    element['#errors'] ? 'govuk-input--error',
+  ]
+%}
+<input{{ attributes.addClass(classes) }} />{{ children }}
