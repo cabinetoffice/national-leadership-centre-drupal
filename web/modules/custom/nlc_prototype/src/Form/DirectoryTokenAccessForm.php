@@ -115,7 +115,13 @@ class DirectoryTokenAccessForm extends FormBase {
     $key = 'directory_access_token';
     $to = $account->getEmail();
     $params = [
-      'message' => $this->t('Your one-time login link: @url', ['@url' => $this->directoryUrl($account)])
+      'message' => [
+        $this->t('Thank you for requesting a link to your senior leadership directory, provided by the National Leadership Centre.'),
+        $this->t('Your secure one-time access link is: @url', ['@url' => $this->directoryUrl($account)]),
+        $this->t('This link will expire after one day.'),
+        $this->t('We hope you can use this director to connect and work with people across the public sector.'),
+        $this->t('If you have any difficulties, please contact nlc@cabinetoffice.gov.uk for help.'),
+      ],
     ];
     $langcode = \Drupal::currentUser()->getPreferredLangcode();
     $send = true;
