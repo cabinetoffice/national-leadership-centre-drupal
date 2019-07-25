@@ -1,0 +1,24 @@
+nlc_prototype.directory.token_access:
+  path: '/directory/access'
+  defaults:
+    _title: 'Request a link for access to senior leaders directory'
+    _form: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm'
+  requirements:
+    _permission: 'access content'
+nlc_prototype.directory.token_access.confirm:
+  path: '/directory/access/confirm'
+  defaults:
+    _title: 'Request a link for access to senior leaders directory'
+    _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::build'
+  requirements:
+    _permission: 'access content'
+    _custom_access: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::access'
+nlc_prototype.directory.token_access.check:
+  path: '/directory/access/check/{uid}/{timestamp}/{hash}'
+  defaults:
+    _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::check'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE

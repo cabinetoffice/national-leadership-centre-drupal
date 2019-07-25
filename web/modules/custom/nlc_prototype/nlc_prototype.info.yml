@@ -1,0 +1,5 @@
+name: NLC Prototype
+type: module
+description: 'Provides quick custom code for the NLC directory prototypes.'
+package: NLC
+core: '8.x'
