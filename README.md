@@ -57,20 +57,13 @@ It is presumed that you will use Docker to run this project. This project uses C
     --volume $PWD:/app \
     composer install --ignore-platform-reqs
   ```
-3. **Create a `settings.php` file.**
-  Copy `default.settings.php` to create your `settings.php` file. Uncomment the last lines, about including a `settings.local.php`. 
-4. **Add a `settings.local.php` file.**
+3. **Add a `settings.local.php` file.**
   … in the `./web/sites/default/` directory. You may like to copy and adapt the `./web/sites/example.settings.local.php` file as a starting point.
-5. **Include the site configuration source files.**
-  Make sure your `settings.local.php` includes the following near the end to find the exported site configuration files:
-  ```php
-  $config_directories['sync'] = '../config/sync';
-  ```
-6. **Copy-and-paste `.env.example` to `.env` and edit settings to suit your needs.**
+4. **Copy-and-paste `.env.example` to `.env` and edit settings to suit your needs.**
   This is the environment for your local Docker. Most settings should be obvious and/or self-evident. The default values are probably fine.
-7. **If you want to start with a default pre-populated database:**
+5. **If you want to start with a default pre-populated database:**
   See 'Import an initial MySQL DB' below.
-8. **Start it up!**
+6. **Start it up!**
 
 The `Makefile` and `docker.mk` included in this project provide some easy CLI tools to work with this Docker stack for Drupal.
 
@@ -86,7 +79,7 @@ $ make up
 $ make down
 ```
 
-9. **Install the site**
+7. **Install the site**
   Your site should be installed at the `PROJECT_BASE_URL` location, [http://nlc-drupal.docker.localhost](http://nlc-drupal.docker.localhost) by default. Follow the Drupal installation instructions. You should be offered to install from the site configuration.
   - See also the [Configuration Management](#configuration-management) section below for installing config for a local development environment. 
 
