@@ -7,12 +7,14 @@
 
 namespace Drupal\nlc_prototype\Form;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
+use Drupal\menu_test\Access\AccessCheck;
 use Drupal\user\Entity\User;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -57,6 +59,19 @@ class DirectoryTokenAccessForm extends FormBase {
    */
   public function getFormId() {
     return 'directory_access_token';
+  }
+
+  /**
+   * Access check for form.
+   *
+   * @return \Drupal\Core\Access\AccessResultInterface
+   */
+  public function access() {
+    $account = $this->currentUser();
+    if ($account->isAuthenticated()) {
+      return AccessResult::forbidden();
+    }
+    return AccessResult::allowed();
   }
 
   /**

@@ -5,6 +5,7 @@ nlc_prototype.directory.token_access:
     _form: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm'
   requirements:
     _permission: 'access content'
+    _custom_access: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm::access'
 nlc_prototype.directory.token_access.confirm:
   path: '/directory/access/confirm'
   defaults:
