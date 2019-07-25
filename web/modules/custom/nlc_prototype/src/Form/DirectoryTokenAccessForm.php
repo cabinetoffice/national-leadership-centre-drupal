@@ -27,7 +27,7 @@ class DirectoryTokenAccessForm extends FormBase {
   /**
    * @var string
    */
-  private $routeName = 'view.directory.page_1';
+  private $routeName = 'nlc_prototype.directory.token_access.check';
 
   /**
    * @var PrivateTempStoreFactory
