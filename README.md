@@ -88,7 +88,7 @@ $ make down
   Your site should be installed at the `PROJECT_BASE_URL` location, [http://nlc-drupal.docker.localhost](http://nlc-drupal.docker.localhost) by default. Follow the Drupal installation instructions.
   - You should be offered to install from the site configuration, with the 'Use existing configuration' option.
   - To set up the database connection, use the credentials from your `.env` file. The database is NOT at `localhost` — it is at the name of the MariaDB Docker container, `mariadb` in the standard configuration of the `docker-compose.yml` file. 
-  - See also the [Configuration Management](#configuration-management) section below for installing config for a local development environment. 
+  - See also the [Configuration Management](#configuration-management) section below for installing config for a local development environment. Although the site configuration is imported by the installer, the taxonomy terms will need to be imported manually.
 
 #### Make commands:
 
