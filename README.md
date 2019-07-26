@@ -57,7 +57,7 @@ It is presumed that you will use Docker to run this project. This project uses C
     --volume $PWD:/app \
     composer install --ignore-platform-reqs
   ```
-3. Install the packages required by the GOV.UK Design System base theme:
+3. **Install the packages required by the GOV.UK Design System base theme.**
   ```bash
   $ cd ./web/themes/contrib/govuk_design_system
   $ npm install
