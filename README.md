@@ -57,17 +57,22 @@ It is presumed that you will use Docker to run this project. This project uses C
     --volume $PWD:/app \
     composer install --ignore-platform-reqs
   ```
-3. **Add a `settings.local.php` file.**
+3. Install the packages required by the GOV.UK Design System base theme:
+  ```bash
+  $ cd ./web/themes/contrib/govuk_design_system
+  $ npm install
+  ```
+4. **Add a `settings.local.php` file.**
   … in the `./web/sites/default/` directory. You may like to copy and adapt the `./web/sites/example.settings.local.php` file as a starting point.
-4. **Copy-and-paste `.env.example` to `.env` and edit settings to suit your needs.**
+5. **Copy-and-paste `.env.example` to `.env` and edit settings to suit your needs.**
   This is the environment for your local Docker. Most settings should be obvious and/or self-evident. The default values are probably fine.
-5. **If you want to start with a default pre-populated database:**
+6. **If you want to start with a default pre-populated database:**
   See 'Import an initial MySQL DB' below.
-6. **Start it up!**
+7. **Start it up!**
 
 The `Makefile` and `docker.mk` included in this project provide some easy CLI tools to work with this Docker stack for Drupal.
 
-**To start your Docker stack:**
+**To start your Docker stack, from the root directory of your cloned repo:**
 
 ```bash
 $ make up
@@ -79,8 +84,10 @@ $ make up
 $ make down
 ```
 
-7. **Install the site**
-  Your site should be installed at the `PROJECT_BASE_URL` location, [http://nlc-drupal.docker.localhost](http://nlc-drupal.docker.localhost) by default. Follow the Drupal installation instructions. You should be offered to install from the site configuration.
+8. **Install the site**
+  Your site should be installed at the `PROJECT_BASE_URL` location, [http://nlc-drupal.docker.localhost](http://nlc-drupal.docker.localhost) by default. Follow the Drupal installation instructions.
+  - You should be offered to install from the site configuration, with the 'Use existing configuration' option.
+  - To set up the database connection, use the credentials from your `.env` file. The database is NOT at `localhost` — it is at the name of the MariaDB Docker container, `mariadb` in the standard configuration of the `docker-compose.yml` file. 
   - See also the [Configuration Management](#configuration-management) section below for installing config for a local development environment. 
 
 #### Make commands:
