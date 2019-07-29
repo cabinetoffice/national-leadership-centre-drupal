@@ -1,0 +1,8 @@
+.env.example
+.travis.yml
+docker-compose.yml
+docker.mk
+Makefile
+manifest.yml
+phpunit.xml.dist
+README.md

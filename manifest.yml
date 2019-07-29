@@ -1,0 +1,7 @@
+---
+applications:
+- name: nlc-alpha-drupal
+  memory: 512M
+  # path: .
+  buildpacks: 
+    - php_buildpack
