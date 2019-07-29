@@ -54,7 +54,8 @@ It is presumed that you will use Docker to run this project. This project uses C
   or
   ```bash
   docker run --rm --interactive --tty \
-    --volume $PWD:/app \
+    -v $PWD:/app \
+    -u $(id -u ${USER}):$(id -g ${USER}) \
     composer install --ignore-platform-reqs
   ```
 3. **Install the packages required by the GOV.UK Design System base theme.**
