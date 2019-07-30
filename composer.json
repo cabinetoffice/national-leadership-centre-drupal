@@ -33,6 +33,7 @@
         "drupal/name": "^1.0@RC",
         "drupal/profile": "^1.0@RC",
         "drupal/real_aes": "^2.2",
+        "drupal/s3fs": "^3.0@alpha",
         "drupal/search_api": "^1.14",
         "drupal/search_api_autocomplete": "^1.2",
         "drupal/select_or_other": "^1.0@alpha",
