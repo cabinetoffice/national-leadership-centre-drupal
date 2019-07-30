@@ -19,3 +19,4 @@ $s3bucketCreds = $vcapServices['aws-s3-bucket'][0]['credentials'];
 
 $settings['s3fs.access_key'] = $s3bucketCreds['aws_access_key_id'];
 $settings['s3fs.secret_key'] = $s3bucketCreds['aws_secret_key_id'];
+$config['s3fs.settings']['bucket'] = $s3bucketCreds['bucket_name'];
