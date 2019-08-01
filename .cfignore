@@ -7,3 +7,4 @@ manifest.yml
 phpunit.xml.dist
 README.md
 .idea
+vendor
