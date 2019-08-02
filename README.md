@@ -159,3 +159,11 @@ $ drush import-taxonomies --choice=safe
 ```
 
 (because `make` doesn't pass options to the command)
+
+##  Gov.uk PaaS
+
+The alpha site can be found on Gov.uk PaaS.
+
+### Setup
+
+Please refer to the official [getting started](https://docs.cloud.service.gov.uk/get_started.html#get-started) documentation.
