@@ -1,9 +1,9 @@
 uuid: 6408c13a-ecac-4c06-80fe-46cad42e0939
 name: 'National Leadership Centre'
-mail: admin@example.com
+mail: mike.bell@weareconvivio.com
 slogan: ''
 page:
-  403: ''
+  403: /directory/access
   404: ''
   front: /directory
 admin_compact_mode: false
@@ -12,4 +12,4 @@ langcode: en
 default_langcode: en
 _core:
   default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
-mail_notification: ''
+mail_notification: lewis.nyman@convivio.team

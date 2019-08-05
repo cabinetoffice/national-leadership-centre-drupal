@@ -14,3 +14,9 @@ $databases['default']['default'] = array(
   'collation' => 'utf8mb4_general_ci', // For Drupal 8
   'pdo' => array(PDO::MYSQL_ATTR_SSL_CAPATH => '/etc/ssl/certs')
 );
+
+$s3bucketCreds = $vcapServices['aws-s3-bucket'][0]['credentials'];
+
+$settings['s3fs.access_key'] = $s3bucketCreds['aws_access_key_id'];
+$settings['s3fs.secret_key'] = $s3bucketCreds['aws_secret_key_id'];
+$config['s3fs.settings']['bucket'] = $s3bucketCreds['bucket_name'];

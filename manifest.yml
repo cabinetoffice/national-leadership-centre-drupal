@@ -7,3 +7,4 @@ applications:
     - php_buildpack
   services:
     - nlc-alpha-s3
+    - nlc-alpha-drupal-mysql
