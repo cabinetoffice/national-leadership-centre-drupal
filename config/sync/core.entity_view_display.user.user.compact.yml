@@ -40,3 +40,5 @@ content:
 hidden:
   field_gender: true
   member_for: true
+  search_api_excerpt: true
+  social_media_profiles: true

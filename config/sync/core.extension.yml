@@ -5,21 +5,27 @@ module:
   breakpoint: 0
   ckeditor: 0
   comment: 0
+  config: 0
   config_filter: 0
   config_split: 0
   contextual: 0
   datetime: 0
   dblog: 0
+  devel: 0
+  devel_generate: 0
   dynamic_page_cache: 0
   editor: 0
   email_registration: 0
   entity: 0
   field: 0
+  field_ui: 0
   file: 0
   filter: 0
   image: 0
   inline_form_errors: 0
   link: 0
+  mailsystem: 0
+  menu_ui: 0
   name: 0
   nlc_prototype: 0
   node: 0
@@ -29,10 +35,12 @@ module:
   profile: 0
   quickedit: 0
   rdf: 0
+  s3fs: 0
   search_api: 0
   search_api_autocomplete: 0
   search_api_db: 0
   select_or_other: 0
+  sendgrid_integration: 0
   structure_sync: 0
   system: 0
   taxonomy: 0
@@ -41,6 +49,7 @@ module:
   toolbar: 0
   update: 0
   user: 0
+  views_ui: 0
   menu_link_content: 1
   views: 10
   minimal: 1000
@@ -50,6 +59,7 @@ theme:
   seven: 0
   govuk_design_system: 0
   bevan: 0
+  bartik: 0
 profile: minimal
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
