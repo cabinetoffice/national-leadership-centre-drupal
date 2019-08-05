@@ -77,7 +77,7 @@ display:
           row_class: ''
           default_row_class: true
           override: true
-          sticky: false
+          sticky: true
           caption: ''
           summary: ''
           description: ''
@@ -87,6 +87,7 @@ display:
             lastname: lastname
             org_job_title: org_job_title
             org_name: org_name
+            sector: sector
           info:
             title:
               sortable: false
@@ -117,7 +118,14 @@ display:
               empty_column: false
               responsive: ''
             org_name:
-              sortable: false
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            sector:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -639,8 +647,8 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: Search
-            description: ''
+            label: 'Search '
+            description: 'Search by name, job title, location, or organisation'
             use_operator: false
             operator: search_api_fulltext_op
             identifier: search
@@ -704,7 +712,7 @@ display:
             identifier: sector
             required: false
             remember: false
-            multiple: false
+            multiple: true
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
@@ -713,18 +721,60 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-          is_grouped: false
+          is_grouped: true
           group_info:
-            label: ''
+            label: 'Filter by sector'
             description: ''
-            identifier: ''
+            identifier: sector
             optional: true
-            widget: select
+            widget: radios
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1:
+                title: Healthcare
+                operator: '='
+                value:
+                  value: Healthcare
+                  min: ''
+                  max: ''
+              2:
+                title: Education
+                operator: '='
+                value:
+                  value: Education
+                  min: ''
+                  max: ''
+              3:
+                title: 'Fire service'
+                operator: '='
+                value:
+                  value: 'Fire service'
+                  min: 'Fire service'
+                  max: 'Fire service'
+              4:
+                title: 'Civil service'
+                operator: '='
+                value:
+                  value: 'Civil service'
+                  min: 'Civil service'
+                  max: 'Civil service'
+              5:
+                title: 'Local government'
+                operator: '='
+                value:
+                  value: 'Local government'
+                  min: 'Local government'
+                  max: 'Local government'
+              6:
+                title: Military
+                operator: '='
+                value:
+                  value: Military
+                  min: Military
+                  max: Military
           plugin_id: search_api_string
       sorts:
         lastname:
