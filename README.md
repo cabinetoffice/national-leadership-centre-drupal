@@ -167,3 +167,11 @@ The alpha site can be found on Gov.uk PaaS.
 ### Setup
 
 Please refer to the official [getting started](https://docs.cloud.service.gov.uk/get_started.html#get-started) documentation.
+
+### Drush
+
+SSH into the current app:
+
+```cf ssh "nlc-alpha-drupal" -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"```
+
+Then you can run drush as normal.
