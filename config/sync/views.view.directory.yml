@@ -872,7 +872,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: directory
+      path: directory-old
       menu:
         type: normal
         title: 'Members Directory'
