@@ -4,13 +4,13 @@ dependencies:
   enforced:
     module:
       - nlc_import
-id: migrate_delegate
+id: migrate_delegates
 label: CSV file migration
 migration_tags:
   - CSV
 source:
   plugin: csv
-  path: /var/www/html/web/modules/custom/nlc_import/example/delegates.csv
+  path: /var/www/html/web/modules/custom/nlc_import/example/delegates-new.csv
   header_row_count: 1
 #  keys:
 #    - Email id
