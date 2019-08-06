@@ -6,6 +6,7 @@
 /web/themes/contrib/
 /web/profiles/contrib/
 /web/libraries/
+/web/modules/custom/nlc_import/example/
 
 # Ignore sensitive information
 /web/sites/*/settings.php
