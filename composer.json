@@ -31,6 +31,7 @@
         "drupal/encrypt": "^3.0@RC",
         "drupal/govuk_design_system": "^1.0@beta",
         "drupal/key": "^1.8",
+        "drupal/migrate_plus": "^4.2",
         "drupal/name": "^1.0@RC",
         "drupal/profile": "^1.0@RC",
         "drupal/real_aes": "^2.2",
