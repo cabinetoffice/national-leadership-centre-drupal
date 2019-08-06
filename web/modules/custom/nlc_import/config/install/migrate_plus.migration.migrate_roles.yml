@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nlc_import
+id:  migrate_roles
+label: CSV file migration
+migration_tags:
+  - CSV
+source:
+  plugin: csv
+  path: /var/www/html/web/modules/custom/nlc_import/example/delegates-new.csv
+  header_row_count: 1
+  ids:
+      - "Email id"
+destination:
+  plugin: entity:profile
+process:
+   type:
+    plugin: default_value
+    default_value: 'role'
+   uid:
+     plugin: migration_lookup
+     no_stub: true
+     # previous user migration
+     migration: migrate_delegates
+     # property in the source data
+     source: "Email id"
+   field_email: "Email id"
+   field_job_title: "Job Title"
+   field_pa_email: "PA email"
+   field_phone: "PA Number"
+   field_organisation:
+    plugin: migration_lookup
+    no_stub: true
+    migration: migrate_organisations
+    source: "Email id"
