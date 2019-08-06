@@ -26,7 +26,10 @@ source:
 destination:
   plugin: entity:user
 process:
-  name: 'First Name'
+  name: 'Email id'
   mail: 'Email id'
   status: 1
+  field_gender: "Gender"
+  field_name/given: "First Name"
+  field_name/family: "Last Name"
 
