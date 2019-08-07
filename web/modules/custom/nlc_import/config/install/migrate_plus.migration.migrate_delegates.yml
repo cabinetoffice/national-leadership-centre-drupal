@@ -28,8 +28,14 @@ destination:
 process:
   name: 'Email id'
   mail: 'Email id'
-  status: 1
-  field_gender: "Gender"
+  status:
+    - plugin: default_value
+      default_value: 1
+  field_gender:
+    - plugin: callback
+      callable: strtolower
+      source: "Gender"
   field_name/given: "First Name"
   field_name/family: "Last Name"
+  field_title: "Title"
 
