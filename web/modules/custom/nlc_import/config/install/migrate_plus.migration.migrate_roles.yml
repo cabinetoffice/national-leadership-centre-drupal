@@ -36,3 +36,4 @@ process:
     no_stub: true
     migration: migrate_organisations
     source: "Email id"
+   field_general_location: "Location"
