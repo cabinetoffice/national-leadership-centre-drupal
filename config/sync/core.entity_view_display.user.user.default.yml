@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.user.user.field_gender
     - field.field.user.user.field_name
+    - field.field.user.user.field_title
   module:
     - user
 id: user.user.default
@@ -33,5 +34,6 @@ content:
 hidden:
   field_gender: true
   field_name: true
+  field_title: true
   member_for: true
   search_api_excerpt: true
