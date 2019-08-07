@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nlc_import
+id: migrate_organisations
+label: CSV file migration
+migration_tags:
+  - CSV
+source:
+  plugin: csv
+  path: /var/www/html/web/modules/custom/nlc_import/example/delegates-new.csv
+  header_row_count: 1
+  ids:
+    - "Email id"
+destination:
+  plugin: entity:node
+  default_bundle: organisation
+process:
+  title: 'Name of Organisation'
+

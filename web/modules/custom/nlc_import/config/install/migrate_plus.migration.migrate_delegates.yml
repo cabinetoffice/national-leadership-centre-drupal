@@ -1,0 +1,41 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nlc_import
+id: migrate_delegates
+label: CSV file migration
+migration_tags:
+  - CSV
+source:
+  plugin: csv
+  path: /var/www/html/web/modules/custom/nlc_import/example/delegates-new.csv
+  header_row_count: 1
+#  keys:
+#    - Email id
+  ids:
+    - "Email id"
+#  column_names:
+#    0:
+#      id: 'Cohort Number'
+#    1:
+#      'First Name': 'First name'
+#    3:
+#      'Email id': 'Email'
+destination:
+  plugin: entity:user
+process:
+  name: 'Email id'
+  mail: 'Email id'
+  status:
+    - plugin: default_value
+      default_value: 1
+  field_gender:
+    - plugin: callback
+      callable: strtolower
+      source: "Gender"
+  field_name/given: "First Name"
+  field_name/family: "Last Name"
+  field_title: "Title"
+
