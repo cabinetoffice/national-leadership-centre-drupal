@@ -10,7 +10,7 @@ migration_tags:
   - CSV
 source:
   plugin: csv
-  path: /var/www/html/web/modules/custom/nlc_import/example/delegates-new.csv
+  path: modules/custom/nlc_import/example/delegates-new.csv
   header_row_count: 1
   ids:
     - "Email id"

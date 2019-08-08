@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nlc_import
+id: migrate_sectors
+label: CSV file migration
+source:
+  plugin: csv
+  path: modules/custom/nlc_import/example/sectors.csv
+  header_row_count: 1
+#  keys:
+#    - Email id
+  ids:
+    - "id"
+process:
+  tid: "id"
+  name:
+    - plugin: callback
+      callable: trim
+      source: "Sector"
+
+destination:
+  plugin: entity:taxonomy_term
+  default_bundle: sector
