@@ -10,3 +10,5 @@ regions:
   pre_content: 'Pre-content'
   content: 'Content'
   footer: 'Footer'
+libraries:
+  - bevan/global-styling
