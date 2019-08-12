@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nlc_import
+id:  migrate_social_media
+label: CSV file migration
+migration_tags:
+  - CSV
+source:
+  plugin: csv
+  path: modules/custom/nlc_import/example/delegates-new.csv
+  header_row_count: 1
+  ids:
+      - "Email id"
+destination:
+  plugin: entity:profile
+process:
+   type:
+    plugin: default_value
+    default_value: 'social_media'
+   uid:
+     plugin: migration_lookup
+     no_stub: true
+     # previous user migration
+     migration: migrate_delegates
+     # property in the source data
+     source: "Email id"
+   field_facebook: Facebook
+   field_linkedin: Linkedin
+   field_website: Website
+   field_twitter: Twitter
