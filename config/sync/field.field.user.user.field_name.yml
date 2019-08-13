@@ -19,9 +19,9 @@ default_value: {  }
 default_value_callback: ''
 settings:
   components:
-    title: true
     given: true
     family: true
+    title: false
     middle: false
     generational: false
     credentials: false

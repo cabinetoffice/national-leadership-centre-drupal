@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.profile.role.field_email
+    - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
@@ -12,7 +13,6 @@ dependencies:
     - field.field.profile.role.field_time_in_role
     - profile.type.role
   module:
-    - address
     - telephone
 id: profile.role.default
 targetEntityType: profile
@@ -20,12 +20,20 @@ bundle: role
 mode: default
 content:
   field_email:
-    weight: 3
+    weight: 2
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: email_default
+    region: content
+  field_general_location:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_job_title:
     weight: 1
@@ -34,12 +42,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_location:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: address_default
     region: content
   field_organisation:
     weight: 0
@@ -59,7 +61,7 @@ content:
     type: email_default
     region: content
   field_phone:
-    weight: 4
+    weight: 3
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -72,4 +74,5 @@ content:
     third_party_settings: {  }
     type: number
     region: content
-hidden: {  }
+hidden:
+  field_location: true

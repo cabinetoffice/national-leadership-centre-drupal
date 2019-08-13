@@ -1,0 +1,19 @@
+uuid: df2ca19d-fdae-4582-acc2-db7e0df0927c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_general_location
+    - profile.type.role
+id: profile.role.field_general_location
+field_name: field_general_location
+entity_type: profile
+bundle: role
+label: Location
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

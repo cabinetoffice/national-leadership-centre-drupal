@@ -1,0 +1,10 @@
+type: module
+name: NLC Import
+description: 'Import data from CSV'
+package: NLC
+core: 8.x
+dependencies:
+  - drupal:migrate
+  - drupal:migrate_plus
+  - drupal:migrate_tools
+  - drupal:migrate_source_csv
