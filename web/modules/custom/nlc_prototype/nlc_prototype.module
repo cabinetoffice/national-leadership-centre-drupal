@@ -1,6 +1,10 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\search_api\Query\ConditionGroupInterface;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\search_api\Plugin\views\query\SearchApiQuery;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_mail().
@@ -30,16 +34,42 @@ function nlc_prototype_mail($key, &$message, $params) {
  */
 function nlc_prototype_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form['#id'] == 'views-exposed-form-directory-page-1') {
-//    dpm($form['sector']);
-//    dpm($form_state->getUserInput());
+    // Turn the the multi-select select box into a set of checkboxes.
     $form['sector']['#type'] = 'checkboxes';
-    $form['sector']['#options'] = [];
-    $form['sector']['#value'] = empty($form_state->getUserInput()['sector']) ? NULL : $form_state->getUserInput()['sector'];
-    $terms = Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree('sector');
-//    dpm($terms);
+  }
+}
 
-    foreach ($terms as $term) {
-//      $form['sector']['#options'][$term->tid] = htmlspecialchars($term->name);
+/**
+ * Implements hook_views_query_alter().
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ *   The view object about to be processed.
+ * @param QueryPluginBase $query
+ *   The query plugin object for the query.
+ */
+function nlc_prototype_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'directory' && is_a($query, 'Drupal\search_api\Plugin\views\query\SearchApiQuery') && !empty($view->exposed_raw_input['sector'])) {
+    /** @var ConditionGroupInterface $sectorConditionsGroup */
+//    $sectorConditionsGroup = $query->createConditionGroup('OR');
+    $sectorConditions = [];
+    $sectorId = NULL;
+    // Traverse through the 'where' part of the query.
+    foreach ($query->getWhere() as &$condition_group) {
+      foreach ($condition_group['conditions'] as $id => &$condition) {
+        // If it's the 'sector' condition, turn it into a single value 'IN' a set query.
+        if ($condition[0] === 'sector') {
+          if (isset($sectorId)) {
+            unset($condition_group['conditions'][$id]);
+          }
+          else {
+            $sectorId = $id;
+          }
+          list($field, $value, $operator) = $condition;
+          $sectorConditions[] = $value;
+          $condition_group['conditions'][$sectorId][1] = $sectorConditions;
+          $condition_group['conditions'][$sectorId][2] = 'IN';
+        }
+      }
     }
   }
 }

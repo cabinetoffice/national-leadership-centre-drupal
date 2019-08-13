@@ -22,6 +22,14 @@ name: 'Main index'
 description: ''
 read_only: false
 field_settings:
+  active:
+    label: 'User status'
+    datasource_id: 'entity:user'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - user
   country_code:
     label: 'Location » The two-letter country code.'
     datasource_id: 'entity:profile'
