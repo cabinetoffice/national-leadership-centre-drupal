@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_mail().
  */
@@ -10,5 +12,34 @@ function nlc_prototype_mail($key, &$message, $params) {
       $message['subject'] = t('Access link: Senior Leader directory');
       $message['body'] = $params['message'];
       break;
+  }
+}
+
+/**
+ * Implements hook_form_alter() for the exposed views form.
+ *
+ * @param $form
+ *   Form array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state object.
+ * @param $form_id
+ *   Form ID.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function nlc_prototype_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] == 'views-exposed-form-directory-page-1') {
+//    dpm($form['sector']);
+//    dpm($form_state->getUserInput());
+    $form['sector']['#type'] = 'checkboxes';
+    $form['sector']['#options'] = [];
+    $form['sector']['#value'] = empty($form_state->getUserInput()['sector']) ? NULL : $form_state->getUserInput()['sector'];
+    $terms = Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadTree('sector');
+//    dpm($terms);
+
+    foreach ($terms as $term) {
+//      $form['sector']['#options'][$term->tid] = htmlspecialchars($term->name);
+    }
   }
 }

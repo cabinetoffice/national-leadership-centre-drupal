@@ -673,7 +673,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: phrase
+          parse_mode: terms
           min_length: null
           fields:
             - country_code
@@ -721,60 +721,59 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-          is_grouped: true
+          is_grouped: false
           group_info:
             label: 'Filter by sector'
             description: ''
             identifier: sector
             optional: true
-            widget: radios
-            multiple: false
+            widget: select
+            multiple: true
             remember: false
             default_group: All
-            default_group_multiple: {  }
+            default_group_multiple:
+              All: 0
             group_items:
               1:
-                title: Healthcare
+                title: 'Arm''s-Length Bodies (ALBs)'
                 operator: '='
                 value:
-                  value: Healthcare
-                  min: ''
-                  max: ''
+                  value: 'Arm''s-Length Bodies (ALBs)'
               2:
+                title: 'Armed Forces'
+                operator: '='
+                value:
+                  value: 'Armed Forces'
+              3:
+                title: 'Civil Service'
+                operator: '='
+                value:
+                  value: 'Civil Service'
+              4:
                 title: Education
                 operator: '='
                 value:
                   value: Education
-                  min: ''
-                  max: ''
-              3:
-                title: 'Fire service'
-                operator: '='
-                value:
-                  value: 'Fire service'
-                  min: 'Fire service'
-                  max: 'Fire service'
-              4:
-                title: 'Civil service'
-                operator: '='
-                value:
-                  value: 'Civil service'
-                  min: 'Civil service'
-                  max: 'Civil service'
               5:
-                title: 'Local government'
+                title: 'Fire Service'
                 operator: '='
                 value:
-                  value: 'Local government'
-                  min: 'Local government'
-                  max: 'Local government'
+                  value: 'Fire Service'
               6:
-                title: Military
+                title: Health
                 operator: '='
                 value:
-                  value: Military
-                  min: Military
-                  max: Military
+                  value: Health
+              7:
+                title: 'Local Government'
+                operator: '='
+                value:
+                  value: 'Local Government'
+              8:
+                title: Police
+                operator: '='
+                value:
+                  value: Police
           plugin_id: search_api_string
       sorts:
         lastname:

@@ -23,6 +23,7 @@
         "drupal/address": "~1.0",
         "drupal/better_exposed_filters": "^3.0@alpha",
         "drupal/bootstrap_barrio": "^4.22",
+        "drupal/coder": "^8.3",
         "drupal/config_split": "^1.4",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
@@ -97,6 +98,11 @@
             "initial": {
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
+            }
+        },
+        "patches": {
+            "drupal/core": {
+                "Notice: Undefined index: value in Drupal\\views\\Plugin\\views\\filter\\NumericFilter->acceptExposedInput()": "https://www.drupal.org/files/issues/2019-04-17/exposed-filter-notice-2825860-25.patch"
             }
         }
     }
