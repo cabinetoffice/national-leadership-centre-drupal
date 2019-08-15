@@ -1,0 +1,29 @@
+uuid: a0b962c8-a848-47b3-9310-8b6d15116918
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.filter_by_sector
+  module:
+    - facets
+    - system
+  theme:
+    - bartik
+id: filterbysector
+theme: bartik
+region: sidebar_second
+weight: -4
+provider: null
+plugin: 'facet_block:filter_by_sector'
+settings:
+  id: 'facet_block:filter_by_sector'
+  label: 'Filter by sector'
+  provider: facets
+  label_display: visible
+  block_id: filterbysector
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

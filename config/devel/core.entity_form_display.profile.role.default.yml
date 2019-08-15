@@ -6,6 +6,7 @@ dependencies:
     - field.field.profile.role.field_email
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
+    - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email
@@ -35,13 +36,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_job_title:
+  field_job_title_term:
     weight: 1
     settings:
+      match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: entity_reference_autocomplete
     region: content
   field_organisation:
     weight: 0
@@ -75,4 +77,5 @@ content:
     type: number
     region: content
 hidden:
+  field_job_title: true
   field_location: true

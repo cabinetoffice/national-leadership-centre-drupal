@@ -37,7 +37,7 @@ display:
         options:
           perm: 'access user profiles'
       cache:
-        type: none
+        type: tag
         options: {  }
       query:
         type: views_query
@@ -551,58 +551,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_job_title_value:
-          id: field_job_title_value
-          table: profile__field_job_title
-          field: field_job_title_value
-          relationship: profile
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_job_title_value_op
-            label: 'Filter by job title'
-            description: ''
-            use_operator: false
-            operator: field_job_title_value_op
-            identifier: job_title
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nlc_staff: '0'
-              admin: '0'
-            placeholder: ''
-          is_grouped: true
-          group_info:
-            label: 'Filter by job title'
-            description: ''
-            identifier: job_title
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: 'Chief Executive Officer'
-                operator: '='
-                value: 'Chief Executive Officer'
-              2:
-                title: ''
-                operator: '='
-                value: ''
-              3:
-                title: ''
-                operator: '='
-                value: ''
-          plugin_id: string
       sorts: {  }
       title: 'Senior Leaders Directory'
       header: {  }

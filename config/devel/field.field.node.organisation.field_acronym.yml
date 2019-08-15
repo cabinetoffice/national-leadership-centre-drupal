@@ -1,0 +1,19 @@
+uuid: d429707c-7287-47e0-94e1-4215ed102b0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_acronym
+    - node.type.organisation
+id: node.organisation.field_acronym
+field_name: field_acronym
+entity_type: node
+bundle: organisation
+label: Acronym
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
