@@ -13,5 +13,5 @@ backend_config:
   min_chars: 1
   matching: partial
   autocomplete:
-    suggest_suffix: false
-    suggest_words: false
+    suggest_suffix: true
+    suggest_words: true
