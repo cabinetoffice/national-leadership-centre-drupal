@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\profile\Entity\Profile;
+
 /**
  * Implements hook_mail().
  */
@@ -11,4 +14,38 @@ function nlc_prototype_mail($key, &$message, $params) {
       $message['body'] = $params['message'];
       break;
   }
+}
+
+/**
+ * Implements hook_form_alter() for the exposed views form.
+ *
+ * @param $form
+ *   Form array.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state object.
+ * @param $form_id
+ *   Form ID.
+ */
+function nlc_prototype_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    if ($form['#id'] == 'views-exposed-form-directory-2-page-1') {
+      // Turn the the multi-select select box into a set of checkboxes.
+      dpm($form['job_title']);
+//      $form['job_title']['#type'] = 'checkboxes';
+      $query = \Drupal::entityQuery('profile')
+        ->condition('type', 'role')
+        ->condition('status', 1)
+        ->latestRevision();
+      $pids = $query->execute();
+      $profiles = Profile::loadMultiple($pids);
+
+      $job_titles = [];
+      foreach ($profiles as $profile) {
+        /** @var \Drupal\Core\Field\FieldItemListInterface $job_title */
+        $job_title = $profile->get('field_job_title');
+        if (!$job_title->isEmpty() && !in_array($job_title->getString(), $job_titles)) {
+          $job_titles[] = t($job_title->getString());
+        }
+      }
+//      dpm($job_titles);
+    }
 }
