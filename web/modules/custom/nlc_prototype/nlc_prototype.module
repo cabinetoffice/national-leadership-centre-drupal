@@ -74,23 +74,23 @@ function nlc_prototype_views_query_alter(ViewExecutable $view, QueryPluginBase $
     /** @var ConditionGroupInterface $sectorConditionsGroup */
 //    $sectorConditionsGroup = $query->createConditionGroup('OR');
     $sectorConditions = [];
-    $sectorId = NULL;
     // Traverse through the 'where' part of the query.
     foreach ($query->getWhere() as &$condition_group) {
       foreach ($condition_group['conditions'] as $id => &$condition) {
         // If it's the 'sector' condition, turn it into a single value 'IN' a set query.
         if ($condition[0] === 'sector') {
-          if (isset($sectorId)) {
-            unset($condition_group['conditions'][$id]);
-          }
-          else {
-            $sectorId = $id;
-          }
+          unset($condition_group['conditions'][$id]);
           list($field, $value, $operator) = $condition;
-          $sectorConditions[] = $value;
-          $condition_group['conditions'][$sectorId][1] = $sectorConditions;
-          $condition_group['conditions'][$sectorId][2] = 'IN';
+          $sectorConditions[$value] = $value;
         }
+      }
+      if (!empty($sectorConditions)) {
+        $sectorConditions['#conjunction'] = 'OR';
+        $condition_group['conditions'][] = [
+          'sector',
+          $sectorConditions,
+          'IN',
+        ];
       }
     }
   }
