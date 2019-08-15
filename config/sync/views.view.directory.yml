@@ -723,6 +723,7 @@ display:
             - org_name
             - organisation
             - pa_email
+            - sector
             - title
           plugin_id: search_api_fulltext
         sector:
