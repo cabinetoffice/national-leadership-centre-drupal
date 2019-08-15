@@ -919,7 +919,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: directory-old
+      path: directory
       menu:
         type: normal
         title: 'Members Directory'
