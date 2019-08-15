@@ -19,4 +19,17 @@ destination:
   default_bundle: organisation
 process:
   title: 'Name of Organisation'
-
+  field_sector:
+#    -
+#      plugin: callback
+#      callable: trim
+#      source: "Sector"
+#    -
+#      plugin: callback
+#      callable: strtolower
+#      source: "Sector"
+    -
+      plugin: migration_lookup
+      no_stub: true
+      migration: migrate_sectors
+      source: "Sector"
