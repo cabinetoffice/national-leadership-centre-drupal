@@ -20,16 +20,11 @@ destination:
 process:
   title: 'Name of Organisation'
   field_sector:
-#    -
-#      plugin: callback
-#      callable: trim
-#      source: "Sector"
-#    -
-#      plugin: callback
-#      callable: strtolower
-#      source: "Sector"
     -
-      plugin: migration_lookup
-      no_stub: true
-      migration: migrate_sectors
+      plugin: callback
+      callable: trim
+      source: "Sector"
+    -
+      plugin: text_to_taxonomy
+      vocabulary: sector
       source: "Sector"
