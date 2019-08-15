@@ -522,7 +522,7 @@ display:
             description: ''
             use_operator: false
             operator: field_sector_target_id_op
-            identifier: field_sector_target_id
+            identifier: sector
             required: false
             remember: false
             multiple: true
