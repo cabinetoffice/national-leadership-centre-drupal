@@ -160,6 +160,24 @@ $ drush import-taxonomies --choice=safe
 
 (because `make` doesn't pass options to the command)
 
+### Data migration
+
+Ensure nlc_import is installed:
+
+```drush en nlc_import```
+
+View migration status:
+
+```drush ms```
+
+Run a migration:
+
+```drush migrate:import migrate_organisations```
+
+Rollback a migration:
+
+```drush mr migrate_organisations```
+
 ##  Gov.uk PaaS
 
 The alpha site can be found on Gov.uk PaaS.
