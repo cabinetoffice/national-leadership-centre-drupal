@@ -10,12 +10,13 @@ dependencies:
     - search_api
   config:
     - field.storage.profile.field_job_title
+    - field.storage.profile.field_job_title_term
     - field.storage.profile.field_location
     - field.storage.profile.field_organisation
+    - field.storage.node.field_sector
     - field.storage.profile.field_pa_email
     - field.storage.user.field_gender
     - field.storage.user.field_name
-    - field.storage.node.field_sector
     - search_api.server.database
 id: main_index
 name: 'Main index'
@@ -46,6 +47,30 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_location
+  field_job_title_term:
+    label: 'Role profiles » Profile » Job Title'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_job_title_term'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+      config:
+        - field.storage.profile.field_job_title_term
+  field_sector:
+    label: 'Role profiles » Profile » Organisation » Content » Sector'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_sector'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
   firstname:
     label: 'Name » Given'
     datasource_id: 'entity:user'
@@ -70,6 +95,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_job_title
+  job_title_term:
+    label: 'Job Title » Taxonomy term » Name'
+    datasource_id: 'entity:profile'
+    property_path: 'field_job_title_term:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.profile.field_job_title_term
+      module:
+        - taxonomy
+        - taxonomy
   lastname:
     label: 'Name » Family'
     datasource_id: 'entity:user'
@@ -102,6 +138,30 @@ field_settings:
     dependencies:
       module:
         - user
+  name_1:
+    label: 'Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_sector:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+      module:
+        - node
+        - taxonomy
+        - taxonomy
+  nid:
+    label: 'Organisation » Content » ID'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:nid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - node
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -120,6 +180,19 @@ field_settings:
         - profile
       config:
         - field.storage.profile.field_job_title
+  org_job_title_term:
+    label: 'Role profiles » Profile » Job Title » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_job_title_term:entity:name'
+    type: string
+    dependencies:
+      module:
+        - profile
+        - profile
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_job_title_term
   org_name:
     label: 'Role profiles » Profile » Organisation » Content » Title'
     datasource_id: 'entity:user'
@@ -133,6 +206,21 @@ field_settings:
         - node
       config:
         - field.storage.profile.field_organisation
+  org_sector_name:
+    label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
+    type: text
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
   organisation:
     label: Organisation
     datasource_id: 'entity:profile'
@@ -157,21 +245,6 @@ field_settings:
     dependencies:
       module:
         - user
-  sector:
-    label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
-    datasource_id: 'entity:user'
-    property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
-    type: text
-    dependencies:
-      module:
-        - profile
-        - profile
-        - node
-        - taxonomy
-        - taxonomy
-      config:
-        - field.storage.profile.field_organisation
-        - field.storage.node.field_sector
   status:
     label: status
     datasource_id: 'entity:node'
@@ -189,6 +262,19 @@ field_settings:
     type: string
     dependencies:
       module:
+        - taxonomy
+  tid:
+    label: 'Organisation » Content » Sector » Taxonomy term » Term ID'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_sector:entity:tid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+      module:
+        - node
+        - taxonomy
         - taxonomy
   title:
     label: 'Name » Title'
@@ -256,16 +342,19 @@ processor_settings:
       - firstname
       - gender
       - job_title
+      - job_title_term
       - lastname
       - locality
       - mail
       - name
+      - name_1
       - org_job_title
+      - org_job_title_term
       - org_name
+      - org_sector_name
       - organisation
       - pa_email
       - roles
-      - sector
       - term_name
       - title
     weights:
@@ -280,16 +369,19 @@ processor_settings:
       - firstname
       - gender
       - job_title
+      - job_title_term
       - lastname
       - locality
       - mail
       - name
+      - name_1
       - org_job_title
+      - org_job_title_term
       - org_name
+      - org_sector_name
       - organisation
       - pa_email
       - roles
-      - sector
       - term_name
       - title
     weights:

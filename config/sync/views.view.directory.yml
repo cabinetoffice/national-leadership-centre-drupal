@@ -300,6 +300,76 @@ display:
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api
+        org_job_title_term:
+          id: org_job_title_term
+          table: search_api_index_main_index
+          field: org_job_title_term
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Job Title'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: false
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
         org_job_title:
           id: org_job_title
           table: search_api_index_main_index
@@ -308,7 +378,7 @@ display:
           group_type: group
           admin_label: ''
           label: 'Job Title'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -440,10 +510,10 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        sector:
-          id: sector
+        org_sector_name:
+          id: org_sector_name
           table: search_api_index_main_index
-          field: sector
+          field: org_sector_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -502,7 +572,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          field_rendering: true
+          field_rendering: false
           fallback_handler: search_api
           fallback_options:
             link_to_item: false
@@ -720,97 +790,13 @@ display:
             - locality
             - mail
             - org_job_title
+            - org_job_title_term
             - org_name
+            - org_sector_name
             - organisation
             - pa_email
-            - sector
             - title
           plugin_id: search_api_fulltext
-        sector:
-          id: sector
-          table: search_api_index_main_index
-          field: sector
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: sector_op
-            label: 'Filter by sector'
-            description: ''
-            use_operator: false
-            operator: sector_op
-            identifier: sector
-            required: false
-            remember: false
-            multiple: true
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nlc_staff: '0'
-              admin: '0'
-            placeholder: ''
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: true
-          group_info:
-            label: 'Filter by sector'
-            description: ''
-            identifier: sector
-            optional: true
-            widget: radios
-            multiple: true
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: 'Arm''s-Length Bodies (ALBs)'
-                operator: '='
-                value:
-                  value: 'Arm''s-Length Bodies (ALBs)'
-              2:
-                title: 'Armed Forces'
-                operator: '='
-                value:
-                  value: 'Armed Forces'
-              3:
-                title: 'Civil Service'
-                operator: '='
-                value:
-                  value: 'Civil Service'
-              4:
-                title: Education
-                operator: '='
-                value:
-                  value: Education
-              5:
-                title: 'Fire Service'
-                operator: '='
-                value:
-                  value: 'Fire Service'
-              6:
-                title: Health
-                operator: '='
-                value:
-                  value: Health
-              7:
-                title: 'Local Government'
-                operator: '='
-                value:
-                  value: 'Local Government'
-              8:
-                title: Police
-                operator: '='
-                value:
-                  value: Police
-          plugin_id: search_api_string
       sorts:
         lastname:
           id: lastname
@@ -930,6 +916,10 @@ display:
         weight: -50
         context: '0'
         menu_name: main
+      cache:
+        type: none
+      defaults:
+        cache: false
     cache_metadata:
       max-age: -1
       contexts:

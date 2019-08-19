@@ -1,0 +1,37 @@
+uuid: 32abdfed-6636-4983-aa52-47198bc75ee1
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.job_title
+  module:
+    - path
+    - text
+id: taxonomy_term.job_title.default
+targetEntityType: taxonomy_term
+bundle: job_title
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      placeholder: ''
+      rows: 5
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

@@ -30,6 +30,7 @@
         "drupal/devel": "^2.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/encrypt": "^3.0@RC",
+        "drupal/facets": "^1.4",
         "drupal/govuk_design_system": "^1.0@beta",
         "drupal/key": "^1.8",
         "drupal/migrate_plus": "^4.2",
