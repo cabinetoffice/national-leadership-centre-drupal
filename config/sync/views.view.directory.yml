@@ -440,10 +440,10 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        org_name:
-          id: org_name
+        org_name_user:
+          id: org_name_user
           table: search_api_index_main_index
-          field: org_name
+          field: org_name_user
           relationship: none
           group_type: group
           admin_label: ''
@@ -476,11 +476,11 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: '0'
+          element_type: ''
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -510,10 +510,10 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        org_sector_name:
-          id: org_sector_name
+        org_sector_name_user:
+          id: org_sector_name_user
           table: search_api_index_main_index
-          field: org_sector_name
+          field: org_sector_name_user
           relationship: none
           group_type: group
           admin_label: ''
@@ -572,7 +572,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          field_rendering: false
+          field_rendering: true
           fallback_handler: search_api
           fallback_options:
             link_to_item: false
@@ -786,13 +786,15 @@ display:
             - dependent_locality
             - firstname
             - job_title
+            - job_title_term
             - lastname
             - locality
             - mail
             - org_job_title
             - org_job_title_term
-            - org_name
-            - org_sector_name
+            - org_name_user
+            - org_region_name_user
+            - org_sector_name_user
             - organisation
             - pa_email
             - title

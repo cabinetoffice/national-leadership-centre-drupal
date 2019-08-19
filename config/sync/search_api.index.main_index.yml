@@ -2,13 +2,8 @@ uuid: 893d1d6a-7f89-40c2-b2b6-e35c047c3d67
 langcode: en
 status: true
 dependencies:
-  module:
-    - node
-    - taxonomy
-    - user
-    - profile
-    - search_api
   config:
+    - field.storage.node.field_region
     - field.storage.profile.field_job_title
     - field.storage.profile.field_job_title_term
     - field.storage.profile.field_location
@@ -18,6 +13,12 @@ dependencies:
     - field.storage.user.field_gender
     - field.storage.user.field_name
     - search_api.server.database
+  module:
+    - node
+    - taxonomy
+    - user
+    - profile
+    - search_api
 id: main_index
 name: 'Main index'
 description: ''
@@ -58,19 +59,14 @@ field_settings:
         - profile
       config:
         - field.storage.profile.field_job_title_term
-  field_sector:
-    label: 'Role profiles » Profile » Organisation » Content » Sector'
-    datasource_id: 'entity:user'
-    property_path: 'role_profiles:entity:field_organisation:entity:field_sector'
+  field_region:
+    label: Region
+    datasource_id: 'entity:node'
+    property_path: field_region
     type: integer
     dependencies:
-      module:
-        - profile
-        - profile
-        - node
       config:
-        - field.storage.profile.field_organisation
-        - field.storage.node.field_sector
+        - field.storage.node.field_region
   firstname:
     label: 'Name » Given'
     datasource_id: 'entity:user'
@@ -138,30 +134,6 @@ field_settings:
     dependencies:
       module:
         - user
-  name_1:
-    label: 'Organisation » Content » Sector » Taxonomy term » Name'
-    datasource_id: 'entity:profile'
-    property_path: 'field_organisation:entity:field_sector:entity:name'
-    type: string
-    dependencies:
-      config:
-        - field.storage.profile.field_organisation
-        - field.storage.node.field_sector
-      module:
-        - node
-        - taxonomy
-        - taxonomy
-  nid:
-    label: 'Organisation » Content » ID'
-    datasource_id: 'entity:profile'
-    property_path: 'field_organisation:entity:nid'
-    type: integer
-    dependencies:
-      config:
-        - field.storage.profile.field_organisation
-      module:
-        - node
-        - node
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -184,7 +156,7 @@ field_settings:
     label: 'Role profiles » Profile » Job Title » Taxonomy term » Name'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_job_title_term:entity:name'
-    type: string
+    type: text
     dependencies:
       module:
         - profile
@@ -193,7 +165,7 @@ field_settings:
         - taxonomy
       config:
         - field.storage.profile.field_job_title_term
-  org_name:
+  org_name_user:
     label: 'Role profiles » Profile » Organisation » Content » Title'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_organisation:entity:title'
@@ -206,7 +178,83 @@ field_settings:
         - node
       config:
         - field.storage.profile.field_organisation
-  org_sector_name:
+  org_nid_profile:
+    label: 'Organisation » Content » ID'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:nid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - node
+  org_region_name_profile:
+    label: 'Organisation » Content » Region » Taxonomy term » Name'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_region:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+      module:
+        - node
+        - taxonomy
+        - taxonomy
+  org_region_name_user:
+    label: 'Role profiles » Profile » Organisation » Content » Region » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_region:entity:name'
+    type: text
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+  org_region_profile:
+    label: 'Organisation » Content » Region'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_region'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+      module:
+        - node
+  org_region_user:
+    label: 'Role profiles » Profile » Organisation » Content » Region'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_region'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+  org_sector_name_profile:
+    label: 'Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_sector:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+      module:
+        - node
+        - taxonomy
+        - taxonomy
+  org_sector_name_user:
     label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
@@ -218,6 +266,19 @@ field_settings:
         - node
         - taxonomy
         - taxonomy
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+  org_sector_user:
+    label: 'Role profiles » Profile » Organisation » Content » Sector'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_sector'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
       config:
         - field.storage.profile.field_organisation
         - field.storage.node.field_sector
@@ -347,11 +408,13 @@ processor_settings:
       - locality
       - mail
       - name
-      - name_1
       - org_job_title
       - org_job_title_term
-      - org_name
-      - org_sector_name
+      - org_name_user
+      - org_region_name_profile
+      - org_region_name_user
+      - org_sector_name_profile
+      - org_sector_name_user
       - organisation
       - pa_email
       - roles
@@ -374,11 +437,13 @@ processor_settings:
       - locality
       - mail
       - name
-      - name_1
       - org_job_title
       - org_job_title_term
-      - org_name
-      - org_sector_name
+      - org_name_user
+      - org_region_name_profile
+      - org_region_name_user
+      - org_sector_name_profile
+      - org_sector_name_user
       - organisation
       - pa_email
       - roles

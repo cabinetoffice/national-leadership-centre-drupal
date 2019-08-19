@@ -40,12 +40,103 @@ taxonomies:
       weight: '0'
       parent: '0'
       uuid: 657ba29c-7309-44fc-bb63-9f3f8b3ffa70
+  region:
+    -
+      vid: region
+      tid: '20'
+      langcode: en
+      name: 'East Midlands'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 8c5e4205-8645-4ccc-82d3-1334f22c6c77
+    -
+      vid: region
+      tid: '16'
+      langcode: en
+      name: 'East of England'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 264d07dc-1e7a-4ee3-b6b3-aa7be6403d9c
+    -
+      vid: region
+      tid: '14'
+      langcode: en
+      name: London
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 139e8b26-5e62-4970-b827-07a02a3b3922
+    -
+      vid: region
+      tid: '21'
+      langcode: en
+      name: 'North East'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: ceffbdb4-67d1-48b5-84b3-8acff63a2e10
+    -
+      vid: region
+      tid: '15'
+      langcode: en
+      name: 'North West'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: ace327bf-27db-4160-9454-94451e5f40cc
+    -
+      vid: region
+      tid: '13'
+      langcode: en
+      name: 'South East'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 3d887917-0102-4414-b420-dec28410e457
+    -
+      vid: region
+      tid: '18'
+      langcode: en
+      name: 'South West'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 3ae2b0be-bcec-4045-b956-59bbd07dc66a
+    -
+      vid: region
+      tid: '17'
+      langcode: en
+      name: 'West Midlands'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 5ffd63d3-55db-4a9d-84ea-7e9e916206d1
+    -
+      vid: region
+      tid: '19'
+      langcode: en
+      name: 'Yorkshire and the Humber'
+      description__value: null
+      description__format: null
+      weight: '0'
+      parent: '0'
+      uuid: 5d00d477-10df-457d-83ec-8d63d1535379
   sector:
     -
       vid: sector
       tid: '8'
       langcode: en
-      name: 'Arm''s-Length Bodies (ALBs)'
+      name: 'Arms-length bodies (ALBs)'
       description__value: null
       description__format: null
       weight: '0'
@@ -55,7 +146,7 @@ taxonomies:
       vid: sector
       tid: '7'
       langcode: en
-      name: 'Armed Forces'
+      name: 'Defence'
       description__value: null
       description__format: null
       weight: '0'
@@ -65,7 +156,7 @@ taxonomies:
       vid: sector
       tid: '6'
       langcode: en
-      name: 'Civil Service'
+      name: 'Civil service'
       description__value: null
       description__format: null
       weight: '0'
@@ -85,7 +176,7 @@ taxonomies:
       vid: sector
       tid: '5'
       langcode: en
-      name: 'Fire Service'
+      name: 'Fire service'
       description__value: null
       description__format: null
       weight: '0'
@@ -95,7 +186,7 @@ taxonomies:
       vid: sector
       tid: '1'
       langcode: en
-      name: Health
+      name: 'Healthcare'
       description__value: null
       description__format: null
       weight: '0'
@@ -105,7 +196,7 @@ taxonomies:
       vid: sector
       tid: '3'
       langcode: en
-      name: 'Local Government'
+      name: 'Local government'
       description__value: null
       description__format: null
       weight: '0'
@@ -115,7 +206,7 @@ taxonomies:
       vid: sector
       tid: '4'
       langcode: en
-      name: Police
+      name: 'Police'
       description__value: null
       description__format: null
       weight: '0'

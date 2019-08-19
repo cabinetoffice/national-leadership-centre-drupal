@@ -80,6 +80,28 @@ class TextToTaxonomy extends ProcessPluginBase {
       return NULL;
     }
 
+    if ($term = $this->loadTermByProperties($properties, $row)) {
+      return $term;
+    }
+
+    // Fallback, create a new taxonomy term.
+    if (Term::create($properties)->save()) {
+      $term = $this->loadTermByProperties($properties, $row);
+      return $term;
+    }
+
+    return NULL;
+  }
+
+  /**
+   * @param array $properties
+   *   Array of properties to try to load the taxonomy term.
+   * @param Row $row
+   *   The source row.
+   *
+   * @return bool|mixed
+   */
+  protected function loadTermByProperties($properties, Row $row) {
     $terms = \Drupal::getContainer()->get('entity.manager')->getStorage('taxonomy_term')->loadByProperties($properties);
     $term = reset($terms);
     if (!empty($term)) {
@@ -91,12 +113,6 @@ class TextToTaxonomy extends ProcessPluginBase {
       }
       return $term;
     }
-    // Fallback, create a new paragraph.
-    $term = Term::create($properties);
-    if ($row->getDestinationProperty('langcode')) {
-      $term->langcode = $row->getDestinationProperty('langcode');
-    }
-    return $term;
+    return FALSE;
   }
-
 }

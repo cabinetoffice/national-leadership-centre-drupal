@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.organisation.field_acronym
+    - field.field.node.organisation.field_region
     - field.field.node.organisation.field_sector
     - field.field.node.organisation.field_website
     - node.type.organisation
@@ -23,6 +24,14 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  field_region:
+    weight: 2
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   field_sector:
     weight: 1
     label: inline
@@ -32,7 +41,7 @@ content:
     type: entity_reference_label
     region: content
   field_website:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       trim_length: 80
@@ -44,7 +53,7 @@ content:
     type: link
     region: content
   links:
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }

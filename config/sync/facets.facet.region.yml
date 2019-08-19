@@ -1,4 +1,4 @@
-uuid: 9c296978-76d7-4a55-9f8e-dd68d8fa3062
+uuid: 5a2a907e-36c3-4097-9a1d-088fac0a4dc2
 langcode: en
 status: true
 dependencies:
@@ -7,13 +7,13 @@ dependencies:
     - views.view.directory
   module:
     - search_api
-id: filter_by_sector
-name: 'Role profiles » Profile » Organisation » Content » Sector'
-url_alias: sector
+id: region
+name: 'Role profiles » Profile » Organisation » Content » Region'
+url_alias: region
 weight: 0
 min_count: 1
 show_only_one_result: false
-field_identifier: org_sector_user
+field_identifier: org_region_user
 facet_source_id: 'search_api:views_page__directory__page_1'
 widget:
   type: checkbox
@@ -34,6 +34,18 @@ hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
+  active_widget_order:
+    processor_id: active_widget_order
+    weights:
+      sort: 20
+    settings:
+      sort: DESC
+  count_widget_order:
+    processor_id: count_widget_order
+    weights:
+      sort: 30
+    settings:
+      sort: DESC
   display_value_widget_order:
     processor_id: display_value_widget_order
     weights:

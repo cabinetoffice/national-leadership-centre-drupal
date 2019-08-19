@@ -37,3 +37,10 @@ process:
     migration: migrate_organisations
     source: "Email id"
    field_general_location: "Location"
+   field_job_title_term:
+     - plugin: callback
+       callable: trim
+       source: "Job Title"
+     - plugin: text_to_taxonomy
+       vocabulary: job_title
+       source: "Job Title"
