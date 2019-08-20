@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45be7a209059cdc4aeefdec97d036dee",
+    "content-hash": "27715dfbef5b15973425746b25a2c46c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4201,45 +4201,41 @@
         },
         {
             "name": "drupal/salesforce",
-            "version": "3.3.0",
+            "version": "dev-4.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "8.x-3.3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/salesforce-8.x-3.3.zip",
-                "reference": "8.x-3.3",
-                "shasum": "b9a79c580dacb0a54b27cee83d43c9af9dcaf075"
+                "reference": "bf0fc30e3dbbf016f133fe43e40ff0da2e27e5ce"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0",
-                "drupal/core": "~8.0",
+                "drupal/core": "^8.7",
                 "drupal/dynamic_entity_reference": "^2.0@alpha",
-                "drupal/encrypt": "^3.0@rc",
+                "drupal/key": "^1.7",
                 "drupal/typed_data": "^1.0@alpha",
-                "lusitanian/oauth": "^0.8.11",
-                "messageagency/force.com-toolkit-for-php": "^1.0.0"
+                "ext-json": "*",
+                "firebase/php-jwt": "^5.0",
+                "lusitanian/oauth": "^0.8.11"
             },
             "require-dev": {
                 "drupal/dynamic_entity_reference": "~2.0",
-                "drupal/encrypt": "*",
+                "drupal/key": "*",
                 "drupal/salesforce_mapping": "*",
                 "drupal/salesforce_push": "*",
+                "drupal/typed_data": "*",
                 "drupal/webform": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-3.x": "3.x-dev"
+                    "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.3",
-                    "datestamp": "1555693984",
+                    "version": "8.x-4.0-beta2+5-dev",
+                    "datestamp": "1565985787",
                     "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
                     }
                 },
                 "drush": {
@@ -4264,8 +4260,9 @@
                     "role": "Maintainer"
                 },
                 {
-                    "name": "gcb",
-                    "homepage": "https://www.drupal.org/user/1682976"
+                    "name": "Colin Corrigan",
+                    "homepage": "https://www.drupal.org/u/cwcorrigan",
+                    "role": "Maintainer"
                 },
                 {
                     "name": "ironsizide",
@@ -4301,7 +4298,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/salesforce",
                 "issues": "https://drupal.org/project/issues/salesforce"
-            }
+            },
+            "time": "2019-08-16T20:13:28+00:00"
         },
         {
             "name": "drupal/search_api",
@@ -4995,6 +4993,52 @@
             "time": "2019-01-16T00:58:24+00:00"
         },
         {
+            "name": "firebase/php-jwt",
+            "version": "v5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": " 4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "role": "Developer",
+                    "email": "neuman+pear@twilio.com"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "role": "Developer",
+                    "email": "anant@php.net"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2017-06-27T22:17:23+00:00"
+        },
+        {
             "name": "grasmash/expander",
             "version": "1.0.0",
             "source": {
@@ -5668,41 +5712,6 @@
                 "xml"
             ],
             "time": "2019-03-10T11:41:28+00:00"
-        },
-        {
-            "name": "messageagency/force.com-toolkit-for-php",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/messageagency/Forcecom-Toolkit-for-PHP.git",
-                "reference": "17193448b23d06e4b6af30ab92e211cea5e70bc8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/messageagency/Forcecom-Toolkit-for-PHP/zipball/17193448b23d06e4b6af30ab92e211cea5e70bc8",
-                "reference": "17193448b23d06e4b6af30ab92e211cea5e70bc8",
-                "shasum": ""
-            },
-            "require": {
-                "ext-soap": "^7.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "soapclient"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "A wrapper for the Force.com Web Services SOAP API",
-            "time": "2018-12-10T15:37:23+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -9308,6 +9317,41 @@
             "time": "2019-01-14T23:55:14+00:00"
         },
         {
+            "name": "messageagency/force.com-toolkit-for-php",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/messageagency/Forcecom-Toolkit-for-PHP.git",
+                "reference": "17193448b23d06e4b6af30ab92e211cea5e70bc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/messageagency/Forcecom-Toolkit-for-PHP/zipball/17193448b23d06e4b6af30ab92e211cea5e70bc8",
+                "reference": "17193448b23d06e4b6af30ab92e211cea5e70bc8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-soap": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "soapclient"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A wrapper for the Force.com Web Services SOAP API",
+            "time": "2018-12-10T15:37:23+00:00"
+        },
+        {
             "name": "mikey179/vfsstream",
             "version": "v1.6.6",
             "source": {
@@ -10872,6 +10916,7 @@
         "drupal/name": 5,
         "drupal/profile": 5,
         "drupal/s3fs": 15,
+        "drupal/salesforce": 20,
         "drupal/select_or_other": 15
     },
     "prefer-stable": true,
