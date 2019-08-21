@@ -186,6 +186,14 @@ The alpha site can be found on Gov.uk PaaS.
 
 Please refer to the official [getting started](https://docs.cloud.service.gov.uk/get_started.html#get-started) documentation.
 
+### Deploy
+
+Make sure your on the correct branch you want to deploy and all the composer dependencies are installed.
+
+To deploy the app you need to run:
+
+````cf push````
+
 ### Drush
 
 SSH into the current app:
