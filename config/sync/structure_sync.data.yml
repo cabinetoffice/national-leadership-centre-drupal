@@ -146,7 +146,7 @@ taxonomies:
       vid: sector
       tid: '7'
       langcode: en
-      name: 'Defence'
+      name: Defence
       description__value: null
       description__format: null
       weight: '0'
@@ -186,7 +186,7 @@ taxonomies:
       vid: sector
       tid: '1'
       langcode: en
-      name: 'Healthcare'
+      name: Healthcare
       description__value: null
       description__format: null
       weight: '0'
@@ -206,7 +206,7 @@ taxonomies:
       vid: sector
       tid: '4'
       langcode: en
-      name: 'Police'
+      name: Police
       description__value: null
       description__format: null
       weight: '0'
