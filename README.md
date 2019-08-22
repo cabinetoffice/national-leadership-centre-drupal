@@ -196,6 +196,10 @@ You must complete these steps before you can move onto deployment, below.
 
 ### Deploy
 
+In order to deploy, you must be part of the PaaS organisation for `cabinet-office-national-leadership-centre`. Ask the NLC project team if you need to be included in that PaaS organisation.
+
+Select the `nlc-alpha-drupal` PaaS organisation space to deploy for this project.
+
 Make sure you're on the correct branch you want to deploy and all the composer dependencies are installed.
 
 To deploy the app you need to run:
