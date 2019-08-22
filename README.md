@@ -186,9 +186,17 @@ The alpha site can be found on Gov.uk PaaS.
 
 Please refer to the official [getting started](https://docs.cloud.service.gov.uk/get_started.html#get-started) documentation.
 
+**Key steps you must have completed:**
+
+1) [Get a GOV.UK PaaS account](https://docs.cloud.service.gov.uk/get_started.html#get-an-account)
+2) [Install the Cloud Foundry command line toolkit](https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line)
+3) [Sign in to GOV.UK Cloud Foundry](https://docs.cloud.service.gov.uk/get_started.html#sign-in-to-cloud-foundry)
+
+You must complete these steps before you can move onto deployment, below.
+
 ### Deploy
 
-Make sure your on the correct branch you want to deploy and all the composer dependencies are installed.
+Make sure you're on the correct branch you want to deploy and all the composer dependencies are installed.
 
 To deploy the app you need to run:
 
