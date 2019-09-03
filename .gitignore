@@ -31,7 +31,7 @@
 # Ignore local mariadb-init SQL files
 mariadb-init/*
 
-# Ignore some Salesforce config files. These should be managed with Drupal's State API (https://www.drupal.org/docs/8/api/state-api)
+# Ignore some Salesforce config files. These should be probably managed with environment variables or something else.
 config/devel/key.key.salesforce_authentication_key.yml
 config/devel/salesforce.salesforce_auth.jblocaldev_190903.yml
 config/devel/salesforce.settings.yml
