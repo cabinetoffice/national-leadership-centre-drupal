@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.job_title.field_salesforce_record_id
     - taxonomy.vocabulary.job_title
   module:
     - path
@@ -14,7 +15,7 @@ mode: default
 content:
   description:
     type: text_textarea
-    weight: 2
+    weight: 1
     region: content
     settings:
       placeholder: ''
@@ -30,8 +31,9 @@ content:
     third_party_settings: {  }
   path:
     type: path
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_salesforce_record_id: true

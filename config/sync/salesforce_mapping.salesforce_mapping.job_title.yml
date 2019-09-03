@@ -1,0 +1,39 @@
+uuid: a697f96d-3c06-4dc1-9c81-5c883ca1cc1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.job_title.field_salesforce_record_id
+    - taxonomy.vocabulary.job_title
+id: job_title
+label: 'Job Title'
+weight: 0
+type: salesforce_mapping
+key: Id
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers: {  }
+salesforce_object_type: NetworkJobTitle__c
+drupal_entity_type: taxonomy_term
+drupal_bundle: job_title
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_salesforce_record_id
+    salesforce_field: Id
+    direction: sf_drupal
+    id: 1
+  -
+    drupal_field_type: properties
+    drupal_field_value: name
+    salesforce_field: Name
+    direction: sync
+    id: 2
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false

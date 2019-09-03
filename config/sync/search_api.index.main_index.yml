@@ -2,23 +2,23 @@ uuid: 893d1d6a-7f89-40c2-b2b6-e35c047c3d67
 langcode: en
 status: true
 dependencies:
+  module:
+    - user
+    - profile
+    - taxonomy
+    - node
+    - search_api
   config:
-    - field.storage.node.field_region
-    - field.storage.profile.field_job_title
-    - field.storage.profile.field_job_title_term
     - field.storage.profile.field_location
+    - field.storage.profile.field_job_title_term
+    - field.storage.node.field_region
+    - field.storage.user.field_name
+    - field.storage.user.field_gender
+    - field.storage.profile.field_job_title
     - field.storage.profile.field_organisation
     - field.storage.node.field_sector
     - field.storage.profile.field_pa_email
-    - field.storage.user.field_gender
-    - field.storage.user.field_name
     - search_api.server.database
-  module:
-    - node
-    - taxonomy
-    - user
-    - profile
-    - search_api
 id: main_index
 name: 'Main index'
 description: ''

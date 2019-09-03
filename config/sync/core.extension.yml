@@ -12,6 +12,7 @@ module:
   config_split: 0
   contextual: 0
   datetime: 0
+  dynamic_entity_reference: 0
   dynamic_page_cache: 0
   editor: 0
   email_registration: 0
@@ -22,9 +23,15 @@ module:
   filter: 0
   image: 0
   inline_form_errors: 0
+  key: 0
   link: 0
   mailsystem: 0
+  migrate: 0
+  migrate_plus: 0
+  migrate_source_csv: 0
+  migrate_tools: 0
   name: 0
+  nlc_import: 0
   nlc_prototype: 0
   node: 0
   options: 0
@@ -34,6 +41,10 @@ module:
   quickedit: 0
   rdf: 0
   s3fs: 0
+  salesforce: 0
+  salesforce_jwt: 0
+  salesforce_mapping: 0
+  salesforce_mapping_ui: 0
   search_api: 0
   search_api_db: 0
   select_or_other: 0
@@ -44,6 +55,7 @@ module:
   telephone: 0
   text: 0
   toolbar: 0
+  typed_data: 0
   update: 0
   user: 0
   menu_link_content: 1

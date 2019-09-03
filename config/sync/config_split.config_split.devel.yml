@@ -14,7 +14,10 @@ module:
   menu_ui: 0
   views_ui: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - key.key.salesforce_authentication_key
+  - salesforce.salesforce_auth.jblocaldev_190903
+  - salesforce.settings
 graylist:
   - mailsystem.settings
 graylist_dependents: true

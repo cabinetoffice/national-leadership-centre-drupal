@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.user.user.field_gender
     - field.field.user.user.field_name
+    - field.field.user.user.field_salesforce_record_id
     - field.field.user.user.field_title
   module:
     - name
@@ -22,7 +23,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_gender:
-    weight: 4
+    weight: 3
     settings:
       select_element_type: select_or_other_select
       sort_options: ''
@@ -69,21 +70,22 @@ content:
     type: string_textfield
     region: content
   language:
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
   role_profiles:
     type: profile_form
-    weight: 6
+    weight: 5
     region: content
     settings:
       form_mode: default
     third_party_settings: {  }
   timezone:
-    weight: 7
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_salesforce_record_id: true
   social_media_profiles: true

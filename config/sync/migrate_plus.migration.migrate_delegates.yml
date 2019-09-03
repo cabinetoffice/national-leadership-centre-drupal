@@ -1,0 +1,41 @@
+uuid: 75ca4463-1c36-4854-8f2d-868dc40c4abf
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - nlc_import
+_core:
+  default_config_hash: qptsed_vw_rItKDMJHNv_277xsk90ejosGAK6KNP02s
+id: migrate_delegates
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags:
+  - CSV
+migration_group: null
+label: 'CSV file migration'
+source:
+  plugin: csv
+  path: modules/custom/nlc_import/example/delegates-new.csv
+  header_row_count: 1
+  ids:
+    - 'Email id'
+process:
+  name: 'Email id'
+  mail: 'Email id'
+  status:
+    -
+      plugin: default_value
+      default_value: 1
+  field_gender:
+    -
+      plugin: callback
+      callable: strtolower
+      source: Gender
+  field_name/given: 'First Name'
+  field_name/family: 'Last Name'
+  field_title: Title
+destination:
+  plugin: 'entity:user'
+migration_dependencies: null
