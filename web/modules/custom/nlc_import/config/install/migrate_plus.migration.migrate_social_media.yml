@@ -4,7 +4,7 @@ dependencies:
   enforced:
     module:
       - nlc_import
-id:  migrate_roles
+id:  migrate_social_media
 label: CSV file migration
 migration_tags:
   - CSV
@@ -19,7 +19,7 @@ destination:
 process:
    type:
     plugin: default_value
-    default_value: 'role'
+    default_value: 'social_media'
    uid:
      plugin: migration_lookup
      no_stub: true
@@ -27,20 +27,7 @@ process:
      migration: migrate_delegates
      # property in the source data
      source: "Email id"
-   field_email: "Email id"
-   field_job_title: "Job Title"
-   field_pa_email: "PA email"
-   field_phone: "PA Number"
-   field_organisation:
-    plugin: migration_lookup
-    no_stub: true
-    migration: migrate_organisations
-    source: "Email id"
-   field_general_location: "Location"
-   field_job_title_term:
-     - plugin: callback
-       callable: trim
-       source: "Job Title"
-     - plugin: text_to_taxonomy
-       vocabulary: job_title
-       source: "Job Title"
+   field_facebook: Facebook
+   field_linkedin: Linkedin
+   field_website: Website
+   field_twitter: Twitter

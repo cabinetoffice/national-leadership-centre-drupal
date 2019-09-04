@@ -1,0 +1,22 @@
+uuid: b9f41708-778d-4f0c-92c7-e43d77ab751c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.job_title
+  module:
+    - text
+id: taxonomy_term.job_title.default
+targetEntityType: taxonomy_term
+bundle: job_title
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true

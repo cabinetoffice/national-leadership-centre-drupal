@@ -160,6 +160,24 @@ $ drush import-taxonomies --choice=safe
 
 (because `make` doesn't pass options to the command)
 
+### Data migration
+
+Ensure nlc_import is installed:
+
+```drush en nlc_import```
+
+View migration status:
+
+```drush ms```
+
+Run a migration:
+
+```drush migrate:import migrate_organisations```
+
+Rollback a migration:
+
+```drush mr migrate_organisations```
+
 ##  Gov.uk PaaS
 
 The alpha site can be found on Gov.uk PaaS.
@@ -167,6 +185,26 @@ The alpha site can be found on Gov.uk PaaS.
 ### Setup
 
 Please refer to the official [getting started](https://docs.cloud.service.gov.uk/get_started.html#get-started) documentation.
+
+**Key steps you must have completed:**
+
+1) [Get a GOV.UK PaaS account](https://docs.cloud.service.gov.uk/get_started.html#get-an-account)
+2) [Install the Cloud Foundry command line toolkit](https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line)
+3) [Sign in to GOV.UK Cloud Foundry](https://docs.cloud.service.gov.uk/get_started.html#sign-in-to-cloud-foundry)
+
+You must complete these steps before you can move onto deployment, below.
+
+### Deploy
+
+In order to deploy, you must be part of the PaaS organisation for `cabinet-office-national-leadership-centre`. Ask the NLC project team if you need to be included in that PaaS organisation.
+
+Select the `nlc-alpha-drupal` PaaS organisation space to deploy for this project.
+
+Make sure you're on the correct branch you want to deploy and all the composer dependencies are installed.
+
+To deploy the app you need to run:
+
+````cf push````
 
 ### Drush
 

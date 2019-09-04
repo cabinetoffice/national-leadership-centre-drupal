@@ -19,4 +19,21 @@ destination:
   default_bundle: organisation
 process:
   title: 'Name of Organisation'
-
+  field_sector:
+    -
+      plugin: callback
+      callable: trim
+      source: "Sector"
+    -
+      plugin: text_to_taxonomy
+      vocabulary: sector
+      source: "Sector"
+  field_region:
+    -
+      plugin: callback
+      callable: trim
+      source: "Location"
+    -
+      plugin: text_to_taxonomy
+      vocabulary: region
+      source: "Location"

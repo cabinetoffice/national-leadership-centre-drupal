@@ -7,6 +7,7 @@ label: Development
 description: 'Configuration settings specifically for development environments'
 folder: ../config/devel
 module:
+  dblog: 0
   devel: 0
   devel_generate: 0
   field_ui: 0
@@ -14,7 +15,8 @@ module:
   views_ui: 0
 theme: {  }
 blacklist: {  }
-graylist: {  }
+graylist:
+  - mailsystem.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0
