@@ -1,4 +1,4 @@
-uuid: 4320d92f-1cdd-4f8b-ac86-3833350ce66d
+uuid: b1719d08-d51f-471b-94f6-e7ec5363a132
 langcode: en
 status: true
 dependencies:
@@ -6,9 +6,10 @@ dependencies:
     - facets.facet.filter_by_sector
   module:
     - facets
+    - system
   theme:
     - bevan
-id: roleprofilesprofileorganisationcontentsector
+id: roleprofilesprofileorganisationcontentsector_2
 theme: bevan
 region: sidebar_first
 weight: 0
@@ -16,8 +17,13 @@ provider: null
 plugin: 'facet_block:filter_by_sector'
 settings:
   id: 'facet_block:filter_by_sector'
-  label: Sector
+  label: 'Filter by sector'
   provider: facets
   label_display: visible
-  block_id: roleprofilesprofileorganisationcontentsector
-visibility: {  }
+  block_id: roleprofilesprofileorganisationcontentsector_2
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }
