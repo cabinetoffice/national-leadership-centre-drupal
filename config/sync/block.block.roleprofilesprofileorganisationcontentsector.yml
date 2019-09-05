@@ -1,0 +1,23 @@
+uuid: 4320d92f-1cdd-4f8b-ac86-3833350ce66d
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.filter_by_sector
+  module:
+    - facets
+  theme:
+    - bevan
+id: roleprofilesprofileorganisationcontentsector
+theme: bevan
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:filter_by_sector'
+settings:
+  id: 'facet_block:filter_by_sector'
+  label: Sector
+  provider: facets
+  label_display: visible
+  block_id: roleprofilesprofileorganisationcontentsector
+visibility: {  }

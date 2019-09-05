@@ -1,0 +1,23 @@
+uuid: 168e35db-8533-4ebf-aa9b-ba87a95de8bd
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.job_title
+  module:
+    - facets
+  theme:
+    - bevan
+id: roleprofilesprofilejobtitle
+theme: bevan
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:job_title'
+settings:
+  id: 'facet_block:job_title'
+  label: 'Job title'
+  provider: facets
+  label_display: visible
+  block_id: roleprofilesprofilejobtitle
+visibility: {  }

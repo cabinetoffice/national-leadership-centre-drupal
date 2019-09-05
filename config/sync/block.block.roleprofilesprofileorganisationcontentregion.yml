@@ -1,0 +1,23 @@
+uuid: f18b31f4-680e-461f-9a32-0ab8f6fd39c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.region
+  module:
+    - facets
+  theme:
+    - bevan
+id: roleprofilesprofileorganisationcontentregion
+theme: bevan
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'facet_block:region'
+settings:
+  id: 'facet_block:region'
+  label: Region
+  provider: facets
+  label_display: visible
+  block_id: roleprofilesprofileorganisationcontentregion
+visibility: {  }

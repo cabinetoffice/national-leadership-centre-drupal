@@ -8,6 +8,8 @@ base theme: govuk_design_system
 regions:
   header: 'Header'
   pre_content: 'Pre-content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
   content: 'Content'
   footer: 'Footer'
 libraries:

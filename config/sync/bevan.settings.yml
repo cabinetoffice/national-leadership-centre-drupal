@@ -7,7 +7,7 @@ logo:
   use_default: 1
 favicon:
   use_default: 1
-phase_banner: alpha
+phase_banner: beta
 phase_banner_message:
   value: ''
   format: plain_text

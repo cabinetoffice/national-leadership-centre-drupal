@@ -1,0 +1,57 @@
+<header class="govuk-header" role="banner" data-module="header">
+  <div class="govuk-header__container govuk-width-container">
+    {{ page.header }}
+  </div>
+</header>
+
+<div class="govuk-width-container">
+  {% if phase_banner %}
+    {{  phase_banner }}
+  {% endif %}
+  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content"  role="main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {{ page.pre_content }}
+
+    <div class="govuk-grid-row">
+
+      {% set content_class = 'govuk-grid-column-full' %}
+
+      {% if page.sidebar_first or page.sidebar_second %}
+        {% set content_class = 'govuk-grid-column-two-thirds' %}
+      {% endif %}
+
+      {% if page.sidebar_first and page.sidebar_second %}
+        {% set content_class = 'govuk-grid-column-one-third' %}
+      {% endif %}
+
+      {% if page.sidebar_first %}
+        <div class="govuk-grid-column-one-third">
+          <aside role="complementary">
+            {{ page.sidebar_first }}
+          </aside>
+        </div>
+      {% endif %}
+
+      <div class="{{content_class}}">
+      {{ page.content }}
+      </div>
+
+      {% if page.sidebar_second %}
+        <div class="govuk-grid-column-one-third">
+          <aside role="complementary">
+            {{ page.sidebar_second }}
+          </aside>
+        </div>
+      {% endif %}
+
+    </div>
+
+  </main>
+</div>
+
+{% if page.footer %}
+  <footer role="contentinfo">
+    {{ page.footer }}
+  </footer>
+{% endif %}
