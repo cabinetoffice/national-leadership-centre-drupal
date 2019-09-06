@@ -1,0 +1,14 @@
+$govuk-global-styles: true;
+
+$govuk-assets-path: "../../contrib/govuk_design_system/assets/";
+
+// Override vairables for govuk_frontend components
+@import "settings/colours-applied";
+
+// GovUK components
+@import "node_modules/govuk-frontend/all";
+
+// Add new components
+@import "components/tabs";
+@import "components/site-header";
+@import "components/img";

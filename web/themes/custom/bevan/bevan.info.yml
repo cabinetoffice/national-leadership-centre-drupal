@@ -4,6 +4,7 @@ type: theme
 package: Other
 core: 8.x
 base theme: govuk_design_system
+logo: assets/images/logos/nlc-full-logoX600.png
 # Regions
 regions:
   header: 'Header'
@@ -12,5 +13,5 @@ regions:
   sidebar_second: 'Sidebar second'
   content: 'Content'
   footer: 'Footer'
-libraries:
-  - bevan/global-styling
+libraries-override:
+  govuk_design_system/global-styling: bevan/global-styling
