@@ -26,3 +26,6 @@
 
 # Ignore local mariadb-init SQL files
 mariadb-init/*
+
+# Ignore node modules
+node_modules
