@@ -11,14 +11,12 @@
   </div>
 
   {% if site_name %}
-    <span class="govuk-header__logotype-text">
       {{ site_name }}
-    </span>
   {% endif %}
 
   {% if site_slogan %}
-    <div class="govuk-header__content">
-      <a href="{{ path('<front>') }}" class="govuk-header__link govuk-header__link--service-name" rel="home">
+    <div class="site-header__content">
+      <a href="{{ path('<front>') }}" class="site-header__link site-header__link--service-name" rel="home">
         {{ site_slogan }}
       </a>
     </div>

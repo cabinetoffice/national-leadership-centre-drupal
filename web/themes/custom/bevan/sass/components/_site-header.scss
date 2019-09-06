@@ -18,3 +18,21 @@
 .site-header h1 {
 	margin: 0;
 }
+.site-header__content {
+  flex-grow: 2;
+}
+.site-header__link,
+.site-header__link:link,
+.site-header__link:visited {
+	color: $grey;
+	text-decoration: none;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+}
+.site-header__link--service-name {
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 700;
+}
