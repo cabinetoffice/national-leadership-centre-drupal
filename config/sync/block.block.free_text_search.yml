@@ -1,0 +1,29 @@
+uuid: 5aa0b6bd-c235-4a0a-8bcf-855122a7f51e
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.directory
+  module:
+    - system
+    - views
+  theme:
+    - bevan
+id: free_text_search
+theme: bevan
+region: sidebar_first
+weight: 0
+provider: null
+plugin: 'views_exposed_filter_block:directory-page_1'
+settings:
+  id: 'views_exposed_filter_block:directory-page_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }
