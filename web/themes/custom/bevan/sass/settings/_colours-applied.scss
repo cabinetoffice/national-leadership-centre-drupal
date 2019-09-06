@@ -67,7 +67,7 @@ $govuk-secondary-text-colour: $light-grey;
 /// @type Colour
 /// @access public
 
-$govuk-focus-colour: $blue;
+$govuk-focus-colour: $yellow;
 
 /// Focused text colour
 ///
@@ -125,21 +125,21 @@ $govuk-hover-colour: $light-grey;
 /// @type Colour
 /// @access public
 
-$govuk-link-colour: $red;
+$govuk-link-colour: $orange-against-large-white-text;
 
 /// Visited link colour
 ///
 /// @type Colour
 /// @access public
 
-$govuk-link-visited-colour: $red;
+$govuk-link-visited-colour: $orange-against-large-white-text;
 
 /// Link hover colour
 ///
 /// @type Colour
 /// @access public
 
-$govuk-link-hover-colour: $orange;
+$govuk-link-hover-colour: $red;
 
 /// Active link colour
 ///
