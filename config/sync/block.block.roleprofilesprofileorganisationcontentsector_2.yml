@@ -1,4 +1,4 @@
-uuid: a0b962c8-a848-47b3-9310-8b6d15116918
+uuid: b1719d08-d51f-471b-94f6-e7ec5363a132
 langcode: en
 status: true
 dependencies:
@@ -8,11 +8,11 @@ dependencies:
     - facets
     - system
   theme:
-    - bartik
-id: filterbysector
-theme: bartik
-region: sidebar_second
-weight: -4
+    - bevan
+id: roleprofilesprofileorganisationcontentsector_2
+theme: bevan
+region: sidebar_first
+weight: 0
 provider: null
 plugin: 'facet_block:filter_by_sector'
 settings:
@@ -20,7 +20,7 @@ settings:
   label: 'Filter by sector'
   provider: facets
   label_display: visible
-  block_id: filterbysector
+  block_id: roleprofilesprofileorganisationcontentsector_2
 visibility:
   request_path:
     id: request_path

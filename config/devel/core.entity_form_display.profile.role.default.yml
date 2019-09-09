@@ -79,3 +79,4 @@ content:
 hidden:
   field_job_title: true
   field_location: true
+  is_default: true

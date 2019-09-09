@@ -55,7 +55,6 @@ theme:
   seven: 0
   govuk_design_system: 0
   bevan: 0
-  bartik: 0
 profile: minimal
 _core:
   default_config_hash: R4IF-ClDHXxblLcG0L7MgsLvfBIMAvi_skumNFQwkDc
