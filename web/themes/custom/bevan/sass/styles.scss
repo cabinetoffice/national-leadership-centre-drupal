@@ -10,5 +10,6 @@ $govuk-assets-path: "../../contrib/govuk_design_system/assets/";
 
 // Add new components
 @import "components/tabs";
+@import "components/facets-checkbox";
 @import "components/site-header";
 @import "components/img";

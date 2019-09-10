@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass');
 
 const sassConfig = {
+	inputDirectory: './sass',
 	inputFile: './sass/styles.scss',
 	outputDirectory: './css',
 	options: {
@@ -45,6 +46,8 @@ gulp.task('copy-js', function() {
 gulp.task('build', gulp.series('build-sass', 'copy-assets', 'copy-js'));
 
 gulp.task('watch', function() {
-	gulp.watch(sassConfig.inputFile, ['build-sass']);
+	gulp.watch(sassConfig.inputDirectory + '/**/*.scss', gulp.series('build-sass'));
+  gulp.watch(assetsConfig.inputDirectory, gulp.series('copy-assets'));
+  gulp.watch(jsConfig.inputFile, gulp.series('copy-js'));
 });
 
