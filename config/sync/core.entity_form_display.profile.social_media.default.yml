@@ -47,4 +47,5 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-hidden: {  }
+hidden:
+  is_default: true
