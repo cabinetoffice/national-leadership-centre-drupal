@@ -10,7 +10,7 @@ id: network_individual
 label: 'Network Individual'
 weight: 0
 type: salesforce_mapping
-key: ''
+key: Name
 async: false
 push_standalone: false
 pull_standalone: false
@@ -27,14 +27,20 @@ salesforce_object_type: NetworkIndividual__c
 drupal_entity_type: user
 drupal_bundle: user
 field_mappings:
-  -
+  0:
     drupal_field_type: properties
     drupal_field_value: mail
     salesforce_field: EmailAddress__c
     direction: sync
-    id: 0
+    id: 1
+  2:
+    drupal_field_type: properties
+    drupal_field_value: uuid
+    salesforce_field: Name
+    direction: sync
+    id: 3
 push_limit: 0
 push_retries: 3
 push_frequency: 0
 pull_frequency: 0
-always_upsert: false
+always_upsert: true
