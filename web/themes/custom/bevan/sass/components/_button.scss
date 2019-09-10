@@ -1,0 +1,15 @@
+.button {
+  font-size: 1em; 
+	padding: .5em .8em;
+	border: 2px solid $red;
+	background-color: $red;
+	color: $white;
+	cursor: pointer;
+	width: auto;
+}
+.button:hover {
+	background-image: $gradient;
+}
+.button:focus {
+	outline: 4px solid $grey;
+}
