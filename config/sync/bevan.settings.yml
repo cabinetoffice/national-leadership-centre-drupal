@@ -9,5 +9,5 @@ favicon:
   use_default: 1
 phase_banner: beta
 phase_banner_message:
-  value: 'This is a new service – your feedback will help us to improve it.'
-  format: plain_text
+  value: "<p>This is a new service – <a href=\"mailto:nlc@cabinetoffice.gov.uk?subject=Feedback for the Directory\">your feedback</a> will help us to improve it.</p>\r\n"
+  format: filtered_text
