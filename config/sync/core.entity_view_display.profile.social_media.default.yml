@@ -15,20 +15,8 @@ targetEntityType: profile
 bundle: social_media
 mode: default
 content:
-  field_facebook:
-    weight: 1
-    label: inline
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
   field_linkedin:
-    weight: 3
+    weight: 2
     label: inline
     settings:
       trim_length: 80
@@ -52,7 +40,7 @@ content:
     type: link
     region: content
   field_website:
-    weight: 2
+    weight: 1
     label: inline
     settings:
       trim_length: 80
@@ -64,4 +52,5 @@ content:
     type: link
     region: content
 hidden:
+  field_facebook: true
   search_api_excerpt: true
