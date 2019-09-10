@@ -5,14 +5,13 @@ dependencies:
   config:
     - field.storage.profile.field_job_title
     - search_api.index.main_index
-    - system.menu.main
   module:
     - node
     - profile
     - search_api
     - user
 id: directory
-label: 'Members Directory'
+label: 'Senior Leaders Directory'
 module: views
 description: ''
 tag: ''
@@ -899,7 +898,7 @@ display:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -919,7 +918,7 @@ display:
       display_extenders: {  }
       path: directory
       menu:
-        type: normal
+        type: none
         title: 'Members Directory'
         description: ''
         expanded: false
