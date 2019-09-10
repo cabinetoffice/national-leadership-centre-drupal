@@ -1,4 +1,4 @@
-uuid: 7c8b9f43-9395-4c80-b46b-e56ee95161a9
+uuid: fab0d868-f643-4453-a0c7-ca925187baa9
 langcode: en
 status: true
 dependencies:
@@ -8,10 +8,10 @@ dependencies:
     - facets
     - system
   theme:
-    - bartik
-id: region
-theme: bartik
-region: sidebar_second
+    - bevan
+id: roleprofilesprofileorganisationcontentregion_2
+theme: bevan
+region: sidebar_first
 weight: 0
 provider: null
 plugin: 'facet_block:region'
@@ -20,7 +20,7 @@ settings:
   label: 'Filter by region'
   provider: facets
   label_display: visible
-  block_id: region
+  block_id: roleprofilesprofileorganisationcontentregion_2
 visibility:
   request_path:
     id: request_path

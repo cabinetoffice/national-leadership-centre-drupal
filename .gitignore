@@ -35,3 +35,6 @@ mariadb-init/*
 config/devel/key.key.salesforce_authentication_key.yml
 config/devel/salesforce.salesforce_auth.jblocaldev_190903.yml
 config/devel/salesforce.settings.yml
+
+# Ignore node modules
+node_modules

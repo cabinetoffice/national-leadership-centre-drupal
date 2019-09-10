@@ -1,4 +1,4 @@
-uuid: 9233e8ea-53af-4291-8813-c70ba4346510
+uuid: 89954845-329b-4436-bd40-6d2c13af383b
 langcode: en
 status: true
 dependencies:
@@ -8,11 +8,11 @@ dependencies:
     - facets
     - system
   theme:
-    - bartik
-id: jobtitle
-theme: bartik
-region: sidebar_second
-weight: -3
+    - bevan
+id: roleprofilesprofilejobtitle_2
+theme: bevan
+region: sidebar_first
+weight: 0
 provider: null
 plugin: 'facet_block:job_title'
 settings:
@@ -20,7 +20,7 @@ settings:
   label: 'Filter by job title'
   provider: facets
   label_display: visible
-  block_id: jobtitle
+  block_id: roleprofilesprofilejobtitle_2
 visibility:
   request_path:
     id: request_path
