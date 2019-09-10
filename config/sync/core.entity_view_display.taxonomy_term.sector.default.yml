@@ -1,20 +1,20 @@
-uuid: b9f41708-778d-4f0c-92c7-e43d77ab751c
+uuid: 8b89a025-cbf5-4d26-a04c-39548b1d3aae
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.job_title
+    - taxonomy.vocabulary.sector
   module:
     - text
-id: taxonomy_term.job_title.default
+id: taxonomy_term.sector.default
 targetEntityType: taxonomy_term
-bundle: job_title
+bundle: sector
 mode: default
 content:
   description:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }

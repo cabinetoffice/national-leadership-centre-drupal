@@ -1,25 +1,25 @@
-uuid: a697f96d-3c06-4dc1-9c81-5c883ca1cc1a
+uuid: fc85d1af-07ef-4852-8923-df21c2dc51b1
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.job_title
-id: job_title
-label: 'Job Title'
+    - taxonomy.vocabulary.region
+id: region
+label: Region
 weight: 0
 type: salesforce_mapping
-key: Id
+key: ''
 async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
 pull_where_clause: ''
 sync_triggers: {  }
-salesforce_object_type: NetworkJobTitle__c
+salesforce_object_type: NetworkRegion__c
 drupal_entity_type: taxonomy_term
-drupal_bundle: job_title
+drupal_bundle: region
 field_mappings:
-  1:
+  -
     drupal_field_type: properties
     drupal_field_value: name
     salesforce_field: Name

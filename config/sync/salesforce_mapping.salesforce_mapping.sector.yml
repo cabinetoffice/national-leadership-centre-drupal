@@ -1,23 +1,23 @@
-uuid: a697f96d-3c06-4dc1-9c81-5c883ca1cc1a
+uuid: de7225e4-8f79-4cc8-b01a-bfae53c38f27
 langcode: en
 status: true
 dependencies:
   config:
-    - taxonomy.vocabulary.job_title
-id: job_title
-label: 'Job Title'
+    - taxonomy.vocabulary.sector
+id: sector
+label: Sector
 weight: 0
 type: salesforce_mapping
-key: Id
+key: ''
 async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
 pull_where_clause: ''
 sync_triggers: {  }
-salesforce_object_type: NetworkJobTitle__c
+salesforce_object_type: NetworkSector__c
 drupal_entity_type: taxonomy_term
-drupal_bundle: job_title
+drupal_bundle: sector
 field_mappings:
   1:
     drupal_field_type: properties

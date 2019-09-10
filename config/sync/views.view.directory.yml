@@ -75,9 +75,9 @@ display:
         options:
           grouping: {  }
           row_class: ''
-          default_row_class: false
+          default_row_class: true
           override: true
-          sticky: false
+          sticky: true
           caption: ''
           summary: ''
           description: ''
@@ -85,10 +85,9 @@ display:
             title: title
             firstname: firstname
             lastname: lastname
-            org_job_title_term: org_job_title_term
             org_job_title: org_job_title
-            org_name_user: org_name_user
-            org_sector_name_user: org_sector_name_user
+            org_name: org_name
+            sector: sector
           info:
             title:
               sortable: false
@@ -111,13 +110,6 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            org_job_title_term:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
             org_job_title:
               sortable: false
               default_sort_order: asc
@@ -125,15 +117,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            org_name_user:
-              sortable: false
+            org_name:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            org_sector_name_user:
-              sortable: false
+            sector:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -930,7 +922,6 @@ display:
         type: none
       defaults:
         cache: false
-      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:

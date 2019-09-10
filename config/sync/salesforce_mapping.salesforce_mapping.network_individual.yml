@@ -1,38 +1,38 @@
-uuid: c79c0e9c-bef7-4ea3-ac9e-9185ca741fa4
+uuid: a20245ba-3638-4068-8aa7-6a8a2346cf31
 langcode: en
 status: true
 dependencies:
-  config:
-    - field.field.user.user.field_salesforce_record_id
   module:
+    - salesforce_pull
+    - salesforce_push
     - user
 id: network_individual
 label: 'Network Individual'
 weight: 0
 type: salesforce_mapping
-key: Id
+key: ''
 async: false
 push_standalone: false
 pull_standalone: false
 pull_trigger_date: LastModifiedDate
 pull_where_clause: ''
-sync_triggers: {  }
-salesforce_object_type: Network_Individual__c
+sync_triggers:
+  push_create: true
+  push_update: true
+  push_delete: true
+  pull_create: true
+  pull_update: true
+  pull_delete: true
+salesforce_object_type: NetworkIndividual__c
 drupal_entity_type: user
 drupal_bundle: user
 field_mappings:
   -
     drupal_field_type: properties
     drupal_field_value: mail
-    salesforce_field: Email_Address__c
+    salesforce_field: EmailAddress__c
     direction: sync
-    id: 1
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_salesforce_record_id
-    salesforce_field: Id
-    direction: sf_drupal
-    id: 2
+    id: 0
 push_limit: 0
 push_retries: 3
 push_frequency: 0
