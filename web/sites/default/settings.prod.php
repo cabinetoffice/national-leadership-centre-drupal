@@ -20,5 +20,6 @@ $s3bucketCreds = $vcapServices['aws-s3-bucket']['credentials'];
 $settings['s3fs.access_key'] = $s3bucketCreds['aws_access_key_id'];
 $settings['s3fs.secret_key'] = $s3bucketCreds['aws_secret_key_id'];
 $settings['s3fs.bucket'] = $s3bucketCreds['bucket_name'];
+$settings['s3fs.region'] = $s3bucketCreds['aws_region'];
 $config['s3fs.settings']['bucket'] = $s3bucketCreds['bucket_name'];
 $settings['s3fs.use_s3_for_public'] = TRUE;
