@@ -1,0 +1,11 @@
+.facets-widget-checkbox ul {
+  padding: 0;
+  margin: 0;
+}
+.facets-widget-checkbox label {
+  @extend .govuk-label;
+  @extend .govuk-checkboxes__label;
+}
+.facets-checkbox {
+  @extend .govuk-checkboxes__input;
+}

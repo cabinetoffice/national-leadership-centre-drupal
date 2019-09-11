@@ -29,7 +29,7 @@ content:
     region: content
   field_general_location:
     weight: 5
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -37,7 +37,7 @@ content:
     region: content
   field_job_title_term:
     weight: 1
-    label: hidden
+    label: inline
     settings:
       link: false
     third_party_settings: {  }
@@ -45,9 +45,9 @@ content:
     region: content
   field_organisation:
     weight: 0
-    label: hidden
+    label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content

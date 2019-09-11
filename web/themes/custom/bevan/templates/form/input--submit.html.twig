@@ -1,0 +1,5 @@
+<button{{ attributes }}>
+  {# Attributes have already been esacped, so safe to use raw here #}
+  {{ attributes.value|raw }}
+</button>
+{{ children }}
