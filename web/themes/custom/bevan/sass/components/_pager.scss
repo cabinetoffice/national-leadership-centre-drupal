@@ -1,0 +1,17 @@
+.pager__items {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.pager__item {
+  display: block;
+  float: left;
+  width: 50%;
+}
+.pager__item a {
+  display: block;
+}
+.pager__item--next {
+  float: right;
+  text-align: right;
+}

@@ -40,33 +40,31 @@
 #}
 {%
   set title_classes = [
-  label_display == 'visually_hidden' ? 'visually-hidden',
-]
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
 %}
 
 {% if label_hidden %}
   {% if multiple %}
     <div{{ attributes }}>
       {% for item in items %}
-        <h4{{ item.attributes }}>{{ item.content }}</h4>
+        <div{{ item.attributes }}>{{ item.content }}</div>
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
-      <h4{{ attributes }}>{{ item.content }}</h4>
+      <div{{ attributes }}>{{ item.content }}</div>
     {% endfor %}
   {% endif %}
 {% else %}
-  <div{{ attributes }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+  <p{{ attributes }}>
+    <strong{{ title_attributes.addClass(title_classes) }}>{{ label }}:</strong>
     {% if multiple %}
-    <div>
-      {% endif %}
-      {% for item in items %}
-        <h4{{ item.attributes }}>{{ item.content }}</h4>
-      {% endfor %}
-      {% if multiple %}
-    </div>
     {% endif %}
-  </div>
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+    {% if multiple %}
+    {% endif %}
+  </p>
 {% endif %}

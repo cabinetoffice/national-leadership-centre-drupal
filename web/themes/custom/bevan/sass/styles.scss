@@ -9,6 +9,10 @@ $govuk-assets-path: "../../contrib/govuk_design_system/assets/";
 @import "node_modules/govuk-frontend/all";
 
 // Add new components
+@import "settings/gradients";
 @import "components/tabs";
+@import "components/facets-checkbox";
 @import "components/site-header";
 @import "components/img";
+@import "components/pager";
+@import "components/button";
