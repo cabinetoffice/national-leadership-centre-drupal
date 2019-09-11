@@ -888,6 +888,7 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
+        - extensions
   page_1:
     display_plugin: page
     id: page_1
@@ -909,6 +910,7 @@ display:
         type: none
       defaults:
         cache: false
+      exposed_block: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -919,3 +921,4 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
+        - extensions

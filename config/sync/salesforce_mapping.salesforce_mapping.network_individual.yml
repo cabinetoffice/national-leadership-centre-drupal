@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   module:
-    - salesforce_pull
-    - salesforce_push
     - user
 id: network_individual
 label: 'Network Individual'
@@ -17,12 +15,12 @@ pull_standalone: false
 pull_trigger_date: LastModifiedDate
 pull_where_clause: ''
 sync_triggers:
-  push_create: true
-  push_update: true
-  push_delete: true
-  pull_create: true
-  pull_update: true
-  pull_delete: true
+  push_create: false
+  push_update: false
+  push_delete: false
+  pull_create: false
+  pull_update: false
+  pull_delete: false
 salesforce_object_type: NetworkIndividual__c
 drupal_entity_type: user
 drupal_bundle: user
@@ -32,13 +30,13 @@ field_mappings:
     drupal_field_value: mail
     salesforce_field: EmailAddress__c
     direction: sync
-    id: 1
+    id: 0
   2:
     drupal_field_type: properties
     drupal_field_value: uuid
     salesforce_field: Name
     direction: sync
-    id: 3
+    id: 2
 push_limit: 0
 push_retries: 3
 push_frequency: 0
