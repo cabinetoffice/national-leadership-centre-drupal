@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+
 /**
  * Implements hook_mail().
  */
@@ -10,5 +12,23 @@ function nlc_prototype_mail($key, &$message, $params) {
       $message['subject'] = t('Access link: Senior Leader directory');
       $message['body'] = $params['message'];
       break;
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function nlc_prototype_menu_local_tasks_alter(&$data, $route_name, RefinableCacheableDependencyInterface &$cacheability) {
+  $account = \Drupal::currentUser();
+  $roles = $account->getRoles();
+  $these_roles = ['authenticated'];
+  if (empty(array_diff($roles, $these_roles))) {
+    $routes = [
+      'entity.user.canonical',
+      'entity.profile.type.user_profile_form',
+    ];
+    if (in_array($route_name, $routes)) {
+      unset($data['tabs'][0]['entity.profile.user_profile_form:profile.type.role']);
+    }
   }
 }
