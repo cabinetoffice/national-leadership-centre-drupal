@@ -794,6 +794,7 @@ display:
             - lastname
             - locality
             - mail
+            - org_field_job_title
             - org_job_title
             - org_job_title_term
             - org_name_user
