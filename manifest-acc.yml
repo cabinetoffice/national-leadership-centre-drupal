@@ -1,0 +1,9 @@
+---
+applications:
+- name: nlc-alpha-drupal-acc
+  memory: 512M
+  # path: .
+  buildpacks: 
+    - php_buildpack
+  services:
+    - nlc-alpha-drupal-acc-mysql
