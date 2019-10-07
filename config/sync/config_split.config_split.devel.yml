@@ -12,12 +12,12 @@ module:
   devel_generate: 0
 theme: {  }
 blacklist:
-  - google_analytics.settings
   - key.key.salesforce_authentication_key
   - salesforce.salesforce_auth.jblocaldev_190903
   - salesforce.settings
 graylist:
   - mailsystem.settings
+  - google_analytics.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0

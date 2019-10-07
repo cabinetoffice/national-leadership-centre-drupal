@@ -56,6 +56,7 @@ module:
   select_or_other: 0
   sendgrid_integration: 0
   structure_sync: 0
+  syslog: 0
   system: 0
   taxonomy: 0
   telephone: 0
@@ -64,9 +65,9 @@ module:
   typed_data: 0
   update: 0
   user: 0
-  views_ui: 0
   menu_link_content: 1
   views: 10
+  views_ui: 10
   minimal: 1000
 theme:
   stable: 0
