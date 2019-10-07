@@ -12,9 +12,9 @@ module:
   devel_generate: 0
 theme: {  }
 blacklist:
-  - google_analytics.settings
 graylist:
   - mailsystem.settings
+  - google_analytics.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0
