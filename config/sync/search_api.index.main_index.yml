@@ -141,6 +141,17 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
+  org_field_job_title:
+    label: 'Role profiles » Profile » Job Title (old)'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_job_title'
+    type: text
+    dependencies:
+      module:
+        - profile
+        - profile
+      config:
+        - field.storage.profile.field_job_title
   org_job_title:
     label: 'Role profiles » Profile » Job Title'
     datasource_id: 'entity:user'
@@ -408,6 +419,7 @@ processor_settings:
       - locality
       - mail
       - name
+      - org_field_job_title
       - org_job_title
       - org_job_title_term
       - org_name_user
@@ -437,6 +449,7 @@ processor_settings:
       - locality
       - mail
       - name
+      - org_field_job_title
       - org_job_title
       - org_job_title_term
       - org_name_user
