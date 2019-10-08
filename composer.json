@@ -38,6 +38,7 @@
         "drupal/migrate_source_csv": "^3.0",
         "drupal/migrate_tools": "^4.1",
         "drupal/name": "^1.0@RC",
+        "drupal/neo4j": "^1.0",
         "drupal/profile": "^1.0@RC",
         "drupal/real_aes": "^2.2",
         "drupal/s3fs": "^3.0@alpha",

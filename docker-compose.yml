@@ -14,6 +14,8 @@ services:
       volumes:
        - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
        - project-db-data:/var/lib/mysql # I want to manage volumes manually.
+      networks:
+        - connect
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -32,6 +34,9 @@ services:
       # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
       - ./:/var/www/html:cached # User-guided caching
       # - docker-sync:/var/www/html # Docker-sync
+    networks:
+      - connect
+      - neo4j-network
 
   nginx:
     image: wodby/drupal-nginx:$NGINX_TAG
@@ -54,14 +59,20 @@ services:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
       - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+    networks:
+      - connect
 
   redis:
     image: wodby/redis:$REDIS_TAG
     container_name: "${PROJECT_NAME}_redis"
+    networks:
+      - connect
 
   memcached:
     image: wodby/memcached:$MEMCACHED_TAG
     container_name: "${PROJECT_NAME}_memcached"
+    networks:
+      - connect
 
   mailhog:
     image: mailhog/mailhog
@@ -70,6 +81,8 @@ services:
       - 'traefik.backend=${PROJECT_NAME}_mailhog'
       - 'traefik.port=8025'
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
+    networks:
+      - connect
 
   # varnish:
   #   image: wodby/drupal-varnish:$VARNISH_TAG
@@ -94,6 +107,8 @@ services:
       - 'traefik.backend=adminer'
       - 'traefik.port=9000'
       - 'traefik.frontend.rule=Host:adminer.${PROJECT_BASE_URL}'
+    networks:
+      - connect
 
   # solr:
   #   image: wodby/drupal-solr:$SOLR_TAG
@@ -133,6 +148,8 @@ services:
       - 'traefik.backend=portainer'
       - 'traefik.port=9000'
       - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+    networks:
+      - connect
 
   traefik:
     image: traefik:1.7.16-alpine
@@ -143,6 +160,8 @@ services:
       - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - connect
 
 volumes:
 # Docker-sync for macOS users
@@ -151,3 +170,7 @@ volumes:
   project-db-data:
     name: ${PROJECT_NAME}-data
    
+networks:
+  neo4j-network:
+    external: true
+  connect:
