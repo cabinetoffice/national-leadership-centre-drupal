@@ -162,7 +162,7 @@ class DirectoryTokenAccessForm extends FormBase {
    * @return \Drupal\Core\GeneratedUrl|string
    */
   private function directoryUrl(User $account, $options = array()) {
-    $timestamp = REQUEST_TIME;
+    $timestamp = \Drupal::time()->getRequestTime();
     $langCode = isset($options['langcode']) ? $options['langcode'] : $account
       ->getPreferredLangcode();
 
