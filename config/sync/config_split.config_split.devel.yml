@@ -11,10 +11,10 @@ module:
   devel: 0
   devel_generate: 0
 theme: {  }
-blacklist:
+blacklist: {  }
 graylist:
-  - mailsystem.settings
   - google_analytics.settings
+  - mailsystem.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0
