@@ -5,6 +5,10 @@ namespace Drupal\nlc_prototype\Controller;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Extension\ModuleHandler;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Session\AccountProxy;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
@@ -60,6 +64,26 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   protected $logger;
 
   /**
+   * @var \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected $currentUser;
+
+  /**
+   * @var \Drupal\Core\Database\Connection
+   */
+  protected $database;
+
+  /**
+   * @var ModuleHandler
+   */
+  protected $moduleHandler;
+
+  /**
+   * @var int
+   */
+  protected $maxSessionCount = 1;
+
+  /**
    * Constructs a UserController object.
    *
    * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $privateTempStoreFactory
@@ -70,13 +94,22 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
    *   The user data service.
    * @param \Psr\Log\LoggerInterface $logger
    *   A logger instance.
+   * @param AccountProxy $currentUser
+   *   The current user.
+   * @param Connection $database
+   *   The database connection.
+   * @param ModuleHandler $moduleHandler
+   *   Module handler.
    */
-  public function __construct(PrivateTempStoreFactory $privateTempStoreFactory, UserStorageInterface $userStorage, UserDataInterface $userData, LoggerInterface $logger) {
+  public function __construct(PrivateTempStoreFactory $privateTempStoreFactory, UserStorageInterface $userStorage, UserDataInterface $userData, LoggerInterface $logger, AccountProxy $currentUser, Connection $database, ModuleHandler $moduleHandler) {
     $this->privateTempStoreFactory = $privateTempStoreFactory;
     $this->store = $this->privateTempStoreFactory->get('directory_token_access_data');
     $this->userStorage = $userStorage;
     $this->userData = $userData;
     $this->logger = $logger;
+    $this->currentUser = $currentUser;
+    $this->database = $database;
+    $this->moduleHandler = $moduleHandler;
   }
 
   /**
@@ -87,8 +120,20 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       $container->get('tempstore.private'),
       $container->get('entity.manager')->getStorage('user'),
       $container->get('user.data'),
-      $container->get('logger.factory')->get('user')
+      $container->get('logger.factory')->get('nlc_prototype'),
+      $container->get('current_user'),
+      $container->get('database'),
+      $container->get('module_handler')
     );
+  }
+
+  /**
+   * Get the current user.
+   *
+   * @return \Drupal\Core\Session\AccountProxyInterface
+   */
+  protected function getCurrentUser() {
+    return $this->currentUser;
   }
 
   /**
@@ -142,7 +187,19 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
    */
   public function check(Request $request, $uid, $timestamp, $hash) {
     // The current user is not logged in, so check the parameters.
-    $current = REQUEST_TIME;
+    $current = \Drupal::time()->getRequestTime();
+
+    $account = $this->getCurrentUser();
+
+    if ($account->isAuthenticated()) {
+      $active_sessions = $this->getUserActiveSessionCount($this->getCurrentUser());
+      if ($active_sessions > 0) {
+        $this->logger->notice('User %name re-used one-time login link at time %timestamp.', ['%name' => $account->getDisplayName(), '%timestamp' => $current]);
+        $this->messenger()->addStatus($this->t('You have just re-used your one-time directory access link.'));
+        return $this->redirect($this->routeName);
+      }
+    }
+
     /** @var \Drupal\user\UserInterface $user */
     $user = $this->userStorage->load($uid);
 
@@ -173,6 +230,42 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
 
     $this->messenger()->addError($this->t('You have tried to use a one-time directory access link that has either been used or is no longer valid. Please request a new one using the form below.'));
     return $this->redirect($this->routeNameAccessForm);
+  }
+
+  /**
+   * Get the number of active sessions for a user.
+   *
+   * @param \Drupal\Core\Session\AccountInterface $account
+   *   The user to check on.
+   *
+   * @return int
+   *   The total number of active sessions for the given user
+   */
+  public function getUserActiveSessionCount(AccountInterface $account) {
+    $query = $this->database->select('sessions', 's')
+      // Use distinct so that HTTP and HTTPS sessions
+      // are considered a single sessionId.
+      ->distinct()
+      ->fields('s', ['sid'])
+      ->condition('s.uid', $account->id());
+
+    if ($this->getMasqueradeIgnore()) {
+      // Masquerading sessions do not count.
+      $like = '%' . $this->database->escapeLike('masquerading') . '%';
+      $query->condition('s.session', $like, 'NOT LIKE');
+    }
+
+    /** @var \Drupal\Core\Database\Query\Select $query */
+    return $query->countQuery()->execute()->fetchField();
+  }
+
+  /**
+   * @return bool
+   *   Should we ignore masqueraded sessions?
+   */
+  public function getMasqueradeIgnore() {
+    $masqueradeModuleExists = $this->moduleHandler->moduleExists('masquerade');
+    return $masqueradeModuleExists ? TRUE : FALSE;
   }
 
   /**
