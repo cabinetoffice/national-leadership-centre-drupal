@@ -1,0 +1,7 @@
+name: NLC Salesforce integration
+type: module
+description: 'Provides integration with Salesforce for the NLC Connect service.'
+package: NLC
+core: '8.x'
+dependencies:
+  - drupal:salesforce
