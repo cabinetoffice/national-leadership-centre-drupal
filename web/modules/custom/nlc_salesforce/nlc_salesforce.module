@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Provides integration with Salesforce for the NLC Connect service.
+ */
+
+use Drupal\field\Entity\FieldConfig;
+use Drupal\salesforce\SFID;
+
+/**
+ * Implements hook_user_load().
+ */
+function nlc_salesforce_user_load(array $users) {
+  // In the event there are a lot of user_load() calls, cache the results.
+  $sfIds = &drupal_static('nlc_salesforce_user_sfids_cache', []);
+  $sfIndividuals = &drupal_static('nlc_salesforce_user_sfids_cache', []);
+  $field = &drupal_static(__FUNCTION__, NULL);
+
+  if (!isset($field)) {
+    $field_name = 'field_salesforce_record_id';
+    $field = FieldConfig::loadByName('user', 'user', $field_name);
+  }
+
+  if ($field) {
+    foreach ($users as $account) {
+      $uid = $account->id();
+      if (isset($sfIds[$uid])) {
+        $users[$uid]->sfId = $sfIds[$uid];
+      }
+      else {
+        if ($account->hasField($field->getName()) && !$account->get($field->getName())->isEmpty()) {
+          $sfIdValue = $account->get($field->getName())->get(0)->getValue()['value'];
+          try {
+            $sfId = new SFID($sfIdValue);
+            $sfIds[$uid] = $sfId;
+            $users[$uid]->sfId = $sfIds[$uid];
+            if ($sfId instanceof SFID) {
+              /** @var \Drupal\salesforce\Rest\RestClient $salesforce */
+              $salesforce = \Drupal::service('salesforce.client');
+              $name = $salesforce->getObjectTypeName($sfId);
+              if ($object = $salesforce->objectRead($name, $sfId->__toString())) {
+                $users[$uid]->sf_individual = $object->fields();
+              }
+            }
+          }
+          catch (Exception $e) {
+            $sfIds[$uid] = null;
+            $users[$uid]->sfId = $sfIds[$uid];
+          }
+        }
+      }
+    }
+  }
+}
