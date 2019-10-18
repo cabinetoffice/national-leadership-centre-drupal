@@ -14,10 +14,9 @@ theme: {  }
 blacklist:
   - key.key.salesforce_authentication_key
   - salesforce.salesforce_auth.jblocaldev_190903
-  - salesforce.settings
 graylist:
-  - mailsystem.settings
   - google_analytics.settings
+  - mailsystem.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0
