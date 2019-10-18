@@ -31,10 +31,8 @@
 # Ignore local mariadb-init SQL files
 mariadb-init/*
 
-# Ignore some Salesforce config files. These should be probably managed with environment variables or something else.
-config/devel/key.key.salesforce_authentication_key.yml
-config/devel/salesforce.salesforce_auth.jblocaldev_190903.yml
-config/devel/salesforce.settings.yml
-
 # Ignore node modules
 node_modules
+
+# Do not include CRM sync settings
+config/crm/*
