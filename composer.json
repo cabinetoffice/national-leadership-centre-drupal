@@ -40,6 +40,7 @@
         "drupal/name": "^1.0@RC",
         "drupal/profile": "^1.0@RC",
         "drupal/real_aes": "^2.2",
+        "drupal/restui": "^1.17",
         "drupal/s3fs": "^3.0@alpha",
         "drupal/salesforce": "4.x-dev",
         "drupal/search_api": "^1.14",

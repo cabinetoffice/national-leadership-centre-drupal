@@ -1,0 +1,19 @@
+uuid: dd715eb9-f4c7-4a52-b3ca-b6a9e7caf7d7
+langcode: en
+status: true
+dependencies:
+  module:
+    - nlc_salesforce
+    - serialization
+    - user
+id: networkmember
+plugin_id: networkmember
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - PATCH
+  formats:
+    - json
+  authentication:
+    - cookie
