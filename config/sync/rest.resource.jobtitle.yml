@@ -1,0 +1,17 @@
+uuid: c178a317-42d8-49bd-8b47-a6f0315f07e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - nlc_salesforce
+    - serialization
+    - user
+id: jobtitle
+plugin_id: jobtitle
+granularity: method
+configuration:
+  GET:
+    supported_formats:
+      - json
+    supported_auth:
+      - cookie

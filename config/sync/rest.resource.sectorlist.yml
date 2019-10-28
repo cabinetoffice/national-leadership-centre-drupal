@@ -1,0 +1,18 @@
+uuid: 5a50db27-4260-4a86-9ff0-fc65b0d22adc
+langcode: en
+status: true
+dependencies:
+  module:
+    - nlc_salesforce
+    - serialization
+    - user
+id: sectorlist
+plugin_id: sectorlist
+granularity: resource
+configuration:
+  methods:
+    - GET
+  formats:
+    - json
+  authentication:
+    - cookie
