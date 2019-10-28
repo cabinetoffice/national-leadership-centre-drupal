@@ -2,6 +2,7 @@
 
 namespace Drupal\nlc_salesforce\Plugin\rest\resource;
 
+use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\nlc_api\Plugin\rest\resource\NLCApiBaseResource;
 use Drupal\nlc_salesforce\Salesforce\object\NetworkIndividualSalesforceObject;
@@ -23,19 +24,6 @@ use Psr\Log\LoggerInterface;
  *
  */
 class NetworkMemberResource extends NLCApiBaseResource {
-
-  /**
-   * Salesforce API request service.
-   *
-   * @var \Drupal\nlc_salesforce\Salesforce\api\SalesforceApiRequest
-   */
-  private $sFApi;
-
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
-
-    $this->sFApi = \Drupal::service('nlc_salesforce.api');
-  }
 
 
   public function get($id) {
@@ -74,7 +62,6 @@ class NetworkMemberResource extends NLCApiBaseResource {
         $this->sFApi->setId($sfIdValue);
         $sfIds[$uid] = $this->sFApi->id();
         if ($this->sFApi->id() instanceof SFID) {
-          $config = \Drupal::config('ncl_salesforce.settings');
           $name = $this->sFApi->getSalesforce()->getObjectTypeName($this->sFApi->id());
           if ($object = $this->sFApi->getSalesforce()->objectDescribe($name)) {
             return new ResourceResponse($object->getFields());
