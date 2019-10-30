@@ -52,9 +52,8 @@ abstract class AbstractSalesforceApiList extends NLCApiObjectDescriptionBaseReso
    */
   public function get() {
     $cache = $this->cache->get($this->cache_key);
-    $list = $cache->data;
-    if (!empty($list)) {
-      return $this->sendResponse($list);
+    if (!empty($cache)) {
+      $list = $cache->data;
     }
     else {
       try {
@@ -66,13 +65,16 @@ abstract class AbstractSalesforceApiList extends NLCApiObjectDescriptionBaseReso
           $label = Xss::filter($item['label']);
           $list[$value] = $label;
         }
+        $list = $this->composeResponseObject($list);
         $this->cache->set($this->cache_key, $list);
-        return $this->sendResponse($list);
       }
       catch (\Exception $e) {
         throw new BadRequestHttpException($e->getMessage(), $e, $e->getCode());
       }
     }
+    return $this->sendResponse($list);
   }
+
+  abstract protected function composeResponseObject($data);
 
 }

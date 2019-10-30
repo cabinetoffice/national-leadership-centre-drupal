@@ -2,9 +2,7 @@
 
 namespace Drupal\nlc_salesforce\Plugin\rest\resource;
 
-use Drupal\Component\Utility\Xss;
-use Drupal\rest\ResourceResponse;
-use HttpRuntimeException;
+use Drupal\nlc_salesforce\Salesforce\object\RegionList;
 
 /**
  * Provides a resource for getting the region list in the Salesforce CRM.
@@ -34,5 +32,15 @@ class RegionListResource extends AbstractSalesforceApiList {
    * @var string
    */
   protected $cache_key = 'nlc_salesforce:region_list';
+
+  /**
+   * @param $data
+   *
+   * @return \Drupal\nlc_salesforce\Salesforce\object\SalesforceBaseListInterface
+   * @throws \Drupal\nlc_salesforce\Salesforce\object\SalesforceObjectException
+   */
+  protected function composeResponseObject($data) {
+    return new RegionList($data);
+  }
 
 }

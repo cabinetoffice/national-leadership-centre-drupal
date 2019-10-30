@@ -2,9 +2,7 @@
 
 namespace Drupal\nlc_salesforce\Plugin\rest\resource;
 
-use Drupal\Component\Utility\Xss;
-use Drupal\rest\ResourceResponse;
-use HttpRuntimeException;
+use Drupal\nlc_salesforce\Salesforce\object\SectorList;
 
 /**
  * Provides a resource for getting the Job Titles list in the Salesforce CRM.
@@ -34,5 +32,15 @@ class SectorListResource extends AbstractSalesforceApiList {
    * @var string
    */
   protected $cache_key = 'nlc_salesforce:sector_list';
+
+  /**
+   * @param $data
+   *
+   * @return \Drupal\nlc_salesforce\Salesforce\object\SalesforceBaseListInterface
+   * @throws \Drupal\nlc_salesforce\Salesforce\object\SalesforceObjectException
+   */
+  protected function composeResponseObject($data) {
+    return new SectorList($data);
+  }
 
 }
