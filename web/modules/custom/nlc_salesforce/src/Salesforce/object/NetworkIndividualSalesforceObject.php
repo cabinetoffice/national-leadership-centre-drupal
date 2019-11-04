@@ -58,6 +58,7 @@ class NetworkIndividualSalesforceObject extends SalesforceBaseObject {
    * Set the name properties of this object.
    */
   private function baseSetName() {
+    $this->name = new \stdClass();
     $this->name->firstname = $this->sfObject->field('FirstName__c');
     $this->name->lastname = $this->sfObject->field('LastName__c');
     $this->name->fullname = $this->sfObject->field('FullName__c') ? $this->sfObject->field('FullName__c') : "{$this->name->firstname} {$this->name->lastname}";
@@ -65,6 +66,7 @@ class NetworkIndividualSalesforceObject extends SalesforceBaseObject {
   }
 
   private function baseSetSocialMedia() {
+    $this->socialMedia = new \stdClass();
     $this->socialMedia->twitter = $this->sfObject->field('Twitter_Handle__c');
     $this->socialMedia->linkedIn = $this->sfObject->field('LinkedIn_Account__c');
   }

@@ -163,11 +163,18 @@ abstract class NLCApiBaseResource extends ResourceBase implements NLCApiBaseReso
    * Return a REST resource response.
    *
    * @param array|object $data
+   *   Response data
+   * @param array|object $cacheableDependency
+   *   A cacheable dependency for the response.
    *
    * @return \Drupal\rest\ResourceResponse
    */
-  public function sendResponse($data) {
-    return new ResourceResponse($data, $this->responseCode, $this->responseHeaders);
+  public function sendResponse($data, $cacheableDependency = NULL) {
+    $response = new ResourceResponse($data, $this->responseCode, $this->responseHeaders);
+    if (isset($cacheableDependency)) {
+      $response->addCacheableDependency($cacheableDependency);
+    }
+    return $response;
   }
 
 }
