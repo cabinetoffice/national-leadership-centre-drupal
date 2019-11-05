@@ -3,6 +3,7 @@
 namespace Drupal\nlc_salesforce\Salesforce\object;
 
 use Drupal\salesforce\Exception;
+use Drupal\salesforce\Rest\RestClient;
 use Drupal\salesforce\SObject;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,9 +13,16 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
   /**
    * Salesforce ID of this object
    *
-   * @var string
+   * @var \Drupal\salesforce\SFID
    */
   private $salesforceId;
+
+  /**
+   * Salesforce REST client
+   *
+   * @var \Drupal\salesforce\Rest\RestClient
+   */
+  private $sfApi;
 
   /**
    * Salesforce object.
@@ -29,6 +37,11 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
    * @var \Psr\Log\LoggerInterface
    */
   protected $logger;
+
+  /**
+   * @var \Drupal\nlc_salesforce\Salesforce\object\SfObjectSupportedFields
+   */
+  protected $supportedFields;
 
   /**
    * @var string
@@ -51,9 +64,16 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
   public $updated;
 
   /**
+   * @var string
+   */
+  protected $sfObjectType;
+
+  /**
    * @var bool
    */
   protected $includeSfObjectFields = false;
+
+  protected $includeSfObjectDescription = false;
 
   /**
    * @var array
@@ -63,20 +83,26 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
   /**
    * SalesforceObjectBase constructor.
    *
-   * @param \Psr\Log\LoggerInterface $logger
-   *   Logger instance.
-   * @param string $id
+   * @param \Drupal\salesforce\SFID $sfId
    *   Salesforce ID of this object.
+   * @param RestClient $sfApi
+   *   Salesforce REST client object.
    * @param \Drupal\salesforce\SObject $sf_object
    *   Salesforce object.
    *
-   * @param
+   * @throws \Drupal\nlc_salesforce\Salesforce\object\SalesforceObjectException
    */
-  public function __construct($id, SObject $sf_object) {
-    $this->salesforceId = $id;
+  public function __construct($sfId, RestClient $sfApi, SObject $sf_object) {
+    $this->salesforceId = $sfId;
+    $this->sfApi = $sfApi;
     $this->sfObject = $sf_object;
 
     $this->setBaseProperties();
+
+    if (!$this->sfObjectType) {
+      $message = t('Missing sfObjectType property');
+      throw new SalesforceObjectException($message);
+    }
   }
 
   protected function setBaseProperties() {
@@ -92,8 +118,28 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
     if ($this->isIncludeSfObjectFields()) {
       $this->sfObjectFields = $this->sfObject->fields();
     }
+
+    if ($this->isIncludeSfObjectDescription()) {
+      try {
+        $this->sfObjectTypeName = $this->sfObjectType;
+        $this->sfObjectDescription = $this->sfObjectDescribe()->getFields();
+      }
+      catch (\Exception $e) {
+        $this->sfObjectDescription = [
+          'code' => $e->getCode(),
+          'message' => $e->getMessage(),
+        ];
+      }
+    }
   }
 
+  /**
+   * @return \Drupal\salesforce\Rest\RestResponseDescribe
+   * @throws \Exception
+   */
+  public function sfObjectDescribe() {
+    return $this->sfApi->objectDescribe($this->sfObjectType);
+  }
 
   /**
    * Set an object property with the value from a Salesforce object key.
@@ -120,6 +166,13 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
    */
   public function isIncludeSfObjectFields() {
     return $this->includeSfObjectFields;
+  }
+
+  /**
+   * @return bool
+   */
+  public function isIncludeSfObjectDescription() {
+    return $this->includeSfObjectDescription;
   }
 
   /**

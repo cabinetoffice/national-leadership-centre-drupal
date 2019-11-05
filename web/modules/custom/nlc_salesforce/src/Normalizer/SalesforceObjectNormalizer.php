@@ -10,6 +10,7 @@ class SalesforceObjectNormalizer extends ComplexDataNormalizer {
   protected $supportedInterfaceOrClass = [
     'Drupal\nlc_salesforce\Salesforce\object\SalesforceBaseObjectInterface',
     'Drupal\nlc_salesforce\Salesforce\object\SalesforceBaseListInterface',
+    'Drupal\salesforce\Rest\RestResponseDescribe',
     'stdClass',
   ];
 
