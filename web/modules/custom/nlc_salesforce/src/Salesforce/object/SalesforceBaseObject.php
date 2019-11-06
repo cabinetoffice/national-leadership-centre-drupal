@@ -2,8 +2,10 @@
 
 namespace Drupal\nlc_salesforce\Salesforce\object;
 
+use Drupal\Component\Utility\Xss;
 use Drupal\salesforce\Exception;
 use Drupal\salesforce\Rest\RestClient;
+use Drupal\salesforce\SFID;
 use Drupal\salesforce\SObject;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -23,6 +25,13 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
    * @var \Drupal\salesforce\Rest\RestClient
    */
   private $sfApi;
+
+  /**
+   * Salesforce object name.
+   *
+   * @var string
+   */
+  private $name;
 
   /**
    * Salesforce object.
@@ -66,7 +75,7 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
   /**
    * @var string
    */
-  protected $sfObjectType;
+  protected $sfObjectName;
 
   /**
    * @var bool
@@ -74,6 +83,8 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
   protected $includeSfObjectFields = false;
 
   protected $includeSfObjectDescription = false;
+
+  protected $friendlyNames = [];
 
   /**
    * @var array
@@ -92,15 +103,21 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
    *
    * @throws \Drupal\nlc_salesforce\Salesforce\object\SalesforceObjectException
    */
-  public function __construct($sfId, RestClient $sfApi, SObject $sf_object) {
+  public function __construct(SFID $sfId, RestClient $sfApi, $name, SObject $sf_object = null) {
     $this->salesforceId = $sfId;
     $this->sfApi = $sfApi;
+    $this->name = $name;
     $this->sfObject = $sf_object;
+    // Set the supported fields for this object.
+    try {
+      $this->setSupportedFields();
+    }
+    catch (\Exception $e) {
+      $this->supportedFields = [$e->getCode(), $e->getMessage()];
+    }
 
-    $this->setBaseProperties();
-
-    if (!$this->sfObjectType) {
-      $message = t('Missing sfObjectType property');
+    if (!$this->sfObjectName) {
+      $message = t('Missing sfObjectName property');
       throw new SalesforceObjectException($message);
     }
   }
@@ -121,8 +138,9 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
 
     if ($this->isIncludeSfObjectDescription()) {
       try {
-        $this->sfObjectTypeName = $this->sfObjectType;
-        $this->sfObjectDescription = $this->sfObjectDescribe()->getFields();
+        $this->sfObjectTypeName = $this->sfObjectName;
+//        $this->sfObjectDescription = $this->sfObjectDescribe()->getFields();
+        $this->sfObjectDescription = $this->getSupportedFields();
       }
       catch (\Exception $e) {
         $this->sfObjectDescription = [
@@ -150,7 +168,14 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
    *   Salesforce object key.
    */
   protected function baseSetField($propName, $sfKey) {
-    $this->{$propName} = $this->sfObject->field($sfKey);
+    $this->{$propName} = Xss::filter($this->sfObject->field($sfKey));
+  }
+
+  /**
+   * @return \Drupal\nlc_salesforce\Salesforce\object\SfObjectSupportedFields
+   */
+  public function getSupportedFields() {
+    return $this->supportedFields;
   }
 
   /**
@@ -173,6 +198,13 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
    */
   public function isIncludeSfObjectDescription() {
     return $this->includeSfObjectDescription;
+  }
+
+  /**
+   * @return array
+   */
+  public function getFriendlyNames() {
+    return $this->friendlyNames;
   }
 
   /**
@@ -254,6 +286,17 @@ abstract class SalesforceBaseObject implements SalesforceBaseObjectInterface {
   private function formatDatetime($dateTime, $format) {
     $dateTime = new \DateTime($dateTime);
     return $dateTime->format($format);
+  }
+
+  /**
+   * @throws \Exception
+   */
+  protected function setSupportedFields() {
+    $objectFields = $this->sfObjectDescribe()->getFields();
+    $this->supportedFields = new SfObjectSupportedFields($this->name, $objectFields);
+  }
+
+  protected function objectFields() {
   }
 
 }

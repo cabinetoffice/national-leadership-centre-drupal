@@ -31,9 +31,18 @@ abstract class AbstractSalesforceApiList extends NLCApiObjectDescriptionBaseReso
    * @var string
    */
   protected $cache_key;
+  
+  /**
+   * Salesforce API request service.
+   *
+   * @var \Drupal\nlc_salesforce\Salesforce\api\SalesforceApiRequest
+   */
+  protected $sFApi;
 
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CacheBackendInterface $cache) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger, $cache);
+
+    $this->sFApi = \Drupal::service('nlc_salesforce.api');
 
     if (empty($this->object_type_name)) {
       throw new NLCApiObjectDescriptionMalformedException('Missing required object field name');
