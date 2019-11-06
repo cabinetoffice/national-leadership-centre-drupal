@@ -34,13 +34,6 @@ abstract class NLCApiBaseResource extends ResourceBase implements NLCApiBaseReso
   protected $cache;
 
   /**
-   * Salesforce API request service.
-   *
-   * @var \Drupal\nlc_salesforce\Salesforce\api\SalesforceApiRequest
-   */
-  protected $sFApi;
-
-  /**
    * Response code.
    *
    * @var int
@@ -73,7 +66,6 @@ abstract class NLCApiBaseResource extends ResourceBase implements NLCApiBaseReso
   public function __construct(array $configuration, $plugin_id, $plugin_definition, array $serializer_formats, LoggerInterface $logger, CacheBackendInterface $cache) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $serializer_formats, $logger);
     $this->cache = $cache;
-    $this->sFApi = \Drupal::service('nlc_salesforce.api');
   }
 
   /**
