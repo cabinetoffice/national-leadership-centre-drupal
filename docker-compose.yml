@@ -1,19 +1,21 @@
-version: '2.1'
+version: '3'
 
 services:
   mariadb:
-      image: wodby/mariadb:$MARIADB_TAG
-      container_name: "${PROJECT_NAME}_mariadb"
-      stop_grace_period: 30s
-      environment:
-        # See all available mariadb variables at https://github.com/wodby/mariadb.
-        MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
-        MYSQL_DATABASE: $DB_NAME
-        MYSQL_USER: $DB_USER
-        MYSQL_PASSWORD: $DB_PASSWORD
-      volumes:
-       - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-       - project-db-data:/var/lib/mysql # I want to manage volumes manually.
+    image: wodby/mariadb:$MARIADB_TAG
+    container_name: "${PROJECT_NAME}_mariadb"
+    stop_grace_period: 30s
+    environment:
+      # See all available mariadb variables at https://github.com/wodby/mariadb.
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+    volumes:
+     - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+     - project-db-data:/var/lib/mysql # I want to manage volumes manually.
+    networks:
+      - drupal
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -32,6 +34,8 @@ services:
       # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
       - ./:/var/www/html:cached # User-guided caching
       # - docker-sync:/var/www/html # Docker-sync
+    networks:
+      - drupal
 
   nginx:
     image: wodby/drupal-nginx:$NGINX_TAG
@@ -54,14 +58,22 @@ services:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
       - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+      - 'traefik.docker.network=traefik'
+    networks:
+      - drupal
+      - traefik
 
   redis:
     image: wodby/redis:$REDIS_TAG
     container_name: "${PROJECT_NAME}_redis"
+    networks:
+      - drupal
 
   memcached:
     image: wodby/memcached:$MEMCACHED_TAG
     container_name: "${PROJECT_NAME}_memcached"
+    networks:
+      - drupal
 
   mailhog:
     image: mailhog/mailhog
@@ -70,6 +82,10 @@ services:
       - 'traefik.backend=${PROJECT_NAME}_mailhog'
       - 'traefik.port=8025'
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
+      - 'traefik.docker.network=traefik'
+    networks:
+      - drupal
+      - traefik
 
   # varnish:
   #   image: wodby/drupal-varnish:$VARNISH_TAG
@@ -94,6 +110,10 @@ services:
       - 'traefik.backend=adminer'
       - 'traefik.port=9000'
       - 'traefik.frontend.rule=Host:adminer.${PROJECT_BASE_URL}'
+      - 'traefik.docker.network=traefik'
+    networks:
+      - drupal
+      - traefik
 
   # solr:
   #   image: wodby/drupal-solr:$SOLR_TAG
@@ -123,31 +143,34 @@ services:
   #     - 'traefik.port=5601'
   #     - 'traefik.frontend.rule=Host:kibana.php.docker.localhost'
 
-  portainer:
-    image: portainer/portainer
-    container_name: "${PROJECT_NAME}_portainer"
-    command: --no-auth -H unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    labels:
-      - 'traefik.backend=portainer'
-      - 'traefik.port=9000'
-      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+#  portainer:
+#    image: portainer/portainer
+#    container_name: "${PROJECT_NAME}_portainer"
+#    command: --no-auth -H unix:///var/run/docker.sock
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    labels:
+#      - 'traefik.backend=portainer'
+#      - 'traefik.port=9000'
+#      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
 
-  traefik:
-    image: traefik:1.7.16-alpine
-    container_name: "${PROJECT_NAME}_traefik"
-    command: -c /dev/null --web --docker --logLevel=INFO
-    ports:
-      - '80:80'
-      - '8080:8080' # Dashboard
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+#  traefik:
+#    image: traefik:1.7.16-alpine
+#    container_name: "${PROJECT_NAME}_traefik"
+#    command: -c /dev/null --web --docker --logLevel=INFO
+#    ports:
+#      - '80:80'
+#      - '8080:8080' # Dashboard
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
 
 volumes:
 # Docker-sync for macOS users
 #  docker-sync:
 #    external: true
   project-db-data:
-    name: ${PROJECT_NAME}-data
    
+networks:
+  traefik:
+    external: true
+  drupal:
