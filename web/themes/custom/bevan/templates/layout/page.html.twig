@@ -48,8 +48,9 @@
   </main>
 </div>
 
-{% if page.footer %}
-  <footer role="contentinfo">
-    {{ page.footer }}
+<div class="site-footer">
+  <footer class="site-footer__inner max-width horizontal-padding">
+    {% if page.footer %}{{ page.footer }}{% endif %}
+    <div class="site-footer__logo"><a href="/"><img src="{{ base_path ~ directory }}/assets/images/logos/ncl-star.png" alt="Go to the National Leadership Centre Homepage"></a></div><div class="site-footer__copyright"><a class="copyright" target="_blank" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">© Crown copyright</a></div>
   </footer>
-{% endif %}
+</div>
