@@ -1,0 +1,20 @@
+uuid: a018db62-0d16-4d64-94af-18bc4a85816a
+langcode: en
+status: true
+dependencies:
+  config:
+    - contact.form.information
+id: contact_message.information.default
+targetEntityType: contact_message
+bundle: information
+mode: default
+content:
+  message:
+    type: basic_string
+    weight: 0
+    label: hidden
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true
