@@ -1,21 +1,20 @@
-uuid: a72fbd72-b924-4f90-bc70-cfedaf0831b7
+uuid: 0278c14b-7eb9-4cbb-b587-c458058e8c2c
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.user.field_title
+    - field.storage.user.field_last_name
   module:
-    - options
     - user
-id: user.user.field_title
-field_name: field_title
+id: user.user.field_last_name
+field_name: field_last_name
 entity_type: user
 bundle: user
-label: Title
+label: 'Last name'
 description: ''
 required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: list_string
+field_type: string

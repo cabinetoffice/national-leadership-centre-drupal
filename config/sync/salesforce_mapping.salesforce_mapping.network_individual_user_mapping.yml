@@ -1,0 +1,63 @@
+uuid: 277308ca-dc6b-4635-88e2-a73df825d351
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_full_name
+    - field.field.user.user.field_last_name
+    - field.field.user.user.field_title
+  module:
+    - salesforce_pull
+    - salesforce_push
+    - user
+id: network_individual_user_mapping
+label: 'Network Individual User Mapping'
+weight: 0
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  push_create: true
+  push_update: true
+  push_delete: false
+  pull_create: true
+  pull_update: true
+  pull_delete: false
+salesforce_object_type: NetworkIndividual__c
+drupal_entity_type: user
+drupal_bundle: user
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_full_name
+    salesforce_field: FullName__c
+    direction: sf_drupal
+    id: 4
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_first_name
+    salesforce_field: FirstName__c
+    direction: sync
+    id: 5
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_last_name
+    salesforce_field: LastName__c
+    direction: sync
+    id: 6
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_title
+    salesforce_field: Title__c
+    direction: sync
+    id: 7
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false

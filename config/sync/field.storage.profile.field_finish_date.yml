@@ -1,0 +1,20 @@
+uuid: cadee3db-8db3-41be-abfc-489ad5c60e2a
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - profile
+id: profile.field_finish_date
+field_name: field_finish_date
+entity_type: profile
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

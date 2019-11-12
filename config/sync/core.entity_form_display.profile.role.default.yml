@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.profile.role.field_email
+    - field.field.profile.role.field_finish_date
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
@@ -11,10 +12,29 @@ dependencies:
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email
     - field.field.profile.role.field_phone
+    - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
   module:
+    - datetime
+    - field_group
     - telephone
+third_party_settings:
+  field_group:
+    group_role_dates:
+      children:
+        - field_start_date
+        - field_finish_date
+      parent_name: ''
+      weight: 6
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Role dates'
+      region: content
 id: profile.role.default
 targetEntityType: profile
 bundle: role
@@ -27,6 +47,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
+    region: content
+  field_finish_date:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_general_location:
     weight: 4
@@ -69,14 +95,14 @@ content:
     third_party_settings: {  }
     type: telephone_default
     region: content
-  field_time_in_role:
-    weight: 6
-    settings:
-      placeholder: ''
+  field_start_date:
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
-    type: number
+    type: datetime_default
     region: content
 hidden:
   field_job_title: true
   field_location: true
+  field_time_in_role: true
   is_default: true
