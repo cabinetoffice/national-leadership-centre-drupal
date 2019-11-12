@@ -37,10 +37,12 @@ content:
     region: content
 hidden:
   field_email: true
+  field_finish_date: true
   field_general_location: true
   field_job_title_term: true
   field_location: true
   field_pa_email: true
   field_phone: true
+  field_start_date: true
   field_time_in_role: true
   search_api_excerpt: true
