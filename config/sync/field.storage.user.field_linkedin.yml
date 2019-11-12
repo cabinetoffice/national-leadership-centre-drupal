@@ -1,13 +1,13 @@
-uuid: 78ae627e-5229-446b-a098-079933f1e2ea
+uuid: 28fd1eb5-153c-4679-96d6-858b5a71ad05
 langcode: en
 status: true
 dependencies:
   module:
     - link
-    - profile
-id: profile.field_facebook
-field_name: field_facebook
-entity_type: profile
+    - user
+id: user.field_linkedin
+field_name: field_linkedin
+entity_type: user
 type: link
 settings: {  }
 module: link

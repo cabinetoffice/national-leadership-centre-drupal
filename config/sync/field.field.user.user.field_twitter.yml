@@ -1,16 +1,16 @@
-uuid: d4f1033f-6e67-4c28-a1a5-1f6a8c14e1a6
+uuid: 324ce8b1-0332-444e-9b3c-0f47a3df32ef
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.profile.field_twitter
-    - profile.type.social_media
+    - field.storage.user.field_twitter
   module:
     - link
-id: profile.social_media.field_twitter
+    - user
+id: user.user.field_twitter
 field_name: field_twitter
-entity_type: profile
-bundle: social_media
+entity_type: user
+bundle: user
 label: Twitter
 description: ''
 required: false

@@ -7,12 +7,37 @@ dependencies:
     - field.field.user.user.field_full_name
     - field.field.user.user.field_gender
     - field.field.user.user.field_last_name
+    - field.field.user.user.field_linkedin
     - field.field.user.user.field_name
     - field.field.user.user.field_salesforce_record_id
     - field.field.user.user.field_title
+    - field.field.user.user.field_twitter
   module:
+    - field_group
+    - link
     - options
     - user
+third_party_settings:
+  field_group:
+    group_social_media:
+      children:
+        - field_twitter
+        - field_linkedin
+      parent_name: ''
+      weight: 4
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: ''
+        element: aside
+        show_label: true
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: 'Social Media'
+      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
@@ -20,7 +45,7 @@ mode: default
 content:
   field_first_name:
     weight: 2
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -28,7 +53,7 @@ content:
     region: content
   field_full_name:
     weight: 0
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -36,18 +61,42 @@ content:
     region: content
   field_last_name:
     weight: 3
-    label: above
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  field_linkedin:
+    weight: 6
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
   field_title:
     weight: 1
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_twitter:
+    weight: 5
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
 hidden:
   field_gender: true

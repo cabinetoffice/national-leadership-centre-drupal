@@ -1,13 +1,13 @@
-uuid: 49eafc42-4839-4377-bf54-376ed5ffadad
+uuid: 934f6319-be40-4d36-99ab-061c99699075
 langcode: en
 status: true
 dependencies:
   module:
     - link
-    - profile
-id: profile.field_twitter
+    - user
+id: user.field_twitter
 field_name: field_twitter
-entity_type: profile
+entity_type: user
 type: link
 settings: {  }
 module: link

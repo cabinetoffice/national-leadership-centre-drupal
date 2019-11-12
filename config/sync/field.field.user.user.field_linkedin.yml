@@ -1,16 +1,16 @@
-uuid: 4b098945-7580-4ea3-93b4-6aa563623eb1
+uuid: d028c99a-ecbc-4607-85ac-cd703e382308
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.profile.field_linkedin
-    - profile.type.social_media
+    - field.storage.user.field_linkedin
   module:
     - link
-id: profile.social_media.field_linkedin
+    - user
+id: user.user.field_linkedin
 field_name: field_linkedin
-entity_type: profile
-bundle: social_media
+entity_type: user
+bundle: user
 label: LinkedIn
 description: ''
 required: false

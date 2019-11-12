@@ -7,11 +7,14 @@ dependencies:
     - field.field.user.user.field_full_name
     - field.field.user.user.field_gender
     - field.field.user.user.field_last_name
+    - field.field.user.user.field_linkedin
     - field.field.user.user.field_name
     - field.field.user.user.field_salesforce_record_id
     - field.field.user.user.field_title
+    - field.field.user.user.field_twitter
   module:
     - field_group
+    - link
     - select_or_other
     - user
 third_party_settings:
@@ -31,6 +34,20 @@ third_party_settings:
         required_fields: true
       label: Name
       region: content
+    group_social_media:
+      children:
+        - field_twitter
+        - field_linkedin
+      parent_name: ''
+      weight: 2
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Social Media'
+      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
@@ -49,14 +66,6 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_gender:
-    weight: 2
-    settings:
-      select_element_type: select_or_other_select
-      sort_options: ''
-    third_party_settings: {  }
-    type: select_or_other_list
-    region: content
   field_last_name:
     weight: 10
     settings:
@@ -65,6 +74,14 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_linkedin:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
   field_title:
     weight: 8
     settings:
@@ -72,6 +89,14 @@ content:
       sort_options: ''
     third_party_settings: {  }
     type: select_or_other_list
+    region: content
+  field_twitter:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
   google_analytics:
     weight: 3
@@ -90,6 +115,7 @@ content:
     third_party_settings: {  }
 hidden:
   field_full_name: true
+  field_gender: true
   field_name: true
   field_salesforce_record_id: true
   role_profiles: true
