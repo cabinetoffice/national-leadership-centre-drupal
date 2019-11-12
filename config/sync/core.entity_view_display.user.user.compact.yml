@@ -8,8 +8,10 @@ dependencies:
     - field.field.user.user.field_full_name
     - field.field.user.user.field_gender
     - field.field.user.user.field_last_name
+    - field.field.user.user.field_linkedin
     - field.field.user.user.field_name
-    - field.field.user.user.field_salesforce_record_id
+    - field.field.user.user.field_title
+    - field.field.user.user.field_twitter
   module:
     - name
     - user
@@ -46,8 +48,9 @@ hidden:
   field_full_name: true
   field_gender: true
   field_last_name: true
-  field_salesforce_record_id: true
+  field_linkedin: true
   field_title: true
+  field_twitter: true
   member_for: true
   salesforce_id: true
   salesforce_last_sync: true
