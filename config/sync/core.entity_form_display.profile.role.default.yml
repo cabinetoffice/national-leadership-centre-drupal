@@ -11,6 +11,8 @@ dependencies:
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email
+    - field.field.profile.role.field_pa_name
+    - field.field.profile.role.field_pa_phone
     - field.field.profile.role.field_phone
     - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
@@ -35,13 +37,28 @@ third_party_settings:
         required_fields: true
       label: 'Role dates'
       region: content
+    group_personal_assistant:
+      children:
+        - field_pa_name
+        - field_pa_phone
+        - field_pa_email
+      parent_name: ''
+      weight: 5
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Personal Assistant'
+      region: content
 id: profile.role.default
 targetEntityType: profile
 bundle: role
 mode: default
 content:
   field_email:
-    weight: 2
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -54,14 +71,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_general_location:
-    weight: 4
+  field_job_title:
+    type: string_textfield
+    weight: 2
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_job_title_term:
     weight: 1
     settings:
@@ -81,15 +98,30 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_pa_email:
-    weight: 5
+    weight: 10
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: email_default
     region: content
+  field_pa_name:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_pa_phone:
+    weight: 9
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+    region: content
   field_phone:
-    weight: 3
+    weight: 4
     settings:
       placeholder: ''
     third_party_settings: {  }
@@ -102,7 +134,7 @@ content:
     type: datetime_default
     region: content
 hidden:
-  field_job_title: true
+  field_general_location: true
   field_location: true
   field_time_in_role: true
   is_default: true

@@ -11,7 +11,7 @@ id: profile.role.field_phone
 field_name: field_phone
 entity_type: profile
 bundle: role
-label: Phone
+label: 'Phone number in role'
 description: ''
 required: false
 translatable: false

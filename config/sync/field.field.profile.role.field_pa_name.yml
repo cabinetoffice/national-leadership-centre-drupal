@@ -1,19 +1,19 @@
-uuid: 52157c5c-1e3d-40f4-9ea5-dd5c04830da3
+uuid: f97f521b-db88-4942-8f0d-f9175528b195
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.profile.field_pa_email
+    - field.storage.profile.field_pa_name
     - profile.type.role
-id: profile.role.field_pa_email
-field_name: field_pa_email
+id: profile.role.field_pa_name
+field_name: field_pa_name
 entity_type: profile
 bundle: role
-label: 'Assistant''s email'
+label: 'Assistant''s name'
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: email
+field_type: string
