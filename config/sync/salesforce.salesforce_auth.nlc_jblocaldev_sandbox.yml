@@ -1,0 +1,16 @@
+uuid: 8429b918-a91f-4629-beac-19d080542b01
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.nlc_jblocaldev_sandbox
+  module:
+    - salesforce_jwt
+id: nlc_jblocaldev_sandbox
+label: 'NLC JBLocalDev Sandbox'
+provider: jwt
+provider_settings:
+  consumer_key: 3MVG91LYYD8O4krRFZk502yUZjtQoyzjvDgM0I7QJH5lJ4SLO2pUa99T_77ZyfwxTan_PIFfPi6R_3b4J1aBo
+  login_user: joe.baker@weareconvivio.com.jblocaldev
+  login_url: 'https://test.salesforce.com'
+  encrypt_key: nlc_jblocaldev_sandbox

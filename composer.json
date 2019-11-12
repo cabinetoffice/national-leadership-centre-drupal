@@ -17,7 +17,6 @@
     ],
     "require": {
         "php": ">=5.6",
-        "ext-http": "*",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",
@@ -32,6 +31,7 @@
         "drupal/email_registration": "^1.0@RC",
         "drupal/encrypt": "^3.0@RC",
         "drupal/facets": "^1.4",
+        "drupal/field_group": "^3.0",
         "drupal/google_analytics": "^3.0",
         "drupal/govuk_design_system": "^1.0@beta",
         "drupal/key": "^1.8",

@@ -41,3 +41,4 @@ content:
     region: content
 hidden:
   field_facebook: true
+  is_default: true

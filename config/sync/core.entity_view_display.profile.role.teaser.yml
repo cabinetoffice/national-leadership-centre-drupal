@@ -5,7 +5,9 @@ dependencies:
   config:
     - core.entity_view_mode.profile.teaser
     - field.field.profile.role.field_email
+    - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
+    - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
     - field.field.profile.role.field_pa_email

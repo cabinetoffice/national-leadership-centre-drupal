@@ -11,7 +11,7 @@ id: user.user.field_name
 field_name: field_name
 entity_type: user
 bundle: user
-label: Name
+label: 'Proper Name'
 description: ''
 required: false
 translatable: false

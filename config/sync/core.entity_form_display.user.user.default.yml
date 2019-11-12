@@ -3,15 +3,34 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_full_name
     - field.field.user.user.field_gender
+    - field.field.user.user.field_last_name
     - field.field.user.user.field_name
     - field.field.user.user.field_salesforce_record_id
     - field.field.user.user.field_title
   module:
-    - name
-    - profile
+    - field_group
     - select_or_other
     - user
+third_party_settings:
+  field_group:
+    group_name:
+      children:
+        - field_title
+        - field_first_name
+        - field_last_name
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: Name
+      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
@@ -22,82 +41,56 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_first_name:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_gender:
-    weight: 3
+    weight: 2
     settings:
       select_element_type: select_or_other_select
       sort_options: ''
     third_party_settings: {  }
     type: select_or_other_list
     region: content
-  field_name:
-    weight: 2
-    settings:
-      labels:
-        title: Title
-        given: Given
-        middle: 'Middle name(s)'
-        family: Family
-        generational: Generational
-        credentials: Credentials
-      size:
-        title: 6
-        given: 20
-        middle: 20
-        family: 20
-        generational: 5
-        credentials: 35
-      title_display:
-        title: description
-        given: description
-        middle: description
-        family: description
-        generational: description
-        credentials: description
-      widget_layout: stacked
-      show_component_required_marker: false
-      credentials_inline: false
-      override_field_settings: false
-    third_party_settings: {  }
-    type: name_default
-    region: content
-  field_salesforce_record_id:
-    type: string_textfield
-    weight: 8
-    region: content
+  field_last_name:
+    weight: 10
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_title:
-    weight: 1
+    weight: 8
     settings:
-      size: 60
-      placeholder: ''
+      select_element_type: select_or_other_buttons
+      sort_options: ''
     third_party_settings: {  }
-    type: string_textfield
+    type: select_or_other_list
     region: content
   google_analytics:
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   language:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
     weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
-  role_profiles:
-    type: profile_form
-    weight: 6
-    region: content
-    settings:
-      form_mode: default
-    third_party_settings: {  }
-  timezone:
-    weight: 7
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  field_full_name: true
+  field_name: true
+  field_salesforce_record_id: true
+  role_profiles: true
   social_media_profiles: true

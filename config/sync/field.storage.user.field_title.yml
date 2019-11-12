@@ -1,18 +1,36 @@
-uuid: fe2d2589-c766-4980-b648-66dd35bd47ff
+uuid: 9a84558e-ae34-4d0c-9fb7-58fcfc728ced
 langcode: en
 status: true
 dependencies:
   module:
+    - options
     - user
 id: user.field_title
 field_name: field_title
 entity_type: user
-type: string
+type: list_string
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+  allowed_values:
+    -
+      value: Mr.
+      label: Mr.
+    -
+      value: Mrs.
+      label: Mrs.
+    -
+      value: Miss
+      label: Miss
+    -
+      value: Ms.
+      label: Ms.
+    -
+      value: Dr.
+      label: Dr.
+    -
+      value: Prof.
+      label: Prof.
+  allowed_values_function: ''
+module: options
 locked: false
 cardinality: 1
 translatable: true

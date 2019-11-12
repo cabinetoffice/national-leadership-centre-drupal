@@ -299,7 +299,13 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-      tags: {  }
+      tags:
+        - 'config:core.entity_view_display.profile.role.default'
+        - extensions
+        - 'config:core.entity_view_display.profile.role.teaser'
+        - extensions
+        - 'config:core.entity_view_display.profile.social_media.default'
+        - extensions
   profile_type_listing:
     display_plugin: embed
     id: profile_type_listing
@@ -313,7 +319,13 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-      tags: {  }
+      tags:
+        - 'config:core.entity_view_display.profile.role.default'
+        - extensions
+        - 'config:core.entity_view_display.profile.role.teaser'
+        - extensions
+        - 'config:core.entity_view_display.profile.social_media.default'
+        - extensions
   user_view:
     display_plugin: embed
     id: user_view
@@ -381,4 +393,10 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-      tags: {  }
+      tags:
+        - 'config:core.entity_view_display.profile.role.default'
+        - extensions
+        - 'config:core.entity_view_display.profile.role.teaser'
+        - extensions
+        - 'config:core.entity_view_display.profile.social_media.default'
+        - extensions

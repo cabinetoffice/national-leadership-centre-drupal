@@ -4,10 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_full_name
     - field.field.user.user.field_gender
+    - field.field.user.user.field_last_name
     - field.field.user.user.field_name
     - field.field.user.user.field_salesforce_record_id
-    - field.field.user.user.field_title
   module:
     - name
     - user
@@ -40,9 +42,11 @@ content:
       link: true
     third_party_settings: {  }
 hidden:
+  field_first_name: true
+  field_full_name: true
   field_gender: true
+  field_last_name: true
   field_salesforce_record_id: true
-  field_title: true
   member_for: true
   salesforce_id: true
   salesforce_last_sync: true
