@@ -44,10 +44,11 @@ function nlc_prototype_user_presave(UserInterface $account) {
     $proper_name = $account->get('field_name')->getValue();
     $name = [
       'title' => $account->get('field_title')->getString(),
-      'first_name' =>  $account->get('field_first_name')->getString(),
-      'last_name' => $account->get('field_last_name')->getString(),
+      'given' =>  $account->get('field_first_name')->getString(),
+      'family' => $account->get('field_last_name')->getString(),
     ];
     $account->set('field_full_name', implode(' ', $name));
-
+    $new_proper_name = array_merge($proper_name[0], $name);
+    $account->set('field_name', $new_proper_name);
   }
 }
