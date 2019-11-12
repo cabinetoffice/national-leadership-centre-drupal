@@ -1,8 +1,0 @@
-name: 'NLC Connect RESTful API tools'
-type: module
-description: 'Provides base API tools for the Connect service.'
-package: NLC
-core: '8.x'
-dependencies:
-  - drupal:rest
-  - drupal:restui

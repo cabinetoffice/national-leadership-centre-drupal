@@ -1,7 +1,0 @@
-nlc_salesforce.user.profile:
-  path: '/member/{uid}'
-  defaults:
-    _controller: '\Drupal\nlc_salesforce\Controller\MemberController::memberPage'
-    _title: 'My account'
-  requirements:
-    _user_is_logged_in: 'TRUE'
