@@ -9,7 +9,7 @@ dependencies:
 id: mainpagecontent
 theme: bevan
 region: content
-weight: 0
+weight: -7
 provider: null
 plugin: system_main_block
 settings:

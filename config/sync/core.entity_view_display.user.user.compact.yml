@@ -47,6 +47,7 @@ hidden:
   field_gender: true
   field_last_name: true
   field_salesforce_record_id: true
+  field_title: true
   member_for: true
   salesforce_id: true
   salesforce_last_sync: true

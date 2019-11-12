@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.organisation.field_acronym
+    - field.field.node.organisation.field_address
     - field.field.node.organisation.field_region
     - field.field.node.organisation.field_sector
     - field.field.node.organisation.field_website
@@ -23,6 +24,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
+  field_address:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
     region: content
   field_region:
     weight: 2
@@ -57,5 +65,15 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  salesforce_id:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  salesforce_last_sync:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden:
   search_api_excerpt: true
