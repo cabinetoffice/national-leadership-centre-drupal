@@ -11,7 +11,7 @@ id: profile.role.field_finish_date
 field_name: field_finish_date
 entity_type: profile
 bundle: role
-label: 'Finish date'
+label: 'End date'
 description: ''
 required: false
 translatable: false
