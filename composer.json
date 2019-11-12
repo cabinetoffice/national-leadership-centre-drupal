@@ -30,6 +30,7 @@
         "drupal/devel": "^2.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/encrypt": "^3.0@RC",
+        "drupal/eu_cookie_compliance": "^1.8",
         "drupal/facets": "^1.4",
         "drupal/google_analytics": "^3.0",
         "drupal/govuk_design_system": "^1.0@beta",
