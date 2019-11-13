@@ -39,8 +39,6 @@ module:
   profile: 0
   quickedit: 0
   rdf: 0
-  rest: 0
-  restui: 0
   s3fs: 0
   salesforce: 0
   salesforce_jwt: 0

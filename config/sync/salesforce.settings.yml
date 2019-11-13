@@ -1,7 +1,0 @@
-salesforce_auth_provider: nlc_jblocaldev_sandbox
-show_all_objects: false
-standalone: false
-global_push_limit: 0
-pull_max_queue_size: 0
-limit_mapped_object_revisions: 0
-use_latest: true
