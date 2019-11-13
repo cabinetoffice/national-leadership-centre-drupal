@@ -14,8 +14,8 @@ bundle: cohort
 mode: default
 content:
   field_number:
-    weight: 102
-    label: above
+    weight: 1
+    label: inline
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -23,17 +23,17 @@ content:
     type: number_integer
     region: content
   field_programme_year:
-    weight: 101
-    label: above
+    weight: 2
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   links:
-    weight: 100
+    weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
 hidden:
   search_api_excerpt: true
