@@ -1,0 +1,38 @@
+uuid: 679df9f4-7e2c-4027-9f41-da401e9e4fe0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cohort.field_number
+    - field.field.node.cohort.field_programme_year
+    - node.type.cohort
+  module:
+    - serial
+    - user
+id: node.cohort.default
+targetEntityType: node
+bundle: cohort
+mode: default
+content:
+  field_number:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: serial_default_formatter
+    region: content
+  field_programme_year:
+    weight: 101
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true

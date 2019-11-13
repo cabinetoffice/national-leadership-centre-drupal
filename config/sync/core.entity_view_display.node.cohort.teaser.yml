@@ -1,0 +1,21 @@
+uuid: 1d086b68-f19d-4098-adde-d378b0b6c63c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.cohort
+  module:
+    - user
+id: node.cohort.teaser
+targetEntityType: node
+bundle: cohort
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  search_api_excerpt: true
