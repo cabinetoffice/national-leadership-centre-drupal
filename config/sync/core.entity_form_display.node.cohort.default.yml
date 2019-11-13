@@ -8,7 +8,6 @@ dependencies:
     - node.type.cohort
   module:
     - path
-    - serial
 id: node.cohort.default
 targetEntityType: node
 bundle: cohort
@@ -22,9 +21,10 @@ content:
     third_party_settings: {  }
   field_number:
     weight: 122
-    settings: {  }
+    settings:
+      placeholder: ''
     third_party_settings: {  }
-    type: serial_default_widget
+    type: number
     region: content
   field_programme_year:
     weight: 121

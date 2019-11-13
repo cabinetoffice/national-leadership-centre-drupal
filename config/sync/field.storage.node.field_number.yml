@@ -1,18 +1,17 @@
-uuid: 1cfa48bd-4f3c-4c30-9fbb-b291e42e9bee
+uuid: bd373ad9-ac4a-4347-b8dd-9e56d1683805
 langcode: en
 status: true
 dependencies:
   module:
     - node
-    - serial
 id: node.field_number
 field_name: field_number
 entity_type: node
-type: serial
+type: integer
 settings:
-  start_value: '1'
-  init_existing_entities: '0'
-module: serial
+  unsigned: false
+  size: normal
+module: core
 locked: false
 cardinality: 1
 translatable: true

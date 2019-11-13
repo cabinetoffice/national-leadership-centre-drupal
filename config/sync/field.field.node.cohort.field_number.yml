@@ -1,23 +1,23 @@
-uuid: 5c39b362-0655-4986-a0a9-71da1f03557c
+uuid: 11b65719-5317-41fd-97f1-8d7a17d12433
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_number
     - node.type.cohort
-  module:
-    - serial
 id: node.cohort.field_number
 field_name: field_number
 entity_type: node
 bundle: cohort
-label: Number
-description: 'This is the assigned number for this cohort, and automatically increments.'
+label: 'Cohort number'
+description: ''
 required: true
 translatable: false
-default_value:
-  -
-    value: '1'
+default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: serial
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

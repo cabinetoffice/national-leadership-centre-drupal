@@ -47,7 +47,6 @@
         "drupal/search_api_autocomplete": "^1.2",
         "drupal/select_or_other": "^1.0@alpha",
         "drupal/sendgrid_integration": "^1.2",
-        "drupal/serial": "^1.0@alpha",
         "drupal/structure_sync": "^1.16",
         "drupal/token": "^1.5",
         "drush/drush": "^9.0.0",
