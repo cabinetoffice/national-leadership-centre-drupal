@@ -171,6 +171,37 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   }
 
   /**
+   * Confirm that the user want to use one-time access URL.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param int $uid
+   *   User ID of the user requesting reset.
+   * @param int $timestamp
+   *   The current timestamp.
+   * @param string $hash
+   *   Login link hash.
+   *
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse
+   *   The redirect response.
+   */
+  public function login(Request $request, $uid, $timestamp, $hash) {
+      // Get the URL to the check route.
+    $url = Url::fromRoute('nlc_prototype.directory.token_access.check', [
+      'uid' => $uid,
+      'timestamp' => $timestamp,
+      'hash' => $hash,
+    ], [
+      'absolute' => TRUE,
+    ])->toString();
+
+    return [
+      '#theme' => 'nlc_prototype_login_page',
+      '#check_url' => $url,
+    ];
+  }
+
+  /**
    * Check that a one-time access URL is for a valid.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
