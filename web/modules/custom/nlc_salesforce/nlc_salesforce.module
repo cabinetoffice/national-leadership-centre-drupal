@@ -5,51 +5,62 @@
  * Provides integration with Salesforce for the NLC Connect service.
  */
 
-use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Form;
+use Drupal\node\Entity\NodeType;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\salesforce\SFID;
 
+use Drupal\nlc_salesforce\SFAPI\SFWrapper;
+
 /**
- * Implements hook_user_load().
+ * Define custom templates.
  */
-function nlc_salesforce_user_load(array $users) {
-  // In the event there are a lot of user_load() calls, cache the results.
-  $sfIds = &drupal_static('nlc_salesforce_user_sfids_cache', []);
-  $sfIndividuals = &drupal_static('nlc_salesforce_user_sfids_cache', []);
-  $field = &drupal_static(__FUNCTION__, NULL);
+function nlc_salesforce_theme($existing, $type, $theme, $path) {
+  return [
+    'nlc_field' => [
+      'variables' => [
+        'label' => NULL,
+        'content' => NULL,
+      ]
+    ]
+  ];
+}
 
-  if (!isset($field)) {
-    $field_name = 'field_salesforce_record_id';
-    $field = FieldConfig::loadByName('user', 'user', $field_name);
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function nlc_salesforce_entity_extra_field_info() {
+  $extra = array();
+
+  foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
+    $extra['user']['user']['display'][$id] = [
+      'label' => t($details['label']),
+      'description' => t($details['description']),
+      'visible' => TRUE,
+      'weight' => 100,
+    ];
   }
+ 
+  return $extra;
+}
 
-  if ($field) {
-    foreach ($users as $account) {
-      $uid = $account->id();
-      if (isset($sfIds[$uid])) {
-        $users[$uid]->sfId = $sfIds[$uid];
-      }
-      else {
-        if ($account->hasField($field->getName()) && !$account->get($field->getName())->isEmpty()) {
-          $sfIdValue = $account->get($field->getName())->get(0)->getValue()['value'];
-          try {
-            $sfId = new SFID($sfIdValue);
-            $sfIds[$uid] = $sfId;
-            $users[$uid]->sfId = $sfIds[$uid];
-            if ($sfId instanceof SFID) {
-              /** @var \Drupal\salesforce\Rest\RestClient $salesforce */
-              $salesforce = \Drupal::service('salesforce.client');
-              $name = $salesforce->getObjectTypeName($sfId);
-              if ($object = $salesforce->objectRead($name, $sfId->__toString())) {
-                $users[$uid]->sf_individual = $object->fields();
-              }
-            }
-          }
-          catch (Exception $e) {
-            $sfIds[$uid] = null;
-            $users[$uid]->sfId = $sfIds[$uid];
-          }
-        }
-      }
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function nlc_salesforce_user_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $client = SFWrapper::getInstance();
+  $values = $client->getDetailsFromEntity($entity);
+
+  foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
+
+    if ($component = $display->getComponent($id)) {
+      $build[$id] = [
+        '#theme' => 'nlc_field',
+        '#content' => $values[$details['sf_field']] ?? NULL,
+        '#label' => $details['label'],
+      ];
     }
   }
 }
