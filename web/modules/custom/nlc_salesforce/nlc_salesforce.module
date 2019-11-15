@@ -64,3 +64,40 @@ function nlc_salesforce_user_view(array &$build, EntityInterface $entity, Entity
     }
   }
 }
+
+/**
+ * Change the user edit form to add the relevant fields.
+ */
+function nlc_salesforce_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['nlc_salesforce_details'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Personal Details'),
+  ];
+
+  // Add our handler as the first submit handler.
+  array_unshift($form['actions']['submit']['#submit'], 'nlc_salesforce_form_user_submit');
+
+  $client = SFWrapper::getInstance();
+  $values = $client->getDetailsFromEntity($form_state->getFormObject()->getEntity());
+
+  foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
+    $form['nlc_salesforce_details'][$id] = [
+      '#type' => 'textfield', // TODO: Add field type to definition for richer UI
+      '#title' => t($details['label']),
+      '#description' => t($details['description']),
+      '#default_value' => $values[$details['sf_field']] ?? NULL,
+    ];
+  }
+}
+
+/**
+ * Handle form submission. Remember the values of additional fields.
+ */
+function nlc_salesforce_form_user_submit(&$form, FormStateInterface $form_state) {
+  $client = SFWrapper::getInstance();
+  foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
+    if ($val = $form_state->getValue($id)) {
+      $client->addSubmission($details['sf_field'], $val);
+    }
+  }
+}
