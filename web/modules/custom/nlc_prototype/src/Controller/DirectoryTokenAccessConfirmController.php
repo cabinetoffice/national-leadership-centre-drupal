@@ -84,6 +84,21 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   protected $maxSessionCount = 1;
 
   /**
+   * Array of simple HTTP user agents known to do link previewing that may cause issues with one-time login links.
+   *
+   * @var array
+   */
+  private $linkPreviewUserAgents = [
+    'BingPreview',
+    'Slackbot',
+  ];
+
+  /**
+   * @var string
+   */
+  private $linkPreviewAgent;
+
+  /**
    * Constructs a UserController object.
    *
    * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $privateTempStoreFactory
@@ -184,8 +199,16 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
    *
    * @return \Symfony\Component\HttpFoundation\RedirectResponse
    *   The redirect response.
+   * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
    */
   public function check(Request $request, $uid, $timestamp, $hash) {
+    // Check if this is a link preview user agent.
+    if ($this->checkRequestUserAgentLinkPreview($request)) {
+      $this->logger->warning('Access request denied for user (uid: @uid) using %user_agent', ['@uid' => $uid, '%user_agent' => $this->linkPreviewAgent]);
+      // Deny access for the BingPreview bot, used by Outlook on links in e-mails.
+      throw new AccessDeniedHttpException();
+    }
+
     // The current user is not logged in, so check the parameters.
     $current = \Drupal::time()->getRequestTime();
 
@@ -276,5 +299,25 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
     foreach ($keys as $key) {
       $this->store->delete($key);
     }
+  }
+
+  /**
+   * Check if the user agent of the request is a from a link preview headless browser.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *
+   * @return bool
+   */
+  protected function checkRequestUserAgentLinkPreview(Request $request) {
+    $linkPreview = false;
+    $user_agent = $request->server->get('HTTP_USER_AGENT');;
+    foreach ($this->linkPreviewUserAgents as $linkPreviewUserAgent) {
+      if (strpos($user_agent,$linkPreviewUserAgent)) {
+        $linkPreview = true;
+        $this->linkPreviewAgent = $user_agent;
+        break;
+      }
+    }
+    return $linkPreview;
   }
 }
