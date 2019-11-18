@@ -3,31 +3,25 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.profile.role.field_email
     - field.field.profile.role.field_finish_date
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_email
-    - field.field.profile.role.field_pa_name
-    - field.field.profile.role.field_pa_phone
-    - field.field.profile.role.field_phone
     - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
   module:
     - datetime
     - field_group
-    - telephone
 third_party_settings:
   field_group:
     group_personal_assistant:
       children:
-        - field_pa_name
-        - field_pa_email
-        - field_pa_phone
+        - nlc_role_assistant_name
+        - nlc_role_assistant_phone
+        - nlc_role_assistant_email
       parent_name: ''
       weight: 5
       format_type: html_element
@@ -48,13 +42,6 @@ targetEntityType: profile
 bundle: role
 mode: default
 content:
-  field_email:
-    weight: 3
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: email_mailto
-    region: content
   field_finish_date:
     weight: 7
     label: inline
@@ -88,37 +75,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_pa_email:
-    weight: 13
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: email_mailto
-    region: content
-  field_pa_name:
-    weight: 12
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_pa_phone:
-    weight: 14
-    label: inline
-    settings:
-      title: ''
-    third_party_settings: {  }
-    type: telephone_link
-    region: content
-  field_phone:
-    weight: 4
-    label: inline
-    settings:
-      title: ''
-    third_party_settings: {  }
-    type: telephone_link
-    region: content
   field_start_date:
     weight: 6
     label: inline
@@ -128,6 +84,31 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  nlc_role_assistant_email:
+    weight: 102
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_assistant_name:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_assistant_phone:
+    weight: 101
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_email:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_phone:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_general_location: true
   field_location: true
