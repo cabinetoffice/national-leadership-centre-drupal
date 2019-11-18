@@ -61,6 +61,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_location
+  field_cohort:
+    label: Cohort
+    datasource_id: 'entity:user'
+    property_path: field_cohort
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
   field_job_title_term:
     label: 'Role profiles » Profile » Job Title'
     datasource_id: 'entity:user'
@@ -147,6 +155,17 @@ field_settings:
     dependencies:
       module:
         - user
+  nid_1:
+    label: 'Programme year » Content » ID'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:nid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+      module:
+        - node
+        - node
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
