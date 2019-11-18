@@ -23,6 +23,37 @@ class SFWrapper {
   ];
 
   /**
+   * Definition of the field mapping between a SF role and Drupal profile.
+   */
+  const ROLE_FIELDS = [
+    'nlc_role_phone' => [
+      'label' => 'Phone number in role',
+      'description' => 'Phone number when in this role.',
+      'sf_field' => 'Role_phone__c',
+    ],
+    'nlc_role_email' => [
+      'label' => 'Email address in role',
+      'description' => 'Email address when in this role.',
+      'sf_field' => 'Role_email__c',
+    ],
+    'nlc_role_assistant_name' => [
+      'label' => "Assistant's name",
+      'description' => 'Name of the assistant when in this role.',
+      'sf_field' => 'Assistant_name__c',
+    ],
+    'nlc_role_assistant_phone' => [
+      'label' => "Assistant's phone",
+      'description' => 'Phone number for an assistant when in this role.',
+      'sf_field' => 'Assistant_phone__c',
+    ],
+    'nlc_role_assistant_email' => [
+      'label' => "Assistant's email",
+      'description' => 'Email address for an assistant when in this role.',
+      'sf_field' => 'Assistant_email__c',
+    ],
+  ];
+
+  /**
    * The singelton instance of this class.
    */
   private static $instance = NULL;
@@ -38,7 +69,7 @@ class SFWrapper {
   /**
    * The submitted values.
    */
-  private $submission = [];
+  private $submissions = [];
 
   /**
    * Create a new class to wrap the salesforce service.
@@ -47,14 +78,6 @@ class SFWrapper {
     if (!$this->client) {
       $this->client = \Drupal::service('salesforce.client');
     }
-  }
-
-  public static function getSfFieldList() {
-    $list = [];
-    foreach (self::CONTACT_FIELDS as $id => $details) {
-      $list[] = $details['sf_field'];
-    }
-    return $list;
   }
 
   /**
@@ -130,10 +153,25 @@ class SFWrapper {
     return NULL;
   }
 
+  /**
+   * Store a submitted value.
+   *
+   * @param $field string
+   *   Salesforce field name.
+   * @param $value string
+   *   The value to store.
+   */
   public function addSubmission($field, $value) {
     $this->submissions[$field] = $value;
   }
+
+  /**
+   * Get the list of submitted values.
+   *
+   * @return array Associative array of sf field => value
+   */
   public function getSubmissions() {
     return $this->submissions;
   }
+
 }

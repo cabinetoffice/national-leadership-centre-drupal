@@ -22,11 +22,12 @@ class NLCSalesforceSubscriber implements EventSubscriberInterface {
    *   The event.
    */
   public function pushParamsAlter(SalesforcePushParamsEvent $event) {
-    $params = $event->getParams();
-
     /** @var \Drupal\Core\Entity\Entity $entity */
     $entity = $event->getEntity();
-    if ($entity->getEntityTypeId() != 'user') {
+
+    if (in_array($entity->getEntityTypeId(), ['user', 'profile'])) {
+      $params = $event->getParams();
+
       $client = SFWrapper::getInstance();
       foreach($client->getSubmissions() as $field => $val) {
         $params->setParam($field, $val);
