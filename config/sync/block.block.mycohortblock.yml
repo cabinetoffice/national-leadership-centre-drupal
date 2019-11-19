@@ -9,8 +9,8 @@ dependencies:
     - bevan
 id: mycohortblock
 theme: bevan
-region: content
-weight: 0
+region: pre_content
+weight: -2
 provider: null
 plugin: my_cohort_block
 settings:
@@ -21,6 +21,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '/user/*'
+    pages: /directory
     negate: false
     context_mapping: {  }

@@ -4,6 +4,7 @@
 namespace Drupal\nlc_prototype\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\TypedData\Exception\MissingDataException;
 use Drupal\user\Entity\User;
 
 /**
@@ -26,27 +27,46 @@ class MyCohortBlock extends BlockBase {
     // Current user.
     $accountProxy = \Drupal::currentUser();
 
-     // Get User entity object for this account profile page.
-     /** @var \Drupal\user\Entity\User $account */
-    $account = \Drupal::routeMatch()->getParameter('user');
-    $roles = $account->getRoles();
-    if ($accountProxy->isAuthenticated() && $accountProxy->id() !== 1 && count($roles) == 1 && $account->id() == $accountProxy->id()) {
-      /** @var \Drupal\user\Entity\User $account */
+    $roles = $accountProxy->getRoles();
+    if ($accountProxy->isAuthenticated() && $accountProxy->id() !== 1 && count($roles) == 1) {
+      // Get User entity object for the current user.
+      /** @var \Drupal\user\UserInterface $account */
+      $account = User::load($accountProxy->id());
       if ($cohorts = $account->get('field_cohort')) {
-        $options = [];
-        // The account user may be in more than one cohort.
-        foreach ($cohorts as $cohort) {
-          $options['query']['directory'][] = 'cohort:' . $cohort->getValue()['target_id'];
+        try {
+          $options = [];
+          // The account user may be in more than one cohort. Get the last one, assuming it's the most recent.
+          $index = count($cohorts->getValue()) - 1;
+          $cohort = $cohorts->get($index);
+          $entity = \Drupal::entityTypeManager()->getStorage('node')->load($cohort->target_id);
+          $options['query']['directory'][] = 'cohort:' . $cohort->target_id;
+          if (!empty($options)) {
+            $build['cohort'] = [
+              '#type' => 'container',
+              '#attributes' => [
+                'class' => ['govuk-inset-text'],
+              ],
+              '#cache' => [
+                'keys' => ['entity_view', 'user', $account->id()]
+              ],
+              'cohort_info' => [
+                '#prefix' => '<p>',
+                '#suffix' => '</p>',
+                'cohort_intro' => [
+                  '#markup' => $this->t('You are registered for @cohort.', ['@cohort' => $entity->label()]),
+                  '#suffix' => ' ',
+                ],
+                'cohort_link' => [
+                  '#type' => 'link',
+                  '#title' => $this->t('View your fellow cohort attendees'),
+                  '#url' => \Drupal\Core\Url::fromRoute('view.directory.page_1', [], $options),
+                ],
+              ],
+            ];
+          }
         }
-        if (!empty($options)) {
-          $build['cohort_link'] = [
-            '#type' => 'link',
-            '#title' => $this->t('See who is in my cohort'),
-            '#url' => \Drupal\Core\Url::fromRoute('view.directory.page_1', [], $options),
-            '#cache' => [
-              'keys' => ['entity_view', 'user', $account->id()]
-            ],
-          ];
+        catch (MissingDataException $e) {
+          // Do nothing?
         }
       }
     }
