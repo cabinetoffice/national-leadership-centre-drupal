@@ -30,7 +30,7 @@ third_party_settings:
         speed: fast
         id: ''
         classes: ''
-      label: 'Event attendance'
+      label: 'Event participation'
       region: content
 id: user.user.default
 targetEntityType: user
