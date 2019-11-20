@@ -32,6 +32,7 @@ module:
   menu_ui: 0
   name: 0
   nlc_prototype: 0
+  nlc_salesforce: 0
   node: 0
   options: 0
   page_cache: 0
