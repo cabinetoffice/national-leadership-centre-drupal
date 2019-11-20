@@ -1,0 +1,17 @@
+uuid: 2a2f7504-ecb5-48c4-9669-d8438a85be00
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Programme Year'
+type: programme_year
+description: 'A year of the NLC programme.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false
