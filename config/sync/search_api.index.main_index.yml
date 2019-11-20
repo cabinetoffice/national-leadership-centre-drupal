@@ -17,7 +17,6 @@ dependencies:
     - field.storage.profile.field_job_title
     - field.storage.profile.field_organisation
     - field.storage.node.field_sector
-    - field.storage.profile.field_pa_email
     - search_api.server.database
 id: main_index
 name: 'Main index'
@@ -301,14 +300,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_organisation
-  pa_email:
-    label: 'PA email'
-    datasource_id: 'entity:profile'
-    property_path: field_pa_email
-    type: text
-    dependencies:
-      config:
-        - field.storage.profile.field_pa_email
   roles:
     label: Roles
     datasource_id: 'entity:user'
@@ -428,7 +419,6 @@ processor_settings:
       - org_sector_name_profile
       - org_sector_name_user
       - organisation
-      - pa_email
       - roles
       - term_name
       - title
@@ -458,7 +448,6 @@ processor_settings:
       - org_sector_name_profile
       - org_sector_name_user
       - organisation
-      - pa_email
       - roles
       - term_name
       - title

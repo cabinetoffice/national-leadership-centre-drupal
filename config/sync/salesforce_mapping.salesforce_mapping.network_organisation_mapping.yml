@@ -42,37 +42,37 @@ field_mappings:
     drupal_field_value: title
     salesforce_field: Name
     direction: sync
-    id: 6
+    id: 0
   -
     drupal_field_type: properties
     drupal_field_value: field_acronym
     salesforce_field: Acronym__c
     direction: sync
-    id: 7
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: field_website
     salesforce_field: Website__c
     direction: sync
-    id: 8
+    id: 2
   -
     drupal_field_type: RelatedTermString
     drupal_field_value: field_sector
     salesforce_field: Sector__c
     direction: sync
-    id: 9
+    id: 3
   -
     drupal_field_type: RelatedTermString
     drupal_field_value: field_region
     salesforce_field: Region__c
     direction: sync
-    id: 10
+    id: 4
   -
     drupal_field_type: properties
     drupal_field_value: field_address
     salesforce_field: Address__c
     direction: sync
-    id: 11
+    id: 5
 push_limit: 0
 push_retries: 3
 push_frequency: 0
