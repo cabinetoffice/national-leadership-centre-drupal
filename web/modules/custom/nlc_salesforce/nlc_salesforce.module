@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form;
+use Drupal\Core\Url;
 use Drupal\node\Entity\NodeType;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -74,14 +75,50 @@ function nlc_salesforce_profile_view(array &$build, EntityInterface $entity, Ent
 function nlc_salesforce_build_view_fields(array $fields, array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
   $client = SFWrapper::getInstance();
   $values = $client->getDetailsFromEntity($entity);
+
   foreach($fields as $id => $details) {
 
     if ($component = $display->getComponent($id)) {
+      $value = $values[$details['sf_field']] ?? NULL;
       $build[$id] = [
         '#theme' => 'nlc_field',
         '#content' => $values[$details['sf_field']] ?? NULL,
         '#label' => $details['label'],
       ];
+
+      switch ($details['format'] ?? NULL) {
+        case 'tel':
+
+          // Code taken from Drupal\telephone\Plugin\Field\FieldFormatter\TelephoneLinkFormatter->viewElements()
+          $phone_number = preg_replace('/\D/', '', preg_replace('/^\+/', '00', $value));
+          if (strlen($phone_number) <= 5) {
+            $phone_number = substr_replace($phone_number, '-', 1, 0);
+          }
+
+          // Render each element as link.
+          $build[$id]['#content'] = [
+            '#type' => 'link',
+            // Use custom title if available, otherwise use the telephone number
+            // itself as title.
+            '#title' => $value,
+            // Prepend 'tel:' to the telephone number.
+            '#url' => Url::fromUri('tel:' . rawurlencode($phone_number)),
+            '#options' => ['external' => TRUE],
+          ];
+          break;
+
+        case 'email':
+          $build[$id]['#content'] = [
+            '#type' => 'link',
+            '#title' => $value,
+            '#url' => Url::fromUri('mailto:' . $value),
+          ];
+          break;
+
+        default:
+          $build[$id]['#content'] = $value;
+          break;
+      }
     }
   }
 }
@@ -115,11 +152,25 @@ function nlc_salesforce_form_alter(&$form, FormStateInterface $form_state, $form
 
   foreach($fields as $id => $details) {
     $form['nlc_salesforce_details'][$id] = [
-      '#type' => 'textfield', // TODO: Add field type to definition for richer UI
+      '#type' => $details['format'] ?? 'textfield', // TODO: Add field type to definition for richer UI
       '#title' => t($details['label']),
       '#description' => t($details['description']) ?? NULL,
       '#default_value' => $values[$details['sf_field']] ?? NULL,
     ];
+    switch ($details['format'] ?? NULL) {
+      case 'email':
+        $form['nlc_salesforce_details'][$id]['#element_validate'] = ['nlc_salesforce_form_validate_email'];
+        break;
+    }
+  }
+}
+
+/**
+ * Element validation fundtion to check for a valid email address.
+ */
+function nlc_salesforce_form_validate_email($element, FormStateInterface $form_state, $form) {
+  if (!valid_email_address($element['#value'])) {
+    form_error($element, t('Please enter a valid email address.'));
   }
 }
 

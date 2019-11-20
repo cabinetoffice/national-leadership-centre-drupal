@@ -19,6 +19,7 @@ class SFWrapper {
       'label' => 'SF Phone Number',
       'description' => 'The phone number taken from Salesforce',
       'sf_field' => 'PhoneNumber__c',
+      'format' => 'tel',
     ],
   ];
 
@@ -30,11 +31,13 @@ class SFWrapper {
       'label' => 'Phone number in role',
       'description' => 'Phone number when in this role.',
       'sf_field' => 'Role_phone__c',
+      'format' => 'tel',
     ],
     'nlc_role_email' => [
       'label' => 'Email address in role',
       'description' => 'Email address when in this role.',
       'sf_field' => 'Role_email__c',
+      'format' => 'email',
     ],
     'nlc_role_assistant_name' => [
       'label' => "Assistant's name",
@@ -45,11 +48,13 @@ class SFWrapper {
       'label' => "Assistant's phone",
       'description' => 'Phone number for an assistant when in this role.',
       'sf_field' => 'Assistant_phone__c',
+      'format' => 'tel',
     ],
     'nlc_role_assistant_email' => [
       'label' => "Assistant's email",
       'description' => 'Email address for an assistant when in this role.',
       'sf_field' => 'Assistant_email__c',
+      'format' => 'email',
     ],
   ];
 
