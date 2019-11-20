@@ -1,5 +1,6 @@
 module:
   address: 0
+  auto_entitylabel: 0
   better_exposed_filters: 0
   big_pipe: 0
   block: 0
@@ -19,6 +20,7 @@ module:
   entity: 0
   facets: 0
   field: 0
+  field_group: 0
   field_ui: 0
   file: 0
   filter: 0
@@ -48,6 +50,7 @@ module:
   taxonomy: 0
   telephone: 0
   text: 0
+  token: 0
   toolbar: 0
   update: 0
   user: 0

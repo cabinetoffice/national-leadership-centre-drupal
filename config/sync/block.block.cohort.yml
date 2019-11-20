@@ -1,26 +1,26 @@
-uuid: 89954845-329b-4436-bd40-6d2c13af383b
+uuid: 146a5cd6-5148-48a2-9dd5-988d18cdff52
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.job_title
+    - facets.facet.cohort
   module:
     - facets
     - system
   theme:
     - bevan
-id: roleprofilesprofilejobtitle_2
+id: cohort
 theme: bevan
 region: sidebar_first
-weight: -6
+weight: -3
 provider: null
-plugin: 'facet_block:job_title'
+plugin: 'facet_block:cohort'
 settings:
-  id: 'facet_block:job_title'
-  label: 'Filter by job title'
+  id: 'facet_block:cohort'
+  label: 'Filter by cohort'
   provider: facets
   label_display: visible
-  block_id: roleprofilesprofilejobtitle_2
+  block_id: cohort
 visibility:
   request_path:
     id: request_path
