@@ -18,22 +18,22 @@ popup_clicking_confirmation: false
 popup_scrolling_confirmation: false
 popup_delay: 1000
 show_disagree_button: true
-popup_disagree_button_message: 'Find out more about cookies.'
+popup_disagree_button_message: 'Read our privacy policy.'
 popup_enabled: true
 popup_find_more_button_message: 'More info'
 popup_height: null
 popup_hide_agreed: false
 popup_hide_button_message: Hide
 popup_info:
-  value: "<p>The National Leadership Centre uses cookies to make this site simpler.</p>\r\n"
+  value: "<p>The National Leadership Centre uses <a href=\"https://www.nationalleadership.gov.uk/cookies\">cookies</a> to make this site simpler.</p>\r\n"
   format: filtered_text
 mobile_popup_info:
   value: ''
   format: filtered_text
 popup_info_template: new
 mobile_breakpoint: 768
-popup_link: /privacy
-popup_link_new_window: false
+popup_link: 'https://www.nationalleadership.gov.uk/privacy/'
+popup_link_new_window: true
 popup_position: true
 fixed_top_position: true
 popup_text_hex: ''
