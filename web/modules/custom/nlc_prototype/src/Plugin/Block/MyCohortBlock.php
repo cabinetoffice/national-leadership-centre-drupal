@@ -47,7 +47,7 @@ class MyCohortBlock extends BlockBase {
                 'class' => ['govuk-inset-text'],
               ],
               '#cache' => [
-                'keys' => ['entity_view', 'user', $account->id()]
+                'tags' => ['directory_view:user:' . $account->id()]
               ],
               'cohort_info' => [
                 '#prefix' => '<p>',
