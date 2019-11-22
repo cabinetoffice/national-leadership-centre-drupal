@@ -50,6 +50,7 @@
         "drupal/sendgrid_integration": "^1.2",
         "drupal/structure_sync": "^1.16",
         "drupal/token": "^1.5",
+        "drupal/userprotect": "^1.0",
         "drush/drush": "^9.0.0",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
