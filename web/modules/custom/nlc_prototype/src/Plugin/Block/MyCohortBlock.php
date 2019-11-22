@@ -32,13 +32,16 @@ class MyCohortBlock extends BlockBase {
       // Get User entity object for the current user.
       /** @var \Drupal\user\UserInterface $account */
       $account = User::load($accountProxy->id());
-      if ($cohorts = $account->get('field_cohort')) {
+      if ($account->get('field_cohort')->count() > 0) {
         try {
+          $cohorts = $account->get('field_cohort');
           $options = [];
           // The account user may be in more than one cohort. Get the last one, assuming it's the most recent.
           $index = count($cohorts->getValue()) - 1;
           $cohort = $cohorts->get($index);
-          $entity = \Drupal::entityTypeManager()->getStorage('node')->load($cohort->target_id);
+          $entity = \Drupal::entityTypeManager()
+            ->getStorage('node')
+            ->load($cohort->target_id);
           $options['query']['directory'][] = 'cohort:' . $cohort->target_id;
           if (!empty($options)) {
             $build['cohort'] = [
