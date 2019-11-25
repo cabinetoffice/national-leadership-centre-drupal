@@ -1,0 +1,21 @@
+uuid: 87674cbb-2f1d-499f-a6f9-242eda7e2175
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_date
+    - node.type.programme_year
+  module:
+    - datetime
+id: node.programme_year.field_start_date
+field_name: field_start_date
+entity_type: node
+bundle: programme_year
+label: 'Start date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

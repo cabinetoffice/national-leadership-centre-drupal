@@ -13,3 +13,13 @@
 .button:focus {
 	outline: 4px solid $grey;
 }
+.button--link {
+	background-color: transparent;
+	border-color: transparent;
+	color: inherit;
+	font-size: inherit;
+	text-decoration: underline;
+	&:hover {
+		text-decoration: none;
+	}
+}

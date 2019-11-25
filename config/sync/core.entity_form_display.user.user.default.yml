@@ -3,14 +3,33 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_cohort
     - field.field.user.user.field_gender
     - field.field.user.user.field_name
+    - field.field.user.user.field_programme_year
     - field.field.user.user.field_title
   module:
+    - field_group
     - name
     - profile
     - select_or_other
     - user
+third_party_settings:
+  field_group:
+    group_programmes_and_cohorts:
+      children:
+        - field_programme_year
+        - field_cohort
+      parent_name: ''
+      weight: 8
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Programmes and cohorts'
+      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
@@ -21,6 +40,12 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_cohort:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_gender:
     weight: 4
     settings:
@@ -60,6 +85,12 @@ content:
     third_party_settings: {  }
     type: name_default
     region: content
+  field_programme_year:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
   field_title:
     weight: 1
     settings:
@@ -68,6 +99,11 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  google_analytics:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   language:
     weight: 5
     region: content

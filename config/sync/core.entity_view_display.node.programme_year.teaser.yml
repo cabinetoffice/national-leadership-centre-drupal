@@ -1,0 +1,23 @@
+uuid: 96f41d9c-e520-475e-8219-9954469077ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.programme_year
+  module:
+    - user
+id: node.programme_year.teaser
+targetEntityType: node
+bundle: programme_year
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_end_date: true
+  field_start_date: true
+  search_api_excerpt: true

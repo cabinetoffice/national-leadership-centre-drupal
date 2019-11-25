@@ -1,6 +1,6 @@
 $govuk-global-styles: true;
 
-$govuk-assets-path: "../../contrib/govuk_design_system/assets/";
+$govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 
 // Override vairables for govuk_frontend components
 @import "settings/colours-applied";
@@ -16,3 +16,4 @@ $govuk-assets-path: "../../contrib/govuk_design_system/assets/";
 @import "components/img";
 @import "components/pager";
 @import "components/button";
+@import "components/cookies";
