@@ -1,0 +1,22 @@
+uuid: 43c1e87a-8f86-4c5c-9796-da4364db65c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.cohort
+id: node.cohort.promote
+field_name: promote
+entity_type: node
+bundle: cohort
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

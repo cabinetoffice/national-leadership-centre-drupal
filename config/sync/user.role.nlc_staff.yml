@@ -7,4 +7,5 @@ label: 'NLC Staff'
 weight: 2
 is_admin: null
 permissions:
+  - 'display eu cookie compliance popup'
   - 'use text format filtered_text'

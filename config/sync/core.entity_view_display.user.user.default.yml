@@ -3,16 +3,56 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_cohort
     - field.field.user.user.field_gender
     - field.field.user.user.field_name
+    - field.field.user.user.field_programme_year
     - field.field.user.user.field_title
   module:
+    - field_group
     - user
+third_party_settings:
+  field_group:
+    group_programme_and_cohort:
+      children:
+        - field_programme_year
+        - field_cohort
+      parent_name: ''
+      weight: 2
+      format_type: html_element
+      format_settings:
+        element: div
+        show_label: true
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+      label: 'Event participation'
+      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
+  field_cohort:
+    weight: 4
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_programme_year:
+    weight: 3
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
   role_profiles:
     type: entity_reference_entity_view
     weight: 0
