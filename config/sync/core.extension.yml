@@ -31,6 +31,9 @@ module:
   mailsystem: 0
   menu_ui: 0
   name: 0
+  neo4j: 0
+  neo4j_entity: 0
+  neo4j_page: 0
   nlc_prototype: 0
   node: 0
   options: 0

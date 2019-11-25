@@ -32,3 +32,6 @@ node_modules
 
 # Ignore local Neo4j import files
 graph/*
+
+# Intentionally ignore some sensitive config files
+/config/sync/neo4j.connection.yml
