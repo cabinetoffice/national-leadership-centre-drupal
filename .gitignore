@@ -29,3 +29,6 @@ mariadb-init/*
 
 # Ignore node modules
 node_modules
+
+# Ignore local Neo4j import files
+graph/*

@@ -64,6 +64,37 @@ services:
       - connect
       - traefik
 
+  neo4j:
+    image: convivio/neo4j:$NEO4J_TAG
+    container_name: "${PROJECT_NAME}_neo4j"
+    volumes:
+      - graph-data:/data
+      - graph-logs:/logs
+      - ./graph/import:/import
+    ports:
+      - '7474:7474'
+      # - '7473:7473'
+      - '7687:7687'
+    environment:
+      - NEO4J_AUTH=neo4j/$NEO4J_PASSWORD
+      - NEO4J_HOST=$NEO4J_HOST
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_dbms_shell_enabled=true
+      # NEO4J_BOLT_PORT_NUMBER: $NEO4J_BOLT_PORT_NUMBER
+      # NEO4J_HTTP_PORT_NUMBER: $NEO4J_HTTP_PORT_NUMBER
+      # NEO4J_HTTPS_PORT_NUMBER: $NEO4J_HTTPS_PORT_NUMBER
+    networks:
+      - neo4j-network
+      - graph
+      - traefik
+    labels:
+      - 'traefik.backend=neo4j'
+      - 'traefik.port=$NEO4J_HTTP_PORT_NUMBER'
+      - 'traefik.frontend.rule=Host:graph.${PROJECT_BASE_URL}'
+      - 'traefik.docker.network=traefik'
+
   redis:
     image: wodby/redis:$REDIS_TAG
     container_name: "${PROJECT_NAME}_redis"
@@ -170,6 +201,8 @@ volumes:
   #  docker-sync:
   #    external: true
   project-db-data:
+  graph-data:
+  graph-logs:
 
 networks:
   traefik:
@@ -177,3 +210,4 @@ networks:
   neo4j-network:
     external: true
   connect:
+  graph:
