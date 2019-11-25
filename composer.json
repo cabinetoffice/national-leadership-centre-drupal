@@ -53,6 +53,7 @@
         "drupal/token": "^1.5",
         "drupal/userprotect": "^1.0",
         "drush/drush": "^9.0.0",
+        "graphaware/neo4j-php-client": "4.8.5 as 4.4.7",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
