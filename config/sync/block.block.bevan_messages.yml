@@ -11,7 +11,7 @@ _core:
 id: bevan_messages
 theme: bevan
 region: pre_content
-weight: -2
+weight: -7
 provider: null
 plugin: system_messages_block
 settings:

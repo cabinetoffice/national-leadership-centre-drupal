@@ -18,6 +18,10 @@ dependencies:
     - field.storage.profile.field_organisation
     - field.storage.node.field_sector
     - field.storage.profile.field_pa_email
+    - field.storage.user.field_cohort
+    - field.storage.user.field_gender
+    - field.storage.user.field_name
+    - field.storage.user.field_programme_year
     - search_api.server.database
 id: main_index
 name: 'Main index'
@@ -32,6 +36,17 @@ field_settings:
     dependencies:
       module:
         - user
+  cohort_title:
+    label: 'Cohort » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_cohort:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+      module:
+        - node
+        - node
   country_code:
     label: 'Location » The two-letter country code.'
     datasource_id: 'entity:profile'
@@ -48,6 +63,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_location
+  field_cohort:
+    label: Cohort
+    datasource_id: 'entity:user'
+    property_path: field_cohort
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
   field_job_title_term:
     label: 'Role profiles » Profile » Job Title'
     datasource_id: 'entity:user'
@@ -134,6 +157,17 @@ field_settings:
     dependencies:
       module:
         - user
+  nid_1:
+    label: 'Programme year » Content » ID'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:nid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+      module:
+        - node
+        - node
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -309,6 +343,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_pa_email
+  programme_year_title:
+    label: 'Programme year » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+      module:
+        - node
+        - node
   roles:
     label: Roles
     datasource_id: 'entity:user'
@@ -409,6 +454,7 @@ processor_settings:
   ignorecase:
     all_fields: true
     fields:
+      - cohort_title
       - country_code
       - dependent_locality
       - firstname
@@ -429,6 +475,7 @@ processor_settings:
       - org_sector_name_user
       - organisation
       - pa_email
+      - programme_year_title
       - roles
       - term_name
       - title
@@ -439,6 +486,7 @@ processor_settings:
   transliteration:
     all_fields: true
     fields:
+      - cohort_title
       - country_code
       - dependent_locality
       - firstname
@@ -459,6 +507,7 @@ processor_settings:
       - org_sector_name_user
       - organisation
       - pa_email
+      - programme_year_title
       - roles
       - term_name
       - title

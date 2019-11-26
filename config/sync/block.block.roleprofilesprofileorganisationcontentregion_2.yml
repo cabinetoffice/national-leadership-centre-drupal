@@ -12,7 +12,7 @@ dependencies:
 id: roleprofilesprofileorganisationcontentregion_2
 theme: bevan
 region: sidebar_first
-weight: 0
+weight: -5
 provider: null
 plugin: 'facet_block:region'
 settings:

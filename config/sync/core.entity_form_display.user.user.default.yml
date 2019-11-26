@@ -5,15 +5,19 @@ dependencies:
   config:
     - field.field.user.user.field_first_name
     - field.field.user.user.field_full_name
+    - field.field.user.user.field_cohort
     - field.field.user.user.field_gender
     - field.field.user.user.field_last_name
     - field.field.user.user.field_linkedin
     - field.field.user.user.field_name
+    - field.field.user.user.field_programme_year
     - field.field.user.user.field_title
     - field.field.user.user.field_twitter
   module:
     - field_group
     - link
+    - name
+    - profile
     - select_or_other
     - user
 third_party_settings:
@@ -25,6 +29,13 @@ third_party_settings:
         - field_last_name
       parent_name: ''
       weight: 1
+    group_programmes_and_cohorts:
+      children:
+        - field_programme_year
+        - field_cohort
+      parent_name: ''
+      weight: 8
+>>>>>>> master
       format_type: fieldset
       format_settings:
         id: ''
@@ -46,6 +57,7 @@ third_party_settings:
         description: ''
         required_fields: true
       label: 'Social Media'
+      label: 'Programmes and cohorts'
       region: content
 id: user.user.default
 targetEntityType: user
@@ -59,6 +71,14 @@ content:
     third_party_settings: {  }
   field_first_name:
     weight: 9
+  field_cohort:
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_gender:
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -80,6 +100,12 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_programme_year:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_title:
     weight: 8

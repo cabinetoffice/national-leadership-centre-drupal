@@ -1,0 +1,23 @@
+uuid: 11b65719-5317-41fd-97f1-8d7a17d12433
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_number
+    - node.type.cohort
+id: node.cohort.field_number
+field_name: field_number
+entity_type: node
+bundle: cohort
+label: 'Cohort number'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

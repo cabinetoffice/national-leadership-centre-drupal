@@ -1,0 +1,29 @@
+uuid: 146a5cd6-5148-48a2-9dd5-988d18cdff52
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.cohort
+  module:
+    - facets
+    - system
+  theme:
+    - bevan
+id: cohort
+theme: bevan
+region: sidebar_first
+weight: -3
+provider: null
+plugin: 'facet_block:cohort'
+settings:
+  id: 'facet_block:cohort'
+  label: 'Filter by cohort'
+  provider: facets
+  label_display: visible
+  block_id: cohort
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,17 @@
+uuid: 83efca43-d434-4bd9-a325-50302a4eb7cf
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Cohort
+type: cohort
+description: 'A cohort of delegates, who may attend a programme year.'
+help: 'A cohort number will be automatically assigned to a cohort.'
+new_revision: false
+preview_mode: 1
+display_submitted: false
