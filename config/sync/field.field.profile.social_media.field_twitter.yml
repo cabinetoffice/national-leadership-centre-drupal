@@ -1,0 +1,23 @@
+uuid: d4f1033f-6e67-4c28-a1a5-1f6a8c14e1a6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_twitter
+    - profile.type.social_media
+  module:
+    - link
+id: profile.social_media.field_twitter
+field_name: field_twitter
+entity_type: profile
+bundle: social_media
+label: Twitter
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

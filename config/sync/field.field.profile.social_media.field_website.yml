@@ -1,0 +1,23 @@
+uuid: 6e950911-c28a-4421-8804-37a89323090f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_website
+    - profile.type.social_media
+  module:
+    - link
+id: profile.social_media.field_website
+field_name: field_website
+entity_type: profile
+bundle: social_media
+label: 'Personal Website'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 16
+  title: 0
+field_type: link

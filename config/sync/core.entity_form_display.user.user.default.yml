@@ -35,7 +35,6 @@ third_party_settings:
         - field_cohort
       parent_name: ''
       weight: 8
->>>>>>> master
       format_type: fieldset
       format_settings:
         id: ''
