@@ -36,7 +36,7 @@ services:
       # - docker-sync:/var/www/html # Docker-sync
     networks:
       - connect
-      - neo4j-network
+      - graph
 
   nginx:
     image: wodby/drupal-nginx:$NGINX_TAG
@@ -86,7 +86,6 @@ services:
       # NEO4J_HTTP_PORT_NUMBER: $NEO4J_HTTP_PORT_NUMBER
       # NEO4J_HTTPS_PORT_NUMBER: $NEO4J_HTTPS_PORT_NUMBER
     networks:
-      - neo4j-network
       - graph
       - traefik
     labels:
