@@ -1,0 +1,26 @@
+uuid: 98214912-5f9d-4bd3-97a8-0012b81fde29
+langcode: en
+status: true
+dependencies:
+  module:
+    - nlc_prototype
+    - system
+  theme:
+    - bevan
+id: mycohortblock
+theme: bevan
+region: pre_content
+weight: -2
+provider: null
+plugin: my_cohort_block
+settings:
+  id: my_cohort_block
+  label: 'My Cohort block'
+  provider: nlc_prototype
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

@@ -9,7 +9,7 @@ _core:
 id: bevan_local_actions
 theme: bevan
 region: pre_content
-weight: 1
+weight: -4
 provider: null
 plugin: local_actions_block
 settings:

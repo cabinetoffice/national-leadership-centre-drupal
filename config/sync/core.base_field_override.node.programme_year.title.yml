@@ -1,0 +1,18 @@
+uuid: 73ca05b3-0dc7-42b8-a3d1-c15f3e25a554
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.programme_year
+id: node.programme_year.title
+field_name: title
+entity_type: node
+bundle: programme_year
+label: Name
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
