@@ -26,7 +26,7 @@ nlc_prototype.directory.token_access.check:
 nlc_prototype.directory.token_access.login:
   path: '/directory/access/login/{uid}/{timestamp}/{hash}'
   defaults:
-    _title: 'Confirm use of one time login'
+    _title: 'Confirm use of one-time login'
     _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::login'
   requirements:
     _access: 'TRUE'
