@@ -211,8 +211,8 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
    * @param string $hash
    *   Login link hash.
    *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse
-   *   The redirect response.
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
+   *   The form render array, or redirect response.
    */
   public function login(Request $request, $uid, $timestamp, $hash) {
 
