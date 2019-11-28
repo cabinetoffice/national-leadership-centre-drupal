@@ -3,19 +3,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_full_name
-    - field.field.user.user.field_last_name
-    - field.field.user.user.field_linkedin
-    - field.field.user.user.field_title
-    - field.field.user.user.field_twitter
+    - field.field.user.user.field_name
+    - field.storage.user.field_name
   module:
+    - name
     - salesforce_pull
     - salesforce_push
     - user
 id: network_individual_user_mapping
 label: 'Network Individual User Mapping'
-weight: 0
+weight: -10
 type: salesforce_mapping
 key: ''
 async: false
@@ -34,42 +31,42 @@ salesforce_object_type: NetworkIndividual__c
 drupal_entity_type: user
 drupal_bundle: user
 field_mappings:
-  -
+  0:
     drupal_field_type: properties
-    drupal_field_value: field_full_name
-    salesforce_field: FullName__c
+    drupal_field_value: name
+    salesforce_field: Name
     direction: sf_drupal
-    id: 6
-  -
+    id: 1
+  1:
     drupal_field_type: properties
-    drupal_field_value: field_first_name
-    salesforce_field: FirstName__c
+    drupal_field_value: mail
+    salesforce_field: EmailAddress__c
     direction: sync
-    id: 7
-  -
+    id: 2
+  3:
     drupal_field_type: properties
-    drupal_field_value: field_last_name
-    salesforce_field: LastName__c
+    drupal_field_value: status
+    salesforce_field: Connect_User__c
     direction: sync
-    id: 8
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_title
+    id: 4
+  4:
+    drupal_field_type: properties_extended
+    drupal_field_value: field_name.title
     salesforce_field: Title__c
     direction: sync
-    id: 9
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_twitter
-    salesforce_field: Twitter_Account__c
+    id: 5
+  5:
+    drupal_field_type: properties_extended
+    drupal_field_value: field_name.given
+    salesforce_field: FirstName__c
     direction: sync
-    id: 10
-  -
-    drupal_field_type: properties
-    drupal_field_value: field_linkedin
-    salesforce_field: LinkedIn_Account__c
+    id: 6
+  6:
+    drupal_field_type: properties_extended
+    drupal_field_value: field_name.family
+    salesforce_field: LastName__c
     direction: sync
-    id: 11
+    id: 7
 push_limit: 0
 push_retries: 3
 push_frequency: 0

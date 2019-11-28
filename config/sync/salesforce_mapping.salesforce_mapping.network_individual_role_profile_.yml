@@ -19,7 +19,7 @@ dependencies:
     - salesforce_push
 id: network_individual_role_profile_
 label: 'Network Individual Role Profile Mapping'
-weight: 0
+weight: -8
 type: salesforce_mapping
 key: ''
 async: false
@@ -43,43 +43,43 @@ field_mappings:
     drupal_field_value: field_pa_name
     salesforce_field: Assistant_name__c
     direction: sync
-    id: 3
+    id: 2
   5:
     drupal_field_type: properties
     drupal_field_value: field_start_date
     salesforce_field: Start_date__c
     direction: sync
-    id: 6
+    id: 5
   6:
     drupal_field_type: properties
     drupal_field_value: field_finish_date
     salesforce_field: End_date__c
     direction: sync
-    id: 7
+    id: 6
   7:
     drupal_field_type: RelatedIDs
     drupal_field_value: field_organisation
     salesforce_field: NetworkOrganisation__c
     direction: sync
-    id: 8
+    id: 7
   8:
     drupal_field_type: RelatedIDs
     drupal_field_value: uid
     salesforce_field: Network_Individual__c
     direction: sync
-    id: 9
+    id: 8
   9:
     drupal_field_type: RelatedTermString
     drupal_field_value: field_job_title_term
     salesforce_field: Job_Title_Synonym__c
     direction: sync
-    id: 10
+    id: 9
   10:
     drupal_field_type: properties
     drupal_field_value: field_job_title
     salesforce_field: Job_Title__c
     direction: sync
-    id: 11
+    id: 10
 push_limit: 0
 push_retries: 3
 push_frequency: 0

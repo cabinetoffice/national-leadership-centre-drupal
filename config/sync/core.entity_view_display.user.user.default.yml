@@ -3,68 +3,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_full_name
     - field.field.user.user.field_cohort
-    - field.field.user.user.field_gender
-    - field.field.user.user.field_last_name
-    - field.field.user.user.field_linkedin
     - field.field.user.user.field_name
     - field.field.user.user.field_programme_year
-    - field.field.user.user.field_title
-    - field.field.user.user.field_twitter
   module:
-    - field_group
-    - link
-    - options
+    - name
     - user
-third_party_settings:
-  field_group:
-    group_social_media:
-      children:
-        - field_twitter
-        - field_linkedin
-      parent_name: ''
-      weight: 4
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: ''
-        element: aside
-      label: 'Social Media'
-    group_programme_and_cohort:
-      children:
-        - field_programme_year
-        - field_cohort
-      parent_name: ''
-      weight: 2
-      format_type: html_element
-      format_settings:
-        id: ''
-        classes: ''
-        element: div
-        show_label: true
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
-      label: 'Event participation'
-      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
-  field_first_name:
-    weight: 2
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_full_name:
   field_cohort:
     weight: 4
     label: inline
@@ -73,6 +22,21 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_name:
+    type: name_default
+    weight: 0
+    region: content
+    label: inline
+    settings:
+      format: default
+      markup: none
+      list_format: ''
+      link_target: ''
+      preferred_field_reference: ''
+      preferred_field_reference_separator: ', '
+      alternative_field_reference: ''
+      alternative_field_reference_separator: ', '
+    third_party_settings: {  }
   field_programme_year:
     weight: 3
     label: inline
@@ -82,59 +46,22 @@ content:
     type: entity_reference_label
     region: content
   role_profiles:
-    type: entity_reference_entity_view
-    weight: 0
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_last_name:
+    type: entity_reference_entity_id
     weight: 3
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_linkedin:
-    weight: 6
-    label: inline
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
-  field_title:
-    weight: 1
     label: inline
     settings: {  }
     third_party_settings: {  }
-    type: list_default
     region: content
-  field_twitter:
-    weight: 5
+  social_media_profiles:
+    type: entity_reference_label
+    weight: 7
+    region: content
     label: inline
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+      link: true
     third_party_settings: {  }
-    type: link
-    region: content
 hidden:
-  field_gender: true
-  field_name: true
   member_for: true
-  role_profiles: true
   salesforce_id: true
   salesforce_last_sync: true
   search_api_excerpt: true
-  social_media_profiles: true

@@ -33,22 +33,3 @@ function nlc_prototype_menu_local_tasks_alter(&$data, $route_name, RefinableCach
     }
   }
 }
-
-/**
- * Implements hook_ENTITY_TYPE_presave for User entities.
- *
- * @param \Drupal\user\UserInterface $account
- */
-function nlc_prototype_user_presave(UserInterface $account) {
-  if ($account->get('field_first_name') && $account->get('field_last_name')) {
-    $proper_name = $account->get('field_name')->getValue();
-    $name = [
-      'title' => $account->get('field_title')->getString(),
-      'given' =>  $account->get('field_first_name')->getString(),
-      'family' => $account->get('field_last_name')->getString(),
-    ];
-    $account->set('field_full_name', implode(' ', $name));
-    $new_proper_name = array_merge($proper_name[0], $name);
-    $account->set('field_name', $new_proper_name);
-  }
-}

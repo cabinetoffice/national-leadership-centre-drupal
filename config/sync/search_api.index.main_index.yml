@@ -4,24 +4,21 @@ status: true
 dependencies:
   module:
     - user
+    - node
     - profile
     - taxonomy
-    - node
     - search_api
   config:
+    - field.storage.user.field_cohort
     - field.storage.profile.field_location
     - field.storage.profile.field_job_title_term
     - field.storage.node.field_region
     - field.storage.user.field_name
-    - field.storage.user.field_gender
     - field.storage.profile.field_job_title
+    - field.storage.user.field_programme_year
     - field.storage.profile.field_organisation
     - field.storage.node.field_sector
     - field.storage.profile.field_pa_email
-    - field.storage.user.field_cohort
-    - field.storage.user.field_gender
-    - field.storage.user.field_name
-    - field.storage.user.field_programme_year
     - search_api.server.database
 id: main_index
 name: 'Main index'
@@ -98,14 +95,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.user.field_name
-  gender:
-    label: Gender
-    datasource_id: 'entity:user'
-    property_path: field_gender
-    type: text
-    dependencies:
-      config:
-        - field.storage.user.field_gender
   job_title:
     label: 'Job Title'
     datasource_id: 'entity:profile'
@@ -458,7 +447,6 @@ processor_settings:
       - country_code
       - dependent_locality
       - firstname
-      - gender
       - job_title
       - job_title_term
       - lastname
@@ -482,6 +470,7 @@ processor_settings:
     weights:
       preprocess_index: -20
       preprocess_query: -20
+  language_with_fallback: {  }
   rendered_item: {  }
   transliteration:
     all_fields: true
@@ -490,7 +479,6 @@ processor_settings:
       - country_code
       - dependent_locality
       - firstname
-      - gender
       - job_title
       - job_title_term
       - lastname

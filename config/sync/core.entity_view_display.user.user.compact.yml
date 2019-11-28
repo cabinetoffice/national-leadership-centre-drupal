@@ -4,14 +4,9 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_full_name
-    - field.field.user.user.field_gender
-    - field.field.user.user.field_last_name
-    - field.field.user.user.field_linkedin
+    - field.field.user.user.field_cohort
     - field.field.user.user.field_name
-    - field.field.user.user.field_title
-    - field.field.user.user.field_twitter
+    - field.field.user.user.field_programme_year
   module:
     - name
     - user
@@ -44,13 +39,8 @@ content:
       link: true
     third_party_settings: {  }
 hidden:
-  field_first_name: true
-  field_full_name: true
-  field_gender: true
-  field_last_name: true
-  field_linkedin: true
-  field_title: true
-  field_twitter: true
+  field_cohort: true
+  field_programme_year: true
   member_for: true
   salesforce_id: true
   salesforce_last_sync: true

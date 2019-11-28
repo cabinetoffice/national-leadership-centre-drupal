@@ -3,143 +3,80 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.user.user.field_first_name
-    - field.field.user.user.field_full_name
     - field.field.user.user.field_cohort
-    - field.field.user.user.field_gender
-    - field.field.user.user.field_last_name
-    - field.field.user.user.field_linkedin
     - field.field.user.user.field_name
     - field.field.user.user.field_programme_year
-    - field.field.user.user.field_title
-    - field.field.user.user.field_twitter
   module:
-    - field_group
-    - link
     - name
-    - profile
-    - select_or_other
     - user
-third_party_settings:
-  field_group:
-    group_name:
-      children:
-        - field_title
-        - field_first_name
-        - field_last_name
-      parent_name: ''
-      weight: 1
-    group_programmes_and_cohorts:
-      children:
-        - field_programme_year
-        - field_cohort
-      parent_name: ''
-      weight: 8
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: Name
-      region: content
-    group_social_media:
-      children:
-        - field_twitter
-        - field_linkedin
-      parent_name: ''
-      weight: 2
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: 'Social Media'
-      label: 'Programmes and cohorts'
-      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
   account:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_cohort:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_name:
+    type: name_default
     weight: 0
     region: content
-    settings: {  }
-    third_party_settings: {  }
-  field_first_name:
-    weight: 9
-  field_cohort:
-    weight: 10
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_gender:
-    weight: 4
     settings:
-      size: 60
-      placeholder: ''
+      labels:
+        title: Title
+        given: Given
+        middle: 'Middle name(s)'
+        family: Family
+        generational: Generational
+        credentials: Credentials
+      size:
+        title: 6
+        given: 20
+        middle: 20
+        family: 20
+        generational: 5
+        credentials: 35
+      title_display:
+        title: description
+        given: description
+        middle: description
+        family: description
+        generational: description
+        credentials: description
+      widget_layout: stacked
+      show_component_required_marker: false
+      credentials_inline: false
+      override_field_settings: false
     third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_last_name:
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_linkedin:
-    weight: 8
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
-    region: content
   field_programme_year:
-    weight: 9
+    weight: 5
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_title:
-    weight: 8
-    settings:
-      select_element_type: select_or_other_buttons
-      sort_options: ''
-    third_party_settings: {  }
-    type: select_or_other_list
-    region: content
-  field_twitter:
-    weight: 7
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
+    type: options_select
     region: content
   google_analytics:
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   language:
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   timezone:
-    weight: 5
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_full_name: true
-  field_gender: true
-  field_name: true
   role_profiles: true
   social_media_profiles: true
