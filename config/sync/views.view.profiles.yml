@@ -4,8 +4,6 @@ status: true
 dependencies:
   module:
     - profile
-_core:
-  default_config_hash: q70tcTRdADaMbG3MImSrWUG69Kq3ECNNdbnC8kxAGWE
 id: profiles
 label: Profiles
 module: views
@@ -171,10 +169,51 @@ display:
           entity_type: profile
           plugin_id: entity_operations
       filters: {  }
-      sorts: {  }
+      sorts:
+        is_default:
+          id: is_default
+          table: profile
+          field: is_default
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: profile
+          entity_field: is_default
+          plugin_id: standard
+        profile_id:
+          id: profile_id
+          table: profile
+          field: profile_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          entity_type: profile
+          entity_field: profile_id
+          plugin_id: standard
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There are no profiles yet.'
+            format: basic_html
+          plugin_id: text
       relationships: {  }
       arguments:
         uid:

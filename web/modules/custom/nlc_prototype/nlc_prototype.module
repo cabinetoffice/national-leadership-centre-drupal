@@ -33,3 +33,16 @@ function nlc_prototype_menu_local_tasks_alter(&$data, $route_name, RefinableCach
     }
   }
 }
+
+/**
+ * Define templates.
+ */
+function nlc_prototype_theme($existing, $type, $theme, $path) {
+  return [
+    'nlc_prototype_login_page' => [
+      'variables' => [
+        'check_url' => NULL,
+      ]
+    ]
+  ];
+}
