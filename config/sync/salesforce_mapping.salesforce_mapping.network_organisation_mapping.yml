@@ -18,7 +18,7 @@ dependencies:
     - salesforce_push
 id: network_organisation_mapping
 label: 'Network Organisation mapping'
-weight: -9
+weight: -7
 type: salesforce_mapping
 key: ''
 async: false

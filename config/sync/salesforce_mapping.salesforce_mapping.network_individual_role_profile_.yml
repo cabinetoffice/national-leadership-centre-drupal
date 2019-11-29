@@ -19,7 +19,7 @@ dependencies:
     - salesforce_push
 id: network_individual_role_profile_
 label: 'Network Individual Role Profile Mapping'
-weight: -8
+weight: -6
 type: salesforce_mapping
 key: ''
 async: false
