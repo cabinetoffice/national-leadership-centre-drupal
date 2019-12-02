@@ -4,17 +4,12 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.profile.teaser
-    - field.field.profile.role.field_email
     - field.field.profile.role.field_finish_date
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_email
-    - field.field.profile.role.field_pa_name
-    - field.field.profile.role.field_pa_phone
-    - field.field.profile.role.field_phone
     - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
@@ -48,14 +43,9 @@ content:
     type: entity_reference_label
     region: content
 hidden:
-  field_email: true
   field_finish_date: true
   field_general_location: true
   field_location: true
-  field_pa_email: true
-  field_pa_name: true
-  field_pa_phone: true
-  field_phone: true
   field_start_date: true
   field_time_in_role: true
   salesforce_id: true

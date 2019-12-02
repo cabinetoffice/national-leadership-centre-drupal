@@ -7,7 +7,6 @@ dependencies:
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_name
     - field.field.profile.role.field_start_date
     - field.storage.profile.field_job_title_term
     - field.storage.profile.field_organisation
@@ -38,48 +37,42 @@ salesforce_object_type: NetworkIndividualRole__c
 drupal_entity_type: profile
 drupal_bundle: role
 field_mappings:
-  2:
-    drupal_field_type: properties
-    drupal_field_value: field_pa_name
-    salesforce_field: Assistant_name__c
-    direction: sync
-    id: 2
-  5:
+  1:
     drupal_field_type: properties
     drupal_field_value: field_start_date
     salesforce_field: Start_date__c
     direction: sync
-    id: 5
-  6:
+    id: 2
+  2:
     drupal_field_type: properties
     drupal_field_value: field_finish_date
     salesforce_field: End_date__c
     direction: sync
-    id: 6
-  7:
+    id: 3
+  3:
     drupal_field_type: RelatedIDs
     drupal_field_value: field_organisation
     salesforce_field: NetworkOrganisation__c
     direction: sync
-    id: 7
-  8:
+    id: 4
+  4:
     drupal_field_type: RelatedIDs
     drupal_field_value: uid
     salesforce_field: Network_Individual__c
     direction: sync
-    id: 8
-  9:
+    id: 5
+  5:
     drupal_field_type: RelatedTermString
     drupal_field_value: field_job_title_term
     salesforce_field: Job_Title_Synonym__c
     direction: sync
-    id: 9
-  10:
+    id: 6
+  6:
     drupal_field_type: properties
     drupal_field_value: field_job_title
     salesforce_field: Job_Title__c
     direction: sync
-    id: 10
+    id: 7
 push_limit: 0
 push_retries: 3
 push_frequency: 0

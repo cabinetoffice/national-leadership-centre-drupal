@@ -3,36 +3,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.profile.role.field_email
     - field.field.profile.role.field_finish_date
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_email
-    - field.field.profile.role.field_pa_name
-    - field.field.profile.role.field_pa_phone
-    - field.field.profile.role.field_phone
     - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
   module:
     - datetime
-    - telephone
 id: profile.role.default
 targetEntityType: profile
 bundle: role
 mode: default
 content:
-  field_email:
-    weight: 3
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: email_default
-    region: content
   field_finish_date:
     weight: 8
     settings: {  }
@@ -64,36 +50,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_pa_email:
-    weight: 10
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: email_default
-    region: content
-  field_pa_name:
-    weight: 8
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_pa_phone:
-    weight: 9
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: telephone_default
-    region: content
-  field_phone:
-    weight: 4
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: telephone_default
     region: content
   field_start_date:
     weight: 7
