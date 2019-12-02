@@ -105,14 +105,14 @@ services:
   #     - 'traefik.port=8983'
   #     - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
 
-  # elasticsearch:
-  #   image: wodby/elasticsearch:$ELASTICSEARCH_TAG
-  #   environment:
-  #     ES_JAVA_OPTS: "-Xms500m -Xmx500m"
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
+  elasticsearch:
+    image: wodby/elasticsearch:$ELASTICSEARCH_TAG
+    environment:
+      ES_JAVA_OPTS: "-Xms500m -Xmx500m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
 
   # kibana:
   #   image: wodby/kibana:$KIBANA_TAG
