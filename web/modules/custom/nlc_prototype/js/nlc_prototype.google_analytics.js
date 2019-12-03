@@ -14,6 +14,17 @@
           });
         }
       });
+
+      $("a[href^='tel:']").bind( {
+        click: function () {
+          gtag('event', 'Click', {
+            event_category: 'Telephone',
+            event_label: $("#block-bevan-page-title h1").text() + ' | ' + $(this).siblings('strong').text(),
+            value: this.href.substring(4),
+            transport_type: 'beacon'
+          });
+        }
+      });
     }
   }
 
