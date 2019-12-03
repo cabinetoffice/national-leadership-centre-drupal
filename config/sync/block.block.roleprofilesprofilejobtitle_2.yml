@@ -12,7 +12,7 @@ dependencies:
 id: roleprofilesprofilejobtitle_2
 theme: bevan
 region: sidebar_first
-weight: 0
+weight: -6
 provider: null
 plugin: 'facet_block:job_title'
 settings:

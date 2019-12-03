@@ -1,0 +1,31 @@
+.sliding-popup-top {
+    width: 100%;
+}
+.eu-cookie-compliance-banner {
+    background-color: $very-light-grey;
+    font-size: 1.25rem;
+    .eu-cookie-compliance__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 25px;
+        height: 25px;
+        background: none;
+        border: none;
+        padding: none;
+        cursor: pointer;
+        path {
+            stroke: black;
+            stroke-width: 4px;
+            stroke-linecap: round;
+        }
+    }
+}
+.eu-cookie-compliance__container {
+    padding: 20px 0;
+    text-align: left;
+}
+.eu-cookie-compliance__content {
+    position: relative;
+    padding-right: 27px;
+}

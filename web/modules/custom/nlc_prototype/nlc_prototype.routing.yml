@@ -23,3 +23,13 @@ nlc_prototype.directory.token_access.check:
   options:
     _maintenance_access: TRUE
     no_cache: TRUE
+nlc_prototype.directory.token_access.login:
+  path: '/directory/access/login/{uid}/{timestamp}/{hash}'
+  defaults:
+    _title: 'Confirm use of one-time directory access'
+    _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::login'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE
