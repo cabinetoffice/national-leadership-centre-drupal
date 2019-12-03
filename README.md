@@ -58,9 +58,9 @@ It is presumed that you will use Docker to run this project. This project uses C
     -u $(id -u ${USER}):$(id -g ${USER}) \
     composer install --ignore-platform-reqs
   ```
-3. **Install the packages required by the GOV.UK Design System base theme.**
+3. **Install the packages required by the Bevan theme.**
   ```bash
-  $ cd ./web/themes/contrib/govuk_design_system
+  $ cd ./web/themes/custom/bevan
   $ npm install
   ```
 4. **Add a `settings.local.php` file.**

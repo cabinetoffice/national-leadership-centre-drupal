@@ -200,6 +200,55 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   }
 
   /**
+   * Confirm that the user want to use one-time access URL.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param int $uid
+   *   User ID of the user requesting reset.
+   * @param int $timestamp
+   *   The current timestamp.
+   * @param string $hash
+   *   Login link hash.
+   *
+   * @return \Symfony\Component\HttpFoundation\RedirectResponse|array
+   *   The form render array, or redirect response.
+   */
+  public function login(Request $request, $uid, $timestamp, $hash) {
+
+    // The current user is not logged in, so check the parameters.
+    $current = \Drupal::time()->getRequestTime();
+
+    $account = $this->getCurrentUser();
+
+    if ($account->isAuthenticated()) {
+      $active_sessions = $this->getUserActiveSessionCount($this->getCurrentUser());
+      if ($active_sessions > 0) {
+        $this->logger
+          ->notice(
+            'User %name re-used one-time login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
+            $this->getOneTimeLoginLogMessageContext($request, $account, $current));
+        $this->messenger()->addStatus($this->t('You have just re-used your one-time directory access link.'));
+        return $this->redirect($this->routeName);
+      }
+    }
+
+      // Get the URL to the check route.
+    $url = Url::fromRoute('nlc_prototype.directory.token_access.check', [
+      'uid' => $uid,
+      'timestamp' => $timestamp,
+      'hash' => $hash,
+    ], [
+      'absolute' => TRUE,
+    ])->toString();
+
+    return [
+      '#theme' => 'nlc_prototype_login_page',
+      '#check_url' => $url,
+    ];
+  }
+
+  /**
    * Check that a one-time access URL is for a valid.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request

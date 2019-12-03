@@ -9,3 +9,6 @@ is_admin: null
 permissions:
   - 'display eu cookie compliance popup'
   - 'use text format filtered_text'
+  - userprotect.account.edit
+  - userprotect.mail.edit
+  - userprotect.pass.edit
