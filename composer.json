@@ -29,6 +29,7 @@
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.7.0",
         "drupal/devel": "^2.1",
+        "drupal/elasticsearch_connector": "^7.0@alpha",
         "drupal/email_registration": "^1.0@RC",
         "drupal/encrypt": "^3.0@RC",
         "drupal/eu_cookie_compliance": "^1.8",
