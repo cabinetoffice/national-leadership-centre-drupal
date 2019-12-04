@@ -16,8 +16,7 @@ class SFWrapper {
    */
   const CONTACT_FIELDS = [
     'nlc_sf_phone' => [
-      'label' => 'SF Phone Number',
-      'description' => 'The phone number taken from Salesforce',
+      'label' => 'Phone Number',
       'sf_field' => 'PhoneNumber__c',
       'format' => 'tel',
     ],
