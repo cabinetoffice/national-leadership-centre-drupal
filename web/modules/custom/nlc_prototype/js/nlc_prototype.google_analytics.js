@@ -5,11 +5,9 @@
     attach: function(context, settings) {
       $("a[href^='tel:'],a[href^='mailto:']").bind({
         copy: function() {
-          const value = this.href.includes('tel:') ? this.href.substring(4) : this.href.substring(7);
-          gtag('event', 'Connection', {
-            event_category: this.href.includes('tel:') ? 'tel' : 'mailto',
-            event_label: $("#block-bevan-page-title h1").text() + ' | ' + $(this).siblings('strong').text(),
-            value: value,
+          gtag('event', 'Copy', {
+            event_category: this.href.includes('tel:') ? 'Telephone' : 'Mails',
+            event_label: this.href.includes('tel:') ? this.href.substring(4) : this.href.substring(7),
             transport_type: 'beacon'
           });
         }
@@ -19,8 +17,7 @@
         click: function () {
           gtag('event', 'Click', {
             event_category: 'Telephone',
-            event_label: $("#block-bevan-page-title h1").text() + ' | ' + $(this).siblings('strong').text(),
-            value: this.href.substring(4),
+            event_label: this.href.substring(4),
             transport_type: 'beacon'
           });
         }
