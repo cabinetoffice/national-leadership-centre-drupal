@@ -323,17 +323,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_organisation
-  programme_year_title:
-    label: 'Programme year » Content » Title'
-    datasource_id: 'entity:user'
-    property_path: 'field_programme_year:entity:title'
-    type: string
-    dependencies:
-      config:
-        - field.storage.user.field_programme_year
-      module:
-        - node
-        - node
   roles:
     label: Roles
     datasource_id: 'entity:user'
@@ -453,7 +442,6 @@ processor_settings:
       - org_sector_name_profile
       - org_sector_name_user
       - organisation
-      - programme_year_title
       - roles
       - term_name
       - title
@@ -484,7 +472,6 @@ processor_settings:
       - org_sector_name_profile
       - org_sector_name_user
       - organisation
-      - programme_year_title
       - roles
       - term_name
       - title

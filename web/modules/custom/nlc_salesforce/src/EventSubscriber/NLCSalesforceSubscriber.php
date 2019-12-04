@@ -4,6 +4,9 @@ namespace Drupal\nlc_salesforce\EventSubscriber;
 use Drupal\salesforce\Event\SalesforceEvents;
 use Drupal\salesforce_mapping\Event\SalesforcePullEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent;
+
+use Drupal\nlc_salesforce\SFAPI\SFWrapper;
 
 /**
  * Class NLCSalesforceSubscriber.
@@ -40,13 +43,35 @@ class NLCSalesforceSubscriber implements EventSubscriberInterface {
     }
   }
 
-    /**
+  /*
+   * SalesforcePushParamsEvent callback.
+   *
+   * @param \Drupal\salesforce_mapping\Event\SalesforcePushParamsEvent $event
+   *   The event.
+   */
+  public function pushParamsAlter(SalesforcePushParamsEvent $event) {
+    /** @var \Drupal\Core\Entity\Entity $entity */
+    $entity = $event->getEntity();
+
+    if (in_array($entity->getEntityTypeId(), ['user', 'profile'])) {
+      $params = $event->getParams();
+
+      $client = SFWrapper::getInstance();
+      foreach($client->getSubmissions() as $field => $val) {
+        $params->setParam($field, $val);
+      }
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
     return [
       SalesforceEvents::PULL_PREPULL => 'pullPrepull',
+      SalesforceEvents::PUSH_PARAMS => 'pushParamsAlter',
     ];
   }
 
 }
+

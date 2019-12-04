@@ -4,3 +4,185 @@
  * @file
  * Provides integration with Salesforce for the NLC Connect service.
  */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Form;
+use Drupal\Core\Url;
+use Drupal\node\Entity\NodeType;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\salesforce\SFID;
+
+use Drupal\nlc_salesforce\SFAPI\SFWrapper;
+
+/**
+ * Define custom templates.
+ */
+function nlc_salesforce_theme($existing, $type, $theme, $path) {
+  return [
+    'nlc_field' => [
+      'variables' => [
+        'label' => NULL,
+        'content' => NULL,
+      ]
+    ]
+  ];
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function nlc_salesforce_entity_extra_field_info() {
+  $extra = array();
+
+  foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
+    $extra['user']['user']['display'][$id] = [
+      'label' => t($details['label']),
+      'description' => t($details['description']),
+      'visible' => TRUE,
+      'weight' => 100,
+    ];
+  }
+  foreach(SFWrapper::ROLE_FIELDS as $id => $details) {
+    $extra['profile']['role']['display'][$id] = [
+      'label' => t($details['label']),
+      'description' => t($details['description']),
+      'visible' => TRUE,
+      'weight' => 100,
+    ];
+  }
+ 
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function nlc_salesforce_user_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  nlc_salesforce_build_view_fields(SFWrapper::CONTACT_FIELDS, $build, $entity, $display, $view_mode);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function nlc_salesforce_profile_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  nlc_salesforce_build_view_fields(SFWrapper::ROLE_FIELDS, $build, $entity, $display, $view_mode);
+}
+
+/**
+ * Helper function to implement entity_view.
+ */
+function nlc_salesforce_build_view_fields(array $fields, array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $client = SFWrapper::getInstance();
+  $values = $client->getDetailsFromEntity($entity);
+
+  foreach($fields as $id => $details) {
+
+    if ($component = $display->getComponent($id)) {
+      $value = $values[$details['sf_field']] ?? NULL;
+      $build[$id] = [
+        '#theme' => 'nlc_field',
+        '#content' => $values[$details['sf_field']] ?? NULL,
+        '#label' => $details['label'],
+      ];
+
+      switch ($details['format'] ?? NULL) {
+        case 'tel':
+
+          // Code taken from Drupal\telephone\Plugin\Field\FieldFormatter\TelephoneLinkFormatter->viewElements()
+          $phone_number = preg_replace('/\D/', '', preg_replace('/^\+/', '00', $value));
+          if (strlen($phone_number) <= 5) {
+            $phone_number = substr_replace($phone_number, '-', 1, 0);
+          }
+
+          // Render each element as link.
+          $build[$id]['#content'] = [
+            '#type' => 'link',
+            // Use custom title if available, otherwise use the telephone number
+            // itself as title.
+            '#title' => $value,
+            // Prepend 'tel:' to the telephone number.
+            '#url' => Url::fromUri('tel:' . rawurlencode($phone_number)),
+            '#options' => ['external' => TRUE],
+          ];
+          break;
+
+        case 'email':
+          $build[$id]['#content'] = [
+            '#type' => 'link',
+            '#title' => $value,
+            '#url' => Url::fromUri('mailto:' . $value),
+          ];
+          break;
+
+        default:
+          $build[$id]['#content'] = $value;
+          break;
+      }
+    }
+  }
+}
+
+/**
+ * Change the user edit form to add the relevant fields.
+ */
+function nlc_salesforce_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $fields = [];
+  switch ($form_id) {
+    case 'user_form':
+      $fields = SFWrapper::CONTACT_FIELDS;
+      break;
+    case 'profile_role_edit_form':
+      $fields = SFWrapper::ROLE_FIELDS;
+      break;
+    default:
+      return;
+  }
+
+  $form['nlc_salesforce_details'] = [
+    '#type' => 'fieldset',
+    '#title' => t('Personal Details'),
+  ];
+
+  // Add our handler as the first submit handler.
+  array_unshift($form['actions']['submit']['#submit'], 'nlc_salesforce_form_submit');
+
+  $client = SFWrapper::getInstance();
+  $values = $client->getDetailsFromEntity($form_state->getFormObject()->getEntity());
+
+  foreach($fields as $id => $details) {
+    $form['nlc_salesforce_details'][$id] = [
+      '#type' => $details['format'] ?? 'textfield', // TODO: Add field type to definition for richer UI
+      '#title' => t($details['label']),
+      '#description' => t($details['description']) ?? NULL,
+      '#default_value' => $values[$details['sf_field']] ?? NULL,
+    ];
+    switch ($details['format'] ?? NULL) {
+      case 'email':
+        $form['nlc_salesforce_details'][$id]['#element_validate'] = ['nlc_salesforce_form_validate_email'];
+        break;
+    }
+  }
+}
+
+/**
+ * Element validation fundtion to check for a valid email address.
+ */
+function nlc_salesforce_form_validate_email($element, FormStateInterface $form_state, $form) {
+  if (!valid_email_address($element['#value'])) {
+    form_error($element, t('Please enter a valid email address.'));
+  }
+}
+
+/**
+ * Handle form submission. Remember the values of additional fields.
+ */
+function nlc_salesforce_form_submit(&$form, FormStateInterface $form_state) {
+  $client = SFWrapper::getInstance();
+  foreach(SFWrapper::CONTACT_FIELDS + SFWrapper::ROLE_FIELDS as $id => $details) {
+    if ($val = $form_state->getValue($id)) {
+      $client->addSubmission($details['sf_field'], $val);
+    }
+  }
+}
+>>>>>>> feature/ch516/salesforce-sensitive-personal-data

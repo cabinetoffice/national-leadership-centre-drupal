@@ -59,8 +59,11 @@ content:
       timezone_override: ''
       format_type: simple_date
     third_party_settings: {  }
-    type: datetime_default
+  nlc_role_phone:
+    weight: 100
     region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_general_location: true
   field_location: true
