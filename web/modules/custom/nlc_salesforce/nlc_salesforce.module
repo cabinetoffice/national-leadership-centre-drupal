@@ -38,18 +38,22 @@ function nlc_salesforce_entity_extra_field_info() {
   foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
     $extra['user']['user']['display'][$id] = [
       'label' => t($details['label']),
-      'description' => t($details['description']),
       'visible' => TRUE,
       'weight' => 100,
     ];
+    if (!empty($details['description'])) {
+      $extra['user']['user']['display'][$id]['description'] = t($details['description']);
+    }
   }
   foreach(SFWrapper::ROLE_FIELDS as $id => $details) {
     $extra['profile']['role']['display'][$id] = [
       'label' => t($details['label']),
-      'description' => t($details['description']),
       'visible' => TRUE,
       'weight' => 100,
     ];
+    if (!empty($details['description'])) {
+      $extra['profile']['role']['display'][$id]['description'] = t($details['description']);
+    }
   }
  
   return $extra;
@@ -79,45 +83,49 @@ function nlc_salesforce_build_view_fields(array $fields, array &$build, EntityIn
   foreach($fields as $id => $details) {
 
     if ($component = $display->getComponent($id)) {
-      $value = $values[$details['sf_field']] ?? NULL;
-      $build[$id] = [
-        '#theme' => 'nlc_field',
-        '#content' => $values[$details['sf_field']] ?? NULL,
-        '#label' => $details['label'],
-      ];
 
-      switch ($details['format'] ?? NULL) {
-        case 'tel':
+      // Only display the field if we have a value.
+      if ($value = $values[$details['sf_field']] ?? NULL) {
 
-          // Code taken from Drupal\telephone\Plugin\Field\FieldFormatter\TelephoneLinkFormatter->viewElements()
-          $phone_number = preg_replace('/\D/', '', preg_replace('/^\+/', '00', $value));
-          if (strlen($phone_number) <= 5) {
-            $phone_number = substr_replace($phone_number, '-', 1, 0);
-          }
+        $build[$id] = [
+          '#theme' => 'nlc_field',
+          '#content' => $values[$details['sf_field']] ?? NULL,
+          '#label' => $details['label'],
+        ];
 
-          // Render each element as link.
-          $build[$id]['#content'] = [
-            '#type' => 'link',
-            // Use custom title if available, otherwise use the telephone number
-            // itself as title.
-            '#title' => $value,
-            // Prepend 'tel:' to the telephone number.
-            '#url' => Url::fromUri('tel:' . rawurlencode($phone_number)),
-            '#options' => ['external' => TRUE],
-          ];
-          break;
+        switch ($details['format'] ?? NULL) {
+          case 'tel':
 
-        case 'email':
-          $build[$id]['#content'] = [
-            '#type' => 'link',
-            '#title' => $value,
-            '#url' => Url::fromUri('mailto:' . $value),
-          ];
-          break;
+            // Code taken from Drupal\telephone\Plugin\Field\FieldFormatter\TelephoneLinkFormatter->viewElements()
+            $phone_number = preg_replace('/\D/', '', preg_replace('/^\+/', '00', $value));
+            if (strlen($phone_number) <= 5) {
+              $phone_number = substr_replace($phone_number, '-', 1, 0);
+            }
 
-        default:
-          $build[$id]['#content'] = $value;
-          break;
+            // Render each element as link.
+            $build[$id]['#content'] = [
+              '#type' => 'link',
+              // Use custom title if available, otherwise use the telephone number
+              // itself as title.
+              '#title' => $value,
+              // Prepend 'tel:' to the telephone number.
+              '#url' => Url::fromUri('tel:' . rawurlencode($phone_number)),
+              '#options' => ['external' => TRUE],
+            ];
+            break;
+
+          case 'email':
+            $build[$id]['#content'] = [
+              '#type' => 'link',
+              '#title' => $value,
+              '#url' => Url::fromUri('mailto:' . $value),
+            ];
+            break;
+
+          default:
+            $build[$id]['#content'] = $value;
+            break;
+        }
       }
     }
   }
@@ -154,9 +162,12 @@ function nlc_salesforce_form_alter(&$form, FormStateInterface $form_state, $form
     $form['nlc_salesforce_details'][$id] = [
       '#type' => $details['format'] ?? 'textfield', // TODO: Add field type to definition for richer UI
       '#title' => t($details['label']),
-      '#description' => t($details['description']) ?? NULL,
       '#default_value' => $values[$details['sf_field']] ?? NULL,
     ];
+    if (!empty($details['description'])) {
+      $form['nlc_salesforce_details'][$id]['#description'] = t($details['description']);
+    }
+
     switch ($details['format'] ?? NULL) {
       case 'email':
         $form['nlc_salesforce_details'][$id]['#element_validate'] = ['nlc_salesforce_form_validate_email'];
@@ -169,8 +180,8 @@ function nlc_salesforce_form_alter(&$form, FormStateInterface $form_state, $form
  * Element validation fundtion to check for a valid email address.
  */
 function nlc_salesforce_form_validate_email($element, FormStateInterface $form_state, $form) {
-  if (!valid_email_address($element['#value'])) {
-    form_error($element, t('Please enter a valid email address.'));
+  if (!empty($element['#value']) && !valid_email_address($element['#value'])) {
+    $form_state->setError($element, t('Please enter a valid email address.'));
   }
 }
 
@@ -185,4 +196,3 @@ function nlc_salesforce_form_submit(&$form, FormStateInterface $form_state) {
     }
   }
 }
->>>>>>> feature/ch516/salesforce-sensitive-personal-data
