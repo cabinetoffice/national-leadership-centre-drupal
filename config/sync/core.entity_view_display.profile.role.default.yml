@@ -12,30 +12,11 @@ dependencies:
     - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
-  module:
-    - datetime
 id: profile.role.default
 targetEntityType: profile
 bundle: role
 mode: default
 content:
-  field_finish_date:
-    weight: 7
-    label: inline
-    settings:
-      timezone_override: ''
-      format_type: simple_date
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_job_title:
-    type: string
-    weight: 2
-    region: content
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   field_job_title_term:
     weight: 1
     label: inline
@@ -52,21 +33,37 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_start_date:
+  nlc_role_assistant_email:
     weight: 6
-    label: inline
-    settings:
-      timezone_override: ''
-      format_type: simple_date
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_assistant_name:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_assistant_phone:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_email:
+    weight: 2
+    region: content
+    settings: {  }
     third_party_settings: {  }
   nlc_role_phone:
-    weight: 100
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_finish_date: true
   field_general_location: true
+  field_job_title: true
   field_location: true
+  field_start_date: true
   field_time_in_role: true
   layout_builder__layout: true
   salesforce_id: true
