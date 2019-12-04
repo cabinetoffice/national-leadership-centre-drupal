@@ -18,7 +18,7 @@ dependencies:
     - user
 id: network_individual_user_mapping
 label: 'Network Individual User Mapping'
-weight: -8
+weight: -7
 type: salesforce_mapping
 key: ''
 async: false
@@ -42,49 +42,49 @@ field_mappings:
     drupal_field_value: name
     salesforce_field: Name
     direction: sf_drupal
-    id: 1
+    id: 0
   -
     drupal_field_type: properties
     drupal_field_value: mail
     salesforce_field: EmailAddress__c
     direction: sync
-    id: 2
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: status
     salesforce_field: Connect_User__c
     direction: sync
-    id: 3
+    id: 2
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.title
     salesforce_field: Title__c
     direction: sync
-    id: 4
+    id: 3
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.given
     salesforce_field: FirstName__c
     direction: sync
-    id: 5
+    id: 4
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.family
     salesforce_field: LastName__c
     direction: sync
-    id: 6
+    id: 5
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_cohort
     salesforce_field: Network_Cohort__c
     direction: sync
-    id: 7
+    id: 6
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_programme_year
-    salesforce_field: Programme_Cohort__c
+    salesforce_field: Network_Programme_Year__c
     direction: sync
-    id: 8
+    id: 7
 push_limit: 0
 push_retries: 3
 push_frequency: 0
