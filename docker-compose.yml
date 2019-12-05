@@ -12,10 +12,10 @@ services:
       MYSQL_USER: $DB_USER
       MYSQL_PASSWORD: $DB_PASSWORD
     volumes:
-     - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-     - project-db-data:/var/lib/mysql # I want to manage volumes manually.
+      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+      - project-db-data:/var/lib/mysql # I want to manage volumes manually.
     networks:
-      - connect
+      - nlc_cms
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -35,7 +35,7 @@ services:
       - ./:/var/www/html:cached # User-guided caching
       # - docker-sync:/var/www/html # Docker-sync
     networks:
-      - connect
+      - nlc_cms
       - graph
 
   nginx:
@@ -61,8 +61,7 @@ services:
       - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
       - 'traefik.docker.network=traefik'
     networks:
-      - connect
-      - traefik
+      - nlc_cms
 
   neo4j:
     image: convivio/neo4j:$NEO4J_TAG
@@ -85,26 +84,25 @@ services:
       # NEO4J_BOLT_PORT_NUMBER: $NEO4J_BOLT_PORT_NUMBER
       # NEO4J_HTTP_PORT_NUMBER: $NEO4J_HTTP_PORT_NUMBER
       # NEO4J_HTTPS_PORT_NUMBER: $NEO4J_HTTPS_PORT_NUMBER
-    networks:
-      - graph
-      - traefik
     labels:
       - 'traefik.backend=neo4j'
       - 'traefik.port=$NEO4J_HTTP_PORT_NUMBER'
       - 'traefik.frontend.rule=Host:graph.${PROJECT_BASE_URL}'
       - 'traefik.docker.network=traefik'
+    networks:
+      - graph
 
   redis:
     image: wodby/redis:$REDIS_TAG
     container_name: "${PROJECT_NAME}_redis"
     networks:
-      - connect
+      - nlc_cms
 
   memcached:
     image: wodby/memcached:$MEMCACHED_TAG
     container_name: "${PROJECT_NAME}_memcached"
     networks:
-      - connect
+      - nlc_cms
 
   mailhog:
     image: mailhog/mailhog
@@ -115,8 +113,7 @@ services:
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
       - 'traefik.docker.network=traefik'
     networks:
-      - connect
-      - traefik
+      - nlc_cms
 
   # varnish:
   #   image: wodby/drupal-varnish:$VARNISH_TAG
@@ -141,10 +138,8 @@ services:
       - 'traefik.backend=adminer'
       - 'traefik.port=9000'
       - 'traefik.frontend.rule=Host:adminer.${PROJECT_BASE_URL}'
-      - 'traefik.docker.network=traefik'
     networks:
-      - connect
-      - traefik
+      - nlc_cms
 
   # solr:
   #   image: wodby/drupal-solr:$SOLR_TAG
@@ -156,14 +151,17 @@ services:
   #     - 'traefik.port=8983'
   #     - 'traefik.frontend.rule=Host:solr.${PROJECT_BASE_URL}'
 
-  # elasticsearch:
-  #   image: wodby/elasticsearch:$ELASTICSEARCH_TAG
-  #   environment:
-  #     ES_JAVA_OPTS: "-Xms500m -Xmx500m"
-  #   ulimits:
-  #     memlock:
-  #       soft: -1
-  #       hard: -1
+#  elasticsearch:
+#    image: wodby/elasticsearch:$ELASTICSEARCH_TAG
+#    container_name: "${PROJECT_NAME}_elasticsearch"
+#    environment:
+#      ES_JAVA_OPTS: "-Xms500m -Xmx500m"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    networks:
+#      - nlc_cms
 
   # kibana:
   #   image: wodby/kibana:$KIBANA_TAG
@@ -174,26 +172,30 @@ services:
   #     - 'traefik.port=5601'
   #     - 'traefik.frontend.rule=Host:kibana.php.docker.localhost'
 
-#  portainer:
-#    image: portainer/portainer
-#    container_name: "${PROJECT_NAME}_portainer"
-#    command: --no-auth -H unix:///var/run/docker.sock
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#    labels:
-#      - 'traefik.backend=portainer'
-#      - 'traefik.port=9000'
-#      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+  portainer:
+    image: portainer/portainer
+    container_name: "${PROJECT_NAME}_portainer"
+    command: --no-auth -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - 'traefik.backend=portainer'
+      - 'traefik.port=9000'
+      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+    networks:
+      - nlc_cms
 
-#  traefik:
-#    image: traefik:1.7.16-alpine
-#    container_name: "${PROJECT_NAME}_traefik"
-#    command: -c /dev/null --web --docker --logLevel=INFO
-#    ports:
-#      - '80:80'
-#      - '8080:8080' # Dashboard
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
+  traefik:
+    image: traefik:1.7.16-alpine
+    container_name: "${PROJECT_NAME}_traefik"
+    command: -c /dev/null --web --docker --logLevel=INFO
+    ports:
+      - '80:80'
+      - '8080:8080' # Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - nlc_cms
 
 volumes:
   # Docker-sync for macOS users
@@ -204,9 +206,7 @@ volumes:
   graph-logs:
 
 networks:
-  traefik:
-    external: true
-  neo4j-network:
-    external: true
-  connect:
+#  traefik:
+#    external: true
+  nlc_cms:
   graph:
