@@ -12,17 +12,6 @@ use Drupal\salesforce\SFID;
 class SFWrapper {
 
   /**
-   * Definition of the field mapping between a SF contact and a Drupal user entity.
-   */
-  const CONTACT_FIELDS = [
-    'nlc_sf_phone' => [
-      'label' => 'Phone Number',
-      'sf_field' => 'PhoneNumber__c',
-      'format' => 'tel',
-    ],
-  ];
-
-  /**
    * Definition of the field mapping between a SF role and Drupal profile.
    */
   const ROLE_FIELDS = [

@@ -35,16 +35,6 @@ function nlc_salesforce_theme($existing, $type, $theme, $path) {
 function nlc_salesforce_entity_extra_field_info() {
   $extra = array();
 
-  foreach(SFWrapper::CONTACT_FIELDS as $id => $details) {
-    $extra['user']['user']['display'][$id] = [
-      'label' => t($details['label']),
-      'visible' => TRUE,
-      'weight' => 100,
-    ];
-    if (!empty($details['description'])) {
-      $extra['user']['user']['display'][$id]['description'] = t($details['description']);
-    }
-  }
   foreach(SFWrapper::ROLE_FIELDS as $id => $details) {
     $extra['profile']['role']['display'][$id] = [
       'label' => t($details['label']),
@@ -57,13 +47,6 @@ function nlc_salesforce_entity_extra_field_info() {
   }
  
   return $extra;
-}
-
-/**
- * Implements hook_ENTITY_TYPE_view().
- */
-function nlc_salesforce_user_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
-  nlc_salesforce_build_view_fields(SFWrapper::CONTACT_FIELDS, $build, $entity, $display, $view_mode);
 }
 
 /**
@@ -137,9 +120,6 @@ function nlc_salesforce_build_view_fields(array $fields, array &$build, EntityIn
 function nlc_salesforce_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $fields = [];
   switch ($form_id) {
-    case 'user_form':
-      $fields = SFWrapper::CONTACT_FIELDS;
-      break;
     case 'profile_role_edit_form':
       $fields = SFWrapper::ROLE_FIELDS;
       break;
@@ -190,7 +170,7 @@ function nlc_salesforce_form_validate_email($element, FormStateInterface $form_s
  */
 function nlc_salesforce_form_submit(&$form, FormStateInterface $form_state) {
   $client = SFWrapper::getInstance();
-  foreach(SFWrapper::CONTACT_FIELDS + SFWrapper::ROLE_FIELDS as $id => $details) {
+  foreach(SFWrapper::ROLE_FIELDS as $id => $details) {
     if ($val = $form_state->getValue($id)) {
       $client->addSubmission($details['sf_field'], $val);
     }
