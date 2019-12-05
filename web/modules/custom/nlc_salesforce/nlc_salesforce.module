@@ -8,6 +8,7 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form;
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -173,6 +174,29 @@ function nlc_salesforce_form_submit(&$form, FormStateInterface $form_state) {
   foreach(SFWrapper::ROLE_FIELDS as $id => $details) {
     if ($val = $form_state->getValue($id)) {
       $client->addSubmission($details['sf_field'], $val);
+    }
+  }
+}
+
+/**
+ * Preprocess the page.
+ * While this is presentational logic I decided not to put it in the theme
+ * because it uses the custom field template I defined in this module.
+ */
+function nlc_salesforce_preprocess_node(&$vars) {
+
+  // For embedded nodes, add the title as the first field.
+  if (isset($vars['view_mode']) && $vars['view_mode'] == 'embed') {
+    if (!empty($vars['node']) && $node = $vars['node']) {
+      // Suppress the real title.
+      $vars['page'] = true;
+      // Add the title as a field.
+      $vars['content']['node_title'] = [
+        '#theme' => 'nlc_field',
+        '#content' => $node->getTitle(),
+        '#label' => node_type_load($node->bundle())->label(),
+        '#weight' => -1,
+      ];
     }
   }
 }
