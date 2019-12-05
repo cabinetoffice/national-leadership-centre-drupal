@@ -91,6 +91,7 @@ services:
       - 'traefik.docker.network=traefik'
     networks:
       - graph
+      - nlc_cms
 
   redis:
     image: wodby/redis:$REDIS_TAG
