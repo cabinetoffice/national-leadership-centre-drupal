@@ -9,9 +9,11 @@ folder: ../config/crm
 module: {  }
 theme: {  }
 blacklist:
-  - salesforce.salesforce_auth.nlc_jblocaldev_sandbox_13_11
-  - salesforce.settings
+  - key.key.nlc_jblocaldev_sandbox
   - key.key.salesforce_api_key
+  - salesforce.salesforce_auth.nlc_devcontent
+  - salesforce.settings
+  - salesforce.salesforce_auth.nlc_jblocaldev_sandbox_13_11
   - salesforce.salesforce_auth.nlc_jblocaldev_sandbox
 graylist: {  }
 graylist_dependents: true

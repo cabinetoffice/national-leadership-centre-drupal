@@ -15,7 +15,7 @@ bundle: programme_year
 mode: default
 content:
   field_end_date:
-    weight: 3
+    weight: 1
     label: inline
     settings:
       timezone_override: ''
@@ -24,7 +24,7 @@ content:
     type: datetime_default
     region: content
   field_start_date:
-    weight: 2
+    weight: 0
     label: inline
     settings:
       timezone_override: ''
@@ -34,4 +34,6 @@ content:
     region: content
 hidden:
   links: true
+  salesforce_id: true
+  salesforce_last_sync: true
   search_api_excerpt: true
