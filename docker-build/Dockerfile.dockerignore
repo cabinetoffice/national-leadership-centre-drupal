@@ -1,0 +1,9 @@
+*
+!/web/
+!/vendor/
+!/config/
+!/composer.lock
+!/composer.json
+!/scripts/composer/ScriptHandler.php
+!/load.environment.php
+
