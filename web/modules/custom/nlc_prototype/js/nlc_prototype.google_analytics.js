@@ -7,6 +7,7 @@
         copy: function() {
           gtag('event', 'Copy', {
             event_category: this.href.includes('tel:') ? 'Telephone' : 'Mails',
+            event_label: 'UID: ' + drupalSettings.user.uid + ' | Page: ' + drupalSettings.path.currentPath,
             transport_type: 'beacon'
           });
         }
@@ -16,7 +17,7 @@
         click: function () {
           gtag('event', 'Click', {
             event_category: 'Telephone',
-            event_label: this.href.substring(4),
+            event_label: 'UID: ' + drupalSettings.user.uid + ' | Page: ' + drupalSettings.path.currentPath,
             transport_type: 'beacon'
           });
         }
