@@ -1,0 +1,28 @@
+{%
+  set classes = [
+    'govuk-form-group',
+    'js-form-item',
+    'form-item',
+    'js-form-type-' ~ type|clean_class,
+    'form-item-' ~ name|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    title_display not in ['after', 'before'] ? 'form-no-label',
+    disabled == 'disabled' ? 'form-disabled',
+    errors ? 'govuk-form-group--error',
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ label }}
+  {% if description.content %}
+    <span {{ description.attributes.addClass("govuk-hint") }}>
+      {{ description.content }}
+    </span>
+  {% endif %}
+  {% if errors %}
+    <span class="govuk-error-message">
+      {{ errors }}
+    </span>
+  {% endif %}
+  {{ children }}
+</div>
