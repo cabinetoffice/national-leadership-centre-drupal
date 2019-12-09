@@ -7,7 +7,6 @@
         copy: function() {
           gtag('event', 'Copy', {
             event_category: this.href.includes('tel:') ? 'Telephone' : 'Mails',
-            event_label: this.href.includes('tel:') ? this.href.substring(4) : this.href.substring(7),
             transport_type: 'beacon'
           });
         }
