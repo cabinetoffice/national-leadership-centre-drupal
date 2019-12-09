@@ -1,0 +1,493 @@
+uuid: 65bfe109-2f0a-4f3e-95d5-d7eb6957acad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_location
+    - field.storage.user.field_cohort
+    - field.storage.user.field_gender
+    - field.storage.profile.field_job_title_term
+    - field.storage.profile.field_organisation
+    - field.storage.node.field_region
+    - field.storage.node.field_sector
+    - field.storage.user.field_title
+    - field.storage.user.field_programme_year
+    - field.storage.user.field_name
+    - search_api.server.elastic
+  module:
+    - profile
+    - node
+    - user
+    - taxonomy
+    - search_api
+id: elastic_index
+name: 'Elastic Index'
+description: ''
+read_only: false
+field_settings:
+  country_code:
+    label: 'Location » The two-letter country code.'
+    datasource_id: 'entity:profile'
+    property_path: 'field_location:country_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_location
+  dependent_locality:
+    label: 'Location » The dependent locality (i.e. neighbourhood).'
+    datasource_id: 'entity:profile'
+    property_path: 'field_location:dependent_locality'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_location
+  field_cohort:
+    label: Cohort
+    datasource_id: 'entity:user'
+    property_path: field_cohort
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+  field_gender:
+    label: Gender
+    datasource_id: 'entity:user'
+    property_path: field_gender
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_gender
+  field_job_title_term:
+    label: 'Job Title'
+    datasource_id: 'entity:profile'
+    property_path: field_job_title_term
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_job_title_term
+  field_job_title_term_1:
+    label: 'Role profiles » Profile » Job Title'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_job_title_term'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+      config:
+        - field.storage.profile.field_job_title_term
+  field_organisation:
+    label: Organisation
+    datasource_id: 'entity:profile'
+    property_path: field_organisation
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+  field_region:
+    label: Region
+    datasource_id: 'entity:node'
+    property_path: field_region
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_region
+  field_region_1:
+    label: 'Organisation » Content » Region'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_region'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+      module:
+        - node
+  field_region_2:
+    label: 'Role profiles » Profile » Organisation » Content » Region'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_region'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+  field_sector:
+    label: Sector
+    datasource_id: 'entity:node'
+    property_path: field_sector
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_sector
+  field_sector_1:
+    label: 'Role profiles » Profile » Organisation » Content » Sector'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_sector'
+    type: integer
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+  field_title:
+    label: Title
+    datasource_id: 'entity:user'
+    property_path: field_title
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_title
+  init:
+    label: 'Initial email'
+    datasource_id: 'entity:user'
+    property_path: init
+    type: string
+    dependencies:
+      module:
+        - user
+  locality:
+    label: 'Location » The locality (i.e. city).'
+    datasource_id: 'entity:profile'
+    property_path: 'field_location:locality'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_location
+  mail:
+    label: Email
+    datasource_id: 'entity:user'
+    property_path: mail
+    type: string
+    dependencies:
+      module:
+        - user
+  name:
+    label: 'Organisation » Content » Region » Taxonomy term » Name'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_region:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+      module:
+        - node
+        - taxonomy
+        - taxonomy
+  name_1:
+    label: 'Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:field_sector:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+      module:
+        - node
+        - taxonomy
+        - taxonomy
+  name_2:
+    label: Name
+    datasource_id: 'entity:taxonomy_term'
+    property_path: name
+    type: string
+    dependencies:
+      module:
+        - taxonomy
+  name_3:
+    label: Name
+    datasource_id: 'entity:user'
+    property_path: name
+    type: string
+    dependencies:
+      module:
+        - user
+  name_4:
+    label: 'Role profiles » Profile » Job Title » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_job_title_term:entity:name'
+    type: string
+    dependencies:
+      module:
+        - profile
+        - profile
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_job_title_term
+  name_5:
+    label: 'Role profiles » Profile » Organisation » Content » Region » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_region:entity:name'
+    type: string
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_region
+  name_6:
+    label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
+    type: string
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - taxonomy
+        - taxonomy
+      config:
+        - field.storage.profile.field_organisation
+        - field.storage.node.field_sector
+  nid:
+    label: 'Organisation » Content » ID'
+    datasource_id: 'entity:profile'
+    property_path: 'field_organisation:entity:nid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - node
+  nid_1:
+    label: 'Programme year » Content » ID'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:nid'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+      module:
+        - node
+        - node
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  pass:
+    label: Password
+    datasource_id: 'entity:user'
+    property_path: pass
+    type: string
+    dependencies:
+      module:
+        - user
+  preferred_langcode:
+    label: 'Preferred language code'
+    datasource_id: 'entity:user'
+    property_path: preferred_langcode
+    type: string
+    dependencies:
+      module:
+        - user
+  roles:
+    label: Roles
+    datasource_id: 'entity:user'
+    property_path: roles
+    type: string
+    dependencies:
+      module:
+        - user
+  roles_1:
+    label: Roles
+    datasource_id: 'entity:user'
+    property_path: roles
+    type: string
+    dependencies:
+      module:
+        - user
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  status_1:
+    label: 'User status'
+    datasource_id: 'entity:user'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - user
+  title:
+    label: 'Cohort » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_cohort:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+      module:
+        - node
+        - node
+  title_1:
+    label: 'Name » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  title_2:
+    label: 'Programme year » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+      module:
+        - node
+        - node
+  title_3:
+    label: 'Role profiles » Profile » Organisation » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'role_profiles:entity:field_organisation:entity:title'
+    type: string
+    dependencies:
+      module:
+        - profile
+        - profile
+        - node
+        - node
+      config:
+        - field.storage.profile.field_organisation
+  uid:
+    label: 'Authored by'
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:profile':
+    bundles:
+      default: true
+      selected: {  }
+  'entity:taxonomy_term':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:user':
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  ignorecase:
+    all_fields: false
+    fields:
+      - country_code
+      - dependent_locality
+      - field_gender
+      - field_title
+      - init
+      - locality
+      - mail
+      - name
+      - name_1
+      - name_2
+      - name_3
+      - name_4
+      - name_5
+      - name_6
+      - pass
+      - preferred_langcode
+      - roles
+      - roles_1
+      - title
+      - title_1
+      - title_2
+      - title_3
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+  transliteration:
+    all_fields: false
+    fields:
+      - country_code
+      - dependent_locality
+      - field_gender
+      - field_title
+      - init
+      - locality
+      - mail
+      - name
+      - name_1
+      - name_2
+      - name_3
+      - name_4
+      - name_5
+      - name_6
+      - pass
+      - preferred_langcode
+      - roles
+      - roles_1
+      - title
+      - title_1
+      - title_2
+      - title_3
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: elastic
