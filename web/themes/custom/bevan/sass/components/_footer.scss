@@ -1,0 +1,83 @@
+.site-footer {
+    background-color: $very-light-grey;
+    font-size: 1.25rem;
+    padding: 40px 0;
+
+    &__inner {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    a {
+        color: $grey;
+        &:hover, a:focus {
+            text-decoration: none;
+        }
+    }
+}
+#block-footer {
+	width: 100%;
+    margin-bottom: 20px;
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+        li {
+            display: inline-block;
+            padding-right: 1em;
+        }
+    }
+}
+#block-social {
+	width: 100%;
+    margin-bottom: 20px;
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+         li {
+            padding-bottom: 5px;
+            display: block;
+        }
+        a {
+            vertical-align: middle;
+            display: inline-block;
+            text-decoration: underline;
+            &::before {
+                content: '';
+                width: 35px;
+                height: 35px;
+                padding-right: 10px;
+                display: inline-block;
+                vertical-align: middle;
+                background-repeat: no-repeat;
+            }
+            &:hover, a:focus {
+                text-decoration: none;
+            }
+            &[href*="linkedin"]::before {
+                background-image: url(../assets/images/linkedin.svg);
+            }
+            &[href*="twitter"]::before {
+                background-image: url(../assets/images/twitter.svg);
+            }
+        }
+    }
+}
+.copyright {
+	display: block;
+	background-image: url(../assets/images/govuk-crest.png);
+	background-repeat: no-repeat;
+	background-position: 50% 0%;
+	background-size: 115px auto;
+	text-align: center;
+	padding: 115px 0 0 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+	.copyright {
+		background-image: url(../assets/images/govuk-crest-2x.png);
+	}
+}
