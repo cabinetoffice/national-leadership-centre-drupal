@@ -8,3 +8,11 @@ applications:
   services:
     - nlc-alpha-s3
     - nlc-alpha-drupal-mysql
+- name: nlc-alpha-drupal-cron
+  path: ./app_cron
+  memory: 24M
+  no-route: true
+  health-check-type: process
+  buildpacks:
+    - https://github.com/cloudfoundry/multi-buildpack
+  command: ./supercronic crontab 2>&1
