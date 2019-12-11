@@ -1,0 +1,80 @@
+uuid: 4a980a56-4ad2-4297-b87b-f097246bdcc9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.role.field_finish_date
+    - field.field.profile.role.field_job_title
+    - field.field.profile.role.field_job_title_term
+    - field.field.profile.role.field_organisation
+    - field.field.profile.role.field_start_date
+    - field.storage.profile.field_job_title_term
+    - field.storage.profile.field_organisation
+    - node.type.organisation
+    - profile.type.role
+    - taxonomy.vocabulary.job_title
+  module:
+    - salesforce_pull
+    - salesforce_push
+id: network_individual_role_profile_
+label: 'Network Individual Role Profile Mapping'
+weight: -6
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  push_create: true
+  push_update: true
+  push_delete: false
+  pull_create: true
+  pull_update: true
+  pull_delete: false
+salesforce_object_type: NetworkIndividualRole__c
+drupal_entity_type: profile
+drupal_bundle: role
+field_mappings:
+  1:
+    drupal_field_type: properties
+    drupal_field_value: field_start_date
+    salesforce_field: Start_date__c
+    direction: sync
+    id: 2
+  2:
+    drupal_field_type: properties
+    drupal_field_value: field_finish_date
+    salesforce_field: End_date__c
+    direction: sync
+    id: 3
+  3:
+    drupal_field_type: RelatedIDs
+    drupal_field_value: field_organisation
+    salesforce_field: NetworkOrganisation__c
+    direction: sync
+    id: 4
+  4:
+    drupal_field_type: RelatedIDs
+    drupal_field_value: uid
+    salesforce_field: Network_Individual__c
+    direction: sync
+    id: 5
+  5:
+    drupal_field_type: RelatedTermString
+    drupal_field_value: field_job_title_term
+    salesforce_field: Job_Title_Synonym__c
+    direction: sync
+    id: 6
+  6:
+    drupal_field_type: properties
+    drupal_field_value: field_job_title
+    salesforce_field: Job_Title__c
+    direction: sync
+    id: 7
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false

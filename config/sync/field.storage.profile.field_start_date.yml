@@ -1,15 +1,17 @@
-uuid: c777475b-43cf-42a3-bbf8-5d1e68d30336
+uuid: 08a54274-6839-4f69-a017-750267282c5b
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - profile
-id: profile.field_email
-field_name: field_email
+id: profile.field_start_date
+field_name: field_start_date
 entity_type: profile
-type: email
-settings: {  }
-module: core
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true

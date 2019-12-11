@@ -1,0 +1,21 @@
+uuid: 4ed46893-cbde-4a62-a14c-3ea28ba31604
+langcode: en
+status: true
+dependencies: {  }
+id: crm
+label: CRM
+description: 'Configurations for synchronisation with the Salesforce CRM'
+folder: ../config/crm
+module: {  }
+theme: {  }
+blacklist:
+  - key.key.nlc_jblocaldev_sandbox
+  - key.key.salesforce_api_key
+  - salesforce.salesforce_auth.nlc_devcontent
+  - salesforce.settings
+  - salesforce.salesforce_auth.nlc_jblocaldev_sandbox_13_11
+  - salesforce.salesforce_auth.nlc_jblocaldev_sandbox
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

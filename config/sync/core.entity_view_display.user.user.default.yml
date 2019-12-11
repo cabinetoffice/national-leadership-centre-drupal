@@ -4,23 +4,24 @@ status: true
 dependencies:
   config:
     - field.field.user.user.field_cohort
-    - field.field.user.user.field_gender
     - field.field.user.user.field_name
     - field.field.user.user.field_programme_year
-    - field.field.user.user.field_title
   module:
     - field_group
     - user
 third_party_settings:
   field_group:
-    group_programme_and_cohort:
+    group_event_participation:
       children:
         - field_programme_year
         - field_cohort
       parent_name: ''
       weight: 2
       format_type: html_element
+      region: content
       format_settings:
+        id: ''
+        classes: ''
         element: div
         show_label: true
         label_element: h3
@@ -28,10 +29,7 @@ third_party_settings:
         attributes: ''
         effect: none
         speed: fast
-        id: ''
-        classes: ''
       label: 'Event participation'
-      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
@@ -53,27 +51,31 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  nlc_sf_phone:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   role_profiles:
     type: entity_reference_entity_view
     weight: 0
-    region: content
     label: hidden
     settings:
-      link: true
       view_mode: default
+      link: false
     third_party_settings: {  }
+    region: content
   social_media_profiles:
-    type: entity_reference_entity_view
+    type: entity_reference_label
     weight: 1
     region: content
     label: hidden
     settings:
       link: true
-      view_mode: default
     third_party_settings: {  }
 hidden:
-  field_gender: true
   field_name: true
-  field_title: true
   member_for: true
+  salesforce_id: true
+  salesforce_last_sync: true
   search_api_excerpt: true

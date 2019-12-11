@@ -1,16 +1,14 @@
-uuid: fe2d2589-c766-4980-b648-66dd35bd47ff
+uuid: 9eddee81-672b-4bc4-86de-2c3f9e0e90c5
 langcode: en
 status: true
 dependencies:
   module:
-    - user
-id: user.field_title
-field_name: field_title
-entity_type: user
-type: string
+    - node
+id: node.field_address
+field_name: field_address
+entity_type: node
+type: string_long
 settings:
-  max_length: 255
-  is_ascii: false
   case_sensitive: false
 module: core
 locked: false

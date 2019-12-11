@@ -1,15 +1,17 @@
-uuid: e4da82d0-cdf7-4996-964c-dbc931bcccb6
+uuid: cadee3db-8db3-41be-abfc-489ad5c60e2a
 langcode: en
 status: true
 dependencies:
   module:
+    - datetime
     - profile
-id: profile.field_pa_email
-field_name: field_pa_email
+id: profile.field_finish_date
+field_name: field_finish_date
 entity_type: profile
-type: email
-settings: {  }
-module: core
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
 locked: false
 cardinality: 1
 translatable: true

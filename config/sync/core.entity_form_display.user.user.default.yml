@@ -4,58 +4,31 @@ status: true
 dependencies:
   config:
     - field.field.user.user.field_cohort
-    - field.field.user.user.field_gender
     - field.field.user.user.field_name
     - field.field.user.user.field_programme_year
-    - field.field.user.user.field_title
   module:
-    - field_group
     - name
-    - profile
-    - select_or_other
     - user
-third_party_settings:
-  field_group:
-    group_programmes_and_cohorts:
-      children:
-        - field_programme_year
-        - field_cohort
-      parent_name: ''
-      weight: 8
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: 'Programmes and cohorts'
-      region: content
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
   account:
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   field_cohort:
-    weight: 10
+    weight: 6
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_gender:
-    weight: 4
-    settings:
-      select_element_type: select_or_other_select
-      sort_options: ''
-    third_party_settings: {  }
-    type: select_or_other_list
+    type: options_select
     region: content
   field_name:
-    weight: 2
+    type: name_default
+    weight: 0
+    region: content
     settings:
       labels:
         title: Title
@@ -83,43 +56,27 @@ content:
       credentials_inline: false
       override_field_settings: false
     third_party_settings: {  }
-    type: name_default
-    region: content
   field_programme_year:
-    weight: 9
+    weight: 5
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
+    type: options_select
     region: content
   google_analytics:
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   language:
-    weight: 5
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
-  role_profiles:
-    type: profile_form
-    weight: 6
-    region: content
-    settings:
-      form_mode: default
-    third_party_settings: {  }
   timezone:
-    weight: 7
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
 hidden:
+  role_profiles: true
   social_media_profiles: true
