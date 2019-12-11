@@ -114,6 +114,10 @@ services:
       memlock:
         soft: -1
         hard: -1
+    labels:
+      - 'traefik.backend=${PROJECT_NAME}_elasticsearch'
+      - 'traefik.port=9200'
+      - 'traefik.frontend.rule=Host:elasticsearch.${PROJECT_BASE_URL}'
 
   # kibana:
   #   image: wodby/kibana:$KIBANA_TAG
