@@ -1,11 +1,11 @@
-uuid: 4ed46893-cbde-4a62-a14c-3ea28ba31604
+uuid: e3572db6-ae64-4c59-84ad-62961f523584
 langcode: en
 status: true
 dependencies: {  }
-id: crm
-label: CRM
-description: 'Configurations for synchronisation with the Salesforce CRM'
-folder: ../config/crm
+id: crm_stage
+label: 'CRM (stage)'
+description: 'Configurations for synchronisation with the Salesforce CRM in the staging environment'
+folder: ../config/crm_stage
 module: {  }
 theme: {  }
 blacklist:

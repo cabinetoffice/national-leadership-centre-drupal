@@ -36,3 +36,4 @@ node_modules
 
 # Do not include CRM sync settings
 config/crm/*
+config/crm_stage/*

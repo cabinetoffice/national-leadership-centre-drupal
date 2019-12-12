@@ -160,7 +160,7 @@ $ drush import-taxonomies --choice=safe
 
 (because `make` doesn't pass options to the command)
 
-### Data migration
+### Data migration from CSV files
 
 Ensure nlc_import is installed:
 
@@ -177,6 +177,23 @@ Run a migration:
 Rollback a migration:
 
 ```drush mr migrate_organisations```
+
+### Data import from Salesforce
+
+Rather than importing from the CSV file, you can also make a connection to Salesforce and pull most of the data from there. This connection will pull in:
+
+- Users
+- Profiles
+- Organisations
+- Cohorts
+- Programme Years
+
+To make this connection you will need to set up the relevant environemt variables.
+
+- ```SALESFORCE_PEM_PATH``` is the path to the authentication key. There is an [article explaining](https://www.drupal.org/docs/8/modules/salesforce-suite/create-a-oauth-jwt-bearer-token-flow-connected-app-4x) what this is for and how to set it all up.
+- ```SALESFORCE_URL``` is the URL to the instance of Salesforce you want to access. This can be changed, for example, between a live instance and a sandbox environment.
+- ```SALESFORCE_LOGIN``` is the user account you use to login to the Salesfroce instance on the URL above. Be aware that your user's email address may have a part appended to access a specific environment.
+- ```SALESFORCE_KEY``` is the consumer key for your user account. You can find this in the Salesforce settings under Apps → Connected Apps → Manage Connected Apps. Pick the app you are using and you'll find the key under the API settings.
 
 ##  Gov.uk PaaS
 

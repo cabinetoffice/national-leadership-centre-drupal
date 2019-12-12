@@ -35,19 +35,19 @@ field_mappings:
     drupal_field_value: field_start_date
     salesforce_field: Start_Date__c
     direction: sync
-    id: 3
+    id: 0
   -
     drupal_field_type: properties
     drupal_field_value: field_end_date
     salesforce_field: End_Date__c
     direction: sync
-    id: 4
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: title
     salesforce_field: Name
     direction: sync
-    id: 5
+    id: 2
 push_limit: 0
 push_retries: 3
 push_frequency: 0
