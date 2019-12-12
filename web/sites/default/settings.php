@@ -785,3 +785,10 @@ if (getenv('NLC_ENVIRONMENT')) {
     include __DIR__ . '/settings.' . getenv('NLC_ENVIRONMENT') . '.php';
   }
 }
+
+if (getenv('SALESFORCE_PEM_PATH')) {
+  $config['key.key.salesforce_pem']['key_provider_settings']['file_location'] = getenv('SALESFORCE_PEM_PATH');
+}
+$config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['consumer_key'] = getenv('SALESFORCE_KEY');
+$config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_user'] = getenv('SALESFORCE_LOGIN');
+$config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_url'] = getenv('SALESFORCE_URL');
