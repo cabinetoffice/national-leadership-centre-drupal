@@ -1,0 +1,17 @@
+uuid: 72fa3242-e91b-4e60-b9e7-a332c9cc9805
+langcode: en
+status: true
+dependencies: {  }
+id: crm_local
+label: 'CRM (local)'
+description: 'Configurations for synchronisation with the Salesforce CRM in a local environment'
+folder: ../config/crm_local
+module: {  }
+theme: {  }
+blacklist:
+  - salesforce.salesforce_auth.salesforce_api
+  - salesforce.settings
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
