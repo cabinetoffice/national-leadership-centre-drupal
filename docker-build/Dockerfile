@@ -1,13 +1,31 @@
 FROM php:7.2-fpm
-
 RUN mkdir -p /var/www/web/
 RUN mkdir -p /var/www/vendor/
 WORKDIR /var/www/
-COPY /web/ /var/www/web/
-COPY /vendor/ /var/www/vendor/
+COPY web/ /var/www/web/
+COPY vendor/ /var/www/vendor/
 #COPY composer.json composer.json
 #COPY composer.lock composer.lock
 #RUN mkdir -p scripts/composer/
 #COPY /scripts/composer/ScriptHandler.php scripts/composer/
-COPY /load.environment.php /var/www/
+COPY load.environment.php /var/www/
 
+# vault vars exporter
+ENV VEP_VERSION v0.0.3
+ADD https://github.com/dollarshaveclub/vaultenvporter-go/releases/download/$VEP_VERSION/vaultenvporter-go-linux-amd64 /usr/bin/vaultenvporter
+RUN chmod +x /usr/bin/vaultenvporter
+
+# php extenstions needed for drupal
+RUN docker-php-ext-install pdo_mysql
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd  \
+    && docker-php-ext-install -j$(nproc) gd
+
+
+# prod php ini - needs logging setup 
+RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# CMD eval `/usr/bin/vaultenvporter --auth-method github --auth-token $GITHUB_TOKEN --vault-prefix $VAULT_PREFIX` && php-fpm
