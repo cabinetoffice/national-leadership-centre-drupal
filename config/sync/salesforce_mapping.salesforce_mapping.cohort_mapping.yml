@@ -1,0 +1,57 @@
+uuid: 35cbeb4f-80ff-493f-90c6-edbf4afd6921
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.cohort.field_number
+    - field.field.node.cohort.field_programme_year
+    - field.storage.node.field_programme_year
+    - node.type.cohort
+    - node.type.programme_year
+  module:
+    - salesforce_pull
+    - salesforce_push
+id: cohort_mapping
+label: 'Network Cohort Mapping'
+weight: -9
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  push_create: false
+  push_update: true
+  push_delete: false
+  pull_create: true
+  pull_update: true
+  pull_delete: false
+salesforce_object_type: Network_Cohort__c
+drupal_entity_type: node
+drupal_bundle: cohort
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_number
+    salesforce_field: Cohort_Number__c
+    direction: sf_drupal
+    id: 0
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    salesforce_field: Name
+    direction: sf_drupal
+    id: 1
+  -
+    drupal_field_type: RelatedIDs
+    drupal_field_value: field_programme_year
+    salesforce_field: Network_Programme_Year__c
+    direction: sync
+    id: 2
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false

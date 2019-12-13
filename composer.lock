@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "466fd0429e090eb9a8b4fa073ff92024",
+    "content-hash": "ead8977d82ebb4dcaf9840c27af54925",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3391,6 +3391,65 @@
             }
         },
         {
+            "name": "drupal/dynamic_entity_reference",
+            "version": "2.0.0-alpha10",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/dynamic_entity_reference.git",
+                "reference": "8.x-2.0-alpha10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dynamic_entity_reference-8.x-2.0-alpha10.zip",
+                "reference": "8.x-2.0-alpha10",
+                "shasum": "138701c5b5760ec85800e61d2bb62c556488062a"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-alpha10",
+                    "datestamp": "1573073887",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Lee Rowlands",
+                    "homepage": "https://www.drupal.org/u/larowlan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jibran Ijaz",
+                    "homepage": "https://www.drupal.org/u/jibran",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                }
+            ],
+            "description": "Provides a field that allows an entity-reference field to reference more than one entity type.",
+            "homepage": "http://drupal.org/project/dynamic_entity_reference",
+            "support": {
+                "source": "http://cgit.drupalcode.org/dynamic_entity_reference",
+                "issues": "http://drupal.org/project/dynamic_entity_reference",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/email_registration",
             "version": "1.0.0-rc7",
             "source": {
@@ -4551,6 +4610,108 @@
             }
         },
         {
+            "name": "drupal/salesforce",
+            "version": "dev-4.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/salesforce.git",
+                "reference": "52b402d75a5b43d556e3dc8dd5d2bf69b7a47634"
+            },
+            "require": {
+                "consolidation/output-formatters": "^3.2.0",
+                "drupal/core": "^8.7",
+                "drupal/dynamic_entity_reference": "^2.0@alpha",
+                "drupal/key": "^1.7",
+                "drupal/typed_data": "^1.0@alpha",
+                "ext-json": "*",
+                "firebase/php-jwt": "^5.0",
+                "lusitanian/oauth": "^0.8.11"
+            },
+            "require-dev": {
+                "drupal/dynamic_entity_reference": "~2.0",
+                "drupal/key": "*",
+                "drupal/salesforce_mapping": "*",
+                "drupal/salesforce_push": "*",
+                "drupal/typed_data": "*",
+                "drupal/webform": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.x-dev",
+                    "datestamp": "1574695985",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Bauman (aaronbauman)",
+                    "homepage": "https://www.drupal.org/u/aaronbauman",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Alexander Rhodes (ironsizide)",
+                    "homepage": "https://www.drupal.org/u/ironsizide",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Colin Corrigan",
+                    "homepage": "https://www.drupal.org/u/cwcorrigan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "ironsizide",
+                    "homepage": "https://www.drupal.org/user/787980"
+                },
+                {
+                    "name": "kostajh",
+                    "homepage": "https://www.drupal.org/user/209141"
+                },
+                {
+                    "name": "levelos",
+                    "homepage": "https://www.drupal.org/user/54135"
+                },
+                {
+                    "name": "mariacha1",
+                    "homepage": "https://www.drupal.org/user/2210776"
+                },
+                {
+                    "name": "ruscoe",
+                    "homepage": "https://www.drupal.org/user/2722087"
+                },
+                {
+                    "name": "tauno",
+                    "homepage": "https://www.drupal.org/user/105595"
+                },
+                {
+                    "name": "wxactly",
+                    "homepage": "https://www.drupal.org/user/3181097"
+                }
+            ],
+            "description": "Provides Drupal modules to integrate with Salesforce.",
+            "homepage": "https://drupal.org/project/salesforce",
+            "support": {
+                "source": "http://cgit.drupalcode.org/salesforce",
+                "issues": "https://drupal.org/project/issues/salesforce"
+            },
+            "time": "2019-11-25T16:20:41+00:00"
+        },
+        {
             "name": "drupal/search_api",
             "version": "1.15.0",
             "source": {
@@ -4936,6 +5097,57 @@
             }
         },
         {
+            "name": "drupal/typed_data",
+            "version": "1.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/typed_data.git",
+                "reference": "8.x-1.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-alpha3.zip",
+                "reference": "8.x-1.0-alpha3",
+                "shasum": "962d53659f73de8dfa43f291ef40ec26e1b7a07f"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha3",
+                    "datestamp": "1554612486",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "TR",
+                    "homepage": "https://www.drupal.org/user/202830"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                }
+            ],
+            "description": "Extends the core Typed Data API with new APIS and features.",
+            "homepage": "https://www.drupal.org/project/typed_data",
+            "support": {
+                "source": "https://git.drupalcode.org/project/typed_data"
+            }
+        },
+        {
             "name": "drupal/userprotect",
             "version": "1.0.0",
             "source": {
@@ -5313,6 +5525,52 @@
                 "sendgrid"
             ],
             "time": "2019-01-16T00:58:24+00:00"
+        },
+        {
+            "name": "firebase/php-jwt",
+            "version": "v5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/firebase/php-jwt.git",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/firebase/php-jwt/zipball/9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "reference": "9984a4d3a32ae7673d6971ea00bae9d0a1abba0e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": " 4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Firebase\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Neuman Vong",
+                    "role": "Developer",
+                    "email": "neuman+pear@twilio.com"
+                },
+                {
+                    "name": "Anant Narayanan",
+                    "role": "Developer",
+                    "email": "anant@php.net"
+                }
+            ],
+            "description": "A simple library to encode and decode JSON Web Tokens (JWT) in PHP. Should conform to the current spec.",
+            "homepage": "https://github.com/firebase/php-jwt",
+            "time": "2017-06-27T22:17:23+00:00"
         },
         {
             "name": "graphaware/neo4j-bolt",
@@ -6011,6 +6269,73 @@
                 "write"
             ],
             "time": "2019-10-17T06:05:32+00:00"
+        },
+        {
+            "name": "lusitanian/oauth",
+            "version": "v0.8.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lusitanian/PHPoAuthLib.git",
+                "reference": "fc11a53db4b66da555a6a11fce294f574a8374f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lusitanian/PHPoAuthLib/zipball/fc11a53db4b66da555a6a11fce294f574a8374f9",
+                "reference": "fc11a53db4b66da555a6a11fce294f574a8374f9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "predis/predis": "0.8.*@dev",
+                "squizlabs/php_codesniffer": "2.*",
+                "symfony/http-foundation": "~2.1"
+            },
+            "suggest": {
+                "ext-openssl": "Allows for usage of secure connections with the stream-based HTTP client.",
+                "predis/predis": "Allows using the Redis storage backend.",
+                "symfony/http-foundation": "Allows using the Symfony Session storage backend."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "OAuth": "src",
+                    "OAuth\\Unit": "tests"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Desberg",
+                    "email": "david@daviddesberg.com"
+                },
+                {
+                    "name": "Elliot Chance",
+                    "email": "elliotchance@gmail.com"
+                },
+                {
+                    "name": "Pieter Hordijk",
+                    "email": "info@pieterhordijk.com"
+                }
+            ],
+            "description": "PHP 5.3+ oAuth 1/2 Library",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "oauth",
+                "security"
+            ],
+            "time": "2018-02-14T22:37:14+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -11832,6 +12157,17 @@
         {
             "name": "webflo/drupal-core-require-dev",
             "version": "8.7.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webflo/drupal-core-require-dev.git",
+                "reference": "8bdafc28da6866612a3d2274200cd74812cba3b1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webflo/drupal-core-require-dev/zipball/8bdafc28da6866612a3d2274200cd74812cba3b1",
+                "reference": "8bdafc28da6866612a3d2274200cd74812cba3b1",
+                "shasum": ""
+            },
             "require": {
                 "behat/mink": "1.7.x-dev",
                 "behat/mink-goutte-driver": "^1.2",
@@ -11876,6 +12212,7 @@
         "drupal/name": 5,
         "drupal/profile": 5,
         "drupal/s3fs": 15,
+        "drupal/salesforce": 20,
         "drupal/select_or_other": 15
     },
     "prefer-stable": true,

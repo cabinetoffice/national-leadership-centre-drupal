@@ -14,6 +14,7 @@ module:
   contextual: 0
   datetime: 0
   dblog: 0
+  dynamic_entity_reference: 0
   dynamic_page_cache: 0
   editor: 0
   email_registration: 0
@@ -27,6 +28,7 @@ module:
   google_analytics: 0
   image: 0
   inline_form_errors: 0
+  key: 0
   link: 0
   mailsystem: 0
   menu_ui: 0
@@ -35,6 +37,7 @@ module:
   neo4j_entity: 0
   neo4j_page: 0
   nlc_prototype: 0
+  nlc_salesforce: 0
   node: 0
   options: 0
   page_cache: 0
@@ -43,10 +46,18 @@ module:
   quickedit: 0
   rdf: 0
   s3fs: 0
+  salesforce: 0
+  salesforce_jwt: 0
+  salesforce_logger: 0
+  salesforce_mapping: 0
+  salesforce_mapping_ui: 0
+  salesforce_pull: 0
+  salesforce_push: 0
   search_api: 0
   search_api_db: 0
   select_or_other: 0
   sendgrid_integration: 0
+  serialization: 0
   structure_sync: 0
   syslog: 0
   system: 0
@@ -55,6 +66,7 @@ module:
   text: 0
   token: 0
   toolbar: 0
+  typed_data: 0
   update: 0
   user: 0
   userprotect: 0

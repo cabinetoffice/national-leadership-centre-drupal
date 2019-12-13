@@ -1,0 +1,17 @@
+uuid: 4ed46893-cbde-4a62-a14c-3ea28ba31604
+langcode: en
+status: true
+dependencies: {  }
+id: crm
+label: CRM
+description: 'Configurations for synchronisation with the Salesforce CRM'
+folder: ../config/crm
+module: {  }
+theme: {  }
+blacklist:
+  - salesforce.salesforce_auth.salesforce_auth
+  - salesforce.settings
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

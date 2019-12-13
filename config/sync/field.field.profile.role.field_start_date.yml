@@ -1,0 +1,21 @@
+uuid: 1dfa18aa-eb44-4855-96fa-99206eacf2f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_start_date
+    - profile.type.role
+  module:
+    - datetime
+id: profile.role.field_start_date
+field_name: field_start_date
+entity_type: profile
+bundle: role
+label: 'Start date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

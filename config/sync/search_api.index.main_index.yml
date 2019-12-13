@@ -2,25 +2,23 @@ uuid: 893d1d6a-7f89-40c2-b2b6-e35c047c3d67
 langcode: en
 status: true
 dependencies:
+  module:
+    - user
+    - node
+    - profile
+    - taxonomy
+    - search_api
   config:
-    - field.storage.node.field_region
-    - field.storage.profile.field_job_title
-    - field.storage.profile.field_job_title_term
+    - field.storage.user.field_cohort
     - field.storage.profile.field_location
+    - field.storage.profile.field_job_title_term
+    - field.storage.node.field_region
+    - field.storage.user.field_name
+    - field.storage.profile.field_job_title
+    - field.storage.user.field_programme_year
     - field.storage.profile.field_organisation
     - field.storage.node.field_sector
-    - field.storage.profile.field_pa_email
-    - field.storage.user.field_cohort
-    - field.storage.user.field_gender
-    - field.storage.user.field_name
-    - field.storage.user.field_programme_year
     - search_api.server.database
-  module:
-    - node
-    - taxonomy
-    - user
-    - profile
-    - search_api
 id: main_index
 name: 'Main index'
 description: ''
@@ -96,14 +94,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.user.field_name
-  gender:
-    label: Gender
-    datasource_id: 'entity:user'
-    property_path: field_gender
-    type: text
-    dependencies:
-      config:
-        - field.storage.user.field_gender
   job_title:
     label: 'Job Title'
     datasource_id: 'entity:profile'
@@ -333,25 +323,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.profile.field_organisation
-  pa_email:
-    label: 'PA email'
-    datasource_id: 'entity:profile'
-    property_path: field_pa_email
-    type: text
-    dependencies:
-      config:
-        - field.storage.profile.field_pa_email
-  programme_year_title:
-    label: 'Programme year » Content » Title'
-    datasource_id: 'entity:user'
-    property_path: 'field_programme_year:entity:title'
-    type: string
-    dependencies:
-      config:
-        - field.storage.user.field_programme_year
-      module:
-        - node
-        - node
   roles:
     label: Roles
     datasource_id: 'entity:user'
@@ -456,7 +427,6 @@ processor_settings:
       - country_code
       - dependent_locality
       - firstname
-      - gender
       - job_title
       - job_title_term
       - lastname
@@ -472,14 +442,13 @@ processor_settings:
       - org_sector_name_profile
       - org_sector_name_user
       - organisation
-      - pa_email
-      - programme_year_title
       - roles
       - term_name
       - title
     weights:
       preprocess_index: -20
       preprocess_query: -20
+  language_with_fallback: {  }
   rendered_item: {  }
   transliteration:
     all_fields: true
@@ -488,7 +457,6 @@ processor_settings:
       - country_code
       - dependent_locality
       - firstname
-      - gender
       - job_title
       - job_title_term
       - lastname
@@ -504,8 +472,6 @@ processor_settings:
       - org_sector_name_profile
       - org_sector_name_user
       - organisation
-      - pa_email
-      - programme_year_title
       - roles
       - term_name
       - title

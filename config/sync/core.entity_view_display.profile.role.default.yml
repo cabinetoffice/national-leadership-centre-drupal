@@ -3,47 +3,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.profile.role.field_email
+    - field.field.profile.role.field_finish_date
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_email
-    - field.field.profile.role.field_phone
+    - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
-  module:
-    - telephone
 id: profile.role.default
 targetEntityType: profile
 bundle: role
 mode: default
 content:
-  field_email:
-    weight: 2
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: email_mailto
-    region: content
-  field_general_location:
-    weight: 5
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_job_title_term:
-    weight: 1
-    label: inline
-    settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
-  field_organisation:
     weight: 0
     label: inline
     settings:
@@ -51,32 +25,48 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_pa_email:
-    weight: 4
-    label: inline
+  field_organisation:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: embed
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  nlc_role_assistant_email:
+    weight: 6
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: email_mailto
+  nlc_role_assistant_name:
+    weight: 4
     region: content
-  field_phone:
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_assistant_phone:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_email:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  nlc_role_phone:
     weight: 3
-    label: inline
-    settings:
-      title: ''
-    third_party_settings: {  }
-    type: telephone_link
     region: content
-  field_time_in_role:
-    weight: 6
-    label: inline
-    settings:
-      thousand_separator: ''
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: number_integer
-    region: content
 hidden:
+  field_finish_date: true
+  field_general_location: true
   field_job_title: true
   field_location: true
+  field_start_date: true
+  field_time_in_role: true
   layout_builder__layout: true
+  salesforce_id: true
+  salesforce_last_sync: true
   search_api_excerpt: true
