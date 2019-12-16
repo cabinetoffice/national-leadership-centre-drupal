@@ -1,0 +1,22 @@
+uuid: 8b89a025-cbf5-4d26-a04c-39548b1d3aae
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sector
+  module:
+    - text
+id: taxonomy_term.sector.default
+targetEntityType: taxonomy_term
+bundle: sector
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true

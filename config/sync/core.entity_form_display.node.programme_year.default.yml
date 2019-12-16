@@ -8,24 +8,7 @@ dependencies:
     - node.type.programme_year
   module:
     - datetime
-    - field_group
     - path
-third_party_settings:
-  field_group:
-    group_dates:
-      children:
-        - field_start_date
-        - field_end_date
-      parent_name: ''
-      weight: 1
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: Dates
-      region: content
 id: node.programme_year.default
 targetEntityType: node
 bundle: programme_year

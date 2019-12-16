@@ -4,6 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.organisation.field_acronym
+    - field.field.node.organisation.field_address
+    - field.field.node.organisation.field_region
+    - field.field.node.organisation.field_sector
+    - field.field.node.organisation.field_website
     - node.type.organisation
   module:
     - user
@@ -12,14 +17,27 @@ targetEntityType: node
 bundle: organisation
 mode: teaser
 content:
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
+  field_region:
+    type: entity_reference_label
+    weight: 0
     region: content
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_sector:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
 hidden:
   field_acronym: true
-  field_region: true
-  field_sector: true
+  field_address: true
   field_website: true
+  links: true
+  salesforce_id: true
+  salesforce_last_sync: true
   search_api_excerpt: true

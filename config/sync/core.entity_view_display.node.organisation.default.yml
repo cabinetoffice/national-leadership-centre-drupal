@@ -4,58 +4,39 @@ status: true
 dependencies:
   config:
     - field.field.node.organisation.field_acronym
+    - field.field.node.organisation.field_address
     - field.field.node.organisation.field_region
     - field.field.node.organisation.field_sector
     - field.field.node.organisation.field_website
     - node.type.organisation
   module:
-    - link
     - user
 id: node.organisation.default
 targetEntityType: node
 bundle: organisation
 mode: default
 content:
-  field_acronym:
-    weight: 0
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_region:
-    weight: 2
+    weight: 1
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
   field_sector:
-    weight: 1
+    weight: 0
     label: inline
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_website:
-    weight: 3
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: true
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings: {  }
-    type: link
-    region: content
-  links:
-    weight: 4
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  field_acronym: true
+  field_address: true
+  field_website: true
+  links: true
+  salesforce_id: true
+  salesforce_last_sync: true
   search_api_excerpt: true

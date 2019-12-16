@@ -338,11 +338,17 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-      tags: {  }
-  user_page:
+      tags:
+        - 'config:core.entity_view_display.profile.role.default'
+        - extensions
+        - 'config:core.entity_view_display.profile.role.teaser'
+        - extensions
+        - 'config:core.entity_view_display.profile.social_media.default'
+        - extensions
+  profile_type_listing:
     display_plugin: embed
-    id: user_page
-    display_title: 'User page'
+    id: profile_type_listing
+    display_title: 'Profile type listing'
     position: 1
     display_options:
       display_extenders: {  }
@@ -352,4 +358,84 @@ display:
       contexts:
         - 'languages:language_interface'
         - url
-      tags: {  }
+      tags:
+        - 'config:core.entity_view_display.profile.role.default'
+        - extensions
+        - 'config:core.entity_view_display.profile.role.teaser'
+        - extensions
+        - 'config:core.entity_view_display.profile.social_media.default'
+        - extensions
+  user_view:
+    display_plugin: embed
+    id: user_view
+    display_title: 'User view'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      fields:
+        rendered_entity:
+          id: rendered_entity
+          table: profile
+          field: rendered_entity
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          view_mode: default
+          entity_type: profile
+          plugin_id: rendered_entity
+      defaults:
+        fields: false
+      display_description: ''
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - url
+      tags:
+        - 'config:core.entity_view_display.profile.role.default'
+        - extensions
+        - 'config:core.entity_view_display.profile.role.teaser'
+        - extensions
+        - 'config:core.entity_view_display.profile.social_media.default'
+        - extensions

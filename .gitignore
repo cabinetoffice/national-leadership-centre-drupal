@@ -12,6 +12,10 @@
 /web/sites/*/settings.php
 /web/sites/*/settings.local.php
 
+# Ignore SSL dir pem files
+/ssl/*.pem
+/ssl/*/*.pem
+
 # Ignore Drupal's file directory
 /web/sites/*/files/
 
@@ -29,3 +33,7 @@ mariadb-init/*
 
 # Ignore node modules
 node_modules
+
+# Do not include CRM sync settings
+config/crm/*
+config/crm_stage/*

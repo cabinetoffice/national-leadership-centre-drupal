@@ -1,0 +1,17 @@
+uuid: e3572db6-ae64-4c59-84ad-62961f523584
+langcode: en
+status: true
+dependencies: {  }
+id: crm_stage
+label: 'CRM (stage)'
+description: 'Configurations for synchronisation with the Salesforce CRM in the staging environment'
+folder: ../config/crm_stage
+module: {  }
+theme: {  }
+blacklist:
+  - salesforce.salesforce_auth.salesforce_auth
+  - salesforce.settings
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0

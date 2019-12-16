@@ -2,18 +2,20 @@ version: '2.1'
 
 services:
   mariadb:
-      image: wodby/mariadb:$MARIADB_TAG
-      container_name: "${PROJECT_NAME}_mariadb"
-      stop_grace_period: 30s
-      environment:
-        # See all available mariadb variables at https://github.com/wodby/mariadb.
-        MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
-        MYSQL_DATABASE: $DB_NAME
-        MYSQL_USER: $DB_USER
-        MYSQL_PASSWORD: $DB_PASSWORD
-      volumes:
-       - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
-       - project-db-data:/var/lib/mysql # I want to manage volumes manually.
+    image: wodby/mariadb:$MARIADB_TAG
+    container_name: "${PROJECT_NAME}_mariadb"
+    stop_grace_period: 30s
+    environment:
+      # See all available mariadb variables at https://github.com/wodby/mariadb.
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+    volumes:
+      - ./mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
+      - project-db-data:/var/lib/mysql # I want to manage volumes manually.
+    networks:
+      - nlc_cms
 
   php:
     image: wodby/drupal-php:$PHP_TAG
@@ -27,16 +29,27 @@ services:
       DB_NAME: $DB_NAME
       DB_DRIVER: $DB_DRIVER
       PHP_TIMEZONE: Europe/London
+      PHP_IDE_CONFIG: "serverName=drupal"       # Needed for xdebug for drush commands.
+      PHP_XDEBUG: 1
+      PHP_XDEBUG_DEFAULT_ENABLE: 1
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
+      PHP_XDEBUG_REMOTE_HOST: host.docker.internal # Docker 18.03+ Mac/Win
+      SALESFORCE_PEM_PATH: $SALESFORCE_PEM_PATH
+      SALESFORCE_KEY: $SALESFORCE_KEY
+      SALESFORCE_URL: $SALESFORCE_URL
+      SALESFORCE_LOGIN: $SALESFORCE_LOGIN
     volumes:
       # - ./:/var/www/html
       # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
       - ./:/var/www/html:cached # User-guided caching
       # - docker-sync:/var/www/html # Docker-sync
+    networks:
+      - nlc_cms
 
   nginx:
     image: wodby/drupal-nginx:$NGINX_TAG
     container_name: "${PROJECT_NAME}_nginx"
-    depends_on: 
+    depends_on:
       - php
     environment:
       # See all available NGINX variables at https://github.com/wodby/drupal-nginx.
@@ -54,14 +67,20 @@ services:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
       - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+    networks:
+      - nlc_cms
 
   redis:
     image: wodby/redis:$REDIS_TAG
     container_name: "${PROJECT_NAME}_redis"
+    networks:
+      - nlc_cms
 
   memcached:
     image: wodby/memcached:$MEMCACHED_TAG
     container_name: "${PROJECT_NAME}_memcached"
+    networks:
+      - nlc_cms
 
   mailhog:
     image: mailhog/mailhog
@@ -70,6 +89,8 @@ services:
       - 'traefik.backend=${PROJECT_NAME}_mailhog'
       - 'traefik.port=8025'
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
+    networks:
+      - nlc_cms
 
   # varnish:
   #   image: wodby/drupal-varnish:$VARNISH_TAG
@@ -94,6 +115,8 @@ services:
       - 'traefik.backend=adminer'
       - 'traefik.port=9000'
       - 'traefik.frontend.rule=Host:adminer.${PROJECT_BASE_URL}'
+    networks:
+      - nlc_cms
 
   # solr:
   #   image: wodby/drupal-solr:$SOLR_TAG
@@ -118,6 +141,8 @@ services:
       - 'traefik.backend=${PROJECT_NAME}_elasticsearch'
       - 'traefik.port=9200'
       - 'traefik.frontend.rule=Host:elasticsearch.${PROJECT_BASE_URL}'
+    networks:
+      - nlc_cms
 
   # kibana:
   #   image: wodby/kibana:$KIBANA_TAG
@@ -138,6 +163,8 @@ services:
       - 'traefik.backend=portainer'
       - 'traefik.port=9000'
       - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+    networks:
+      - nlc_cms
 
   traefik:
     image: traefik:1.7.16-alpine
@@ -148,11 +175,15 @@ services:
       - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - nlc_cms
 
 volumes:
-# Docker-sync for macOS users
-#  docker-sync:
-#    external: true
+  # Docker-sync for macOS users
+  #  docker-sync:
+  #    external: true
   project-db-data:
     name: ${PROJECT_NAME}-data
-   
+
+networks:
+  nlc_cms:

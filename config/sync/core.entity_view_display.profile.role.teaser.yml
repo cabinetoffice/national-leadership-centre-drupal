@@ -4,12 +4,13 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.profile.teaser
-    - field.field.profile.role.field_email
+    - field.field.profile.role.field_finish_date
+    - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
+    - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_email
-    - field.field.profile.role.field_phone
+    - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
 id: profile.role.teaser
@@ -18,27 +19,60 @@ bundle: role
 mode: teaser
 content:
   field_job_title:
-    weight: 0
+    weight: 1
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  field_job_title_term:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
   field_organisation:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  nlc_role_assistant_email:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  nlc_role_assistant_name:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  nlc_role_assistant_phone:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  nlc_role_email:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  nlc_role_phone:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden:
-  field_email: true
+  field_finish_date: true
   field_general_location: true
-  field_job_title_term: true
   field_location: true
-  field_pa_email: true
-  field_phone: true
+  field_start_date: true
   field_time_in_role: true
+  salesforce_id: true
+  salesforce_last_sync: true
   search_api_excerpt: true

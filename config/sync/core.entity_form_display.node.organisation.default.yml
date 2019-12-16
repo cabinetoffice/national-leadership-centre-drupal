@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.organisation.field_acronym
+    - field.field.node.organisation.field_address
     - field.field.node.organisation.field_region
     - field.field.node.organisation.field_sector
     - field.field.node.organisation.field_website
@@ -29,6 +30,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_address:
+    weight: 26
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
     region: content
   field_region:
     weight: 9

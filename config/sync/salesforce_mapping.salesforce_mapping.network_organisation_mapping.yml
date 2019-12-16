@@ -1,0 +1,80 @@
+uuid: effe8247-d426-4b66-9b01-827b79b43b13
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.organisation.field_acronym
+    - field.field.node.organisation.field_address
+    - field.field.node.organisation.field_region
+    - field.field.node.organisation.field_sector
+    - field.field.node.organisation.field_website
+    - field.storage.node.field_region
+    - field.storage.node.field_sector
+    - node.type.organisation
+    - taxonomy.vocabulary.region
+    - taxonomy.vocabulary.sector
+  module:
+    - salesforce_pull
+    - salesforce_push
+id: network_organisation_mapping
+label: 'Network Organisation mapping'
+weight: -8
+type: salesforce_mapping
+key: ''
+async: false
+push_standalone: false
+pull_standalone: false
+pull_trigger_date: LastModifiedDate
+pull_where_clause: ''
+sync_triggers:
+  push_create: false
+  push_update: true
+  push_delete: false
+  pull_create: true
+  pull_update: true
+  pull_delete: false
+salesforce_object_type: NetworkOrganisation__c
+drupal_entity_type: node
+drupal_bundle: organisation
+field_mappings:
+  -
+    drupal_field_type: properties
+    drupal_field_value: title
+    salesforce_field: Name
+    direction: sync
+    id: 0
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_acronym
+    salesforce_field: Acronym__c
+    direction: sync
+    id: 1
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_website
+    salesforce_field: Website__c
+    direction: sync
+    id: 2
+  -
+    drupal_field_type: RelatedTermString
+    drupal_field_value: field_sector
+    salesforce_field: Sector__c
+    direction: sync
+    id: 3
+  -
+    drupal_field_type: RelatedTermString
+    drupal_field_value: field_region
+    salesforce_field: Region__c
+    direction: sync
+    id: 4
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_address
+    salesforce_field: Address__c
+    direction: sync
+    id: 5
+push_limit: 0
+push_retries: 3
+push_frequency: 0
+pull_frequency: 0
+always_upsert: false

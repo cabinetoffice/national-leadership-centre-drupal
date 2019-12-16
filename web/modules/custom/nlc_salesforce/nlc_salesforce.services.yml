@@ -1,0 +1,5 @@
+services:
+  nlc_salesforce_subscriber:
+    class: '\Drupal\nlc_salesforce\EventSubscriber\NLCSalesforceSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
