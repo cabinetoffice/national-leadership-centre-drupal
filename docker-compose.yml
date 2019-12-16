@@ -68,7 +68,7 @@ services:
       - 'traefik.backend=nginx'
       - 'traefik.port=80'
       - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
-      - 'traefik.docker.network=traefik'
+#      - 'traefik.docker.network=traefik'
     networks:
       - nlc_cms
 
@@ -90,14 +90,14 @@ services:
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_dbms_shell_enabled=true
-      # NEO4J_BOLT_PORT_NUMBER: $NEO4J_BOLT_PORT_NUMBER
-      # NEO4J_HTTP_PORT_NUMBER: $NEO4J_HTTP_PORT_NUMBER
-      # NEO4J_HTTPS_PORT_NUMBER: $NEO4J_HTTPS_PORT_NUMBER
+      # - NEO4J_BOLT_PORT_NUMBER=$NEO4J_BOLT_PORT_NUMBER
+      # - NEO4J_HTTP_PORT_NUMBER=$NEO4J_HTTP_PORT_NUMBER
+      # - NEO4J_HTTPS_PORT_NUMBER=$NEO4J_HTTPS_PORT_NUMBER
     labels:
       - 'traefik.backend=neo4j'
-      - 'traefik.port=$NEO4J_HTTP_PORT_NUMBER'
+      - 'traefik.port=${NEO4J_HTTP_PORT_NUMBER}'
       - 'traefik.frontend.rule=Host:graph.${PROJECT_BASE_URL}'
-      - 'traefik.docker.network=traefik'
+#      - 'traefik.docker.network=traefik'
     networks:
       - graph
       - nlc_cms
@@ -121,7 +121,7 @@ services:
       - 'traefik.backend=${PROJECT_NAME}_mailhog'
       - 'traefik.port=8025'
       - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
-      - 'traefik.docker.network=traefik'
+#      - 'traefik.docker.network=traefik'
     networks:
       - nlc_cms
 
