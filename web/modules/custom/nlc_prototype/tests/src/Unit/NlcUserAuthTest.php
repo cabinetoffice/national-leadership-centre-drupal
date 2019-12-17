@@ -86,4 +86,50 @@ class NlcUserAuthTest extends UnitTestCase {
     $this->userAuth = new UserAuth($entity_type_manager, $this->passwordService);
   }
 
+  /**
+   * Tests failing authentication with missing credential parameters.
+   *
+   * @dataProvider providerTestAuthenticateWithMissingCredentials
+   */
+  public function testAuthenticateWithMissingCredentials($username, $password) {
+    $this->userStorage->expects($this->never())
+      ->method('loadByProperties');
+
+    $this->assertFalse($this->userAuth->authenticate($username, $password));
+  }
+
+  /**
+   * Data provider for testAuthenticateWithMissingCredentials().
+   *
+   * @return array
+   */
+  public function providerTestAuthenticateWithMissingCredentials() {
+    return [
+      [NULL, NULL],
+      [NULL, ''],
+      ['', NULL],
+      ['', ''],
+    ];
+  }
+
+  /**
+   * Tests the authenticate method with an email and a correct password.
+   */
+  public function testAuthenticateWithCorrectPassword() {
+    $this->testUser->expects($this->once())
+      ->method('id')
+      ->will($this->returnValue(1));
+
+    $this->userStorage->expects($this->once())
+      ->method('loadByProperties')
+      ->with(['name' => $this->username])
+      ->will($this->returnValue([$this->testUser]));
+
+    $this->passwordService->expects($this->once())
+      ->method('check')
+      ->with($this->password, $this->testUser->getPassword())
+      ->will($this->returnValue(TRUE));
+
+    $this->assertsame(1, $this->userAuth->authenticate($this->username, $this->password));
+  }
 }
