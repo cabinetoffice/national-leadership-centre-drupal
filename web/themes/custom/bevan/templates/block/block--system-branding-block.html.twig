@@ -1,24 +1,20 @@
 {% block content %}
-  <div class="site-header__logo">
-    <a href="https://www.nationalleadership.gov.uk/"  title="{{ 'Click to go to the National Leadership Centre information site'|t }}" target="_blank">
 
   {% if site_logo %}
+  <div class="site-header__logo">
+    <a href="https://www.nationalleadership.gov.uk/"  title="{{ 'Click to go to the National Leadership Centre information site'|t }}" target="_blank">
     <image src="{{ site_logo }}" alt="{{ 'Click to go to the National Leadership Centre information site'|t }}" />
+    </a>
+  </div>
   {% endif %}
 
 
-    </a>
-  </div>
 
   {% if site_name %}
       {{ site_name }}
   {% endif %}
 
   {% if site_slogan %}
-    <div class="site-header__content">
-      <a href="{{ path('<front>') }}" class="site-header__link site-header__link--service-name" rel="home">
-        {{ site_slogan }}
-      </a>
-    </div>
+    <h2 class="govuk-caption-xl">{{ site_slogan }}</h2>
   {% endif %}
 {% endblock %}

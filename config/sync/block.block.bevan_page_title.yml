@@ -9,7 +9,7 @@ _core:
 id: bevan_page_title
 theme: bevan
 region: pre_content
-weight: -6
+weight: -7
 provider: null
 plugin: page_title_block
 settings:

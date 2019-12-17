@@ -881,7 +881,7 @@ display:
           plugin_id: search_api
       arguments: {  }
       display_extenders: {  }
-      title: 'Senior Leaders Directory'
+      title: 'Find other members of the network'
       filter_groups:
         operator: AND
         groups:

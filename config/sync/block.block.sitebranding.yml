@@ -1,0 +1,23 @@
+uuid: 2eda7cbd-2eed-481b-aa4a-07a1118b8778
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bevan
+id: sitebranding
+theme: bevan
+region: pre_content
+weight: -8
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site slogan'
+  provider: system
+  label_display: '0'
+  use_site_logo: false
+  use_site_name: false
+  use_site_slogan: true
+visibility: {  }
