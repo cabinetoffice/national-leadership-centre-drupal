@@ -1,31 +1,31 @@
-uuid: 9c296978-76d7-4a55-9f8e-dd68d8fa3062
+uuid: ad502e46-abd2-4624-8661-576f689e74e3
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.main_index
-    - views.view.directory
+    - search_api.index.individuals
+    - views.view.senior_leaders_directory_es
   module:
     - search_api
-id: filter_by_sector
-name: 'Role profiles » Profile » Organisation » Content » Sector'
+id: sector
+name: Sector
 url_alias: sector
 weight: 0
 min_count: 1
 show_only_one_result: false
-field_identifier: org_sector_user
-facet_source_id: 'search_api:views_page__directory__page_1'
+field_identifier: sector_name
+facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
 widget:
   type: checkbox
   config:
-    show_numbers: false
+    show_numbers: true
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
-    show_reset_link: true
+    show_reset_link: false
     reset_text: 'Show all'
-    hide_reset_when_no_selection: true
+    hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
 expand_hierarchy: false
@@ -40,11 +40,6 @@ processor_configs:
       sort: 40
     settings:
       sort: ASC
-  translate_entity:
-    processor_id: translate_entity
-    weights:
-      build: 5
-    settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler
     weights:

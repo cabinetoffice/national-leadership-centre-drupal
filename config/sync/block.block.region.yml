@@ -1,23 +1,23 @@
-uuid: 681da5f1-60a1-433f-9ddc-7d8afd16eb92
+uuid: 66a510c3-3af9-42eb-8c2b-5e793e7b8935
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.cohort
+    - facets.facet.region
   module:
     - facets
   theme:
     - bevan
-id: cohort
+id: region
 theme: bevan
 region: sidebar_first
-weight: -4
+weight: -6
 provider: null
-plugin: 'facet_block:cohort'
+plugin: 'facet_block:region'
 settings:
-  id: 'facet_block:cohort'
-  label: Cohort
+  id: 'facet_block:region'
+  label: Region
   provider: facets
   label_display: visible
-  block_id: cohort
+  block_id: region
 visibility: {  }

@@ -1,4 +1,4 @@
-uuid: 89954845-329b-4436-bd40-6d2c13af383b
+uuid: 72445545-a1e7-4815-9904-150d78b65442
 langcode: en
 status: true
 dependencies:
@@ -6,24 +6,18 @@ dependencies:
     - facets.facet.job_title
   module:
     - facets
-    - system
   theme:
     - bevan
-id: roleprofilesprofilejobtitle_2
+id: jobtitle
 theme: bevan
 region: sidebar_first
-weight: -6
+weight: -7
 provider: null
 plugin: 'facet_block:job_title'
 settings:
   id: 'facet_block:job_title'
-  label: 'Filter by job title'
+  label: 'Job Title'
   provider: facets
   label_display: visible
-  block_id: roleprofilesprofilejobtitle_2
-visibility:
-  request_path:
-    id: request_path
-    pages: /directory
-    negate: false
-    context_mapping: {  }
+  block_id: jobtitle
+visibility: {  }

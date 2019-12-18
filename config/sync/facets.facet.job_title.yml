@@ -1,31 +1,31 @@
-uuid: 48194a67-1891-4f0d-b4cc-3d61a3cd0f94
+uuid: d6d8d9af-800f-42b9-81ac-932c8fb4189f
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.main_index
-    - views.view.directory
+    - search_api.index.individuals
+    - views.view.senior_leaders_directory_es
   module:
     - search_api
 id: job_title
-name: 'Role profiles » Profile » Job Title'
+name: 'Job Title'
 url_alias: job_title
 weight: 0
 min_count: 1
 show_only_one_result: false
-field_identifier: field_job_title_term
-facet_source_id: 'search_api:views_page__directory__page_1'
+field_identifier: job_title_string
+facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
 widget:
   type: checkbox
   config:
-    show_numbers: false
+    show_numbers: true
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
-    show_reset_link: true
+    show_reset_link: false
     reset_text: 'Show all'
-    hide_reset_when_no_selection: true
+    hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
 expand_hierarchy: false
@@ -40,11 +40,6 @@ processor_configs:
       sort: 40
     settings:
       sort: ASC
-  translate_entity:
-    processor_id: translate_entity
-    weights:
-      build: 5
-    settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler
     weights:
