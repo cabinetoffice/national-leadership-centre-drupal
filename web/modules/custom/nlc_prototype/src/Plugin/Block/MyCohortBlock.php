@@ -42,8 +42,8 @@ class MyCohortBlock extends BlockBase {
           $entity = \Drupal::entityTypeManager()
             ->getStorage('node')
             ->load($cohort->target_id);
-          $options['query']['directory'][] = 'cohort:' . $cohort->target_id;
-          if (!empty($options)) {
+          $options['query']['f'][] = 'cohort:' . $entity->label();
+          if ($entity && !empty($options)) {
             $build['cohort'] = [
               '#type' => 'container',
               '#attributes' => [
@@ -62,7 +62,7 @@ class MyCohortBlock extends BlockBase {
                 'cohort_link' => [
                   '#type' => 'link',
                   '#title' => $this->t('View your fellow cohort delegates'),
-                  '#url' => \Drupal\Core\Url::fromRoute('view.directory.page_1', [], $options),
+                  '#url' => \Drupal\Core\Url::fromRoute('view.senior_leaders_directory_es.page', [], $options),
                 ],
               ],
             ];
