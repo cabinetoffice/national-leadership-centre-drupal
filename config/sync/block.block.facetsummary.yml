@@ -1,0 +1,22 @@
+uuid: ec402b0b-6a07-4945-8106-363bb095576e
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets_summary.facets_summary.facet_summary
+  module:
+    - facets_summary
+  theme:
+    - bevan
+id: facetsummary
+theme: bevan
+region: content
+weight: -9
+provider: null
+plugin: 'facets_summary_block:facet_summary'
+settings:
+  id: 'facets_summary_block:facet_summary'
+  label: 'Facet Summary'
+  provider: facets_summary
+  label_display: '0'
+visibility: {  }

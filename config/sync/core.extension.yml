@@ -21,6 +21,7 @@ module:
   email_registration: 0
   entity: 0
   facets: 0
+  facets_summary: 0
   field: 0
   field_group: 0
   field_ui: 0
@@ -40,6 +41,7 @@ module:
   options: 0
   page_cache: 0
   path: 0
+  path_alias: 0
   profile: 0
   quickedit: 0
   rdf: 0

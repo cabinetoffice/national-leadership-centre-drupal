@@ -1,0 +1,48 @@
+uuid: 422f9440-40ef-45e8-9fbc-533b8bb29700
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.individuals
+    - views.view.senior_leaders_directory_es
+  module:
+    - search_api
+id: facet_summary
+name: 'Facet Summary'
+facets:
+  job_title:
+    checked: true
+    label: 'Job Title'
+    separator: ', '
+    weight: 0
+    show_count: false
+  region:
+    checked: true
+    label: Region
+    separator: ', '
+    weight: 0
+    show_count: false
+  sector:
+    checked: true
+    label: Sector
+    separator: ', '
+    weight: 0
+    show_count: false
+  cohort:
+    checked: true
+    label: Cohort
+    separator: ', '
+    weight: 0
+    show_count: false
+facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
+processor_configs:
+  hide_when_not_rendered:
+    processor_id: hide_when_not_rendered
+    weights:
+      build: '45'
+    settings: {  }
+  show_count:
+    processor_id: show_count
+    weights:
+      build: '5'
+    settings: {  }
