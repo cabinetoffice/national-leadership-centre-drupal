@@ -26,25 +26,28 @@
             .wrapInner('<button type="button" class="govuk-accordion__section-button" aria-controls="collapse-' + id + '" />')
             .click(function (e) {
             var $titleElt =  $(titleElt);
+            var $button = $(this);
               if ($titleElt.is('.collapsiblockCollapsed')) {
-                $titleElt.removeClass('collapsiblockCollapsed');
+                $titleElt.removeClass('collapsiblockCollapsed');                
+                $button.attr('aria-expanded', true);
                 if (slidetype == 1) {
-                  $(titleElt.target).slideDown(slidespeed).attr('aria-hidden', false);
+                    $(titleElt.target).slideDown(slidespeed).attr('aria-hidden', false);
                 }
                 else {
-                  $(titleElt.target).animate({
-                    height: 'show',
+                    $(titleElt.target).animate({
+                        height: 'show',
                     opacity: 'show'
-                  }, slidespeed);
-                }
-  
-                // Don't save cookie data if the block is always collapsed.
-                if (stat != 4 && stat != 5) {
-                  cookieData[id] = 1;
-                }
-              }
-              else {
-                $titleElt.addClass('collapsiblockCollapsed');
+                }, slidespeed);
+            }
+            
+            // Don't save cookie data if the block is always collapsed.
+            if (stat != 4 && stat != 5) {
+                cookieData[id] = 1;
+            }
+        }
+        else {
+            $titleElt.addClass('collapsiblockCollapsed');
+            $button.attr('aria-expanded', false);
                 if (slidetype == 1) {
                   $(titleElt.target).slideUp(slidespeed).attr('aria-hidden', true);
                 }
@@ -78,6 +81,7 @@
                   return;
                 }
                 $(titleElt).addClass('collapsiblockCollapsed');
+                $button.attr('aria-expanded', false);
                 $(titleElt.target).hide();
               }
             }
