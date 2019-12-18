@@ -11,7 +11,7 @@ id: job_title
 name: 'Role profiles » Profile » Job Title'
 url_alias: job_title
 weight: -2
-min_count: 1
+min_count: 0
 show_only_one_result: false
 field_identifier: field_job_title_term
 facet_source_id: 'search_api:views_page__directory__page_1'

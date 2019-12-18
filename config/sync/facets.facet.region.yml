@@ -11,7 +11,7 @@ id: region
 name: 'Role profiles » Profile » Organisation » Content » Region'
 url_alias: region
 weight: 0
-min_count: 1
+min_count: 0
 show_only_one_result: false
 field_identifier: org_region_user
 facet_source_id: 'search_api:views_page__directory__page_1'
