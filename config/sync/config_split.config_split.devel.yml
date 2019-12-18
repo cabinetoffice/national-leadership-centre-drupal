@@ -10,7 +10,9 @@ module:
   devel: 0
   devel_generate: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - key.key.salesforce_authentication_key
+  - salesforce.salesforce_auth.jblocaldev_190903
 graylist:
   - google_analytics.settings
   - mailsystem.settings

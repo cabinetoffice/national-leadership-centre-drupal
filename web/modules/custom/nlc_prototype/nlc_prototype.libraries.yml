@@ -1,0 +1,8 @@
+google_analytics:
+  version: 1.0
+  js:
+    js/nlc_prototype.google_analytics.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

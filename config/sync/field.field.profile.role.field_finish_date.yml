@@ -1,0 +1,21 @@
+uuid: 48a3e8b9-5b4d-4d95-912e-52d79d607048
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_finish_date
+    - profile.type.role
+  module:
+    - datetime
+id: profile.role.field_finish_date
+field_name: field_finish_date
+entity_type: profile
+bundle: role
+label: 'End date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

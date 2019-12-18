@@ -46,3 +46,14 @@ function nlc_prototype_theme($existing, $type, $theme, $path) {
     ]
   ];
 }
+
+/**
+ * Implements hook_page_attachments().
+ *
+ * Insert JavaScript to the appropriate scope/region of the page.
+ */
+function nlc_prototype_page_attachments(array &$page) {
+  if (!empty($page['#attached']['library']) && in_array('google_analytics/google_analytics', $page['#attached']['library'])) {
+    $page['#attached']['library'][] = 'nlc_prototype/google_analytics';
+  }
+}

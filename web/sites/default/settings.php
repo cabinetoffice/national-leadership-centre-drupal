@@ -253,7 +253,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'qrfXFV0mv770tEuxIHDaqwqESXCsH267clnLia86VFoevLesDnCBmrQKxP7ggyzxwuKjYUcUlg';
+$settings['hash_salt'] = '2Scu7enIhF8rW-tnf23ODbQA92EZNNOIj1343WHB51yuSL5jC4PheuxcT2aJTX7Gi-Yty50GWw';
 
 /**
  * Deployment identifier.
@@ -785,3 +785,20 @@ if (getenv('NLC_ENVIRONMENT')) {
     include __DIR__ . '/settings.' . getenv('NLC_ENVIRONMENT') . '.php';
   }
 }
+$databases['default']['default'] = array (
+  'database' => 'drupal',
+  'username' => 'drupal',
+  'password' => 'drupal',
+  'prefix' => '',
+  'host' => 'mariadb',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+
+if (getenv('SALESFORCE_PEM_PATH')) {
+  $config['key.key.salesforce_pem']['key_provider_settings']['file_location'] = getenv('SALESFORCE_PEM_PATH');
+}
+$config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['consumer_key'] = getenv('SALESFORCE_KEY');
+$config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_user'] = getenv('SALESFORCE_LOGIN');
+$config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_url'] = getenv('SALESFORCE_URL');

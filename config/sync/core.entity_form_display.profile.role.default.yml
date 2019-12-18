@@ -3,39 +3,36 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.profile.role.field_email
+    - field.field.profile.role.field_finish_date
     - field.field.profile.role.field_general_location
     - field.field.profile.role.field_job_title
     - field.field.profile.role.field_job_title_term
     - field.field.profile.role.field_location
     - field.field.profile.role.field_organisation
-    - field.field.profile.role.field_pa_email
-    - field.field.profile.role.field_phone
+    - field.field.profile.role.field_start_date
     - field.field.profile.role.field_time_in_role
     - profile.type.role
   module:
-    - telephone
+    - datetime
 id: profile.role.default
 targetEntityType: profile
 bundle: role
 mode: default
 content:
-  field_email:
-    weight: 2
-    settings:
-      size: 60
-      placeholder: ''
+  field_finish_date:
+    weight: 8
+    settings: {  }
     third_party_settings: {  }
-    type: email_default
+    type: datetime_default
     region: content
-  field_general_location:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
+  field_job_title:
     type: string_textfield
+    weight: 2
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_job_title_term:
     weight: 1
     settings:
@@ -54,29 +51,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete
     region: content
-  field_pa_email:
-    weight: 5
-    settings:
-      size: 60
-      placeholder: ''
+  field_start_date:
+    weight: 7
+    settings: {  }
     third_party_settings: {  }
-    type: email_default
-    region: content
-  field_phone:
-    weight: 3
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: telephone_default
-    region: content
-  field_time_in_role:
-    weight: 6
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
+    type: datetime_default
     region: content
 hidden:
-  field_job_title: true
+  field_general_location: true
   field_location: true
+  field_time_in_role: true
   is_default: true
