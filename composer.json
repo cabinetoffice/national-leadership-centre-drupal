@@ -27,7 +27,7 @@
         "drupal/coder": "^8.3",
         "drupal/config_split": "^1.4",
         "drupal/console": "^1.0.2",
-        "drupal/core": "~8.7.0",
+        "drupal/core": "^8.7.0",
         "drupal/devel": "^2.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/encrypt": "^3.0@RC",
