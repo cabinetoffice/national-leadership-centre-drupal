@@ -17,7 +17,7 @@ provider: null
 plugin: 'facet_block:region'
 settings:
   id: 'facet_block:region'
-  label: 'Filter by region'
+  label: Region
   provider: facets
   label_display: visible
   block_id: roleprofilesprofileorganisationcontentregion_2

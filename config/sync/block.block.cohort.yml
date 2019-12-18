@@ -17,7 +17,7 @@ provider: null
 plugin: 'facet_block:cohort'
 settings:
   id: 'facet_block:cohort'
-  label: 'Filter by cohort'
+  label: Cohort
   provider: facets
   label_display: visible
   block_id: cohort

@@ -17,7 +17,7 @@ provider: null
 plugin: 'facet_block:filter_by_sector'
 settings:
   id: 'facet_block:filter_by_sector'
-  label: 'Filter by sector'
+  label: Sector
   provider: facets
   label_display: visible
   block_id: roleprofilesprofileorganisationcontentsector_2

@@ -17,7 +17,7 @@ provider: null
 plugin: 'facet_block:job_title'
 settings:
   id: 'facet_block:job_title'
-  label: 'Filter by job title'
+  label: 'Job title'
   provider: facets
   label_display: visible
   block_id: roleprofilesprofilejobtitle_2

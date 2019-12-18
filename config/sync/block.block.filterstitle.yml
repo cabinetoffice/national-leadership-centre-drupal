@@ -1,26 +1,23 @@
-uuid: 5aa0b6bd-c235-4a0a-8bcf-855122a7f51e
+uuid: 0a53cd31-dfd2-4f73-9da7-b3dd384d6758
 langcode: en
 status: true
 dependencies:
-  config:
-    - views.view.directory
   module:
+    - nlc_prototype
     - system
-    - views
   theme:
     - bevan
-id: free_text_search
+id: filterstitle
 theme: bevan
 region: sidebar_first
-weight: -9
+weight: -8
 provider: null
-plugin: 'views_exposed_filter_block:directory-page_1'
+plugin: filters_title_block
 settings:
-  id: 'views_exposed_filter_block:directory-page_1'
-  label: ''
-  provider: views
+  id: filters_title_block
+  label: 'Filters title'
+  provider: nlc_prototype
   label_display: '0'
-  views_label: ''
 visibility:
   request_path:
     id: request_path
