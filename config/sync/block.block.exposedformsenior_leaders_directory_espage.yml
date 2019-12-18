@@ -1,0 +1,29 @@
+uuid: 4eb91d0a-9b49-43dc-bb54-268489db646b
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.senior_leaders_directory_es
+  module:
+    - system
+    - views
+  theme:
+    - bevan
+id: exposedformsenior_leaders_directory_espage
+theme: bevan
+region: sidebar_first
+weight: -8
+provider: null
+plugin: 'views_exposed_filter_block:senior_leaders_directory_es-page'
+settings:
+  id: 'views_exposed_filter_block:senior_leaders_directory_es-page'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

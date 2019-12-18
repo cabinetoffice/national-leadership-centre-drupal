@@ -1,0 +1,9 @@
+uuid: fd19b2f3-2ee6-4e77-9bfe-2f141b457e0d
+langcode: en
+status: true
+dependencies: {  }
+id: search_api__views_page__senior_leaders_directory_es__page
+name: 'search_api:views_page__senior_leaders_directory_es__page'
+filter_key: null
+url_processor: query_string
+breadcrumb: {  }
