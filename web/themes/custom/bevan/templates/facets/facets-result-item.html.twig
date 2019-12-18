@@ -1,0 +1,7 @@
+<span class="facet-item__value">{{ value }}</span>
+{% if show_count %}
+  <span class="facet-item__count">({{ count }})</span>
+{% endif %}
+{% if is_active %}
+  <em class="facet-item__status js-facet-deactivate visually-hidden">Selected</em>
+{% endif %}
