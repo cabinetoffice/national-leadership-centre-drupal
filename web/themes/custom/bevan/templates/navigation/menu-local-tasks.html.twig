@@ -1,0 +1,11 @@
+{% if primary %}
+  <div class="govuk-tabs" data-module="tabs">
+    {# Do not use the govuk-tabs_list class, as we do not want the js tabs functionality #}
+    <ul class="drupal-tabs__list">{{ primary }}</ul>
+  </div>
+{% endif %}
+{% if secondary %}
+  <div class="govuk-tabs" data-module="tabs">
+    <ul class="drupal-tabs__list">{{ secondary }}</ul>
+  </div>
+{% endif %}
