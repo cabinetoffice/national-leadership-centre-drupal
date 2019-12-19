@@ -400,96 +400,10 @@ display:
             multi_separator: ', '
           plugin_id: search_api_field
       filters:
-<<<<<<< HEAD:config/sync/views.view.senior_leaders_directory_es.yml
         search_api_fulltext:
           id: search_api_fulltext
           table: search_api_index_individuals
           field: search_api_fulltext
-=======
-        search_api_datasource:
-          id: search_api_datasource
-          table: search_api_index_main_index
-          field: search_api_datasource
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value:
-            'entity:user': 'entity:user'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            reduce: false
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          plugin_id: search_api_datasource
-        active:
-          id: active
-          table: search_api_index_main_index
-          field: active
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value: '1'
-          group: 1
-          exposed: false
-          expose:
-            operator_id: ''
-            label: ''
-            description: ''
-            use_operator: false
-            operator: ''
-            identifier: ''
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: search_api_boolean
-        roles:
-          id: roles
-          table: search_api_index_main_index
-          field: roles
->>>>>>> master:config/sync/views.view.directory.yml
           relationship: none
           group_type: group
           admin_label: ''
@@ -515,13 +429,6 @@ display:
               nlc_staff: '0'
               admin: '0'
             placeholder: ''
-<<<<<<< HEAD:config/sync/views.view.senior_leaders_directory_es.yml
-=======
-            min_placeholder: ''
-            max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
->>>>>>> master:config/sync/views.view.directory.yml
           is_grouped: false
           group_info:
             label: ''
@@ -569,8 +476,6 @@ display:
             placeholder: ''
             min_placeholder: ''
             max_placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -583,73 +488,7 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-<<<<<<< HEAD:config/sync/views.view.senior_leaders_directory_es.yml
           plugin_id: search_api_numeric
-=======
-          plugin_id: search_api_text
-        search_api_fulltext:
-          id: search_api_fulltext
-          table: search_api_index_main_index
-          field: search_api_fulltext
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: search_api_fulltext_op
-            label: 'Search '
-            description: 'Search by name, job title, location, or organisation'
-            use_operator: false
-            operator: search_api_fulltext_op
-            identifier: search
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              nlc_staff: '0'
-              admin: '0'
-            placeholder: ''
-            operator_limit_selection: false
-            operator_list: {  }
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          parse_mode: terms
-          min_length: null
-          fields:
-            - country_code
-            - dependent_locality
-            - firstname
-            - job_title
-            - job_title_term
-            - lastname
-            - locality
-            - mail
-            - org_field_job_title
-            - org_job_title
-            - org_job_title_term
-            - org_name_user
-            - org_region_name_user
-            - org_sector_name_user
-            - organisation
-            - pa_email
-            - title
-          plugin_id: search_api_fulltext
->>>>>>> master:config/sync/views.view.directory.yml
       sorts:
         search_api_relevance:
           id: search_api_relevance
