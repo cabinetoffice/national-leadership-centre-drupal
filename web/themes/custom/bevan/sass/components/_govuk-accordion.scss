@@ -10,3 +10,8 @@
 .js-enabled .collapsiblockCollapsed .govuk-accordion__icon:after {
     content: '';
 }
+.js-enabled .govuk-accordion__section-button:focus {
+    outline: 3px solid $govuk-focus-colour;
+    outline-offset: 0;
+    background-color: $govuk-focus-colour
+}

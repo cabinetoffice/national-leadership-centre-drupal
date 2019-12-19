@@ -9,6 +9,8 @@
         var slidetype = settings.collapsiblock.slide_type;
         var activePages = settings.collapsiblock.active_pages;
         var slidespeed = parseInt(settings.collapsiblock.slide_speed, 10);
+        // Override animation speed, as collapsiblock doesn't allow you to remove it
+        slidespeed = 0;
         $('.collapsiblock').once('collapsiblock').each(function () {
           var id = this.id.split("-").pop();
           var titleElt = $(this)[0];
