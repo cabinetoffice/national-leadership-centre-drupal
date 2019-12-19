@@ -17,6 +17,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  salesforce_id:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  salesforce_last_sync:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
 hidden:
   field_number: true
   field_programme_year: true
