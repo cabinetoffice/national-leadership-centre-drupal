@@ -1,9 +1,9 @@
 (function ($) {
 
     Drupal.Collapsiblock = Drupal.Collapsiblock || {};
-  
+
     Drupal.behaviors.collapsiblock = {
-  
+
       attach: function (context, settings) {
         var cookieData = Drupal.Collapsiblock.getCookieData();
         var slidetype = settings.collapsiblock.slide_type;
@@ -21,16 +21,18 @@
             if (stat == 1) {
               return;
             }
-  
+
             titleElt.target = $(this).siblings().not('[data-contextual-id]');
             var targetId = 'collapse-' + id;
             titleElt.target.attr('id', targetId);
-            $button = $(titleElt).find('.js-facet-heading').wrapInner('<button type="button" class="govuk-accordion__section-button" aria-controls="' + targetId + '" />');
+            $(titleElt).find('.js-facet-heading').wrapInner('<button type="button" class="govuk-accordion__section-button" aria-controls="' + targetId + '" />');
+            $button = $(titleElt).find('.js-facet-heading').find('button');
+            $button.after('<span class="govuk-accordion__icon" aria-hidden="true"></span>');
             $button.click(function (e) {
                 var $titleElt =  $(titleElt);
                 // If collapsed, expand
                 if ($titleElt.is('.collapsiblockCollapsed')) {
-                    $titleElt.removeClass('collapsiblockCollapsed');                
+                    $titleElt.removeClass('collapsiblockCollapsed');
                     $button.attr('aria-expanded', true);
                     if (slidetype == 1) {
                         $(titleElt.target).slideDown(slidespeed).attr('aria-hidden', false);
@@ -41,7 +43,7 @@
                         opacity: 'show'
                         }, slidespeed);
                     }
-                
+
                     // Don't save cookie data if the block is always collapsed.
                     if (stat != 4 && stat != 5) {
                         cookieData[id] = 1;
@@ -60,7 +62,7 @@
                         opacity: 'hide'
                     }, slidespeed);
                     }
-    
+
                     // Don't save cookie data if the block is always collapsed.
                     if (stat != 4 && stat != 5) {
                     cookieData[id] = 0;
@@ -90,9 +92,9 @@
         }
     }
     });
-    }  
+    }
     };
-  
+
     Drupal.Collapsiblock.getCookieData = function () {
       if ($.cookie) {
         var cookieString = $.cookie('collapsiblock');
@@ -102,6 +104,5 @@
         return '';
       }
     };
-  
+
   })(jQuery);
-  

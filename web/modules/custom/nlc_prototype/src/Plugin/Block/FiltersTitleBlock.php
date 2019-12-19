@@ -19,7 +19,7 @@ class FiltersTitleBlock extends BlockBase {
    */
   public function build() {
     return [
-      '#markup' => '<h2 class="govuk-heading-m">' . $this->t('Filters') . '</h2>',
+      '#markup' => '<h2 class="govuk-heading-m nlc-filter-title">' . $this->t('Filters') . '</h2>',
     ];
   }
 

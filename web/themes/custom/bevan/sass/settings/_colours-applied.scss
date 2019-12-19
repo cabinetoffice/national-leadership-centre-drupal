@@ -95,7 +95,7 @@ $govuk-error-colour: $red;
 /// @type Colour
 /// @access public
 
-$govuk-border-colour: $light-grey;
+$govuk-border-colour: $grey;
 
 /// Input border colour
 ///
@@ -125,21 +125,21 @@ $govuk-hover-colour: $light-grey;
 /// @type Colour
 /// @access public
 
-$govuk-link-colour: $orange-against-regular-white-text;
+$govuk-link-colour: $red;
 
 /// Visited link colour
 ///
 /// @type Colour
 /// @access public
 
-$govuk-link-visited-colour: $orange-against-regular-white-text;
+$govuk-link-visited-colour: $red;
 
 /// Link hover colour
 ///
 /// @type Colour
 /// @access public
 
-$govuk-link-hover-colour: $red;
+$govuk-link-hover-colour: $orange-against-regular-white-text;
 
 /// Active link colour
 ///
