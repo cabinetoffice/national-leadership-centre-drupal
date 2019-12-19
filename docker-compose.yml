@@ -38,6 +38,8 @@ services:
       SALESFORCE_KEY: $SALESFORCE_KEY
       SALESFORCE_URL: $SALESFORCE_URL
       SALESFORCE_LOGIN: $SALESFORCE_LOGIN
+      SIMPLETEST_BASE_URL: $SIMPLETEST_BASE_URL
+      SIMPLETEST_DB: $SIMPLETEST_DB
     volumes:
       # - ./:/var/www/html
       # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
