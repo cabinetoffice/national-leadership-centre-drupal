@@ -11,7 +11,7 @@ $databases['default']['default'] = array(
   'password' => getenv('DB_PASSWORD'),
   'host' => getenv('DB_HOST'),
   'port' => getenv('DB_PORT'),
-  'prefix' => 'drupal_',
+  'prefix' => '',
   'collation' => 'utf8mb4_general_ci', // For Drupal 8
   'pdo' => array()
 );
