@@ -1,14 +1,17 @@
 FROM php:7.2-fpm
 RUN mkdir -p /var/www/web/
 RUN mkdir -p /var/www/vendor/
+RUN mkdir -p /var/www/config/
+RUN mkdir -p /var/www/drush/
+RUN mkdir -p /var/www/scripts/
 WORKDIR /var/www/
 COPY web/ /var/www/web/
 COPY vendor/ /var/www/vendor/
-#COPY composer.json composer.json
-#COPY composer.lock composer.lock
-#RUN mkdir -p scripts/composer/
-#COPY /scripts/composer/ScriptHandler.php scripts/composer/
+COPY config/ /var/www/config/
+COPY drush/ /var/www/drush/
+COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
+COPY phpunit.xml.dist /var/www/
 
 # vault vars exporter
 ENV VEP_VERSION v0.0.3

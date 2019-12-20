@@ -6,4 +6,6 @@
 !/composer.json
 !/scripts/composer/ScriptHandler.php
 !/load.environment.php
+!/drush/
+!/phpunit.xml.dist
 
