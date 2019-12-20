@@ -1,9 +1,9 @@
 <?php
 
 # when the pod starts up the following settings are exported as env vars 
-# by (vault-env-porter?) # TODO finalise how 
-#
+# by vault-env-porter or similar
 
+// connection to RDS database
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => getenv('DB_DATABASE'),
@@ -16,18 +16,16 @@ $databases['default']['default'] = array(
   'pdo' => array()
 );
 
-# following are TODO
-$s3bucketCreds = $vcapServices['aws-s3-bucket']['credentials'];
-
-$settings['s3fs.access_key'] = $s3bucketCreds['aws_access_key_id'];
-$settings['s3fs.secret_key'] = $s3bucketCreds['aws_secret_key_id'];
-$settings['s3fs.bucket'] = $s3bucketCreds['bucket_name'];
-$settings['s3fs.region'] = $s3bucketCreds['aws_region'];
-$config['s3fs.settings']['bucket'] = $s3bucketCreds['bucket_name'];
+// s3fs settings 
+$settings['s3fs.secret_key'] = getenv('AWS_SECRET_ACCESS_KEY');
+$settings['s3fs.access_key'] = getenv('AWS_ACCESS_KEY_ID');
+$settings['s3fs.bucket'] = getenv('AWS_BUCKET_NAME');
+$settings['s3fs.region'] = getenv('AWS_REGION');
+$config['s3fs.settings']['bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.use_s3_for_public'] = TRUE;
 
 // Sendgrid integration API key
-$config['sendgrid_integration.settings']['apikey'] = getenv('SG_API_KEY');
+$config['sendgrid_integration.settings']['apikey'] = getenv('CONNECT_SENDGRID_API_KEY');
 
 // Ensure the devel config environment is off
 $config['config_split.config_split.devel']['status'] = FALSE;
