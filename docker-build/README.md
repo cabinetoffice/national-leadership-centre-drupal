@@ -6,6 +6,10 @@ Typically run like this for a local build
 
 `% DOCKER_BUILDKIT=1 docker build -t nlc-drupal -f docker-build/Dockerfile .`
 
+(note - the build expects a version file as build-version.txt in the root which gets added by
+concourse - this will need manually adding for the local build. it's just informational so touch
+the file there)
+
 *As of current docker version (19.03) the DOCKER_BUILDKIT is used to allow per build docker ignore files 
 
 The overall process is as follows 
