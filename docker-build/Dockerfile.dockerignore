@@ -8,4 +8,5 @@
 !/load.environment.php
 !/drush/
 !/phpunit.xml.dist
+!/build-version.txt
 

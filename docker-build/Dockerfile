@@ -12,6 +12,7 @@ COPY drush/ /var/www/drush/
 COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
 COPY phpunit.xml.dist /var/www/
+COPY build-version.txt /var/www/
 
 # vault vars exporter
 ENV VEP_VERSION v0.0.3
