@@ -19,7 +19,7 @@ copied into the root directory as Dockerfile and .dockerignore and used from the
 
 Env vars it will need can be supplied to the container at run time - see the settings files like web/sites/defaul/settings.prod-eks.php
 
-The settings file is selected based on the NLC_ENVIRONMENT env var 
+The settings file is selected based on the NLC_ENVIRONMENT env var - see main settings.php file for details
 
 The salesforce environment settings / auth config will also need applying as will s3fs to make it usable
 
