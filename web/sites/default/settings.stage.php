@@ -23,6 +23,7 @@ $settings['s3fs.bucket'] = $s3bucketCreds['bucket_name'];
 $settings['s3fs.region'] = $s3bucketCreds['aws_region'];
 $config['s3fs.settings']['bucket'] = $s3bucketCreds['bucket_name'];
 $settings['s3fs.use_s3_for_public'] = TRUE;
+$settings['s3fs.upload_as_private'] = TRUE;
 
 // Sendgrid integration API key
 $config['sendgrid_integration.settings']['apikey'] = getenv('SG_API_KEY');
