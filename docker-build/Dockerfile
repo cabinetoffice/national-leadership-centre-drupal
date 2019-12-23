@@ -13,7 +13,7 @@ COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
 COPY phpunit.xml.dist /var/www/
 COPY build-version.txt /var/www/
-COPY .vaultenv.secret /var/www/.vaultenv.secrets
+COPY .vaultenv.secrets /var/www/.vaultenv.secrets
 
 # php extenstions needed for drupal
 RUN docker-php-ext-install pdo_mysql
