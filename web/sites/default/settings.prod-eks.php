@@ -17,6 +17,7 @@ $databases['default']['default'] = array(
 );
 
 // s3fs settings 
+// perhaps we can avoid having AWS keys altogether by using policies / roles 
 $settings['s3fs.secret_key'] = getenv('AWS_SECRET_ACCESS_KEY');
 $settings['s3fs.access_key'] = getenv('AWS_ACCESS_KEY_ID');
 $settings['s3fs.bucket'] = getenv('AWS_BUCKET_NAME');

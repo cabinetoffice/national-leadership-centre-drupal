@@ -13,11 +13,7 @@ COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
 COPY phpunit.xml.dist /var/www/
 COPY build-version.txt /var/www/
-
-# vault vars exporter
-ENV VEP_VERSION v0.0.3
-ADD https://github.com/dollarshaveclub/vaultenvporter-go/releases/download/$VEP_VERSION/vaultenvporter-go-linux-amd64 /usr/bin/vaultenvporter
-RUN chmod +x /usr/bin/vaultenvporter
+COPY .vaultenv.secret /var/www/.vaultenv.secrets
 
 # php extenstions needed for drupal
 RUN docker-php-ext-install pdo_mysql
@@ -28,8 +24,11 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd  \
     && docker-php-ext-install -j$(nproc) gd
 
-
 # prod php ini - needs logging setup 
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+# TODO - set up opcache and php tuning 
 
-# CMD eval `/usr/bin/vaultenvporter --auth-method github --auth-token $GITHUB_TOKEN --vault-prefix $VAULT_PREFIX` && php-fpm
+ADD https://github.com/channable/vaultenv/releases/download/v0.11.0/vaultenv-v0.11.0-linux-musl /usr/bin/vaultenv
+RUN chmod +x /usr/bin/vaultenv
+
+# e.g. CMD /usr/bin/vaultenv  --no-connect-tls --log-level info --token "here" --secrets-file /var/www/.vaultenv.secrets env

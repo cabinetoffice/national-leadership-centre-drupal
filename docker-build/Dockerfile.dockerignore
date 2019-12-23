@@ -9,4 +9,4 @@
 !/drush/
 !/phpunit.xml.dist
 !/build-version.txt
-
+$/.vaultenv.secrets
