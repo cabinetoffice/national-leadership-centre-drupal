@@ -9,7 +9,7 @@
 export VAULT_TOKEN=$(cat /home/vault/.vault-token)
 
 #  TEMPORARY ! needs a service 
-export VAULT_ADDR=http://10.20.103.124:8200
+export VAULT_ADDR=http://172.20.143.87:8200
 
 # What to read from vault 
 export VAULTENV_SECRETS_FILE=/var/www/.vaultenv.secrets
