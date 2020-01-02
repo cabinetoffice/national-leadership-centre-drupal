@@ -41,6 +41,6 @@ RUN chmod +x /usr/bin/vaultenv
 COPY docker-build/vaultenv-wrapper /usr/bin/vaultenv-wrapper
 RUN chmod +x /usr/bin/vaultenv-wrapper 
 
-# CMD ["/usr/bin/vaultenv-wrapper", "--", "php-fpm"]
+CMD ["/usr/bin/vaultenv-wrapper", "--", "php-fpm"]
 
 # e.g. CMD /usr/bin/vaultenv  --no-connect-tls --log-level info --token "here" --secrets-file /var/www/.vaultenv.secrets env
