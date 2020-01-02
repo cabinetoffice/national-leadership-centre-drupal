@@ -17,6 +17,8 @@ COPY .vaultenv.secrets /var/www/.vaultenv.secrets
 
 # php extenstions needed for drupal
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install opcache
+
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
@@ -26,9 +28,14 @@ RUN apt-get update && apt-get install -y \
 
 # prod php ini - needs logging setup 
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-# TODO - set up opcache and php tuning 
+# TODO - set up opcache config 
 
 ADD https://github.com/channable/vaultenv/releases/download/v0.11.0/vaultenv-v0.11.0-linux-musl /usr/bin/vaultenv
 RUN chmod +x /usr/bin/vaultenv
+
+COPY vaultenv-wrapper /usr/bin/vaultenv-wrapper
+RUN chmod +x /usr/bin/vaultenv-wrapper 
+
+CMD ["/usr/bin/vaultenv-wrapper", "--", "php-fpm"]
 
 # e.g. CMD /usr/bin/vaultenv  --no-connect-tls --log-level info --token "here" --secrets-file /var/www/.vaultenv.secrets env
