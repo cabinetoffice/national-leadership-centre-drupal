@@ -10,4 +10,5 @@
 !/phpunit.xml.dist
 !/build-version.txt
 !/docker-build/vaultenv-wrapper
+!/docker-build/etc-profile-d-drush-path.sh
 !/.vaultenv.secrets
