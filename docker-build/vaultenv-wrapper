@@ -17,6 +17,6 @@ export VAULTENV_SECRETS_FILE=/var/www/.vaultenv.secrets
 # info or error 
 export VAULTENV_LOG_LEVEL=info
 
-exec /usr/bin/vaultenv  $*
+exec /usr/bin/vaultenv -- $*
 
 
