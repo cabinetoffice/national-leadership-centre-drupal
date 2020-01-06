@@ -11,6 +11,7 @@ COPY config/ /var/www/config/
 COPY drush/ /var/www/drush/
 COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
+COPY composer.json /var/www/
 COPY phpunit.xml.dist /var/www/
 COPY build-version.txt /var/www/
 COPY .vaultenv.secrets /var/www/.vaultenv.secrets
@@ -27,11 +28,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd  \
     && docker-php-ext-install -j$(nproc) gd
 
-# prod php ini - needs logging setup 
+# prod php ini - needs logging setup for pushing any uncaught exceptions to stderr
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 # TODO - set up opcache config 
-
-
 
 # the following are for getting Vault secrets into the environment for php
 
