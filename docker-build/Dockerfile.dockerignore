@@ -1,0 +1,14 @@
+*
+!/web/
+!/vendor/
+!/config/
+!/composer.lock
+!/composer.json
+!/scripts/composer/ScriptHandler.php
+!/load.environment.php
+!/drush/
+!/phpunit.xml.dist
+!/build-version.txt
+!/docker-build/vaultenv-wrapper
+!/docker-build/etc-profile-d-drush-path.sh
+!/.vaultenv.secrets
