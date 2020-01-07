@@ -9,6 +9,7 @@ dependencies:
   module:
     - name
     - search_api
+    - user
 id: senior_leaders_directory_es
 label: 'Senior Leaders Directory ES'
 module: views
@@ -24,8 +25,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'access user profiles'
       cache:
         type: tag
         options: {  }
@@ -538,6 +540,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
         - 'config:field.storage.user.field_name'
@@ -561,6 +564,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
         - 'config:field.storage.user.field_name'

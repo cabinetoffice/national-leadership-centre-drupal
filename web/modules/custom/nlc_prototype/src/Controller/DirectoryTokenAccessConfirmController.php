@@ -30,7 +30,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   /**
    * @var string
    */
-  private $routeName = 'view.directory.page_1';
+  private $routeName = 'view.senior_leaders_directory_es.page';
 
   /**
    * @var string
