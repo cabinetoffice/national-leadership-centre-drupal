@@ -62,11 +62,19 @@ field_settings:
       module:
         - node
         - node
-  family_name:
+  family:
     label: 'Full Name » Family'
     datasource_id: 'entity:user'
     property_path: 'field_name:family'
     type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  family_name:
+    label: 'Full Name » Family'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:family'
+    type: text
     dependencies:
       config:
         - field.storage.user.field_name
@@ -75,19 +83,19 @@ field_settings:
     datasource_id: 'entity:user'
     property_path: 'search_api_reverse_entity_references_profile__uid:field_general_location'
     type: string
-  full_name:
-    label: Name
-    datasource_id: 'entity:user'
-    property_path: name
-    type: text
-    dependencies:
-      module:
-        - user
-  given_name:
+  given:
     label: 'Full Name » Given'
     datasource_id: 'entity:user'
     property_path: 'field_name:given'
     type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  given_name:
+    label: 'Full Name » Given'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:given'
+    type: text
     dependencies:
       config:
         - field.storage.user.field_name
