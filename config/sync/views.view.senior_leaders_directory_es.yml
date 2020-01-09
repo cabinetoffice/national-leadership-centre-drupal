@@ -409,7 +409,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
+          operator: or
           value: ''
           group: 1
           exposed: true
