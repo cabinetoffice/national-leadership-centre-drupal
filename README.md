@@ -73,6 +73,8 @@ It is presumed that you will use Docker to run this project. This project uses C
 
 The `Makefile` and `docker.mk` included in this project provide some easy CLI tools to work with this Docker stack for Drupal.
 
+#### Working with Docker
+
 **To start your Docker stack, from the root directory of your cloned repo:**
 
 ```bash
@@ -230,3 +232,28 @@ SSH into the current app:
 ```cf ssh "nlc-alpha-drupal" -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"```
 
 Then you can run drush as normal.
+
+## Running automated tests
+
+The system includes PHPUnit tests in line with the [Drupal testing guidelines](https://www.drupal.org/docs/8/phpunit). The PHPUnit configuration file in the root of this directory can be used to run the tests. 
+
+### In local development
+
+First, after [starting your local development environment](#working-with-docker), get a shell in the PHP container.
+
+```bash
+make shell
+```
+
+To run all tests:
+
+```bash
+vendor/bin/phpunit -c ./
+```
+
+To run only a selected group of tests, such as those for the `nlc_prototype` custom module:
+
+```bash
+vendor/bin/phpunit -c ./ --group nlc_prototype
+```
+
