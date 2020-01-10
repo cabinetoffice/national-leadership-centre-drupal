@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y \
 
 # prod php ini - needs logging setup for pushing any uncaught exceptions to stderr
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN sed -i "s/expose_php = On/expose_php = Off/" "$PHP_INI_DIR/php.ini"
 # TODO - set up opcache config 
 
 # the following are for getting Vault secrets into the environment for php
