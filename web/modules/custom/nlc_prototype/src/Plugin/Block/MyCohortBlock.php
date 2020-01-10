@@ -42,8 +42,9 @@ class MyCohortBlock extends BlockBase {
           $entity = \Drupal::entityTypeManager()
             ->getStorage('node')
             ->load($cohort->target_id);
-          $options['query']['f'][] = 'cohort:' . $entity->label();
-          if ($entity && !empty($options)) {
+          if ($entity) {
+            $options['query']['f'][] = 'cohort:' . $entity->label();
+
             $build['cohort'] = [
               '#type' => 'container',
               '#attributes' => [
