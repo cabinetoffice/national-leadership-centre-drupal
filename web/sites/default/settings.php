@@ -792,3 +792,7 @@ if (getenv('SALESFORCE_PEM_PATH')) {
 $config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['consumer_key'] = getenv('SALESFORCE_KEY');
 $config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_user'] = getenv('SALESFORCE_LOGIN');
 $config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_url'] = getenv('SALESFORCE_URL');
+
+if (getenv('ELASTICSEARCH_URL')) {
+  $config['elasticsearch_connector.cluster.live_cluster']['url'] = getenv('ELASTICSEARCH_URL');
+}
