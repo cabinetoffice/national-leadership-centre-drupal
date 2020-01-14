@@ -9,8 +9,9 @@ name: Elastic
 description: ''
 backend: elasticsearch
 backend_config:
+  server_description: ''
   cluster_settings:
-    cluster: local_docker
+    cluster: live_cluster
   fuzziness: auto
   scheme: http
   host: localhost
