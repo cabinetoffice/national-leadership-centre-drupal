@@ -10,22 +10,22 @@ dependencies:
 id: filter_by_sector
 name: 'Role profiles » Profile » Organisation » Content » Sector'
 url_alias: sector
-weight: 0
-min_count: 1
+weight: -1
+min_count: 0
 show_only_one_result: false
 field_identifier: org_sector_user
 facet_source_id: 'search_api:views_page__directory__page_1'
 widget:
-  type: checkbox
+  type: links
   config:
     show_numbers: false
     soft_limit: 0
     soft_limit_settings:
       show_less_label: 'Show less'
       show_more_label: 'Show more'
-    show_reset_link: true
+    show_reset_link: false
     reset_text: 'Show all'
-    hide_reset_when_no_selection: true
+    hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
 expand_hierarchy: false

@@ -1,11 +1,41 @@
-.facets-widget-checkbox ul {
+.facet-heading {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.facet-container {
+  border-bottom: 1px solid $govuk-border-colour;
+}
+.facets-widget-links {
+  margin-top: -13px;
+}
+.facets-widget-links ul {
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
-.facets-widget-checkbox label {
+.facets-widget-links a {
   @extend .govuk-label;
   @extend .govuk-checkboxes__label;
-}
-.facets-checkbox {
-  @extend .govuk-checkboxes__input;
+  cursor: pointer;
+  text-decoration: none;
+  // Copied from govuk-checkboxes--small
+  margin-top: -4px;
+  padding: 13px 15px 13px 1px;
+  float: left;
+  &::before {
+    top: 8px;
+    width: 24px;
+    height: 24px;
+  }
+  &::after {
+    top: 15px;
+    left: 6px;
+    width: 9px;
+    height: 3.5px;
+    border-width: 0 0 3px 3px;
+  }
+  &.is-active::after {
+    opacity: 1;
+  }
 }

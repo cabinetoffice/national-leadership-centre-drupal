@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Drupal\nlc_prototype\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
