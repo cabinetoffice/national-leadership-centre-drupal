@@ -1,1 +1,47 @@
 <?php
+
+/**
+ * Preprocess the facets summary item list.
+ */
+function bevan_preprocess_facets_summary_item_list(array &$vars) {
+
+  // Add any search string to the list of applied facets.
+  $vars['applied'] = [];
+  if (!empty($_GET['search'])) {
+    $vars['applied']['keywords'] = [
+      'title' => 'Keywords',
+      'row_class' => 'facet-summary__applied-row__spaced',
+      'items' => [],
+    ];
+    foreach(explode(' ', $_GET['search']) ?? [] as $k) {
+      $vars['applied']['keywords']['items'][] = [
+        'value' => [
+          '#plain_text' => $k,
+          '#prefix' => '<span>',
+          '#suffix' => '</span>',
+        ]
+      ];
+    }
+  }
+
+  // Expose the facet for each item.
+  foreach($vars['items'] as &$item) {
+
+    // Get the result count separately from facets.
+    if (!empty($item['value']['#count'])) {
+      $vars['result_count'] = $item['value']['#count'];
+    }
+
+    // For each applied item, group it by facet.
+    if (!empty($item['value']['#title']['#facet'])) {
+      $facet = $item['value']['#title']['#facet'];
+      if (empty($vars['applied'][$facet->id()])) {
+        $vars['applied'][$facet->id()] = [
+          'title' => $facet->getName(),
+          'items' => [],
+        ];
+      }
+      $vars['applied'][$facet->id()]['items'][] = $item;
+    }
+  }
+}
