@@ -1,0 +1,14 @@
+services:
+  logger.channel.neo4j_db:
+    parent: logger.channel_base
+    arguments: ['neo4j_db']
+  neo4j_db.database_factory:
+    class: Drupal\neo4j_db\DatabaseFactory
+  neo4j_db.connection:
+    class: GraphAware\Neo4j\OGM\EntityManager
+    factory: neo4j_db.database_factory:create
+  neo4j_db.page_logger:
+    class: Drupal\neo4j_db\Logger
+    arguments: ['@neo4j_db.connection', '@current_user', '@logger.channel.neo4j_db']
+    tags:
+      - { name: event_subscriber }
