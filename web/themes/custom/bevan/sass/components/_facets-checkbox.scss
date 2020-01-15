@@ -82,6 +82,11 @@
         text-decoration: none;
         white-space: nowrap;
   
+        &::after {
+          content: '\00d7';
+          padding-left: 0.5rem;
+          vertical-align: middle;
+        }
         &:hover {
           background-image: $gradient;
         }
