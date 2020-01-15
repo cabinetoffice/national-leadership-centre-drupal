@@ -8,7 +8,7 @@ dependencies:
   module:
     - search_api
 id: job_title
-name: 'Role profiles » Profile » Job Title'
+name: 'Job Title'
 url_alias: job_title
 weight: -2
 min_count: 0
