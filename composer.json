@@ -13,11 +13,16 @@
         {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "path",
+            "url": "web/modules/custom/neo4j_db"
         }
     ],
     "require": {
         "php": ">=5.6",
         "composer/installers": "^1.2",
+        "convivio/neo4j_db": "dev-feature/ch1232/graph-db-abstraction-layer",
         "cweagans/composer-patches": "^1.6.5",
         "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/address": "~1.0",
