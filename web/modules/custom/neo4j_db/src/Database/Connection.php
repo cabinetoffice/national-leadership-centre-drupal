@@ -25,9 +25,9 @@ abstract class Connection {
   /**
    * The actual graph DB connection.
    *
-   * @var EntityManager
+   * @var \GraphAware\Neo4j\OGM\EntityManager
    */
-  protected $connection;
+  protected $ogmConnection;
 
   /**
    * The connection information for this connection object.
@@ -46,7 +46,7 @@ abstract class Connection {
   /**
    * Constructs a Connection object.
    *
-   * @param EntityManager $connection
+   * @param \GraphAware\Neo4j\OGM\EntityManager $connection
    *   An object of the Neo4j OGM EntityManager class representing a database connection.
    * @param array $connection_options
    *   An array of options for the connection. May include the following:
@@ -55,7 +55,7 @@ abstract class Connection {
    *   - Other driver-specific options.
    */
   public function __construct(EntityManager $connection, array $connection_options) {
-    $this->connection = $connection;
+    $this->ogmConnection = $connection;
     $this->connectionOptions = $connection_options;
   }
 
@@ -88,6 +88,13 @@ abstract class Connection {
       $this->driverClasses[$class] = class_exists($driver_class) ? $driver_class : $class;
     }
     return $this->driverClasses[$class];
+  }
+
+  /**
+   * @return \GraphAware\Neo4j\OGM\EntityManager
+   */
+  public function getOgmConnection() {
+    return $this->ogmConnection;
   }
 
   /**

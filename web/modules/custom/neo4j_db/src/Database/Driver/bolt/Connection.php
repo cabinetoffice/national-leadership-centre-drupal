@@ -10,12 +10,9 @@ use Drupal\neo4j_db\Database\Connection as DatabaseConnection;
  */
 
 /**
- * Neo4j implementation of \Drupal\Core\Database\Connection.
+ * Neo4j database connection implementation, like \Drupal\Core\Database\Connection.
  */
-class Connection extends DatabaseConnection {
-
-}
-
+class Connection extends DatabaseConnection {}
 /**
  * @} End of "addtogroup database".
  */
