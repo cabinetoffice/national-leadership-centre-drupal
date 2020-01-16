@@ -34,12 +34,23 @@ class Logger implements EventSubscriberInterface {
   }
 
   public function onRequest(KernelEvent $event) {
-    $model = new LogEventModel();
-    $model->setName('Test');
-    $model->setEvent(\Drupal::time()->getRequestTime());
-    $this->connection
-      ->persist($model)
-      ->execute();
+    // Create an event log in the graph DB.
+//    $model = new LogEventModel();
+//    $model->setId(20);
+//    $model->setName('Test');
+//    $model->setEvent(\Drupal::time()->getRequestTime());
+//    $this->connection
+//      ->persist($model)
+//      ->execute();
+
+    // Update an existing event.
+//    $className = LogEventModel::class;
+//    $params = ['event' => 1579190443];
+//    $logEvent = $this->connection
+//      ->findOneBy($className, $params)
+//      ->execute();
+//    $logEvent->setName('My New Test');
+//    $this->connection->getOgmConnection()->flush();
   }
 
   public static function getSubscribedEvents() {

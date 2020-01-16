@@ -234,6 +234,23 @@ abstract class Connection {
     return new $class($this, $object);
   }
 
+  /**
+   * Prepares and returns an OGM FindOneBy query object.
+   *
+   * @param string $className
+   *   The name of the model object class to create.
+   * @param array $params
+   *   Array of parameters to use to retrieve a node.
+   *
+   * @see \Drupal\neo4j_db\Database\Query\FindOneBy
+   *
+   * @return \Drupal\neo4j_db\Database\Query\FindOneBy
+   */
+  public function findOneBy($className, $params) {
+    $class = $this->getDriverClass('FindOneBy');
+    return new $class($this, $className, $params);
+  }
+
 }
 /**
  * @} End of "addtogroup database".
