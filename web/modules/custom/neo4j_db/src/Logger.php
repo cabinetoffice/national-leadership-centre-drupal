@@ -4,6 +4,7 @@ namespace Drupal\neo4j_db;
 
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\neo4j_db\Database\Driver\bolt\Connection;
+use Drupal\neo4j_db\Model\LogEventModel;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
@@ -33,7 +34,12 @@ class Logger implements EventSubscriberInterface {
   }
 
   public function onRequest(KernelEvent $event) {
-    $this->log->debug('<pre>' . print_r($event->getRequest(), true) . '</pre>');
+    $model = new LogEventModel();
+    $model->setName('Test');
+    $model->setEvent(\Drupal::time()->getRequestTime());
+    $this->connection
+      ->persist($model)
+      ->execute();
   }
 
   public static function getSubscribedEvents() {
