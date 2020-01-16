@@ -31,25 +31,15 @@ abstract class Query {
   protected $connectionKey;
 
   /**
-   * The object to handle in the query.
-   *
-   * @var object
-   */
-  protected $object;
-
-  /**
    * Constructs a Query object.
    *
    * @param \Drupal\neo4j_db\Database\Connection $connection
    *   Database connection object.
-   * @param array $object
-   *   An object for the query to handle.
    */
-  public function __construct(Connection $connection, $object) {
+  public function __construct(Connection $connection) {
     $this->connection = $connection;
     $this->connectionKey = $this->connection->getKey();
     $this->connectionTarget = $this->connection->getTarget();
-    $this->object = $object;
   }
 
   /**

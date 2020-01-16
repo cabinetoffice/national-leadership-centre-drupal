@@ -218,6 +218,22 @@ abstract class Connection {
     // TODO: Implement mapConditionOperator() method.
   }
 
+  /**
+   * Prepares and returns an OGM Persist query object.
+   *
+   * @param object $object
+   *   The object to persist in the DB.
+   *
+   * @see \Drupal\neo4j_db\Database\Query\Persist
+   * @see \Drupal\neo4j_db\Database\Connection::defaultOptions()
+   *
+   * @return \Drupal\neo4j_db\Database\Query\Persist
+   */
+  public function persist($object) {
+    $class = $this->getDriverClass('Persist');
+    return new $class($this, $object);
+  }
+
 }
 /**
  * @} End of "addtogroup database".

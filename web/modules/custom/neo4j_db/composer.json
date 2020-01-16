@@ -2,7 +2,6 @@
   "name": "convivio/neo4j_db",
   "description": "A DB driver for a Neo4j graph database",
   "license": "GPL-2.0-or-later",
-  "type": "drupal-module",
   "require": {
     "graphaware/neo4j-php-ogm": "@rc"
   }
