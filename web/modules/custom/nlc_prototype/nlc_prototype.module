@@ -2,6 +2,7 @@
 
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\user\UserInterface;
+use Drupal\search_api\Query\QueryInterface;
 
 /**
  * Implements hook_mail().
@@ -57,3 +58,23 @@ function nlc_prototype_page_attachments(array &$page) {
     $page['#attached']['library'][] = 'nlc_prototype/google_analytics';
   }
 }
+
+/**
+ * Implements hook_search_api_query_alter().
+ * https://www.drupal.org/forum/support/post-installation/2016-06-09/solved-how-do-i-make-a-custom-module-trigger-a-function
+ */
+function facets_summary_search_api_query_alter(QueryInterface &$query) {
+    $facet_source_id = 'search_api:' . str_replace(':', '__', $query->getSearchId());
+    $storage = \Drupal::entityTypeManager()->getStorage('facets_summary');
+    // Get all the facet summaries for the facet source.
+    $facet_summaries = $storage->loadByProperties(['facet_source_id' => $facet_source_id]);
+    /** @var \Drupal\facets_summary\FacetsSummaryInterface $facet_summary */
+    foreach ($facet_summaries as $facet_summary) {
+      $processors = $facet_summary->getProcessors();
+      // If the count processor is enabled, results count must not be skipped.
+      if (in_array('show_count', array_keys($processors))) {
+        $query->setOption('skip result count', FALSE);
+        break;
+      }
+    }
+  }
