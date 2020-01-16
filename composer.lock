@@ -1322,12 +1322,12 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/neo4j_db",
-                "reference": "edfbd2361574456519231737f3433492ea966174"
+                "reference": "c7e57e0f684088dc51284bd9a8e3498f9583f648"
             },
             "require": {
                 "graphaware/neo4j-php-ogm": "@rc"
             },
-            "type": "drupal-module",
+            "type": "library",
             "license": [
                 "GPL-2.0-or-later"
             ],
