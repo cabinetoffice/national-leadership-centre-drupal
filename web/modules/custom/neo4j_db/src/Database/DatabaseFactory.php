@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\neo4j_db;
+namespace Drupal\neo4j_db\Database;
 
 use Drupal\neo4j_db\Database\Database;
 

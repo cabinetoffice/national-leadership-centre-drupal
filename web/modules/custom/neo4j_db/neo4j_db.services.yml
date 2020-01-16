@@ -3,7 +3,7 @@ services:
     parent: logger.channel_base
     arguments: ['neo4j_db']
   neo4j_db.database_factory:
-    class: Drupal\neo4j_db\DatabaseFactory
+    class: Drupal\neo4j_db\Database\DatabaseFactory
   neo4j_db.connection:
     class: GraphAware\Neo4j\OGM\EntityManager
     factory: neo4j_db.database_factory:create
