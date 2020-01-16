@@ -1,19 +1,38 @@
 <?php
 
 /**
+ * Preprocess page
+ */
+function bevan_preprocess_page(&$vars) {
+  // Save GET parameters to session so we can get them in subsequent AJAX requests.
+  // This works because AJAX requests don't trigger this hook.
+  // Using $_SESSION here because the D8 Request->getSession() returns NULL in an AJAX call.
+  $req = \Drupal::request();
+  if (\Drupal::routeMatch()->getRouteName() === 'view.directory.page_1') {
+    if ($req->query->get('search')) {
+      $_SESSION['directory_search'] = $req->query->get('search');
+    }
+    else {
+      unset($_SESSION['directory_search']);
+    }
+  }
+}
+
+/**
  * Preprocess the facets summary item list.
  */
 function bevan_preprocess_facets_summary_item_list(array &$vars) {
 
   // Add any search string to the list of applied facets.
   $vars['applied'] = [];
-  if (!empty($_GET['search'])) {
+  $search = $_SESSION['directory_search'] ?? FALSE;
+  if (!empty($search)) {
     $vars['applied']['keywords'] = [
       'title' => 'Keywords',
       'row_class' => 'facet-summary__applied-row__spaced',
       'items' => [],
     ];
-    foreach(explode(' ', $_GET['search']) ?? [] as $k) {
+    foreach(explode(' ', $search) ?? [] as $k) {
       $vars['applied']['keywords']['items'][] = [
         'value' => [
           '#plain_text' => $k,
