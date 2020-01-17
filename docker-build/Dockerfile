@@ -11,6 +11,7 @@ COPY config/ /var/www/config/
 COPY drush/ /var/www/drush/
 COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
+COPY composer.json /var/www/
 COPY phpunit.xml.dist /var/www/
 COPY build-version.txt /var/www/
 COPY .vaultenv.secrets /var/www/.vaultenv.secrets
