@@ -26,7 +26,7 @@ $config['s3fs.settings']['bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.use_s3_for_public'] = TRUE;
 
 // Sendgrid integration API key
-$config['sendgrid_integration.settings']['apikey'] = getenv('CONNECT_SENDGRID_API_KEY');
+$config['sendgrid_integration.settings']['apikey'] = getenv('SENDGRID_API_KEY');
 
 // Ensure the devel config environment is off
 $config['config_split.config_split.devel']['status'] = FALSE;
