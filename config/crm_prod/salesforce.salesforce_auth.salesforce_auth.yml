@@ -1,0 +1,16 @@
+uuid: cc9e3ff5-14f7-471f-accb-94bd70ef9048
+langcode: en
+status: true
+dependencies:
+  config:
+    - key.key.salesforce_pem
+  module:
+    - salesforce_jwt
+id: salesforce_auth
+label: 'Salesforce Auth'
+provider: jwt
+provider_settings:
+  consumer_key: dummy_key
+  login_user: user@example.com
+  login_url: 'https://salesforce.com'
+  encrypt_key: salesforce_pem
