@@ -1,0 +1,17 @@
+uuid: 3105046a-1e8e-47b6-9cf9-5870e514e66e
+langcode: en
+status: false
+dependencies: {  }
+id: crm_prod
+label: 'CRM Production'
+description: 'Salesforce settings for the production server.'
+folder: ../config/crm_prod
+module: {  }
+theme: {  }
+blacklist:
+  - salesforce.salesforce_auth.salesforce_auth
+  - salesforce.settings
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
