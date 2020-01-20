@@ -30,4 +30,5 @@ $config['sendgrid_integration.settings']['apikey'] = getenv('SENDGRID_API_KEY');
 
 // Ensure the devel config environment is off
 $config['config_split.config_split.devel']['status'] = FALSE;
+$config['config_split.config_split.crm_prod']['status'] = TRUE;
 
