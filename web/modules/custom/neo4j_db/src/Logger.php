@@ -50,7 +50,7 @@ class Logger implements EventSubscriberInterface {
 //      ->findOneBy($className, $params)
 //      ->execute();
 //    $logEvent->setName('My New Test');
-//    $this->connection->getOgmConnection()->flush();
+//    $this->connection->flush();
   }
 
   public static function getSubscribedEvents() {

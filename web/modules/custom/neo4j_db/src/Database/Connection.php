@@ -235,6 +235,13 @@ abstract class Connection {
   }
 
   /**
+   * Flush an OGM UnitOfWork.
+   */
+  public function flush() {
+    $this->getOgmConnection()->flush();
+  }
+
+  /**
    * Prepares and returns an OGM FindBy query object.
    *
    * @param string $className

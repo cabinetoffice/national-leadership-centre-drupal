@@ -42,7 +42,7 @@ class Persist extends Query {
    * return void
    */
   public function execute() {
-    $this->connection->getOgmConnection()->flush();
+    $this->connection->flush();
   }
 
 }
