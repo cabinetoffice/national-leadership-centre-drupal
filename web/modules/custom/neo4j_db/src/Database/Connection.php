@@ -235,20 +235,60 @@ abstract class Connection {
   }
 
   /**
+   * Prepares and returns an OGM FindBy query object.
+   *
+   * @param string $className
+   *   The name of the model object class to create.
+   * @param array $criteria
+   *   Array of criteria to use to retrieve a node.
+   * @param array|null $orderBy
+   *   Array of criteria to use for ordering the results.
+   * @param int|null $limit
+   *   Limit the number of results.
+   * @param int|null $offset
+   *   A results offset.
+   *
+   * @see \Drupal\neo4j_db\Database\Query\FindBy
+   *
+   * @return \Drupal\neo4j_db\Database\Query\FindBy
+   */
+  public function findBy($className, array $criteria, array $orderBy = null, $limit = null, $offset = null) {
+    $class = $this->getDriverClass('FindBy');
+    return new $class($this, $className, $criteria, $orderBy, $limit, $offset);
+  }
+
+  /**
    * Prepares and returns an OGM FindOneBy query object.
    *
    * @param string $className
    *   The name of the model object class to create.
-   * @param array $params
-   *   Array of parameters to use to retrieve a node.
+   * @param array $criteria
+   *   Array of criteria to use to retrieve a node.
    *
    * @see \Drupal\neo4j_db\Database\Query\FindOneBy
    *
    * @return \Drupal\neo4j_db\Database\Query\FindOneBy
    */
-  public function findOneBy($className, $params) {
+  public function findOneBy($className, $criteria) {
     $class = $this->getDriverClass('FindOneBy');
-    return new $class($this, $className, $params);
+    return new $class($this, $className, $criteria);
+  }
+
+  /**
+   * Prepares and returns an OGM FindOneByID query object.
+   *
+   * @param string $className
+   *   The name of the model object class to create.
+   * @param int $id
+   *   ID to use to retrieve a node.
+   *
+   * @see \Drupal\neo4j_db\Database\Query\FindOneById
+   *
+   * @return \Drupal\neo4j_db\Database\Query\FindOneById
+   */
+  public function findOneById($className, $id) {
+    $class = $this->getDriverClass('FindOneById');
+    return new $class($this, $className, $id);
   }
 
 }

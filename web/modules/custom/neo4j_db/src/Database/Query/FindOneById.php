@@ -5,32 +5,33 @@ namespace Drupal\neo4j_db\Database\Query;
 
 use Drupal\neo4j_db\Database\Connection;
 
-class FindOneBy extends AbstractFindBy {
+class FindOneById extends AbstractFindBy {
 
   /**
-   * @var array
+   * @var int
    */
-  protected $criteria;
+  protected $id;
 
   /**
-   * FindOneBy constructor.
+   * FindOneById constructor.
    *
    * @param \Drupal\neo4j_db\Database\Connection $connection
    *   Database connection object.
    * @param string $className
    *   The class name of the model object to retrieve.
-   * @param array $criteria
-   *   An array of criteria to help retrieve the right object.
+   * @param int $id
+   *   The ID of the item to retrieve.
    */
-  public function __construct(Connection $connection, $className, $criteria) {
+  public function __construct(Connection $connection, $className, $id) {
     parent::__construct($connection, $className);
-    $this->criteria = $criteria;
+    $this->id = $id;
   }
 
   /**
    * @return object|null
    */
   public function execute() {
-    return $this->typeRepo->findOneBy($this->criteria);
+    return $this->typeRepo->findOneById($this->id);
   }
+
 }
