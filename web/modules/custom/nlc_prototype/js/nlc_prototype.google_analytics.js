@@ -22,7 +22,33 @@
           });
         }
       });
+
+      if ($('h3.search-no-results', context).length) {
+        let query = Drupal.nlc_prototype_ga.getQueryParameterValues();
+        ga('send', 'event', 'Search','ZeroResults', query);
+      }
     }
-  }
+  };
+
+  Drupal.nlc_prototype_ga = {};
+
+  Drupal.nlc_prototype_ga.getQueryParameterValues = function() {
+    let query = {};
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.forEach(function(value, key) {
+      if (key.includes('directory[')) {
+        let item = value.split(':');
+        if (typeof query[item[0]] === 'undefined') {
+          query[item[0]] = [];
+        }
+        query[item[0]].push(item[1]);
+      }
+      else {
+        query[key] = value;
+      }
+    });
+    return query;
+  };
+
 
 })(jQuery, Drupal, drupalSettings);
