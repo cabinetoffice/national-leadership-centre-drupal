@@ -843,7 +843,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<h3 class=\"search-no-results\">Oops!</h3>\r\n\r\n<p>Unfortunately there were no results that matched your search. This prototype contains a limited set of information.</p>\r\n\r\n<p>If you think this is in error, please contact nlc@cabinetoffice.gov.uk.</p>\r\n"
+            value: "<h3 class=\"search-no-results\">Sorry, there&apos;s no-one to match that search.</h3>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n<li>Details for Senior Leaders who have not attended the Programme are not currently available.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
             format: filtered_text
           plugin_id: text
       relationships:
@@ -898,7 +898,6 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
-        - extensions
   page_1:
     display_plugin: page
     id: page_1
@@ -931,4 +930,3 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.profile.field_job_title'
-        - extensions
