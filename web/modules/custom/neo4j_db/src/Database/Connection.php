@@ -6,7 +6,7 @@ use Drupal\Core\Database\Log;
 use GraphAware\Neo4j\OGM\EntityManager;
 
 /**
- * @addtogroup database
+ * @addtogroup graph_database
  * @{
  */
 
@@ -297,6 +297,23 @@ abstract class Connection {
     $class = $this->getDriverClass('FindOneById');
     return new $class($this, $className, $id);
   }
+
+  /**
+   * Prepares and returns and OGM Delete query object.
+   *
+   * @param object $object
+   *   The object to delete from the DB.
+   *
+   * @see \Drupal\neo4j_db\Database\Query\Delete
+   * @see \Drupal\neo4j_db\Database\Connection::defaultOptions()
+   *
+   * @return \Drupal\neo4j_db\Database\Query\Delete
+   */
+  public function delete($object) {
+    $class = $this->getDriverClass('Delete');
+    return new $class($this, $object);
+  }
+
 
 }
 /**

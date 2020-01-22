@@ -4,6 +4,11 @@ namespace Drupal\neo4j_db\Database\Query;
 
 use Drupal\neo4j_db\Database\Connection;
 
+/**
+ * General class for an abstracted graph DB Persist operation
+ *
+ * @ingroup graph_db
+ */
 class Persist extends Query {
 
   /**

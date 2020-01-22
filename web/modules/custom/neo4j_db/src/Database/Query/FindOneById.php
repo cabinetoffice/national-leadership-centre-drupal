@@ -5,6 +5,11 @@ namespace Drupal\neo4j_db\Database\Query;
 
 use Drupal\neo4j_db\Database\Connection;
 
+/**
+ * General class for an abstracted graph DB FindOneById operation.
+ *
+ * @ingroup graph_database
+ */
 class FindOneById extends AbstractFindBy {
 
   /**
