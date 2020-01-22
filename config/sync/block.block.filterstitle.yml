@@ -1,0 +1,26 @@
+uuid: 0a53cd31-dfd2-4f73-9da7-b3dd384d6758
+langcode: en
+status: true
+dependencies:
+  module:
+    - nlc_prototype
+    - system
+  theme:
+    - bevan
+id: filterstitle
+theme: bevan
+region: sidebar_first
+weight: -8
+provider: null
+plugin: filters_title_block
+settings:
+  id: filters_title_block
+  label: 'Filters title'
+  provider: nlc_prototype
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,17 @@
+// Override the govuk styles
+.js-enabled .govuk-accordion__section-button {
+    font-size: inherit;
+    line-height: 1.52631579em;
+    padding: 14px 16px 13px 0;
+}
+.js-enabled .govuk-accordion__icon:after {
+    content: none;
+}
+.js-enabled .collapsiblockCollapsed .govuk-accordion__icon:after {
+    content: '';
+}
+.js-enabled .govuk-accordion__section-button:focus {
+    outline: 3px solid $govuk-focus-colour;
+    outline-offset: 0;
+    background-color: $govuk-focus-colour
+}

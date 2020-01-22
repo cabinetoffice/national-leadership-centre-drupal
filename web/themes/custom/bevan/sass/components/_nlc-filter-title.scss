@@ -1,0 +1,4 @@
+.nlc-filter-title {
+    @include govuk-responsive-margin(8, "top");
+    @include govuk-responsive-margin(2, "bottom");
+}

@@ -10,13 +10,13 @@ dependencies:
 id: job_title
 name: 'Job Title'
 url_alias: job_title
-weight: 0
-min_count: 1
+weight: -2
+min_count: 0
 show_only_one_result: false
 field_identifier: job_title_string
 facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
 widget:
-  type: checkbox
+  type: links
   config:
     show_numbers: false
     soft_limit: 0
@@ -34,10 +34,10 @@ hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
-  display_value_widget_order:
-    processor_id: display_value_widget_order
+  raw_value_widget_order:
+    processor_id: raw_value_widget_order
     weights:
-      sort: 40
+      sort: 50
     settings:
       sort: ASC
   url_processor_handler:

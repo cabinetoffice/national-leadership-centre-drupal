@@ -1,11 +1,99 @@
-.facets-widget-checkbox ul {
+.facet-heading {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.facet-container {
+  border-bottom: 1px solid $govuk-border-colour;
+}
+.facets-widget-links {
+  margin-top: -13px;
+}
+.facets-widget-links ul {
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
-.facets-widget-checkbox label {
+.facets-widget-links a {
   @extend .govuk-label;
   @extend .govuk-checkboxes__label;
+  cursor: pointer;
+  text-decoration: none;
+  // Copied from govuk-checkboxes--small
+  margin-top: -4px;
+  padding: 13px 15px 13px 1px;
+  float: left;
+  &::before {
+    top: 8px;
+    width: 24px;
+    height: 24px;
+  }
+  &::after {
+    top: 15px;
+    left: 6px;
+    width: 9px;
+    height: 3.5px;
+    border-width: 0 0 3px 3px;
+  }
+  &.is-active::after {
+    opacity: 1;
+  }
 }
-.facets-checkbox {
-  @extend .govuk-checkboxes__input;
+
+.facet-summary {
+  &__count {
+    font-size: 1.4em;
+  }
+  &__applied {
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+
+    &-row {
+      line-height: 1.8rem;
+      &__spaced td {
+        margin-bottom: 0.75rem;
+      }
+    }
+    &-title {
+      font-weight: initial;
+      text-align: left;
+      vertical-align: top;
+      padding: 0.1rem 0.5em 0 0;
+      border-top: 1px solid transparent; /* Match spacing */
+      white-space: nowrap;
+    }
+    &-items {
+      display: flex;
+      flex-wrap: wrap;
+      > span {
+        border: 1px solid #000;
+        padding: 0.1rem 0.5em 0;
+        border-radius: 0.4em;
+        margin: 0 0.5em 0.2em 0;
+        white-space: nowrap;
+      }
+      a {
+        border: 1px solid $red;
+        background-color: $red;
+        color: $white;
+        padding: 0.1rem 0.5em 0;
+        border-radius: 0.4em;
+        margin: 0 0.5em 0.2em 0;
+        text-decoration: none;
+        white-space: nowrap;
+  
+        &::after {
+          content: '\00d7';
+          padding-left: 0.5rem;
+          vertical-align: middle;
+        }
+        &:hover {
+          background-image: $gradient;
+        }
+        &:focus {
+          outline: 4px solid $grey;
+        }
+      }
+    }
+  }
 }

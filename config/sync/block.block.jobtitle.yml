@@ -5,9 +5,13 @@ dependencies:
   config:
     - facets.facet.job_title
   module:
+    - collapsiblock
     - facets
   theme:
     - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '3'
 id: jobtitle
 theme: bevan
 region: sidebar_first
@@ -16,7 +20,7 @@ provider: null
 plugin: 'facet_block:job_title'
 settings:
   id: 'facet_block:job_title'
-  label: 'Job Title'
+  label: 'Job title'
   provider: facets
   label_display: visible
   block_id: jobtitle

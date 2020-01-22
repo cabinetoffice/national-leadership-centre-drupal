@@ -22,6 +22,16 @@
           });
         }
       });
+
+      $("a[href^='mailto:'],area[href^='mailto:']", context).bind( {
+        click: function () {
+          gtag('event', 'Click', {
+            event_category: 'Mails',
+            event_label: 'UID: ' + drupalSettings.user.uid + ' | Page: ' + drupalSettings.path.currentPath + ' | Context: ' + $(this).prev().text(),
+            transport_type: 'beacon'
+          });
+        }
+      });
     }
   }
 

@@ -10,13 +10,13 @@ dependencies:
 id: sector
 name: Sector
 url_alias: sector
-weight: 0
-min_count: 1
+weight: -1
+min_count: 0
 show_only_one_result: false
 field_identifier: sector_name
 facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
 widget:
-  type: checkbox
+  type: links
   config:
     show_numbers: false
     soft_limit: 0

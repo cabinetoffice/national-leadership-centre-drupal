@@ -15,3 +15,9 @@ regions:
   footer: 'Footer'
 libraries-override:
   govuk_design_system/global-styling: bevan/global-styling
+  collapsiblock/core:
+    js:
+      js/collapsiblock.js: js/collapsiblock.js
+    css:
+      theme:
+        css/collapsiblock.css: false

@@ -25,10 +25,7 @@
  */
 #}
 
-{% if facet.widget.type == 'checkbox' %}
-  {% set govuk_class = 'govuk-checkboxes' %}
-{% endif %}
-<div class="facets-widget-{{ facet.widget.type }} {{ govuk_class }}">
+<div class="facets-widget-{{ facet.widget.type }} govuk-checkboxes govuk-checkboxes--small">
   {% if facet.widget.type %}
     {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
   {% endif %}
