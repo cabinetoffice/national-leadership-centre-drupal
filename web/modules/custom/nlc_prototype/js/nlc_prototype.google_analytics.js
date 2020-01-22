@@ -23,6 +23,16 @@
         }
       });
 
+      $("a[href^='mailto:'],area[href^='mailto:']", context).bind( {
+        click: function () {
+          gtag('event', 'Click', {
+            event_category: 'Mails',
+            event_label: 'UID: ' + drupalSettings.user.uid + ' | Page: ' + drupalSettings.path.currentPath + ' | Context: ' + $(this).prev().text(),
+            transport_type: 'beacon'
+          });
+        }
+      });
+
       if ($('h3.search-no-results', context).length) {
         let query = Drupal.nlc_prototype_ga.getQueryParameterValues();
         ga('send', 'event', 'Search','ZeroResults', query);

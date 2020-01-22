@@ -8,7 +8,7 @@ dependencies:
   module:
     - search_api
 id: filter_by_sector
-name: 'Role profiles » Profile » Organisation » Content » Sector'
+name: Sector
 url_alias: sector
 weight: -1
 min_count: 0
