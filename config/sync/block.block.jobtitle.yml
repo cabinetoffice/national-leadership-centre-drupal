@@ -1,4 +1,4 @@
-uuid: 89954845-329b-4436-bd40-6d2c13af383b
+uuid: 72445545-a1e7-4815-9904-150d78b65442
 langcode: en
 status: true
 dependencies:
@@ -7,13 +7,12 @@ dependencies:
   module:
     - collapsiblock
     - facets
-    - system
   theme:
     - bevan
 third_party_settings:
   collapsiblock:
     collapse_action: '3'
-id: roleprofilesprofilejobtitle_2
+id: jobtitle
 theme: bevan
 region: sidebar_first
 weight: -7
@@ -24,10 +23,5 @@ settings:
   label: 'Job title'
   provider: facets
   label_display: visible
-  block_id: roleprofilesprofilejobtitle_2
-visibility:
-  request_path:
-    id: request_path
-    pages: /directory
-    negate: false
-    context_mapping: {  }
+  block_id: jobtitle
+visibility: {  }

@@ -1,22 +1,22 @@
-uuid: 5aa0b6bd-c235-4a0a-8bcf-855122a7f51e
+uuid: 4eb91d0a-9b49-43dc-bb54-268489db646b
 langcode: en
 status: true
 dependencies:
   config:
-    - views.view.directory
+    - views.view.senior_leaders_directory_es
   module:
     - system
     - views
   theme:
     - bevan
-id: free_text_search
+id: exposedformsenior_leaders_directory_espage
 theme: bevan
 region: sidebar_first
-weight: -9
+weight: -8
 provider: null
-plugin: 'views_exposed_filter_block:directory-page_1'
+plugin: 'views_exposed_filter_block:senior_leaders_directory_es-page'
 settings:
-  id: 'views_exposed_filter_block:directory-page_1'
+  id: 'views_exposed_filter_block:senior_leaders_directory_es-page'
   label: ''
   provider: views
   label_display: '0'

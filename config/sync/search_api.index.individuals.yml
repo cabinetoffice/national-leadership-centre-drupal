@@ -1,0 +1,243 @@
+uuid: a4d2c2f4-b5f1-4e14-ba18-32b916b2c643
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_cohort
+    - field.storage.node.field_acronym
+    - field.storage.node.field_number
+    - field.storage.user.field_name
+    - field.storage.user.field_programme_year
+    - search_api.server.elastic
+  module:
+    - node
+    - user
+    - search_api
+id: individuals
+name: Individuals
+description: 'An index to allow us to find network individuals.'
+read_only: false
+field_settings:
+  cohort_acronym:
+    label: 'Cohort » Content » Acronym'
+    datasource_id: 'entity:user'
+    property_path: 'field_cohort:entity:field_acronym'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+        - field.storage.node.field_acronym
+      module:
+        - node
+  cohort_name:
+    label: 'Cohort Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_cohort:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+      module:
+        - node
+        - node
+  cohort_number:
+    label: 'Cohort » Content » Cohort number'
+    datasource_id: 'entity:user'
+    property_path: 'field_cohort:entity:field_number'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+        - field.storage.node.field_number
+      module:
+        - node
+  cohort_title:
+    label: 'Cohort » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_cohort:entity:title'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_cohort
+      module:
+        - node
+        - node
+  family:
+    label: 'Full Name » Family'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:family'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  family_name:
+    label: 'Full Name » Family'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:family'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  field_general_location:
+    label: 'Profile » Location'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_general_location'
+    type: string
+  given:
+    label: 'Full Name » Given'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:given'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  given_name:
+    label: 'Full Name » Given'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:given'
+    type: text
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  individual_title:
+    label: 'Full Name » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  job_name:
+    label: 'Profile » Job Title » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_job_title_term:entity:name'
+    type: text
+  job_title:
+    label: 'Profile » Job Title (full)'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_job_title'
+    type: text
+  job_title_string:
+    label: 'Job Title'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_job_title_term:entity:name'
+    type: string
+  middle_name:
+    label: 'Full Name » Middle name(s)'
+    datasource_id: 'entity:user'
+    property_path: 'field_name:middle'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_name
+  org_acronym:
+    label: 'Profile » Organisation » Content » Acronym'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:field_acronym'
+    type: text
+  org_address:
+    label: 'Profile » Organisation » Content » Address'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:field_address'
+    type: text
+  org_name:
+    label: 'Profile » Organisation » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:title'
+    type: text
+  org_region:
+    label: 'Profile » Organisation » Content » Region » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:field_region:entity:name'
+    type: text
+  org_sector:
+    label: 'Profile » Organisation » Content » Sector » Taxonomy term » Name'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:field_sector:entity:name'
+    type: text
+  programme_acronym:
+    label: 'Programme year » Content » Acronym'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:field_acronym'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+        - field.storage.node.field_acronym
+      module:
+        - node
+  programme_title:
+    label: 'Programme year » Content » Title'
+    datasource_id: 'entity:user'
+    property_path: 'field_programme_year:entity:title'
+    type: string
+    dependencies:
+      config:
+        - field.storage.user.field_programme_year
+      module:
+        - node
+        - node
+  region_name:
+    label: 'Region Name'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:field_region:entity:name'
+    type: string
+  sector_name:
+    label: 'Sector Name'
+    datasource_id: 'entity:user'
+    property_path: 'search_api_reverse_entity_references_profile__uid:field_organisation:entity:field_sector:entity:name'
+    type: string
+  uid:
+    label: 'User ID'
+    datasource_id: 'entity:user'
+    property_path: uid
+    type: integer
+    dependencies:
+      module:
+        - user
+datasource_settings:
+  'entity:user':
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  ignorecase:
+    all_fields: false
+    fields: {  }
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+  reverse_entity_references: {  }
+  role_filter:
+    default: true
+    roles:
+      - admin
+      - nlc_staff
+  transliteration:
+    all_fields: false
+    fields: {  }
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: elastic

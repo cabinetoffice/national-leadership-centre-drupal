@@ -1,4 +1,4 @@
-uuid: fab0d868-f643-4453-a0c7-ca925187baa9
+uuid: 66a510c3-3af9-42eb-8c2b-5e793e7b8935
 langcode: en
 status: true
 dependencies:
@@ -7,16 +7,15 @@ dependencies:
   module:
     - collapsiblock
     - facets
-    - system
   theme:
     - bevan
 third_party_settings:
   collapsiblock:
     collapse_action: '3'
-id: roleprofilesprofileorganisationcontentregion_2
+id: region
 theme: bevan
 region: sidebar_first
-weight: -5
+weight: -6
 provider: null
 plugin: 'facet_block:region'
 settings:
@@ -24,10 +23,5 @@ settings:
   label: Region
   provider: facets
   label_display: visible
-  block_id: roleprofilesprofileorganisationcontentregion_2
-visibility:
-  request_path:
-    id: request_path
-    pages: /directory
-    negate: false
-    context_mapping: {  }
+  block_id: region
+visibility: {  }
