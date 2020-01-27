@@ -806,7 +806,11 @@ if (getenv('SALESFORCE_URL')) {
  *****************************************/
 if (!empty($vcapServices['elasticsearch'])) {
   $esCreds = $vcapServices['elasticsearch'][0]['credentials'];
-  $config['elasticsearch_connector.cluster.live_cluster']['url'] = $esCreds['uri'];
+  $config['elasticsearch_connector.cluster.live_cluster']['url'] = "https://{$esCreds['hostname']}:{$esCreds['port']}";
+  $config['elasticsearch_connector.cluster.live_cluster']['options']['use_authentication'] = 1;
+  $config['elasticsearch_connector.cluster.live_cluster']['options']['authentication_type'] = 'Basic';
+  $config['elasticsearch_connector.cluster.live_cluster']['options']['username'] = $esCreds['username'];
+  $config['elasticsearch_connector.cluster.live_cluster']['options']['password'] = $esCreds['password'];
 }
 elseif (getenv('ELASTICSEARCH_URL')) {
   $config['elasticsearch_connector.cluster.live_cluster']['url'] = getenv('ELASTICSEARCH_URL');
