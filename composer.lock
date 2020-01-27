@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dae6670c6b4e42b009b3515951911f57",
+    "content-hash": "327b4c8828f5aa1c8f0346a988c3bc3e",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -124,16 +124,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.133.5",
+            "version": "3.133.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "99ea2386f68ba29acd8e91c515e0fc19b2845378"
+                "reference": "cd7bd2fdd159146ef6c7eeb90b73fae4fd11da57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/99ea2386f68ba29acd8e91c515e0fc19b2845378",
-                "reference": "99ea2386f68ba29acd8e91c515e0fc19b2845378",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/cd7bd2fdd159146ef6c7eeb90b73fae4fd11da57",
+                "reference": "cd7bd2fdd159146ef6c7eeb90b73fae4fd11da57",
                 "shasum": ""
             },
             "require": {
@@ -204,7 +204,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-01-23T19:15:25+00:00"
+            "time": "2020-01-24T19:11:35+00:00"
         },
         {
             "name": "chi-teck/drupal-code-generator",
@@ -3048,17 +3048,6 @@
         {
             "name": "drupal/core-recommended",
             "version": "8.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "a2215237489ccb456219bd30b26649e6899b6f35"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/a2215237489ccb456219bd30b26649e6899b6f35",
-                "reference": "a2215237489ccb456219bd30b26649e6899b6f35",
-                "shasum": ""
-            },
             "require": {
                 "asm89/stack-cors": "1.2.0",
                 "composer/installers": "v1.7.0",
@@ -3275,22 +3264,22 @@
         },
         {
             "name": "drupal/elasticsearch_connector",
-            "version": "7.0.0-alpha2",
+            "version": "6.0.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/elasticsearch_connector.git",
-                "reference": "8.x-7.0-alpha2"
+                "reference": "8.x-6.0-alpha2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/elasticsearch_connector-8.x-7.0-alpha2.zip",
-                "reference": "8.x-7.0-alpha2",
-                "shasum": "e0f4becdd2b495c310028da5c9d2451deba16219"
+                "url": "https://ftp.drupal.org/files/projects/elasticsearch_connector-8.x-6.0-alpha2.zip",
+                "reference": "8.x-6.0-alpha2",
+                "shasum": "268050bcffd7bfcc292d99a1590fca7b237127e9"
             },
             "require": {
                 "drupal/core": "~8.0",
                 "makinacorpus/php-lucene": "^1.0.2",
-                "nodespark/des-connector": "7.x-dev"
+                "nodespark/des-connector": "6.x-dev"
             },
             "require-dev": {
                 "behat/mink-selenium2-driver": "^1.3",
@@ -3304,11 +3293,11 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-7.x": "7.x-dev"
+                    "dev-6.x": "6.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-7.0-alpha2",
-                    "datestamp": "1565156585",
+                    "version": "8.x-6.0-alpha2",
+                    "datestamp": "1564583886",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5052,16 +5041,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "10.1.1",
+            "version": "10.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "f2aa8651b371ecf4e859ddbad14fb2efbb4024da"
+                "reference": "f068021102caf90042f83a280c9316eb7e29ca12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/f2aa8651b371ecf4e859ddbad14fb2efbb4024da",
-                "reference": "f2aa8651b371ecf4e859ddbad14fb2efbb4024da",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/f068021102caf90042f83a280c9316eb7e29ca12",
+                "reference": "f068021102caf90042f83a280c9316eb7e29ca12",
                 "shasum": ""
             },
             "require": {
@@ -5178,7 +5167,7 @@
             ],
             "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
             "homepage": "http://www.drush.org",
-            "time": "2019-12-13T15:13:40+00:00"
+            "time": "2020-01-25T17:04:39+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -5302,33 +5291,33 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v7.4.1",
+            "version": "v6.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "39eb8c046184e9a305288509fe48f02a2307de90"
+                "reference": "9ba89f905ebf699e72dacffa410331c7fecc8255"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/39eb8c046184e9a305288509fe48f02a2307de90",
-                "reference": "39eb8c046184e9a305288509fe48f02a2307de90",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/9ba89f905ebf699e72dacffa410331c7fecc8255",
+                "reference": "9ba89f905ebf699e72dacffa410331c7fecc8255",
                 "shasum": ""
             },
             "require": {
                 "ext-json": ">=1.3.7",
                 "guzzlehttp/ringphp": "~1.0",
-                "php": "^7.1",
+                "php": "^7.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
-                "cpliakas/git-wrapper": "~2.0",
-                "doctrine/inflector": "^1.3",
+                "cpliakas/git-wrapper": "^1.7 || ^2.1",
+                "doctrine/inflector": "^1.1",
                 "mockery/mockery": "^1.2",
-                "phpstan/phpstan-shim": "^0.11",
-                "phpunit/phpunit": "^7.5",
+                "phpstan/phpstan-shim": "^0.9 || ^0.11",
+                "phpunit/phpunit": "^5.7 || ^6.5",
                 "squizlabs/php_codesniffer": "^3.4",
-                "symfony/finder": "~4.0",
-                "symfony/yaml": "~4.0"
+                "symfony/finder": "^2.8",
+                "symfony/yaml": "^2.8"
             },
             "suggest": {
                 "ext-curl": "*",
@@ -5336,9 +5325,6 @@
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/autoload.php"
-                ],
                 "psr-4": {
                     "Elasticsearch\\": "src/Elasticsearch/"
                 }
@@ -5361,7 +5347,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2019-11-26T11:59:39+00:00"
+            "time": "2019-07-19T14:48:24+00:00"
         },
         {
             "name": "fastglass/sendgrid",
@@ -5794,6 +5780,7 @@
                 }
             ],
             "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
+            "abandoned": true,
             "time": "2018-07-31T13:22:33+00:00"
         },
         {
@@ -5844,6 +5831,7 @@
                 "Guzzle",
                 "stream"
             ],
+            "abandoned": true,
             "time": "2014-10-12T19:18:40+00:00"
         },
         {
@@ -6392,21 +6380,21 @@
         },
         {
             "name": "nodespark/des-connector",
-            "version": "7.x-dev",
+            "version": "6.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nodespark/des-connector.git",
-                "reference": "bd6a566ea2d44c638281510fc5f8ab016a0df844"
+                "reference": "abdbfc805ce296354988b5869888dc44a52d5da7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nodespark/des-connector/zipball/bd6a566ea2d44c638281510fc5f8ab016a0df844",
-                "reference": "bd6a566ea2d44c638281510fc5f8ab016a0df844",
+                "url": "https://api.github.com/repos/nodespark/des-connector/zipball/abdbfc805ce296354988b5869888dc44a52d5da7",
+                "reference": "abdbfc805ce296354988b5869888dc44a52d5da7",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
-                "ruflin/elastica": "dev-master"
+                "ruflin/elastica": "~6.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.3"
@@ -6437,7 +6425,7 @@
             ],
             "description": "An abstraction library for Elasticsearch Connector module for Drupal.",
             "homepage": "https://github.com/nodespark/des-connector",
-            "time": "2019-08-06T06:19:40+00:00"
+            "time": "2018-02-11T09:41:32+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -7004,22 +6992,21 @@
         },
         {
             "name": "ruflin/elastica",
-            "version": "dev-master",
+            "version": "6.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ruflin/Elastica.git",
-                "reference": "98e5e92ec8e9cc82c47d1719628106a5874d067f"
+                "reference": "333dff62346adf835c0a0fd198e8c9f9ec8da65a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/98e5e92ec8e9cc82c47d1719628106a5874d067f",
-                "reference": "98e5e92ec8e9cc82c47d1719628106a5874d067f",
+                "url": "https://api.github.com/repos/ruflin/Elastica/zipball/333dff62346adf835c0a0fd198e8c9f9ec8da65a",
+                "reference": "333dff62346adf835c0a0fd198e8c9f9ec8da65a",
                 "shasum": ""
             },
             "require": {
-                "elasticsearch/elasticsearch": "^7.0 !=7.4.0",
-                "ext-json": "*",
-                "php": "^7.2",
+                "elasticsearch/elasticsearch": "^6.0",
+                "php": "^7.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
@@ -7035,7 +7022,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "7.0.x-dev"
+                    "dev-master": "6.0.x-dev"
                 }
             },
             "autoload": {
@@ -7059,7 +7046,7 @@
                 "client",
                 "search"
             ],
-            "time": "2019-12-16T15:24:07+00:00"
+            "time": "2019-01-29T09:38:03+00:00"
         },
         {
             "name": "sendgrid/smtpapi",
@@ -10103,17 +10090,6 @@
         {
             "name": "drupal/core-dev",
             "version": "8.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/drupal/core-dev.git",
-                "reference": "2dffabdcee78b36d513978424ac220da1fe2e11f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-dev/zipball/2dffabdcee78b36d513978424ac220da1fe2e11f",
-                "reference": "2dffabdcee78b36d513978424ac220da1fe2e11f",
-                "shasum": ""
-            },
             "require": {
                 "behat/mink": "1.8.0 | 1.7.1.1 | 1.7.x-dev",
                 "behat/mink-goutte-driver": "^1.2",
