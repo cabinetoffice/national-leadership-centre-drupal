@@ -799,6 +799,15 @@ if (getenv('SALESFORCE_URL')) {
   $config['salesforce.salesforce_auth.salesforce_auth']['provider_settings']['login_url'] = getenv('SALESFORCE_URL');
 }
 
-if (getenv('ELASTICSEARCH_URL')) {
+/*****************************************
+ * ELASTICSEARCH FROM PaaS VCAP_SERVICES *
+ *  or                                   *
+ * FROM ENV VAR                          *
+ *****************************************/
+if (!empty($vcapServices['elasticsearch'])) {
+  $esCreds = $vcapServices['elasticsearch'][0]['credentials'];
+  $config['elasticsearch_connector.cluster.live_cluster']['url'] = $esCreds['uri'];
+}
+elseif (getenv('ELASTICSEARCH_URL')) {
   $config['elasticsearch_connector.cluster.live_cluster']['url'] = getenv('ELASTICSEARCH_URL');
 }
