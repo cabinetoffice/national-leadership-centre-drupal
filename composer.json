@@ -1,12 +1,12 @@
 {
-    "name": "drupal-composer/drupal-project",
-    "description": "Project template for Drupal 8 projects with composer",
+    "name": "cabinetoffice/national-leadership-centre-drupal",
+    "description": "NLC Connect With Your Peers site, based on Drupal Project template for Drupal 8 projects with a relocated document root",
     "type": "project",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
-            "name": "",
-            "role": ""
+            "name": "Joe Baker",
+            "role": "Technical Lead"
         }
     ],
     "repositories": [
@@ -16,19 +16,21 @@
         }
     ],
     "require": {
-        "php": ">=5.6",
+        "php": ">=7.2",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.5",
-        "drupal-composer/drupal-scaffold": "^2.5",
         "drupal/address": "~1.0",
         "drupal/auto_entitylabel": "^3.0@beta",
         "drupal/better_exposed_filters": "^3.0@alpha",
         "drupal/bootstrap_barrio": "^4.22",
         "drupal/coder": "^8.3",
         "drupal/collapsiblock": "^2.0",
+        "drupal/config_filter": "2.x-dev",
         "drupal/config_split": "^1.4",
         "drupal/console": "^1.0.2",
-        "drupal/core": "^8.7.0",
+        "drupal/core-composer-scaffold": "^8.8",
+        "drupal/core-project-message": "^8.8",
+        "drupal/core-recommended": "^8.8",
         "drupal/devel": "^2.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/encrypt": "^3.0@RC",
@@ -53,14 +55,14 @@
         "drupal/structure_sync": "^1.16",
         "drupal/token": "^1.5",
         "drupal/userprotect": "^1.0",
-        "drush/drush": "^9.0.0",
+        "drush/drush": "^10.1",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3",
         "zaporylie/composer-drupal-optimizations": "^1.0"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "^8.7.0"
+        "drupal/core-dev": "^8.8"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -92,6 +94,15 @@
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
+        "drupal-scaffold": {
+            "initial": {
+                ".editorconfig": "../.editorconfig",
+                ".gitattributes": "../.gitattributes"
+            },
+            "locations": {
+                "web-root": "web/"
+            }
+        },
         "patchLevel": {
             "drupal/core": "-p2"
         },
@@ -101,20 +112,13 @@
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/{$name}": ["type:drupal-drush"]
-        },
-        "drupal-scaffold": {
-            "initial": {
-                ".editorconfig": "../.editorconfig",
-                ".gitattributes": "../.gitattributes"
-            }
+            "drush/Commands/{$name}": ["type:drupal-drush"],
+            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
+            "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
         },
         "patches": {
             "drupal/core": {
                 "Notice: Undefined index: value in Drupal\\views\\Plugin\\views\\filter\\NumericFilter->acceptExposedInput()": "https://www.drupal.org/files/issues/2019-04-17/exposed-filter-notice-2825860-25.patch"
-            },
-            "drupal/salesforce": {
-                "Drush command to revoke and refresh authentication token": "https://www.drupal.org/files/issues/2019-12-20/3102133-6-drush-auth-tokens.patch"
             }
         }
     }
