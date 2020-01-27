@@ -1,27 +1,15 @@
-uuid: 84bfd005-a460-4e93-b4c2-93e0afaafece
+uuid: 422f9440-40ef-45e8-9fbc-533b8bb29700
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.main_index
-    - views.view.directory
+    - search_api.index.individuals
+    - views.view.senior_leaders_directory_es
   module:
     - search_api
-id: db_summary
-name: 'DB Summary'
+id: facet_summary
+name: 'Facet Summary'
 facets:
-  cohort:
-    checked: true
-    label: Cohort
-    separator: ', '
-    weight: 0
-    show_count: false
-  filter_by_sector:
-    checked: true
-    label: Sector
-    separator: ', '
-    weight: 0
-    show_count: false
   job_title:
     checked: true
     label: 'Job Title'
@@ -34,7 +22,19 @@ facets:
     separator: ', '
     weight: 0
     show_count: false
-facet_source_id: 'search_api:views_page__directory__page_1'
+  sector:
+    checked: true
+    label: Sector
+    separator: ', '
+    weight: 0
+    show_count: false
+  cohort:
+    checked: true
+    label: Cohort
+    separator: ', '
+    weight: 0
+    show_count: false
+facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
 processor_configs:
   hide_when_not_rendered:
     processor_id: hide_when_not_rendered

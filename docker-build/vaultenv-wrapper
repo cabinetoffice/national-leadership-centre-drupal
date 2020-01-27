@@ -8,8 +8,8 @@
 # The token set by the vault init container 
 export VAULT_TOKEN=$(cat /home/vault/.vault-token)
 
-#  TEMPORARY ! will move to TLS
-export VAULT_ADDR=http://vault-0.vault.vault.svc.cluster.local:8200
+# vault address now set in pod along with CA file 
+# export VAULT_ADDR=https://vault.vault.svc.cluster.local:8200
 
 # What to read from vault 
 export VAULTENV_SECRETS_FILE=/var/www/.vaultenv.secrets
