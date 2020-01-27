@@ -36,6 +36,7 @@ module:
   menu_ui: 0
   name: 0
   nlc_prototype: 0
+  nlc_register_interest: 0
   nlc_salesforce: 0
   node: 0
   options: 0
