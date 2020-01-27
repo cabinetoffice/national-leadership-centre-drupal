@@ -7,6 +7,7 @@ applications:
     - php_buildpack
   services:
     - nlc-alpha-drupal-acc-mysql
+    - nlc-alpha-drupal-acc-elastic
 - name: nlc-alpha-drupal-acc-cron
   path: ./app_cron
   memory: 24M
