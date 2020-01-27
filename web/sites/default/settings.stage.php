@@ -37,3 +37,10 @@ $config['config_split.config_split.crm_stage']['status'] = TRUE;
 if (getenv('CONNECT_DOMAIN')) {
   $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
 }
+
+/*****************************************
+ * ELASTICSEARCH FROM PaaS VCAP_SERVICES *
+ *****************************************/
+
+$esCreds = $vcapServices['elasticsearch'][0]['credentials'];
+$settings['elasticsearch_connector.cluster.live_cluster']['url'] = $esCreds['uri'];
