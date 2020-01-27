@@ -1,0 +1,24 @@
+uuid: baf59772-2431-402c-b659-ee2edc5521f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - collapsiblock
+    - nlc_register_interest
+  theme:
+    - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
+id: registerinterestblock
+theme: bevan
+region: pre_content
+weight: 0
+provider: null
+plugin: register_interest_block
+settings:
+  id: register_interest_block
+  label: 'Register Interest block'
+  provider: nlc_register_interest
+  label_display: '0'
+visibility: {  }
