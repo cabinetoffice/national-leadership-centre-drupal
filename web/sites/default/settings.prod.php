@@ -43,4 +43,4 @@ if (getenv('CONNECT_DOMAIN')) {
  *****************************************/
 
 $esCreds = $vcapServices['elasticsearch'][0]['credentials'];
-$settings['elasticsearch_connector.cluster.live_cluster']['url'] = $esCreds['uri'];
+$config['elasticsearch_connector.cluster.live_cluster']['url'] = $esCreds['uri'];
