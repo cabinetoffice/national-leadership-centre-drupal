@@ -33,6 +33,10 @@ class RegisterInterestBlock extends BlockBase {
    * Control access to this block
    */
   protected function blockAccess(AccountInterface $account) {
+    if ($account->id() == 0) {
+      // Don't show to anonymous.
+      return AccessResult::forbidden();
+    }
     // Check for existing cohort.
     $user = User::load($account->id());
     $cohortEmpty = $user->get('field_cohort')->isEmpty();
