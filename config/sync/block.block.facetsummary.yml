@@ -5,9 +5,15 @@ dependencies:
   config:
     - facets_summary.facets_summary.facet_summary
   module:
+    - collapsiblock
     - facets_summary
+    - system
+    - user
   theme:
     - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
 id: facetsummary
 theme: bevan
 region: content
@@ -19,4 +25,16 @@ settings:
   label: 'Facet Summary'
   provider: facets_summary
   label_display: '0'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

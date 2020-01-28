@@ -7,6 +7,8 @@ dependencies:
   module:
     - collapsiblock
     - facets
+    - system
+    - user
   theme:
     - bevan
 third_party_settings:
@@ -24,4 +26,16 @@ settings:
   provider: facets
   label_display: visible
   block_id: sector
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

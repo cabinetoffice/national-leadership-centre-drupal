@@ -1,0 +1,9 @@
+nlc_register_interest:
+  version: 1.0
+  js:
+    js/nlc_register_interest.js: {}
+  css:
+    theme:
+      css/register_interest.css: {}
+  dependencies:
+    - core/drupal.ajax

@@ -1,35 +1,32 @@
-uuid: 66a510c3-3af9-42eb-8c2b-5e793e7b8935
+uuid: baf59772-2431-402c-b659-ee2edc5521f5
 langcode: en
 status: true
 dependencies:
-  config:
-    - facets.facet.region
   module:
     - collapsiblock
-    - facets
+    - nlc_register_interest
     - system
     - user
   theme:
     - bevan
 third_party_settings:
   collapsiblock:
-    collapse_action: '3'
-id: region
+    collapse_action: '0'
+id: registerinterestblock
 theme: bevan
-region: sidebar_first
-weight: -6
+region: pre_content
+weight: 0
 provider: null
-plugin: 'facet_block:region'
+plugin: register_interest_block
 settings:
-  id: 'facet_block:region'
-  label: Region
-  provider: facets
-  label_display: visible
-  block_id: region
+  id: register_interest_block
+  label: 'Register Interest block'
+  provider: nlc_register_interest
+  label_display: '0'
 visibility:
   request_path:
     id: request_path
-    pages: /directory
+    pages: block.block.registerinterestblock
     negate: false
     context_mapping: {  }
   user_role:
