@@ -5,6 +5,8 @@ dependencies:
   module:
     - collapsiblock
     - nlc_register_interest
+    - system
+    - user
   theme:
     - bevan
 third_party_settings:
@@ -21,4 +23,16 @@ settings:
   label: 'Register Interest block'
   provider: nlc_register_interest
   label_display: '0'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: block.block.registerinterestblock
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
