@@ -29,7 +29,7 @@
             titleElt.target.attr('id', targetId);
             $(titleElt).find('.js-facet-heading').wrapInner('<button type="button" class="govuk-accordion__section-button" aria-controls="' + targetId + '" />');
             $button = $(titleElt).find('.js-facet-heading').find('button');
-            $button.after('<span class="govuk-accordion__icon" aria-hidden="true"></span>');
+            $button.append('<span class="govuk-accordion__icon" aria-hidden="true"></span>');
             $button.click(function (e) {
                 var $titleElt =  $(titleElt);
                 // If collapsed, expand
