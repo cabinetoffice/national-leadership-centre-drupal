@@ -11,7 +11,8 @@ theme: {  }
 blacklist:
   - salesforce.salesforce_auth.salesforce_auth
   - salesforce.settings
-graylist: {  }
+graylist:
+  - google_analytics.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0
