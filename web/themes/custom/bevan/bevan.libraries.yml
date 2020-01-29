@@ -4,3 +4,5 @@ global-styling:
       css/styles.css: {}
   js:
     js/behaviours.js: {}
+  dependencies:
+    - eu_cookie_compliance/eu_cookie_compliance_bare
