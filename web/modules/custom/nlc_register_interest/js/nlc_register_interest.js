@@ -15,9 +15,11 @@
 
       $('#nlc-register-interest-show-more').once().click(function() {
         $('.nlc-register-interest__full').addClass('expanded');
+        return false;
       });
       $('#nlc-register-interest-not-now').once().click(function() {
         $('.nlc-register-interest__full').removeClass('expanded');
+        return false;
       });
     }
   }
