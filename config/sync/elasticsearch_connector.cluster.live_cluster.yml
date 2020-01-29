@@ -1,0 +1,14 @@
+uuid: a39af4a8-6f12-444d-9dfb-71fd84866194
+langcode: en
+status: '1'
+dependencies: {  }
+cluster_id: live_cluster
+name: 'Live Cluster'
+url: 'http://nlc_cms_elasticsearch:9200'
+options:
+  multiple_nodes_connection: false
+  use_authentication: 0
+  authentication_type: Basic
+  username: ''
+  password: ''
+  timeout: '3'

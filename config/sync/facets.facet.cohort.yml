@@ -1,10 +1,10 @@
-uuid: f8bd8565-a470-46be-9d37-c67576a7f068
+uuid: d23b3df9-c6c6-4ea2-8b0a-ba895701b1ac
 langcode: en
 status: true
 dependencies:
   config:
-    - search_api.index.main_index
-    - views.view.directory
+    - search_api.index.individuals
+    - views.view.senior_leaders_directory_es
   module:
     - search_api
 id: cohort
@@ -13,8 +13,8 @@ url_alias: cohort
 weight: 1
 min_count: 0
 show_only_one_result: false
-field_identifier: field_cohort
-facet_source_id: 'search_api:views_page__directory__page_1'
+field_identifier: cohort_name
+facet_source_id: 'search_api:views_page__senior_leaders_directory_es__page'
 widget:
   type: links
   config:
@@ -40,11 +40,6 @@ processor_configs:
       sort: 40
     settings:
       sort: ASC
-  translate_entity:
-    processor_id: translate_entity
-    weights:
-      build: 5
-    settings: {  }
   url_processor_handler:
     processor_id: url_processor_handler
     weights:

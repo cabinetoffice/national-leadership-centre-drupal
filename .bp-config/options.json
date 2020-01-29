@@ -1,6 +1,6 @@
 {
   "PHP_VERSION": "{PHP_72_LATEST}",
-  "PHP_MODULES": [ "pear", "fpm", "cli"],
+  "PHP_MODULES": [ "pear", "fpm", "cli" ],
   "ADMIN_EMAIL": "mike.bell@weareconvivio.com",
   "WEB_SERVER": "nginx",
   "WEBDIR": "web"

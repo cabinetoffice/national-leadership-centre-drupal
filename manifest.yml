@@ -8,6 +8,7 @@ applications:
   services:
     - nlc-alpha-s3
     - nlc-alpha-drupal-mysql
+    - nlc-alpha-drupal-elastic
 - name: nlc-alpha-drupal-cron
   path: ./app_cron
   memory: 24M

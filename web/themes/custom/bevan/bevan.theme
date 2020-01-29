@@ -8,7 +8,7 @@ function bevan_preprocess_page(&$vars) {
   // This works because AJAX requests don't trigger this hook.
   // Using $_SESSION here because the D8 Request->getSession() returns NULL in an AJAX call.
   $req = \Drupal::request();
-  if (\Drupal::routeMatch()->getRouteName() === 'view.directory.page_1') {
+  if (\Drupal::routeMatch()->getRouteName() === 'view.senior_leaders_directory_es.page') {
     if ($req->query->get('search')) {
       $_SESSION['directory_search'] = $req->query->get('search');
     }

@@ -1,7 +1,7 @@
 uuid: 6408c13a-ecac-4c06-80fe-46cad42e0939
 name: 'National Leadership Centre'
 mail: nlc@cabinetoffice.gov.uk
-slogan: Connect
+slogan: 'Connect with your peers'
 page:
   403: /directory/access
   404: ''
@@ -12,4 +12,4 @@ langcode: en
 default_langcode: en
 _core:
   default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
-mail_notification: lewis.nyman@convivio.team
+mail_notification: ''

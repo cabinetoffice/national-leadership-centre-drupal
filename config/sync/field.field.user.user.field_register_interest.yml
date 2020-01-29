@@ -1,0 +1,24 @@
+uuid: 075f9773-9ae3-43fa-bf28-03647c32bed0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_register_interest
+  module:
+    - user
+id: user.user.field_register_interest
+field_name: field_register_interest
+entity_type: user
+bundle: user
+label: 'Register my interest'
+description: 'By checking this box you are registering interest in joining the NLC programme.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

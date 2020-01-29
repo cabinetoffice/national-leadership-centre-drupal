@@ -1,0 +1,584 @@
+uuid: 30b05984-0779-44b3-8de0-082f02d36061
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_job_title
+    - field.storage.user.field_name
+    - search_api.index.individuals
+  module:
+    - name
+    - search_api
+    - user
+id: senior_leaders_directory_es
+label: 'Senior Leaders Directory ES'
+module: views
+description: 'The main directory based on the Elastic Search index.'
+tag: ''
+base_table: search_api_index_individuals
+base_field: search_api_id
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Master
+    position: 0
+    display_options:
+      access:
+        type: perm
+        options:
+          perm: 'access user profiles'
+      cache:
+        type: tag
+        options: {  }
+      query:
+        type: views_query
+        options:
+          bypass_access: false
+          skip_access: false
+          preserve_facet_query_args: false
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Search
+          reset_button: true
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: false
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        type: mini
+        options:
+          items_per_page: 20
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: 'Previous page'
+            next: 'Next page'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            field_name: field_name
+            job_title: job_title
+            org_name: org_name
+            org_sector: org_sector
+          info:
+            field_name:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            job_title:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            org_name:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            org_sector:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
+      row:
+        type: fields
+      fields:
+        field_name:
+          id: field_name
+          table: search_api_datasource_individuals_entity_user
+          field: field_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Name
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: title
+          type: name_default
+          settings:
+            format: default
+            list_format: ''
+            markup: none
+            link_target: _self
+            preferred_field_reference: ''
+            preferred_field_reference_separator: ', '
+            alternative_field_reference: ''
+            alternative_field_reference_separator: ', '
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          entity_type: user
+          plugin_id: search_api_field
+        job_title:
+          id: job_title
+          table: search_api_index_individuals
+          field: job_title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Job Title'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
+        org_name:
+          id: org_name
+          table: search_api_index_individuals
+          field: org_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Organisation
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
+        org_sector:
+          id: org_sector
+          table: search_api_index_individuals
+          field: org_sector
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Sector
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
+      filters:
+        search_api_fulltext:
+          id: search_api_fulltext
+          table: search_api_index_individuals
+          field: search_api_fulltext
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_op
+            label: Search
+            description: 'Search by name, job title, location or organisation.'
+            use_operator: false
+            operator: search_api_fulltext_op
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: search
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              nlc_staff: '0'
+              admin: '0'
+            placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: terms
+          min_length: null
+          fields: {  }
+          plugin_id: search_api_fulltext
+        uid:
+          id: uid
+          table: search_api_index_individuals
+          field: uid
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>'
+          value:
+            min: ''
+            max: ''
+            value: '1'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            operator_limit_selection: false
+            operator_list: {  }
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_individuals
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        family_name:
+          id: family_name
+          table: search_api_index_individuals
+          field: family_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+      title: 'Senior Leaders Directory'
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: 'Showing @start to @end'
+          plugin_id: result
+      footer: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<h3 class=\"search-no-results\">Sorry, there&apos;s no-one to match that search.</h3>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n<li>Details for Senior Leaders who have not attended the Programme are not currently available.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
+            format: filtered_text
+          plugin_id: text
+      relationships: {  }
+      arguments: {  }
+      display_extenders: {  }
+      use_ajax: true
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user.permissions
+      tags:
+        - 'config:field.storage.profile.field_job_title'
+        - 'config:field.storage.user.field_name'
+  page:
+    display_plugin: page
+    id: page
+    display_title: Page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: directory
+      exposed_block: true
+      cache:
+        type: none
+      defaults:
+        cache: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user.permissions
+      tags:
+        - 'config:field.storage.profile.field_job_title'
+        - 'config:field.storage.user.field_name'
