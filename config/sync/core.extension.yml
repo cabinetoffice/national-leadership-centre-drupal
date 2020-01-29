@@ -18,6 +18,7 @@ module:
   dynamic_entity_reference: 0
   dynamic_page_cache: 0
   editor: 0
+  elasticsearch_connector: 0
   email_registration: 0
   entity: 0
   facets: 0
@@ -36,6 +37,7 @@ module:
   menu_ui: 0
   name: 0
   nlc_prototype: 0
+  nlc_register_interest: 0
   nlc_salesforce: 0
   node: 0
   options: 0

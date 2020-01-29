@@ -3,10 +3,15 @@ langcode: en
 status: true
 dependencies:
   module:
+    - collapsiblock
     - nlc_prototype
     - system
+    - user
   theme:
     - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
 id: filterstitle
 theme: bevan
 region: sidebar_first
@@ -24,3 +29,10 @@ visibility:
     pages: /directory
     negate: false
     context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

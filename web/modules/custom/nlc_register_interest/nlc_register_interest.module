@@ -1,0 +1,15 @@
+<?php
+
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\user\UserInterface;
+
+/**
+ * Define templates.
+ */
+function nlc_register_interest_theme($existing, $type, $theme, $path) {
+  return [
+    'nlc_register_interest_header' => ['variables' => []],
+    'nlc_register_interest_footer' => ['variables' => []],
+    'nlc_register_interest_registered' => ['variables' => []],
+  ];
+}

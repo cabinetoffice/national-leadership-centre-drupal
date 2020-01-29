@@ -1,33 +1,41 @@
-uuid: 89954845-329b-4436-bd40-6d2c13af383b
+uuid: 66a510c3-3af9-42eb-8c2b-5e793e7b8935
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.job_title
+    - facets.facet.region
   module:
     - collapsiblock
     - facets
     - system
+    - user
   theme:
     - bevan
 third_party_settings:
   collapsiblock:
     collapse_action: '3'
-id: roleprofilesprofilejobtitle_2
+id: region
 theme: bevan
 region: sidebar_first
-weight: -7
+weight: -6
 provider: null
-plugin: 'facet_block:job_title'
+plugin: 'facet_block:region'
 settings:
-  id: 'facet_block:job_title'
-  label: 'Job title'
+  id: 'facet_block:region'
+  label: Region
   provider: facets
   label_display: visible
-  block_id: roleprofilesprofilejobtitle_2
+  block_id: region
 visibility:
   request_path:
     id: request_path
     pages: /directory
     negate: false
     context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

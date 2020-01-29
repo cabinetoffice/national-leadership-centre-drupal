@@ -6,6 +6,7 @@ dependencies:
     - field.field.user.user.field_cohort
     - field.field.user.user.field_name
     - field.field.user.user.field_programme_year
+    - field.field.user.user.field_register_interest
     - field.storage.user.field_cohort
     - field.storage.user.field_name
     - field.storage.user.field_programme_year
@@ -42,49 +43,55 @@ field_mappings:
     drupal_field_value: name
     salesforce_field: Name
     direction: sf_drupal
-    id: 0
+    id: 9
   -
     drupal_field_type: properties
     drupal_field_value: mail
     salesforce_field: EmailAddress__c
     direction: sync
-    id: 1
+    id: 10
   -
     drupal_field_type: properties
     drupal_field_value: status
     salesforce_field: Connect_User__c
     direction: sync
-    id: 2
+    id: 11
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.title
     salesforce_field: Title__c
     direction: sync
-    id: 3
+    id: 12
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.given
     salesforce_field: FirstName__c
     direction: sync
-    id: 4
+    id: 13
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.family
     salesforce_field: LastName__c
     direction: sync
-    id: 5
+    id: 14
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_cohort
     salesforce_field: Network_Cohort__c
     direction: sync
-    id: 6
+    id: 15
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_programme_year
     salesforce_field: Network_Programme_Year__c
     direction: sync
-    id: 7
+    id: 16
+  -
+    drupal_field_type: properties
+    drupal_field_value: field_register_interest
+    salesforce_field: ProgrammeInterestRegistered__c
+    direction: sync
+    id: 17
 push_limit: 0
 push_retries: 3
 push_frequency: 0

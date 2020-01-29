@@ -1,0 +1,33 @@
+.register-interest-form {
+    background-color:#EAEDF0;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+#nlc-register-interest-show-more, #nlc-register-interest-not-now {
+    display: none;
+    white-space: nowrap;
+}
+.js-enabled #nlc-register-interest-show-more, .js-enabled #nlc-register-interest-not-now {
+    display: initial;
+}
+.js-enabled .nlc-register-interest__full {
+    display: none;
+}
+.js-enabled .nlc-register-interest__full button {
+    margin-right: 0.5rem;
+}
+.js-enabled .nlc-register-interest__full.expanded {
+    display: block;
+}
+.js-enabled .nlc-register-interest__full.expanded #nlc-register-interest-show-more {
+    display: none;
+}
+@media only screen and (min-width : 769px) {
+    .js-enabled #nlc-register-interest-show-more, .js-enabled #nlc-register-interest-not-now {
+        display: none;
+    }
+    .js-enabled .nlc-register-interest__full {
+        display: block;
+    }
+}

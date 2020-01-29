@@ -1,4 +1,4 @@
-uuid: 146a5cd6-5148-48a2-9dd5-988d18cdff52
+uuid: 681da5f1-60a1-433f-9ddc-7d8afd16eb92
 langcode: en
 status: true
 dependencies:
@@ -8,6 +8,7 @@ dependencies:
     - collapsiblock
     - facets
     - system
+    - user
   theme:
     - bevan
 third_party_settings:
@@ -31,3 +32,10 @@ visibility:
     pages: /directory
     negate: false
     context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
