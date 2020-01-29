@@ -34,8 +34,13 @@
       });
 
       if ($('h3.search-no-results', context).length) {
-        let query = window.location.search;
-        ga('send', 'event', 'Search','ZeroResults', query);
+        let query = location.pathname + location.search;
+        gtag('event', 'Search', {
+            event_category: 'ZeroResults',
+            event_label: query,
+            transport_type: 'beacon'
+          }
+        );
       }
     }
   };
