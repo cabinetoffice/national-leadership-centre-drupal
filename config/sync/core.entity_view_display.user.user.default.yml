@@ -52,16 +52,6 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_register_interest:
-    weight: 5
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
   nlc_sf_phone:
     weight: 4
     region: content
@@ -86,6 +76,7 @@ content:
     third_party_settings: {  }
 hidden:
   field_name: true
+  field_register_interest: true
   member_for: true
   salesforce_id: true
   salesforce_last_sync: true
