@@ -1,10 +1,7 @@
 {#
   See bevan_preprocess_facets_summary_item_list() in bevan.theme
 #}
-
-{% if result_count %}
-<div id="result-count" class="facet-summary__count" aria-live="polite">{{ result_count }} results</div>
-{% endif %}
+<div class="facet-summary" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}">
 {% if applied %}
 <table class="facet-summary__applied">
   {% for facet in applied %}
@@ -17,3 +14,4 @@
   {% endfor %}
 </table>
 {% endif %}
+</div>
