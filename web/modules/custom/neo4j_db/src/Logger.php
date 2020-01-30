@@ -4,6 +4,7 @@ namespace Drupal\neo4j_db;
 
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\neo4j_db\Database\Driver\bolt\Connection;
+use Drupal\neo4j_db\Model\GraphModelInterface;
 use Drupal\neo4j_db\Model\LogEventModel;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -13,24 +14,30 @@ use Symfony\Component\HttpKernel\KernelEvents;
 class Logger implements EventSubscriberInterface {
 
   /**
-   * @var Connection
+   * @var \Drupal\neo4j_db\Database\Driver\bolt\Connection
    */
   protected $connection;
 
   /**
-   * @var AccountProxyInterface
+   * @var \Drupal\Core\Session\AccountProxyInterface
    */
   protected $currentUser;
 
   /**
-   * @var LoggerInterface
+   * @var \Psr\Log\LoggerInterface
    */
   protected $log;
 
-  public function __construct(Connection $connection, AccountProxyInterface $currentUser, LoggerInterface $loggerFactory) {
+  /**
+   * @var \Drupal\neo4j_db\Model\GraphModelInterface
+   */
+  protected $graphModel;
+
+  public function __construct(Connection $connection, AccountProxyInterface $currentUser, LoggerInterface $loggerFactory, GraphModelInterface $graphModel) {
     $this->connection = $connection;
     $this->currentUser = $currentUser;
     $this->log = $loggerFactory;
+    $this->graphModel = $graphModel;
   }
 
   public function onRequest(KernelEvent $event) {
@@ -51,6 +58,7 @@ class Logger implements EventSubscriberInterface {
 //      ->execute();
 //    $logEvent->setName('My New Test');
 //    $this->connection->flush();
+    $this->log->debug($this->graphModel->discover('LogEvent'));
   }
 
   public static function getSubscribedEvents() {

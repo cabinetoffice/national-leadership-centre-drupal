@@ -9,7 +9,18 @@ use GraphAware\Neo4j\OGM\Annotations as OGM;
  *
  * @package Drupal\neo4j_db\Model
  */
-abstract class AbstractModel {
+abstract class AbstractModel implements ModelInterface {
+
+  /**
+   * @var string
+   */
+  protected $drupalEntity;
+
+  /**
+   * @var string
+   */
+  protected $drupalBundle;
+
   /**
    * @var int
    *
@@ -37,6 +48,20 @@ abstract class AbstractModel {
    * @OGM\Property(type="int")
    */
   protected $updated;
+
+  /**
+   * AbstractModel constructor.
+   *
+   * @throws \Drupal\neo4j_db\Model\GraphModelException
+   */
+  public function __construct() {
+    if (!$this->drupalEntity) {
+      throw new GraphModelException('Model object is missing $drupalEntity parameter');
+    }
+    if ($this->drupalEntity && !$this->drupalBundle) {
+      throw new GraphModelException('Model object is missing $drupalBundle parameter');
+    }
+  }
 
   /**
    * @return int

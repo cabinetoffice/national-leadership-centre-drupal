@@ -13,6 +13,10 @@ use GraphAware\Neo4j\OGM\Annotations as OGM;
  */
 class LogEventModel extends AbstractModel {
 
+  protected $drupalEntity = NULL;
+
+  protected $drupalBundle = NULL;
+
   /**
    * @var string
    *
