@@ -1,5 +1,4 @@
 <?php
-use \Drupal\Core\Form\FormStateInterface;
 
 /**
  * Preprocess page
