@@ -253,7 +253,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'qrfXFV0mv770tEuxIHDaqwqESXCsH267clnLia86VFoevLesDnCBmrQKxP7ggyzxwuKjYUcUlg';
+$settings['hash_salt'] = 'A5-XBM4djKogyMTJ_ilcrWsr4mKwkYkmFMaz6khiC0Eq0v6Z-mZCNOOvF1wr3VILvqn5NnGnbA';
 
 /**
  * Deployment identifier.
@@ -815,3 +815,13 @@ if (!empty($vcapServices['elasticsearch'])) {
 elseif (getenv('ELASTICSEARCH_URL')) {
   $config['elasticsearch_connector.cluster.live_cluster']['url'] = getenv('ELASTICSEARCH_URL');
 }
+$databases['default']['default'] = array (
+  'database' => 'drupal',
+  'username' => 'drupal',
+  'password' => 'drupal',
+  'prefix' => '',
+  'host' => 'mariadb',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
