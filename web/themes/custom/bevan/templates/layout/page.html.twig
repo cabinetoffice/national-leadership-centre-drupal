@@ -1,14 +1,19 @@
 <header class="site-header govuk-width-container" role="banner" data-module="header">
     {{ page.header }}
+    <div class="site-header__second-row">
+      {% if phase_banner %}
+        {{  phase_banner }}
+      {% endif %}
+    </div>
 </header>
 
 <div class="govuk-width-container">
-  {% if phase_banner %}
-    {{  phase_banner }}
-  {% endif %}
-  <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content"  role="main">
 
-    {{ page.pre_content }}
+  <div class="govuk-main-wrapper govuk-main-wrapper--l">
+
+    <aside role="complementary">
+      {{ page.pre_content }}
+    </aside>
 
     <div class="govuk-grid-row">
 
@@ -24,15 +29,15 @@
 
       {% if page.sidebar_first %}
         <div class="govuk-grid-column-one-third">
-          <aside role="complementary">
+          <section role="search">
             {{ page.sidebar_first }}
-          </aside>
+          </section>
         </div>
       {% endif %}
 
-      <div class="{{content_class}}">
+      <main class="{{content_class}}" id="main-content"  role="main">
       {{ page.content }}
-      </div>
+      </main>
 
       {% if page.sidebar_second %}
         <div class="govuk-grid-column-one-third">
@@ -44,10 +49,10 @@
 
     </div>
 
-  </main>
+  </div>
 </div>
 
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <div class="site-footer__inner govuk-width-container">
     {% if page.footer %}{{ page.footer }}{% endif %}
     <div class="site-footer__logo"><a href="/"><img src="{{ base_path ~ directory }}/assets/images/logos/ncl-star.png" alt="Go to the National Leadership Centre Homepage"></a></div>
