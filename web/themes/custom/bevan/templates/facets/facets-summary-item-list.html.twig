@@ -2,10 +2,9 @@
   See bevan_preprocess_facets_summary_item_list() in bevan.theme
 #}
 
-{% if result_count %}
-<div id="result-count" class="facet-summary__count" aria-live="polite">{{ result_count }} results</div>
-{% endif %}
 {% if applied %}
+<section role="region">
+<h2 class="visually-hidden">Applied filters</h2>
 <table class="facet-summary__applied">
   {% for facet in applied %}
   <tr class="facet-summary__applied-row{% if facet.row_class %} {{ facet.row_class }}{% endif %}">
@@ -16,4 +15,8 @@
   </tr>
   {% endfor %}
 </table>
+</section>
+{% endif %}
+{% if result_count %}
+<h2 id="result-count" class="facet-summary__count" aria-live="polite">{{ result_count }} results</h2>
 {% endif %}
