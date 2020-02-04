@@ -10,6 +10,9 @@
     width: 100vw;
 }
 
-.contextual-region {
-	
+@media only screen and (max-width : 768px) {
+	.contextual-region {
+		width: 100%;
+		overflow: scroll;
+	}
 }
