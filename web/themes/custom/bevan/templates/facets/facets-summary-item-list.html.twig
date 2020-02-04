@@ -3,15 +3,15 @@
 #}
 <div class="facet-summary" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}">
 {% if applied %}
-<table class="facet-summary__applied">
+<div class="facet-summary__applied">
   {% for facet in applied %}
-  <tr class="facet-summary__applied-row{% if facet.row_class %} {{ facet.row_class }}{% endif %}">
-    <th class="facet-summary__applied-title">{{ facet.title }}</th>
-    <td class="facet-summary__applied-items">
+  <div class="facet-summary__applied-row{% if facet.row_class %} {{ facet.row_class }}{% endif %}">
+    <span class="facet-summary__applied-title">{{ facet.title }}</span>
+    <span class="facet-summary__applied-items">
       {% for item in facet.items %}{{ item.value }}{% endfor %}
-    </td>
-  </tr>
+    </span>
+  </div>
   {% endfor %}
-</table>
+</div>
 {% endif %}
 </div>
