@@ -11,9 +11,9 @@
 
   <div class="govuk-main-wrapper govuk-main-wrapper--l">
 
-    <section>
+    <aside role="complementary">
       {{ page.pre_content }}
-    </section>
+    </aside>
 
     <div class="govuk-grid-row">
 
@@ -28,9 +28,12 @@
       {% endif %}
 
       {% if page.sidebar_first %}
-        <aside class="govuk-grid-column-one-third">
-          {{ page.sidebar_first }}
-        </aside>
+        <div class="govuk-grid-column-one-third">
+          <section role="search" id="search-region">
+            <h2>Find a senior leader</h2>
+            {{ page.sidebar_first }}
+          </section>
+        </div>
       {% endif %}
 
       <main class="{{content_class}}" id="main-content"  role="main">
@@ -38,9 +41,11 @@
       </main>
 
       {% if page.sidebar_second %}
-        <aside class="govuk-grid-column-one-third">
-          {{ page.sidebar_second }}
-        </aside>
+        <div class="govuk-grid-column-one-third">
+          <aside role="complementary">
+            {{ page.sidebar_second }}
+          </aside>
+        </div>
       {% endif %}
 
     </div>

@@ -540,7 +540,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<h3 class=\"search-no-results\">Sorry, there&apos;s no-one to match that search.</h3>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n<li>Details for Senior Leaders who have not attended the Programme are not currently available.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
+            value: "<h2 class=\"search-no-results govuk-heading-m\">Sorry, there&apos;s no-one to match that search.</h2>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n<li>Details for Senior Leaders who have not attended the Programme are not currently available.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
             format: filtered_text
           plugin_id: text
       relationships: {  }
