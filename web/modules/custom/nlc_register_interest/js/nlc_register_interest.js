@@ -13,13 +13,13 @@
         }
       });
 
-      $('#nlc-register-interest-show-more').once().click(function() {
+      $('#nlc-register-interest-show-more').once().click(function(event) {
         $('.nlc-register-interest__full').addClass('expanded');
-        return false;
+        event.preventDefault();
       });
-      $('#nlc-register-interest-not-now').once().click(function() {
+      $('#nlc-register-interest-not-now').once().click(function(event) {
         $('.nlc-register-interest__full').removeClass('expanded');
-        return false;
+        event.preventDefault();
       });
     }
   }
