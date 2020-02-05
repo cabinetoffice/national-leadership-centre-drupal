@@ -11,8 +11,9 @@
 }
 
 @media only screen and (max-width : 768px) {
-	.contextual-region {
+	.views-element-container {
 		width: 100%;
 		overflow: scroll;
+		display: block;
 	}
 }
