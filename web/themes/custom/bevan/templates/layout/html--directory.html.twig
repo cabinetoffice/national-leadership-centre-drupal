@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
+
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token|raw }}">
+    <js-placeholder token="{{ placeholder_token|raw }}">
+  </head>
+
+  <body class="govuk-template__body govuk-body">
+    <script>
+      document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+
+    </script>
+    <a href="#main-content" class="govuk-skip-link">{{ 'Skip to results'|t }}</a>
+    <a href="#search-region" class="govuk-skip-link">{{ 'Skip to search'|t }}</a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+  </body>
+</html>
