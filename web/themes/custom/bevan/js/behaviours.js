@@ -12,7 +12,7 @@
       $('#result-count').text($('#facet-summary-wrapper').data('facets-summary-count') + ' results');
 
       // Track facet clicks so we can restore focus.
-      $('.facet-item').click(function(ev) {
+      $('.facet-item a').click(function(ev) {
         Drupal.behaviors.bevantheme.focusFacetId = $(ev.target).data('drupal-facet-item-id');
       });
 
