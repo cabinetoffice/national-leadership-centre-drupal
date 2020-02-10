@@ -2,13 +2,13 @@ FROM subatomic/base-php-72-image
 RUN mkdir -p /var/www/web/
 RUN mkdir -p /var/www/vendor/
 RUN mkdir -p /var/www/config/
-RUN mkdir -p /var/www/drush/
+#RUN mkdir -p /var/www/drush/
 RUN mkdir -p /var/www/scripts/
 WORKDIR /var/www/
 COPY web/ /var/www/web/
 COPY vendor/ /var/www/vendor/
 COPY config/ /var/www/config/
-COPY drush/ /var/www/drush/
+#COPY drush/ /var/www/drush/
 COPY scripts/ /var/www/scripts/
 COPY load.environment.php /var/www/
 COPY composer.json /var/www/
