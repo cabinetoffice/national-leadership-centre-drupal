@@ -31,8 +31,8 @@ $config['sendgrid_integration.settings']['apikey'] = getenv('SENDGRID_API_KEY');
 $config['config_split.config_split.devel']['status'] = FALSE;
 // Ensure the correct CRM config environment is active
 $config['config_split.config_split.crm']['status'] = FALSE;
-$config['config_split.config_split.crm_prod']['status'] = TRUE;
-$config['config_split.config_split.crm_stage']['status'] = FALSE;
+< $config['config_split.config_split.crm_prod']['status'] = FALSE;
+$config['config_split.config_split.crm_stage']['status'] = TRUE;
 
 if (getenv('CONNECT_DOMAIN')) {
   $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
