@@ -6,7 +6,7 @@
 !/composer.json
 !/scripts/composer/ScriptHandler.php
 !/load.environment.php
-!/drush/
+#!/drush/
 !/phpunit.xml.dist
 !/build-version.txt
 !/docker-build/vaultenv-wrapper
