@@ -35,4 +35,8 @@ $config['config_split.config_split.crm']['status'] = FALSE;
 $config['config_split.config_split.crm_prod']['status'] = TRUE;
 $config['config_split.config_split.crm_stage']['status'] = FALSE;
 
+// enable s3fs for css and js
+$config['system.performance']['css']['preprocess'] = true;
+$config['system.performance']['js']['preprocess'] = true;
+
 
