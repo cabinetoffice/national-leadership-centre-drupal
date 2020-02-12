@@ -123,7 +123,7 @@ class DirectoryTokenAccessForm extends FormBase {
     $account = user_load_by_mail($form_state->getValue('email'));
     if (empty($account)) {
       $form_state->setErrorByName('email', $this->t('Check your email address.'));
-      $email = 'nlc@cabinetoffice.gov.uk';
+      $email = 'NLC@cabinetoffice.gov.uk';
       $url = Url::fromUri('mailto:' . $email);
       $link = Link::fromTextAndUrl($email, $url);
       $form_state->setError($form, $this->t('Your email address does not currently have access to the directory. Please check your email address is correct. If it is, please contact @email for more information.', ['@email' => $link->toString()]));
