@@ -78,27 +78,40 @@ class DirectoryTokenAccessForm extends FormBase {
    * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $format = filter_default_format();
     $form['intro'] = [
-      '#type' => 'processed_text',
-      '#text' => $this->t('We will email you a secure link so you can access the directory. The link will be active for 1 day.'),
-      '#format' => $format,
+      '#weight' => 0,
+      '#type' => 'inline_template',
+      '#template' => '<p>{% trans %} {{paragraph_one}} {% endtrans %}</p> <p>{{paragraph_two}}</p>',
+      '#context' => [
+        'paragraph_one' => 'To access the Senior Leaders\' Network Directory, we will send a secure link to your email address.',
+        'paragraph_two' => 'Please use the same email address that is registered with the NLC.',
+      ],
     ];
 
     $form['email'] = array(
+      '#weight' => 1,
       '#type' => 'email',
       '#title' => t('Email'),
       '#required' => TRUE,
     );
 
     $form['actions']['#type'] = 'actions';
+    $form['actions']['#weight'] = 2;
     $form['actions']['submit'] = array(
       '#type' => 'submit',
-      '#value' => $this->t('Submit'),
+      '#value' => $this->t('Continue'),
       '#button_type' => 'primary',
     );
 
-//    dpr($form);
+    $form['outro'] = [
+      '#weight' => 3,
+      '#type' => 'inline_template',
+      '#template' => '<p class="govuk-!-margin-top-4">{% trans %} {{paragraph}} {% endtrans %}</p>',
+      '#context' => [
+        'paragraph' => 'The secure link keeps you logged in for a month and once sent it will be valid for 24 hours. After this you will have to request a new link.',
+      ],
+    ];
+
     return $form;
   }
 
