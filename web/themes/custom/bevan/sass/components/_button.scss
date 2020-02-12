@@ -1,14 +1,19 @@
-.button {
-  font-size: 1em; 
+.button,
+.button:link,
+.button:visited {
+	font-size: 1em;
 	padding: .5em .8em;
 	border: 2px solid $red;
 	background-color: $red;
 	color: $white;
 	cursor: pointer;
 	width: auto;
+	text-decoration: none;
+	display: inline-block;
 }
 .button:hover {
 	background-image: $gradient;
+	text-decoration: underline;
 }
 .button:focus {
 	outline: 4px solid $grey;
