@@ -1,0 +1,10 @@
+.govuk-panel {
+    text-align: left;
+}
+.govuk-panel--confirmation {
+    color: $grey;
+    background: $pale-yellow;
+}
+.govuk-panel__body {
+    @include govuk-font($size: 23);
+}
