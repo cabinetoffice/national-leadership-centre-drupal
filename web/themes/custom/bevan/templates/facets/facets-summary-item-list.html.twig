@@ -1,20 +1,14 @@
 {#
   See bevan_preprocess_facets_summary_item_list() in bevan.theme
 #}
-<div class="facet-summary" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}">
-{% if applied %}
-<section role="region">
-    <h2 class="visually-hidden">Applied filters</h2>
-    <div class="facet-summary__applied">
-    {% for facet in applied %}
-    <div class="facet-summary__applied-row{% if facet.row_class %} {{ facet.row_class }}{% endif %}">
-        <span class="facet-summary__applied-title">{{ facet.title }}</span>
-        <span class="facet-summary__applied-items">
-        {% for item in facet.items %}{{ item.value }}{% endfor %}
-        </span>
-    </div>
+<h2 class="visually-hidden">Applied filters</h2>
+<ul class="facet-summary__applied" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}" role="region">
+  {% for facet in applied %}
+  <li class="facet-summary__applied-row{% if facet.row_class %} {{ facet.row_class }}{% endif %}">
+    <span class="facet-summary__applied-title">{{ facet.title }}</span>
+    <span class="facet-summary__applied-items">
+    {% for item in facet.items %}{{ item.value }}{% endfor %}
+    </span>
+  </li>
   {% endfor %}
-    </div>
-</section>
-{% endif %}
-</div>
+</ul>
