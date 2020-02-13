@@ -1,3 +1,11 @@
+nlc_prototype.directory.welcome:
+  path: '/directory/welcome'
+  defaults:
+    _title: 'Get access to the Senior Leaders’ Network Directory'
+    _controller: 'Drupal\nlc_prototype\Controller\DirectoryWelcomeController::build'
+  requirements:
+    _permission: 'access content'
+    _custom_access: 'Drupal\nlc_prototype\Controller\DirectoryWelcomeController::access'
 nlc_prototype.directory.token_access:
   path: '/directory/access'
   defaults:
