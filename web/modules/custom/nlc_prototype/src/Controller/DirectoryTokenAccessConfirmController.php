@@ -173,17 +173,15 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   public function build() {
 
     $build = [];
-
+    $email = $this->store->get('email');
     $url = Url::fromRoute('nlc_prototype.directory.token_access');
     $build['intro'] = [
       '#type' => 'inline_template',
       '#context' => [
-        'text_one' => 'We have sent a secure link to XXXX@XXXX to log you in. Check your email.',
-        'text_two' => 'Haven’t received an email?',
-        'text_three' => 'Request access again.',
+        'email' => $email,
         'url' => $url,
       ],
-      '#template' => '<p>{% trans %} {{text_one}} {% endtrans %}</p><p>{% trans %} {{text_two}} {% endtrans %} <a href="{{url}}">{{text_three}}</a></p>',
+      '#template' => '<p>{% trans %} We have sent a secure link to <a href="mailto:{{email}}">{{email}}</a> to log you in. Check your email. {% endtrans %}</p><p>{% trans %} Haven’t received an email? {% endtrans %} <a href="{{url}}">Request access again.</a></p>',
     ];
 
     $this->deleteStore();
