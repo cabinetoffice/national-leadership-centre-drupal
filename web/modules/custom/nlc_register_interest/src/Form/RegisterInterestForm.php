@@ -40,7 +40,7 @@ class RegisterInterestForm extends FormBase {
     if ($reg == 0) {
       $form['submit'] = [
         '#type' => 'submit',
-        '#value' => $this->t('I want to take part...'),
+        '#value' => $this->t('I want to take part in the Programme'),
         '#prefix' => '<p>',
         '#suffix' => '<a href="#" id="nlc-register-interest-not-now">Not now</a></p>',
         '#ajax' => [
