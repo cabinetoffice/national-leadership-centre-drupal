@@ -1,0 +1,22 @@
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# @cabinetoffice-org/nlc-deployment team will be requested
+# for review when someone opens a pull request.
+*       @cabinetoffice-org/nlc-deployment
+
+# When someone opens a pull request that modifies files in
+# /web
+# /config
+# /scripts
+# etc.
+# only @joesb and not the global owner(s) will be requested
+# for a review.
+/web @joesb
+/config @joesb
+/scripts @joesb
+/app_cron @joesb
+/console @joesb
+composer.* @joesb
+
+/docker-build @mikebell @stutily
+/deployment @mikebell @stutily
