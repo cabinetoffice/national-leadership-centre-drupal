@@ -19,3 +19,4 @@
 composer.* @joesb
 
 /docker-build @mikebell @stutily
+/deployment @mikebell @stutily
