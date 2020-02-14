@@ -181,7 +181,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
         'email' => $email,
         'url' => $url,
       ],
-      '#template' => '<p>{% trans %} We have sent a secure link to <a href="mailto:{{email}}">{{email}}</a> to log you in. Check your email. {% endtrans %}</p><p>{% trans %} Haven’t received an email? {% endtrans %} <a href="{{url}}">Request access again.</a></p>',
+      '#template' => '<p>{% trans %} We have sent a secure link to {{email}} to log you in. Check your email. {% endtrans %}</p><p>{% trans %} Haven’t received an email? {% endtrans %} <a href="{{url}}">Request access again.</a></p>',
     ];
 
     $this->deleteStore();
