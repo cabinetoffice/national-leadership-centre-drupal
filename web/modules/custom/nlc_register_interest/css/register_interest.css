@@ -18,10 +18,10 @@
     margin-right: 0.5rem;
     line-height: 1.5em;
 }
-.js-enabled .nlc-register-interest__full.expanded {
+.js-enabled #register-interest-form.expanded .nlc-register-interest__full {
     display: block;
 }
-.js-enabled .nlc-register-interest__full.expanded #nlc-register-interest-show-more {
+.js-enabled #register-interest-form.expanded #nlc-register-interest-show-more {
     display: none;
 }
 @media only screen and (min-width : 769px) {

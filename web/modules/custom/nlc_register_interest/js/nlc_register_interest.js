@@ -14,11 +14,11 @@
       });
 
       $('#nlc-register-interest-show-more').once().click(function(event) {
-        $('.nlc-register-interest__full').addClass('expanded');
+        $('#register-interest-form').addClass('expanded');
         event.preventDefault();
       });
       $('#nlc-register-interest-not-now').once().click(function(event) {
-        $('.nlc-register-interest__full').removeClass('expanded');
+        $('#register-interest-form').removeClass('expanded');
         event.preventDefault();
       });
     }
