@@ -22,7 +22,7 @@ class RegisterInterestForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['#prefix'] = '<div id="register-interest-wrapper" class="govuk-width-container">';
+    $form['#prefix'] = '<div id="register-interest-wrapper" class="govuk-width-container" aria-live="polite">';
     $form['#suffix'] = '</div>';
     return array_merge($form, $this->getFormMarkup());
   }
