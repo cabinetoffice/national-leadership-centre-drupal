@@ -42,7 +42,7 @@ class RegisterInterestForm extends FormBase {
         '#type' => 'submit',
         '#value' => $this->t('I want to take part...'),
         '#prefix' => '<p>',
-        '#suffix' => '<a href="#" id="nlc-register-interest-not-now">Not now</a></p>',
+        '#suffix' => '<a href="#" role="button" aria-controls="nlc-register-interest-show-more-content" id="nlc-register-interest-not-now">Not now</a></p>',
         '#ajax' => [
           'callback' => '::ajaxSubmit',
           'disable-refocus' => FALSE, // Or TRUE to prevent re-focusing on the triggering element.
