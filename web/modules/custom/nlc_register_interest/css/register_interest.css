@@ -8,9 +8,6 @@
     display: none;
     white-space: nowrap;
 }
-#nlc-register-interest-not-now {
-    padding-top: 1rem;
-}
 .js-enabled #nlc-register-interest-show-more, .js-enabled #nlc-register-interest-not-now {
     display: inline-block;
 }
@@ -19,6 +16,7 @@
 }
 .js-enabled .nlc-register-interest__full button {
     margin-right: 0.5rem;
+    line-height: 1.5em;
 }
 .js-enabled .nlc-register-interest__full.expanded {
     display: block;
