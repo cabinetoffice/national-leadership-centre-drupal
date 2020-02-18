@@ -19,6 +19,14 @@ function bevan_preprocess_page(&$vars) {
 }
 
 /**
+ * Preprocess page
+ */
+function bevan_preprocess_block(&$vars) {
+  // Mark the block as an ajax request.
+  $vars['is_ajax'] = !empty($_GET['_wrapper_format']) && $_GET['_wrapper_format'] = 'drupal_ajax';
+}
+
+/**
  * Preprocess the facets summary item list.
  */
 function bevan_preprocess_facets_summary_item_list(array &$vars) {
@@ -44,6 +52,7 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
   }
 
   // Expose the facet for each item.
+  $vars['result_count'] = 0;
   foreach($vars['items'] as &$item) {
 
     // Get the result count separately from facets.

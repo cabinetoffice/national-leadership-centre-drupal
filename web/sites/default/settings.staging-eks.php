@@ -11,7 +11,7 @@ $databases['default']['default'] = array(
   'password' => getenv('DB_PASSWORD'),
   'host' => getenv('DB_HOST'),
   'port' => getenv('DB_PORT'),
-  'prefix' => 'drupal_',
+  'prefix' => '',
   'collation' => 'utf8mb4_general_ci', // For Drupal 8
   'pdo' => array()
 );
@@ -31,8 +31,8 @@ $config['sendgrid_integration.settings']['apikey'] = getenv('SENDGRID_API_KEY');
 $config['config_split.config_split.devel']['status'] = FALSE;
 // Ensure the correct CRM config environment is active
 $config['config_split.config_split.crm']['status'] = FALSE;
-$config['config_split.config_split.crm_prod']['status'] = TRUE;
-$config['config_split.config_split.crm_stage']['status'] = FALSE;
+< $config['config_split.config_split.crm_prod']['status'] = FALSE;
+$config['config_split.config_split.crm_stage']['status'] = TRUE;
 
 if (getenv('CONNECT_DOMAIN')) {
   $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
