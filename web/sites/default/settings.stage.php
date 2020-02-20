@@ -37,3 +37,8 @@ $config['config_split.config_split.crm_stage']['status'] = TRUE;
 if (getenv('CONNECT_DOMAIN')) {
   $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
 }
+
+// Some small system performance settings.
+$config['system.performance']['cache']['page']['max_age'] = 60;
+$config['system.performance']['css']['preprocess'] = false;
+$config['system.performance']['js']['preprocess'] = false;
