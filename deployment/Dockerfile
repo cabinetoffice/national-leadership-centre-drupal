@@ -1,5 +1,4 @@
-FROM subatomic/base-php-72-image 
-# TODO - move to NLC docker hub
+FROM nlcdigital/base-php-72-image 
 RUN mkdir -p /var/www/web/
 RUN mkdir -p /var/www/vendor/
 RUN mkdir -p /var/www/config/
