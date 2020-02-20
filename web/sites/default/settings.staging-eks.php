@@ -23,6 +23,7 @@ $settings['s3fs.bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.region'] = getenv('AWS_REGION');
 $config['s3fs.settings']['bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.use_s3_for_public'] = TRUE;
+$settings['php_storage']['twig']['directory'] = '../storage/php';
 
 // Sendgrid integration API key
 $config['sendgrid_integration.settings']['apikey'] = getenv('SENDGRID_API_KEY');
