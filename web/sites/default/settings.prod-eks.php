@@ -34,9 +34,7 @@ $config['config_split.config_split.crm']['status'] = FALSE;
 $config['config_split.config_split.crm_prod']['status'] = TRUE;
 $config['config_split.config_split.crm_stage']['status'] = FALSE;
 
-if (getenv('CONNECT_DOMAIN')) {
-  $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
-}
+$settings['trusted_host_patterns'] = array('^connect\.nationalleadership\.gov\.uk$');
 
 // enable s3fs for css and js
 $config['system.performance']['css']['preprocess'] = true;
