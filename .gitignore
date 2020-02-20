@@ -43,3 +43,6 @@ graph/*
 
 # Intentionally ignore some sensitive config files
 /config/sync/neo4j.connection.yml
+
+# Ignore compiled twig files
+/storage/php
