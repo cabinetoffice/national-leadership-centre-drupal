@@ -114,6 +114,7 @@ class DirectoryTokenAccessForm extends FormBase {
       $url = Url::fromUri('mailto:' . $email);
       $link = Link::fromTextAndUrl($email, $url);
       $form_state->setError($form, $this->t('Your email address does not currently have access to the directory. Please check your email address is correct. If it is, please contact @email for more information.', ['@email' => $link->toString()]));
+      \Drupal::logger('nlc_prototype')->error("Login failed: Unknown address $email");
     }
   }
 
