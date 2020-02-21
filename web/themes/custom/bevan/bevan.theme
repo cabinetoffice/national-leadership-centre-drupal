@@ -1,4 +1,7 @@
 <?php
+use \Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Preprocess page
@@ -33,6 +36,7 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
 
   // Add any search string to the list of applied facets.
   $vars['applied'] = [];
+  $vars['facets_count'] = 0;
   $search = $_SESSION['directory_search'] ?? FALSE;
   if (!empty($search)) {
     $vars['applied']['keywords'] = [
@@ -41,6 +45,7 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
       'items' => [],
     ];
     foreach(explode(' ', $search) ?? [] as $k) {
+      $vars['facets_count']++;
       $vars['applied']['keywords']['items'][] = [
         'value' => [
           '#plain_text' => $k,
@@ -62,6 +67,7 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
 
     // For each applied item, group it by facet.
     if (!empty($item['value']['#title']['#facet'])) {
+      $vars['facets_count']++;
       $facet = $item['value']['#title']['#facet'];
       if (empty($vars['applied'][$facet->id()])) {
         $vars['applied'][$facet->id()] = [
@@ -71,5 +77,36 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
       }
       $vars['applied'][$facet->id()]['items'][] = $item;
     }
+  }
+}
+
+/**
+ * Alter views search forms.
+ */
+function bevan_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form['#id'] === 'views-exposed-form-senior-leaders-directory-es-page') {
+    // TODO: Work out proper caching settings.
+    $form_state->disableCache();
+    $url = Url::fromRoute('view.senior_leaders_directory_es.page');
+    $reset_link = Link::fromTextAndUrl(t('Start new search'), $url);
+    $reset_link = $reset_link->toRenderable();
+    $reset_link['#attributes'] = array(
+      'class' => array('govuk-link'),
+      'id' => 'search-reset-link',
+    );
+
+    // Use the reset button to determine if we should show the reset link.
+    if (isset($form['actions']['reset']['#access']) && !$form['actions']['reset']['#access']) {
+      $reset_link['#attributes']['class'][] = 'visually-hidden';
+    }
+    // Then get rid of the button since we don't really need it.
+    unset($form['actions']['reset']);
+
+    $form['reset_link'] = [
+      '#prefix' => '<div class="govuk-form-group">',
+      '#suffix' => '</div>',
+      '#markup' => render($reset_link),
+      '#weight' => -1,
+    ];
   }
 }
