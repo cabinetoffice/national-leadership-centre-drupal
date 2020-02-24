@@ -9,7 +9,7 @@ _core:
 id: bevan_local_tasks
 theme: bevan
 region: pre_content
-weight: -5
+weight: -7
 provider: null
 plugin: local_tasks_block
 settings:
