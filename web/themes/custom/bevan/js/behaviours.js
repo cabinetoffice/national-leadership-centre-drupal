@@ -6,7 +6,15 @@
     attach: function (context, settings) {
       $('.eu-cookie-compliance__close').click(function() {
         Drupal.eu_cookie_compliance.toggleWithdrawBanner();
+        $('.eu-cookie-compliance-banner').trigger('eu_cookie_compliance_popup_close');
       });
+
+      $('.eu-cookie-compliance-banner').on('eu_cookie_compliance_popup_close', function() {
+        var wrapper = this.parentElement;
+        window.setTimeout(function() {
+          $(wrapper).remove();
+        }, drupalSettings.eu_cookie_compliance.popup_delay);
+      })
 
       // Track facet clicks so we can restore focus.
       $('.facet-item a').click(function(ev) {
