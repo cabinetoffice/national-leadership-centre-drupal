@@ -45,7 +45,7 @@
 <div{{ attributes.addClass(classes) }}>
   <div class="popup-content info eu-cookie-compliance__container govuk-width-container">
     <div class="eu-cookie-compliance__content">
-      <button type="button" class="eu-cookie-compliance__close" aria-label="Close dialog">
+      <button type="button" class="govuk-link eu-cookie-compliance__close" aria-label="Close dialog">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
           <path d="M2,2L23,23M2,23L23,2"/>
         </svg>
@@ -53,7 +53,7 @@
       {{ message }}
       <button type="button" class="{{ primary_button_class }} button button--primary">{{ agree_button }}</button>
       {% if disagree_button %}
-        <button type="button" class="find-more-button eu-cookie-compliance-more-button button--link">{{ disagree_button }}</button>
+        <button type="button" class="govuk-link find-more-button eu-cookie-compliance-more-button button--link">{{ disagree_button }}</button>
       {% endif %}
     </div>
   </div>
