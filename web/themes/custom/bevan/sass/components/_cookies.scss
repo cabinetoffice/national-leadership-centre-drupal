@@ -10,7 +10,8 @@
         right: 0;
         width: 25px;
         height: 25px;
-        background: none;
+        padding: 0;
+        background-color: transparent;
         border: none;
         padding: none;
         cursor: pointer;
@@ -18,6 +19,9 @@
             stroke: black;
             stroke-width: 4px;
             stroke-linecap: round;
+        }
+        &:focus {
+            background-color: $yellow;
         }
     }
 }
