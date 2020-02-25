@@ -18,7 +18,8 @@ $databases['default']['default'] = array(
 
 // s3fs settings 
 // We avoid having keys here by using instance profiles
-$settings['s3fs.use_instance_profile'] = TRUE;
+$config['s3fs.settings']['use_instance_profile'] = TRUE;
+$config['s3fs.settings']['use_path_style_endpoint'] = FALSE;
 $settings['s3fs.bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.region'] = getenv('AWS_REGION');
 $config['s3fs.settings']['bucket'] = getenv('AWS_BUCKET_NAME');
