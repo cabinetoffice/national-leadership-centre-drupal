@@ -4,6 +4,7 @@ namespace Drupal\nlc_prototype\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 
 /**
@@ -25,8 +26,9 @@ class BackToDirectorySearchBlock extends BlockBase {
     $build = [];
 
     $url = Url::fromRoute('view.senior_leaders_directory_es.page');
-    $back_link = Link::fromTextAndUrl(t('&lt; Back to search results'), $url);
-    $link = $back_link->toRenderable();
+    $linkMarkup = Markup::create('<span aria-hidden="true">&lt;</span> '. t('Back to search results'));
+    $backLink = Link::fromTextAndUrl($linkMarkup, $url);
+    $link = $backLink->toRenderable();
     $link['#attributes'] = [
       'class' => ['govuk-link'],
       'id' => 'back-to-search-link',
