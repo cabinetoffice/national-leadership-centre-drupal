@@ -2,7 +2,7 @@
   See bevan_preprocess_facets_summary_item_list() in bevan.theme
 #}
 <h2 class="visually-hidden">Applied filters</h2>
-<ul class="facet-summary__applied" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}" role="region">
+<ul class="facet-summary__applied" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}" data-facets-facets-count="{{ facets_count }}" role="region">
   {% for facet in applied %}
   <li class="facet-summary__applied-row{% if facet.row_class %} {{ facet.row_class }}{% endif %}">
     <span class="facet-summary__applied-title">{{ facet.title }}</span>
