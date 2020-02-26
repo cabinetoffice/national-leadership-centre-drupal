@@ -17,14 +17,14 @@ targetEntityType: profile
 bundle: role
 mode: default
 content:
-  field_job_title_term:
+  field_job_title:
+    type: string
     weight: 0
+    region: content
     label: inline
     settings:
-      link: false
+      link_to_entity: false
     third_party_settings: {  }
-    type: entity_reference_label
-    region: content
   field_organisation:
     weight: 1
     label: hidden
@@ -62,7 +62,7 @@ content:
 hidden:
   field_finish_date: true
   field_general_location: true
-  field_job_title: true
+  field_job_title_term: true
   field_location: true
   field_start_date: true
   field_time_in_role: true
