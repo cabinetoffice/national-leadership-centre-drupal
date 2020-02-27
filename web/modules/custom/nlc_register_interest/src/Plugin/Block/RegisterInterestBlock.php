@@ -33,13 +33,20 @@ class RegisterInterestBlock extends BlockBase {
    * Control access to this block
    */
   protected function blockAccess(AccountInterface $account) {
-    if ($account->id() == 0 || $account->id() == 1) {
-      // Don't show to anonymous or admin user, uid = 1.
+    // Close the EOI at Friday, 28 February 2020 17:00:00 GMT+00:00.
+    $closeDateTimestamp = 1582909200;
+    if (\Drupal::time()->getRequestTime() > $closeDateTimestamp) {
       return AccessResult::forbidden();
     }
+
+    // Don't show to anonymous or admin user, uid = 1.
+    if ($account->id() == 0 || $account->id() == 1) {
+      return AccessResult::forbidden();
+    }
+
+    // Check if register interest is empty.
     /** @var \Drupal\user\UserInterface $user */
     $user = User::load($account->id());
-    // Check if register interest is empty.
     $regEmpty = $user->get('field_register_interest')->value;
     if (!empty($regEmpty)) {
       return AccessResult::forbidden();
