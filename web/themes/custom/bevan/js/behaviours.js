@@ -25,6 +25,15 @@
       // If we set the focus earlier, it gets reset on the next load.
       if ($(context).data('drupal-facets-summary-id') == 'facet_summary') {
 
+        // If we have any applied facets, we want to show the reset link.
+        var facetsCount = $('#facet-summary-wrapper').data('facets-facets-count');
+        var resetLink = $('#search-reset-link');
+        if (facetsCount == 0) {
+          resetLink.addClass('visually-hidden').attr('aria-hidden', 'true');
+        }
+        else {
+          resetLink.removeClass('visually-hidden').attr('aria-hidden', 'false');
+        }
         // Only update the count if the text has actually changed, prevent screeen readers reading it twice.
         var countText = $('#facet-summary-wrapper').data('facets-summary-count') + ' results';
         if (countText != $('#result-count').text()) {
