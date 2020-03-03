@@ -1,0 +1,30 @@
+uuid: 94a99112-739d-43cd-849f-aa386b43d8ec
+langcode: en
+status: true
+dependencies:
+  module:
+    - collapsiblock
+    - nlc_prototype
+    - system
+  theme:
+    - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
+id: backtodirectorysearchblock
+theme: bevan
+region: pre_content
+weight: -9
+provider: null
+plugin: back_to_diretory_search_block
+settings:
+  id: back_to_diretory_search_block
+  label: 'Back To Directory Search block'
+  provider: nlc_prototype
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '/user/*'
+    negate: false
+    context_mapping: {  }

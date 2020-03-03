@@ -11,18 +11,20 @@ $databases['default']['default'] = array(
   'password' => getenv('DB_PASSWORD'),
   'host' => getenv('DB_HOST'),
   'port' => getenv('DB_PORT'),
-  'prefix' => '',
+  'prefix' => 'drupal_',
   'collation' => 'utf8mb4_general_ci', // For Drupal 8
   'pdo' => array()
 );
 
 // s3fs settings 
 // We avoid having keys here by using instance profiles
-$settings['s3fs.use_instance_profile'] = TRUE;
+$config['s3fs.settings']['use_instance_profile'] = TRUE;
+$config['s3fs.settings']['use_path_style_endpoint'] = FALSE;
 $settings['s3fs.bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.region'] = getenv('AWS_REGION');
 $config['s3fs.settings']['bucket'] = getenv('AWS_BUCKET_NAME');
 $settings['s3fs.use_s3_for_public'] = TRUE;
+$settings['php_storage']['twig']['directory'] = '../storage/php';
 
 // Sendgrid integration API key
 $config['sendgrid_integration.settings']['apikey'] = getenv('SENDGRID_API_KEY');
@@ -34,9 +36,7 @@ $config['config_split.config_split.crm']['status'] = FALSE;
 $config['config_split.config_split.crm_prod']['status'] = TRUE;
 $config['config_split.config_split.crm_stage']['status'] = FALSE;
 
-if (getenv('CONNECT_DOMAIN')) {
-  $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
-}
+$settings['trusted_host_patterns'] = array('^connect\.nationalleadership\.gov\.uk$');
 
 // enable s3fs for css and js
 $config['system.performance']['css']['preprocess'] = true;

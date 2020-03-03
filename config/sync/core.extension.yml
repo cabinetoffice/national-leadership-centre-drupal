@@ -29,6 +29,7 @@ module:
   file: 0
   filter: 0
   google_analytics: 0
+  health_check: 0
   image: 0
   inline_form_errors: 0
   key: 0
@@ -47,6 +48,7 @@ module:
   profile: 0
   quickedit: 0
   rdf: 0
+  remove_http_headers: 0
   s3fs: 0
   salesforce: 0
   salesforce_jwt: 0

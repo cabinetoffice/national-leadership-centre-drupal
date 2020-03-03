@@ -6,3 +6,7 @@ google_analytics:
     - core/jquery
     - core/drupal
     - core/drupalSettings
+back_to_search:
+  version: 1.0
+  js:
+    js/nlc_prototype.back_to_search.js: {}
