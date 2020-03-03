@@ -318,7 +318,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       $statusMessage = [
         '#type' => 'inline_template',
         '#context' => [
-          'first' => $this->t('Welcome. You have used your secure link. This will give you access to the Connect Directory for one month. After one month, please enter your work email address to gain access again.'),
+          'first' => $this->t('Welcome. You have used your secure link. This will give you access to the Connect Directory for one month.'),
           'second' => $this->t('You can use this service to find others within the National Leadership Centre Network.'),
         ],
         '#template' => '<p>{{ first }}</p><p>{{ second }}</p>'
