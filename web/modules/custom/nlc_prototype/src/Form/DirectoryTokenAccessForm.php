@@ -122,7 +122,7 @@ class DirectoryTokenAccessForm extends FormBase {
     $account = user_load_by_mail($form_state->getValue('email'));
     if (empty($account)) {
       $form_state->setErrorByName('email', $this->t('Check your email address.'));
-      $email = 'NLC@cabinetoffice.gov.uk';
+      $email = 'NLC@CabinetOffice.gov.uk';
       $mailUrl = Url::fromUri('mailto:' . $email);
       $mailLink = Link::fromTextAndUrl($email, $mailUrl);
       $networkUrl = Url::fromUri('https://www.nationalleadership.gov.uk/the-network/');
@@ -154,14 +154,37 @@ class DirectoryTokenAccessForm extends FormBase {
     $module = 'nlc_prototype';
     $key = 'directory_access_token';
     $to = $account->getEmail();
-    $params = [
-      'message' => [
-        $this->t('Thank you for requesting a link to your senior leadership directory, provided by the National Leadership Centre.'),
-        $this->t('Your single-use secure link is: @url', ['@url' => $this->directoryUrl($account)]),
-        $this->t('This link will expire after one day.'),
-        $this->t('If you have any difficulties, please contact NLC@CabinetOffice.gov.uk for help.'),
+    $email = 'NLC@CabinetOffice.gov.uk';
+    $mailUrl = Url::fromUri('mailto:' . $email);
+    $mailLink = Link::fromTextAndUrl($email, $mailUrl);
+    $message = [
+      '#theme' => 'nlc_connect_access_email_body',
+      '#pre' => [
+        '#type' => 'inline_template',
+        '#context' => [
+          'first' => $this->t('Thank you for requesting a secure link to the Network of Senior Leaders: the Connect Directory, provided by the National Leadership Centre.')
+        ],
+        '#template' => '<p>{{ first }}</p>',
+      ],
+      '#link' => [
+        '#type' => 'link',
+        '#title' => $this->t('Log into the Connect Directory'),
+        '#url' => Url::fromUri($this->directoryUrl($account)),
+        '#attributes' => [
+          'class' => ['button'],
+        ],
+      ],
+      '#post' => [
+        '#type' => 'inline_template',
+        '#context' => [
+          'first' => $this->t('The secure link will expire after 24 hours.'),
+          'second' => $this->t('You can use this directory to connect and work with people across the public sector.'),
+          'third' => $this->t('If you have any difficulties, please contact @email for help.', ['@email' => $mailLink->toString()]),
+        ],
+        '#template' => '<p>{{ first }}</p><p>{{ second }}</p><p>{{ third }}</p>',
       ],
     ];
+    $params['message'] = render($message);
     $langcode = \Drupal::currentUser()->getPreferredLangcode();
     $send = true;
 

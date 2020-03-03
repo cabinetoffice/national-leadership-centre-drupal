@@ -11,7 +11,7 @@ function nlc_prototype_mail($key, &$message, $params) {
   switch ($key) {
     case 'directory_access_token':
       $message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['subject'] = t('Access link: Senior Leader directory');
+      $message['subject'] = t('Secure access link: the Connect Directory');
       $message['body'] = $params['message'];
       break;
   }
@@ -43,6 +43,13 @@ function nlc_prototype_theme($existing, $type, $theme, $path) {
     'nlc_prototype_login_page' => [
       'variables' => [
         'check_url' => NULL,
+      ]
+    ],
+    'nlc_connect_access_email_body' => [
+      'variables' => [
+        'pre' => NULL,
+        'link' => NULL,
+        'post' => NULL,
       ]
     ]
   ];
