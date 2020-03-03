@@ -41,6 +41,7 @@
         "drupal/google_analytics": "^3.0",
         "drupal/govuk_design_system": "^1.0@beta",
         "drupal/health_check": "^1.2",
+        "drupal/htmlmail": "^3.0@alpha",
         "drupal/key": "^1.8",
         "drupal/migrate_plus": "^4.2",
         "drupal/migrate_source_csv": "^3.0",
