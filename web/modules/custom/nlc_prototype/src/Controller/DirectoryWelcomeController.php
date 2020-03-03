@@ -25,16 +25,21 @@ class DirectoryWelcomeController extends ControllerBase {
       'class' => ['button'],
     ];
 
+    $networkUrl = Url::fromUri('https://www.nationalleadership.gov.uk/the-network/');
+    $networkLink = Link::fromTextAndUrl($this->t('Find out more about our Network'), $networkUrl);
+    $networkLink = $networkLink->toRenderable();
+
     $build['intro'] = [
       '#type' => 'inline_template',
       '#context' => [
         'heading_one' => $this->t('You will be able to'),
         'item_one' => $this->t('Find other Network members’ contact details'),
         'item_two' => $this->t('Find out who else is attending your programme'),
-        'text_one' => $this->t('You will only be able to access this service if you are an NLC member, or have taken part in any NLC Programmes.'),
+        'text_one' => $this->t('You will only be able to access this service if you are a National Leadership Centre network member.'),
+        'network_link' => $networkLink,
         'button' => $link,
         'heading_two' => $this->t('Before you start'),
-        'text_two' => $this->t('You will need to use the same email address that is registered with the NLC.'),
+        'text_two' => $this->t('You will need your work email address and access to your work email account to gain access to the directory.'),
       ],
       '#template' => '<h2>{{heading_one}}</h2>
      <ul>
@@ -42,6 +47,7 @@ class DirectoryWelcomeController extends ControllerBase {
       <li>{{item_two}}</li>
      </ul>
      <p>{{text_one}}</p>
+     <p>{{ network_link }}</p>
      <p>{{ button }}</p>
      <h2>{{heading_two}}</h2>
      <p>{{text_two}}</p>',

@@ -306,7 +306,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
         ->warning(
           'User %name used expired single-use login link at time %timestamp. Link requested at %request_timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
           $context);
-      $this->messenger()->addError($this->t('You have tried to use a single-use login link that has expired. Please request a new one using the form below.'));
+      $this->messenger()->addError($this->t('The secure link you have tried to use is no longer valid. This can happen if you have already used it or if it has expired. Please request a new link by entering your email below.'));
       return $this->redirect($this->routeNameAccessForm);
     }
     elseif ($user->isAuthenticated() && ($timestamp >= $user->getLastLoginTime()) && ($timestamp <= $current) && Crypt::hashEquals($hash, user_pass_rehash($user, $timestamp))) {
@@ -315,8 +315,15 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
         ->notice(
           'User %name used single-use login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
           $this->getOneTimeLoginLogMessageContext($request, $user, $current));
-      $this->messenger()->addStatus($this->t('Welcome. You have just used your single-use secure link.'));
-      $this->messenger()->addStatus($this->t('Use this service to find contact details for other senior leaders in the public sector.'));
+      $statusMessage = [
+        '#type' => 'inline_template',
+        '#context' => [
+          'first' => $this->t('Welcome. You have used your secure link. This will give you access to the Connect Directory for one month. After one month, please enter your work email address to gain access again.'),
+          'second' => $this->t('You can use this service to find others within the National Leadership Centre Network.'),
+        ],
+        '#template' => '<p>{{ first }}</p><p>{{ second }}</p>'
+      ];
+      $this->messenger()->addStatus(render($statusMessage));
       // Let the user's password be changed without the current password
       // check.
       $token = Crypt::randomBytesBase64(55);
@@ -328,7 +335,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       ->warning(
         'User %name used expired single-use login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
         $this->getOneTimeLoginLogMessageContext($request, $account, $current));
-    $this->messenger()->addError($this->t('You have tried to use a single-use secure link that has either been used or is no longer valid. Please request a new one using the form below.'));
+    $this->messenger()->addError($this->t('The secure link you have tried to use is no longer valid. This can happen if you have already used it or if it has expired. Please request a new link by entering your email below.'));
     return $this->redirect($this->routeNameAccessForm);
   }
 

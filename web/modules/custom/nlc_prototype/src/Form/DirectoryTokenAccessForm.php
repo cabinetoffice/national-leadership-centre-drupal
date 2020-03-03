@@ -81,10 +81,9 @@ class DirectoryTokenAccessForm extends FormBase {
     $form['intro'] = [
       '#weight' => 0,
       '#type' => 'inline_template',
-      '#template' => '<p>{{paragraph_one}}</p> <p>{{paragraph_two}}</p>',
+      '#template' => '<p>{{paragraph_one}}</p>',
       '#context' => [
-        'paragraph_one' => $this->t('To access the Senior Leaders\' Network Directory, we will send a secure link to your email address.'),
-        'paragraph_two' => $this->t('Please use the same email address that is registered with the NLC.'),
+        'paragraph_one' => $this->t('We will send a secure access link to your work email account.'),
       ],
     ];
 
@@ -108,7 +107,7 @@ class DirectoryTokenAccessForm extends FormBase {
       '#type' => 'inline_template',
       '#template' => '<p class="govuk-!-margin-top-4">{{paragraph}}</p>',
       '#context' => [
-        'paragraph' => $this->t('The secure link keeps you logged in for a month and once sent it will be valid for 24 hours. After this you will have to request a new link.'),
+        'paragraph' => $this->t('This link will only be valid for 24 hours. If you don’t use the link in that time, you can come back to this page and enter your email address again to request a new access link.'),
       ],
     ];
 
@@ -124,9 +123,20 @@ class DirectoryTokenAccessForm extends FormBase {
     if (empty($account)) {
       $form_state->setErrorByName('email', $this->t('Check your email address.'));
       $email = 'NLC@cabinetoffice.gov.uk';
-      $url = Url::fromUri('mailto:' . $email);
-      $link = Link::fromTextAndUrl($email, $url);
-      $form_state->setError($form, $this->t('Your email address does not currently have access to the directory. Please check your email address is correct. If it is, please contact @email for more information.', ['@email' => $link->toString()]));
+      $mailUrl = Url::fromUri('mailto:' . $email);
+      $mailLink = Link::fromTextAndUrl($email, $mailUrl);
+      $networkUrl = Url::fromUri('https://www.nationalleadership.gov.uk/the-network/');
+      $networkLink = Link::fromTextAndUrl($this->t('Network page'), $networkUrl);
+      $formError = [
+        '#type' => 'inline_template',
+        '#context' => [
+          'first' => $this->t('Please check that you have used the correct email address.'),
+          'second' => $this->t('In a few cases we may not have you on our records yet, please email us at @email with your name, role and organisation and we will be happy to register you.', ['@email' => $mailLink->toString()]),
+          'third' => $this->t('To check if you are eligible to join our Network, please visit our @network_page.', ['@network_page' => $networkLink->toString()]),
+        ],
+        '#template' => '<p>{{ first }}</p><p>{{ second }}</p><p>{{ third }}</p>',
+      ];
+      $form_state->setError($form, render($formError));
       $message = $this->t('Login failed: Unknown address @email', ['@email' => $form_state->getValue('email')]);
       \Drupal::logger('nlc_prototype')->error($message);
     }
@@ -157,7 +167,21 @@ class DirectoryTokenAccessForm extends FormBase {
 
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
     if ($result['result'] !== true) {
-      $this->messenger()->addError($this->t('There was a problem sending your message and it was not sent.'));
+      $email = 'NLC@cabinetoffice.gov.uk';
+      $mailUrl = Url::fromUri('mailto:' . $email);
+      $mailLink = Link::fromTextAndUrl($email, $mailUrl);
+      $message = [
+        '#type' => 'inline_template',
+        '#context' => [
+          'first' => $this->t('There was an unexpected error sending your secure link. Please request a new link by entering your work email below.'),
+          'second' => $this->t('If this continues, please contact @email for more information.', ['@email' => $mailLink->toString()]),
+        ],
+        '#template' => '<p>{{ first }}</p><p>{{ second }}</p>'
+      ];
+      // Remove the default error message set by core mail manager.
+      $this->messenger()->deleteByType('error');
+      // Add our own mail sending error message.
+      $this->messenger()->addError(render($message));
     }
 //
 //    $rendered_message = Markup::create('You will receive a secure link to your email address.');
