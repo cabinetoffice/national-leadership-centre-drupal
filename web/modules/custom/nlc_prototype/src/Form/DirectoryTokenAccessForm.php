@@ -81,10 +81,10 @@ class DirectoryTokenAccessForm extends FormBase {
     $form['intro'] = [
       '#weight' => 0,
       '#type' => 'inline_template',
-      '#template' => '<p>{% trans %} {{paragraph_one}} {% endtrans %}</p> <p>{{paragraph_two}}</p>',
+      '#template' => '<p>{{paragraph_one}}</p> <p>{{paragraph_two}}</p>',
       '#context' => [
-        'paragraph_one' => 'To access the Senior Leaders\' Network Directory, we will send a secure link to your email address.',
-        'paragraph_two' => 'Please use the same email address that is registered with the NLC.',
+        'paragraph_one' => $this->t('To access the Senior Leaders\' Network Directory, we will send a secure link to your email address.'),
+        'paragraph_two' => $this->t('Please use the same email address that is registered with the NLC.'),
       ],
     ];
 
@@ -106,9 +106,9 @@ class DirectoryTokenAccessForm extends FormBase {
     $form['outro'] = [
       '#weight' => 3,
       '#type' => 'inline_template',
-      '#template' => '<p class="govuk-!-margin-top-4">{% trans %} {{paragraph}} {% endtrans %}</p>',
+      '#template' => '<p class="govuk-!-margin-top-4">{{paragraph}}</p>',
       '#context' => [
-        'paragraph' => 'The secure link keeps you logged in for a month and once sent it will be valid for 24 hours. After this you will have to request a new link.',
+        'paragraph' => $this->t('The secure link keeps you logged in for a month and once sent it will be valid for 24 hours. After this you will have to request a new link.'),
       ],
     ];
 
