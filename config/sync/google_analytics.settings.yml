@@ -16,7 +16,7 @@ track:
   colorbox: true
   linkid: false
   urlfragments: false
-  userid: false
+  userid: true
   messages:
     status: status
     warning: warning
