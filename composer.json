@@ -122,6 +122,9 @@
         "patches": {
             "drupal/core": {
                 "Notice: Undefined index: value in Drupal\\views\\Plugin\\views\\filter\\NumericFilter->acceptExposedInput()": "https://www.drupal.org/files/issues/2019-04-17/exposed-filter-notice-2825860-25.patch"
+            },
+            "drupal/google_analytics": {
+                "Allow event arguments in page attachments to be altered before being encoded to JSON": "https://www.drupal.org/files/issues/2020-03-02/ga-alter-event-arguments-in-page-attachments-3117147-01.patch"
             }
         }
     }
