@@ -24,6 +24,7 @@ $settings['s3fs.region'] = $s3bucketCreds['aws_region'];
 $config['s3fs.settings']['bucket'] = $s3bucketCreds['bucket_name'];
 $settings['s3fs.use_s3_for_public'] = TRUE;
 $settings['s3fs.upload_as_private'] = TRUE;
+$settings['php_storage']['twig']['directory'] = '../storage/php';
 
 // Sendgrid integration API key
 $config['sendgrid_integration.settings']['apikey'] = getenv('SG_API_KEY');
@@ -37,3 +38,8 @@ $config['config_split.config_split.crm_stage']['status'] = TRUE;
 if (getenv('CONNECT_DOMAIN')) {
   $settings['trusted_host_patterns'] = [getenv('CONNECT_DOMAIN')];
 }
+
+// Some small system performance settings.
+$config['system.performance']['cache']['page']['max_age'] = 60;
+$config['system.performance']['css']['preprocess'] = false;
+$config['system.performance']['js']['preprocess'] = false;

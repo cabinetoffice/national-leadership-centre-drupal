@@ -6,9 +6,7 @@ visibility:
   request_path_mode: 0
   request_path_pages: "/admin\r\n/admin/*\r\n/batch\r\n/node/add*\r\n/node/*/*\r\n/user/*/*"
   user_role_mode: 1
-  user_role_roles:
-    nlc_staff: nlc_staff
-    admin: admin
+  user_role_roles: {  }
   user_account_mode: 0
 track:
   outbound: true
@@ -18,7 +16,7 @@ track:
   colorbox: true
   linkid: false
   urlfragments: false
-  userid: false
+  userid: true
   messages:
     status: status
     warning: warning
@@ -29,11 +27,15 @@ track:
 privacy:
   anonymizeip: true
 custom:
-  dimension: {  }
+  dimension:
+    1:
+      name: 'User roles'
+      value: '[current-user:roles]'
+      index: 1
   metric: {  }
 codesnippet:
   create: {  }
-  before: "(function(){\r\n    // Get a query string value, to track what is being search for\r\n    function getParameterByName(name) {\r\n        name = name.replace(/[\\[]/, \"\\\\[\").replace(/[\\]]/, \"\\\\]\");\r\n        var regex = new RegExp(\"[\\\\?&]\" + name + \"=([^&#]*)\"),\r\n        results = regex.exec(location.search);\r\n        return results === null ? \"\" : decodeURIComponent(results[1].replace(/\\+/g, \" \"));\r\n    };\r\n\r\n    window.onload = function(){\r\n        if(document.querySelector('h3.search-no-results') != null &&\r\n            document.querySelector('h3.search-no-results').innerText === \"Oops!\"){\r\n            var searchQuery = getParameterByName('search');\r\n            ga('send', 'event', 'Search','ZeroResults', searchQuery  ? searchQuery : 'Blank');\r\n        }\r\n    };\r\n\r\n})();"
+  before: ''
   after: ''
 translation_set: false
 cache: false

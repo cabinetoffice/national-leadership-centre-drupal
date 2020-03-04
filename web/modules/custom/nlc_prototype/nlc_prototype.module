@@ -78,3 +78,22 @@ function nlc_prototype_search_api_query_alter(QueryInterface &$query) {
     }
   }
 }
+
+/**
+ * @param array $arguments
+ * @param \Drupal\Core\Session\AccountProxyInterface $account
+ */
+function nlc_prototype_google_analytics_event_arguments_alter(&$arguments, &$account) {
+  if (isset($arguments['user_id'])) {
+    /** @var \Drupal\nlc_prototype\SalesforceMapping\NetworkIndividualMapping $account_sf_mappings */
+    $account_sf_mappings = \Drupal::service('nlc_prototype.sf_mapping.network_individual');
+    try {
+      if ($account_sf_object = $account_sf_mappings->getAccountSfMappedObject()) {
+        $arguments['user_id'] = google_analytics_user_id_hash($account_sf_object->sfid());
+      }
+    }
+    catch (Exception $e) {
+      // Do nothing here.
+    }
+  }
+}

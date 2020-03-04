@@ -1,0 +1,4 @@
+services:
+  nlc_prototype.sf_mapping.network_individual:
+    class: '\Drupal\nlc_prototype\SalesforceMapping\NetworkIndividualMapping'
+    arguments: ['@current_user']

@@ -34,9 +34,9 @@ $config['config_split.config_split.devel']['status'] = FALSE;
 // Ensure the correct CRM config environment is active
 $config['config_split.config_split.crm']['status'] = FALSE;
 $config['config_split.config_split.crm_prod']['status'] = TRUE;
-$config['config_split.config_split.crm_stage']['status'] = FALSE;
+$config['config_split.config_split.crm_stage']['status'] = TRUE;
 
-$settings['trusted_host_patterns'] = array('^connect\.nationalleadership\.gov\.uk$');
+$settings['trusted_host_patterns'] = array('^staging\.connect\.nationalleadership\.gov\.uk$');
 
 // enable s3fs for css and js
 $config['system.performance']['css']['preprocess'] = true;

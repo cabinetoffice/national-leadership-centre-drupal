@@ -6,6 +6,9 @@ nlc_prototype.directory.token_access:
   requirements:
     _permission: 'access content'
     _custom_access: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm::access'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE
 nlc_prototype.directory.token_access.confirm:
   path: '/directory/access/confirm'
   defaults:
@@ -14,6 +17,9 @@ nlc_prototype.directory.token_access.confirm:
   requirements:
     _permission: 'access content'
     _custom_access: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::access'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE
 nlc_prototype.directory.token_access.check:
   path: '/directory/access/check/{uid}/{timestamp}/{hash}'
   defaults:

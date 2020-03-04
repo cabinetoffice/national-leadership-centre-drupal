@@ -7,19 +7,23 @@
       $('#close-registered').once().click(function() {
         var $target = $('#block-registerinterestblock');
         if ($target) {
-          $target.hide('slow', function() {
+          $target.hide('fast', function() {
             $target.remove();
           });
         }
       });
 
-      $('#nlc-register-interest-show-more').once().click(function() {
-        $('.nlc-register-interest__full').addClass('expanded');
-        return false;
+      $('#nlc-register-interest-show-more').once().click(function(event) {
+        $('#register-interest-form').addClass('expanded');
+        $(this).attr('aria-expanded', true);
+        $('#nlc-register-interest-not-now').attr('aria-expanded', true);
+        event.preventDefault();
       });
-      $('#nlc-register-interest-not-now').once().click(function() {
-        $('.nlc-register-interest__full').removeClass('expanded');
-        return false;
+      $('#nlc-register-interest-not-now').once().click(function(event) {
+        $('#register-interest-form').removeClass('expanded');
+        $(this).attr('aria-expanded', false);
+        $('#nlc-register-interest-show-more').attr('aria-expanded', false);
+        event.preventDefault();
       });
     }
   }

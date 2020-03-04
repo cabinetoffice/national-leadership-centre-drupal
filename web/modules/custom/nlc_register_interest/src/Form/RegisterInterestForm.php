@@ -22,7 +22,7 @@ class RegisterInterestForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['#prefix'] = '<div id="register-interest-wrapper" class="govuk-width-container">';
+    $form['#prefix'] = '<div id="register-interest-wrapper" class="govuk-width-container" aria-live="polite">';
     $form['#suffix'] = '</div>';
     return array_merge($form, $this->getFormMarkup());
   }
@@ -40,9 +40,9 @@ class RegisterInterestForm extends FormBase {
     if ($reg == 0) {
       $form['submit'] = [
         '#type' => 'submit',
-        '#value' => $this->t('I want to take part...'),
+        '#value' => $this->t('I want to take part in the Programme'),
         '#prefix' => '<p>',
-        '#suffix' => '<a href="#" id="nlc-register-interest-not-now">Not now</a></p>',
+        '#suffix' => '</p>',
         '#ajax' => [
           'callback' => '::ajaxSubmit',
           'disable-refocus' => FALSE, // Or TRUE to prevent re-focusing on the triggering element.

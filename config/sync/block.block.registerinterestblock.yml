@@ -15,7 +15,7 @@ third_party_settings:
 id: registerinterestblock
 theme: bevan
 region: pre_content
-weight: 0
+weight: -4
 provider: null
 plugin: register_interest_block
 settings:

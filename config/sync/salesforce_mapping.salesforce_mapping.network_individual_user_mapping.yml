@@ -43,55 +43,55 @@ field_mappings:
     drupal_field_value: name
     salesforce_field: Name
     direction: sf_drupal
-    id: 9
+    id: 0
   -
     drupal_field_type: properties
     drupal_field_value: mail
     salesforce_field: EmailAddress__c
     direction: sync
-    id: 10
+    id: 1
   -
     drupal_field_type: properties
     drupal_field_value: status
     salesforce_field: Connect_User__c
     direction: sync
-    id: 11
+    id: 2
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.title
     salesforce_field: Title__c
     direction: sync
-    id: 12
+    id: 3
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.given
     salesforce_field: FirstName__c
     direction: sync
-    id: 13
+    id: 4
   -
     drupal_field_type: properties_extended
     drupal_field_value: field_name.family
     salesforce_field: LastName__c
     direction: sync
-    id: 14
+    id: 5
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_cohort
     salesforce_field: Network_Cohort__c
     direction: sync
-    id: 15
+    id: 6
   -
     drupal_field_type: RelatedIDs
     drupal_field_value: field_programme_year
     salesforce_field: Network_Programme_Year__c
     direction: sync
-    id: 16
+    id: 7
   -
     drupal_field_type: properties
     drupal_field_value: field_register_interest
     salesforce_field: ProgrammeInterestRegistered__c
     direction: sync
-    id: 17
+    id: 8
 push_limit: 0
 push_retries: 3
 push_frequency: 0
