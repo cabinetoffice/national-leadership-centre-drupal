@@ -47,7 +47,7 @@ class NetworkIndividualMapping {
       // product variations that are not being managed by the SFDC integration. If
       // this is the case, we do not want to be programmatically manipulating these
       // objects.
-      if ($sfEntity->getEntityTypeId() == 'salesforce_mapped_object') {
+      if (is_object($sfEntity) && $sfEntity->getEntityTypeId() == 'salesforce_mapped_object') {
         return $sfEntity;
       }
     }
