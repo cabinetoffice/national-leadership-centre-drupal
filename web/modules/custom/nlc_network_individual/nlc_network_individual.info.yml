@@ -6,4 +6,4 @@ core: '8.x'
 dependencies:
   - neo4j_db
   - nlc_salesforce
-  - salesfore_mapping
+  - salesforce_mapping
