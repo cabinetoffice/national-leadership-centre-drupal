@@ -127,6 +127,9 @@ class DirectoryTokenAccessForm extends FormBase {
       $mailLink = Link::fromTextAndUrl($email, $mailUrl);
       $networkUrl = Url::fromUri('https://www.nationalleadership.gov.uk/the-network/');
       $networkLink = Link::fromTextAndUrl($this->t('Network page'), $networkUrl);
+      $networkLink['#attributes'] = [
+        'target' => '_blank',
+      ];
       $formError = [
         '#type' => 'inline_template',
         '#context' => [
