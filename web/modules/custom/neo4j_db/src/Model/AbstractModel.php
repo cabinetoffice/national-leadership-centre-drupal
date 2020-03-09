@@ -12,6 +12,11 @@ use GraphAware\Neo4j\OGM\Annotations as OGM;
 abstract class AbstractModel implements ModelInterface {
 
   /**
+   * @var bool
+   */
+  protected $isEntityModel = false;
+
+  /**
    * @var string
    */
   protected $drupalEntity;
@@ -55,11 +60,13 @@ abstract class AbstractModel implements ModelInterface {
    * @throws \Drupal\neo4j_db\Model\GraphModelException
    */
   public function __construct() {
-    if (!$this->drupalEntity) {
-      throw new GraphModelException('Model object is missing $drupalEntity parameter');
-    }
-    if ($this->drupalEntity && !$this->drupalBundle) {
-      throw new GraphModelException('Model object is missing $drupalBundle parameter');
+    if ($this->isEntityModel) {
+      if (!$this->drupalEntity) {
+        throw new GraphModelException('Model object is missing $drupalEntity parameter');
+      }
+      if ($this->drupalEntity && !$this->drupalBundle) {
+        throw new GraphModelException('Model object is missing $drupalBundle parameter');
+      }
     }
   }
 

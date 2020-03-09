@@ -13,6 +13,7 @@ services:
     tags:
       - { name: event_subscriber }
   neo4j_db.graph_model:
+    class: Drupal\neo4j_db\Model\GraphModelFactory
     factory: neo4j_db.graph_model.factory:create
   neo4j_db.graph_model.factory:
-    class: Drupal\neo4j_db\Model\GraphModelDiscovery
+    class: Drupal\neo4j_db\Model\GraphModelFactory

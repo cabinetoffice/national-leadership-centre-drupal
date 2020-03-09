@@ -58,7 +58,7 @@ class Logger implements EventSubscriberInterface {
 //      ->execute();
 //    $logEvent->setName('My New Test');
 //    $this->connection->flush();
-    $this->log->debug($this->graphModel->discover('LogEvent'));
+//    $this->log->debug($this->graphModel->discover('LogEvent'));
   }
 
   public static function getSubscribedEvents() {
