@@ -28,6 +28,9 @@ class DirectoryWelcomeController extends ControllerBase {
     $networkUrl = Url::fromUri('https://www.nationalleadership.gov.uk/the-network/');
     $networkLink = Link::fromTextAndUrl($this->t('Find out more about our Network'), $networkUrl);
     $networkLink = $networkLink->toRenderable();
+    $networkLink['#attributes'] = [
+      'target' => '_blank',
+    ];
 
     $build['intro'] = [
       '#type' => 'inline_template',
