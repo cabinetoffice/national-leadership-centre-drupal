@@ -38,6 +38,7 @@ module:
   menu_ui: 0
   name: 0
   neo4j_db: 0
+  neo4j_db_entity: 0
   nlc_prototype: 0
   nlc_register_interest: 0
   nlc_salesforce: 0
