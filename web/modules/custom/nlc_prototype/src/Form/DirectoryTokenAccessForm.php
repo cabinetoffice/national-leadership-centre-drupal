@@ -91,6 +91,9 @@ class DirectoryTokenAccessForm extends FormBase {
       '#weight' => 1,
       '#type' => 'email',
       '#title' => t('Email'),
+      '#attributes' => array(
+        'autocomplete' => 'email'
+      ),
       '#required' => TRUE,
     );
 
