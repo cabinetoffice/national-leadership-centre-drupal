@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * This module holds functions for Neo4j events.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEventType;
+use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
+use Symfony\Component\EventDispatcher\Event;
+
+/**
+ * Implements hook_entity_insert().
+ *
+ * {@inheritDoc}
+ */
+function neo4j_db_entity_entity_insert(EntityInterface $entity) {
+  $event_type = Neo4jDbEntityEventType::INSERT;
+  $event = new Neo4jDbEntityEvent($event_type, $entity, $entity->getEntityTypeId());
+  _neo4j_db_dispatch($event_type, $event);
+}
+
+/**
+ * Implements hook_entity_update().
+ *
+ * {@inheritDoc}
+ */
+function neo4j_db_entity_entity_update(EntityInterface $entity) {
+  $event_type = Neo4jDbEntityEventType::UPDATE;
+  $event = new Neo4jDbEntityEvent($event_type, $entity, $entity->getEntityTypeId());
+  _neo4j_db_dispatch($event_type, $event);
+}
+
+/**
+ * Implements hook_entity_view().
+ */
+function neo4j_db_entity_entity_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  $event_type = Neo4jDbEntityEventType::VIEW;
+  $event = new Neo4jDbEntityEvent($event_type, $entity, $entity->getEntityTypeId(), $view_mode);
+  _neo4j_db_dispatch($event_type, $event);
+}
+
+/**
+ * Implements hook_entity_load().
+ *
+ * {@inheritDoc}
+ */
+function neo4j_db_entity_entity_load(array $entities, $entity_type_id) {
+  foreach ($entities as $entity) {
+    $event_type = Neo4jDbEntityEventType::LOAD;
+    $event = new Neo4jDbEntityEvent($event_type, $entity, $entity_type_id);
+    _neo4j_db_dispatch($event_type, $event);
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ *
+ * {@inheritDoc}
+ */
+function neo4j_db_entity_entity_delete(EntityInterface $entity) {
+  $event_type = Neo4jDbEntityEventType::DELETE;
+  $event = new Neo4jDbEntityEvent($event_type, $entity, $entity->getEntityTypeId());
+  _neo4j_db_dispatch($event_type, $event);
+}
+
+/**
+ * Helper method to dispatch an event.
+ *
+ * @param string $event_type
+ *   The event type.
+ * @param \Symfony\Component\EventDispatcher\Event $event
+ *   The event to dispatch.
+ */
+function _neo4j_db_dispatch($event_type, Event $event) {
+  /** @var \Symfony\Component\EventDispatcher\EventDispatcher $dispatcher */
+  $dispatcher = \Drupal::service('event_dispatcher');
+  $dispatcher->dispatch($event_type, $event);
+}

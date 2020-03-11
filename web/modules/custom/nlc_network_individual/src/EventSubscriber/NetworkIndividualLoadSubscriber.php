@@ -9,6 +9,8 @@ use Drupal\Core\Routing\RouteBuildEvent;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Routing\RoutingEvents;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
+use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEventType;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\KernelEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -73,7 +75,7 @@ class NetworkIndividualViewSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents() {
     $events = [];
 
-    $events[KernelEvents::REQUEST][] = ['onRequest'];
+    $events[Neo4jDbEntityEventType::LOAD][] = ['onView'];
 
     return $events;
   }

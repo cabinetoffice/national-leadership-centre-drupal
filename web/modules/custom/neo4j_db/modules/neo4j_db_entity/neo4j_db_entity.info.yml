@@ -1,0 +1,7 @@
+type: module
+name: 'Neo4j DB: Entity events'
+description: 'Dispatch events on entity create, edit, update for interacting with a Neo4j DB.'
+package: Graph DB
+core: 8.x
+dependencies:
+  - neo4j_db
