@@ -24,7 +24,7 @@
     {% endfor %}
   {% elseif type == 'status' %}
     {% for message in messages %}
-      <div class="govuk-panel govuk-panel--confirmation">
+      <div class="govuk-panel govuk-panel--confirmation" role="status">
         <div class="govuk-panel__body">
           {{ message }}
         </div>
