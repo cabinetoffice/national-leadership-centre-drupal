@@ -1,6 +1,6 @@
 services:
-  network_individual.view_subscriber:
-    class: Drupal\nlc_network_individual\EventSubscriber\NetworkIndividualViewSubscriber
-    arguments: ['@current_user', '@entity_type.manager',  '@current_route_match']
-    tags:
-      - { name: event_subscriber }
+#  network_individual.view_subscriber:
+#    class: Drupal\nlc_network_individual\EventSubscriber\NetworkIndividualViewSubscriber
+#    arguments: ['@current_user', '@entity_type.manager',  '@current_route_match']
+#    tags:
+#      - { name: event_subscriber }
