@@ -94,22 +94,22 @@ class DirectoryTokenAccessForm extends FormBase {
       '#required' => TRUE,
     );
 
-    $form['actions']['#type'] = 'actions';
-    $form['actions']['#weight'] = 2;
-    $form['actions']['submit'] = array(
-      '#type' => 'submit',
-      '#value' => $this->t('Continue'),
-      '#button_type' => 'primary',
-    );
-
     $form['outro'] = [
-      '#weight' => 3,
+      '#weight' => 2,
       '#type' => 'inline_template',
       '#template' => '<p class="govuk-!-margin-top-4">{{paragraph}}</p>',
       '#context' => [
         'paragraph' => $this->t('This link will only be valid for 24 hours. If you don’t use the link in that time, you can come back to this page and enter your email address again to request a new access link.'),
       ],
     ];
+
+    $form['actions']['#type'] = 'actions';
+    $form['actions']['#weight'] = 3;
+    $form['actions']['submit'] = array(
+      '#type' => 'submit',
+      '#value' => $this->t('Continue'),
+      '#button_type' => 'primary',
+    );
 
     return $form;
   }

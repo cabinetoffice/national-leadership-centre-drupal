@@ -51,9 +51,9 @@ class DirectoryWelcomeController extends ControllerBase {
      </ul>
      <p>{{text_one}}</p>
      <p>{{ network_link }}</p>
-     <p>{{ button }}</p>
      <h2>{{heading_two}}</h2>
-     <p>{{text_two}}</p>',
+     <p>{{text_two}}</p>
+     <p>{{ button }}</p>',
     ];
 
     return $build;
