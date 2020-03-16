@@ -3,7 +3,7 @@ name: 'National Leadership Centre'
 mail: nlc@cabinetoffice.gov.uk
 slogan: 'Connect with your peers'
 page:
-  403: /directory/access
+  403: /directory/welcome
   404: ''
   front: /directory
 admin_compact_mode: false

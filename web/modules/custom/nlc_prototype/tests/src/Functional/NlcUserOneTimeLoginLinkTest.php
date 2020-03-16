@@ -70,7 +70,7 @@ class NlcUserOneTimeLoginLinkTest extends PageCacheTagsTestBase {
 
     $edit = ['email' => $this->randomMachineName(16) . '@example.com'];
     $this->drupalPostForm(NULL, $edit, t('Submit'));
-    $this->assertText(t('Your email address does not currently have access to the directory. Please check your email address is correct. If it is, please contact nlc@cabinetoffice.gov.uk for more information.'), 'Validation error message shown when trying to request password for invalid account.');
+    $this->assertText(t('Your email address does not currently have access to the directory. Please check your email address is correct. If it is, please contact NLC@cabinetoffice.gov.uk for more information.'), 'Validation error message shown when trying to request password for invalid account.');
     $this->assertEqual(count($this->drupalGetMails(['id' => 'nlc_onetime_login_link'])), 0, 'No email was sent when requesting a one-time login link for an invalid account.');
   }
 
