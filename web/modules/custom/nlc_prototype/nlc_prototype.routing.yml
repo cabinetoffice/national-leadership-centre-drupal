@@ -1,7 +1,15 @@
+nlc_prototype.directory.welcome:
+  path: '/directory/welcome'
+  defaults:
+    _title: 'Get access to the Senior Leaders’ Network Directory'
+    _controller: 'Drupal\nlc_prototype\Controller\DirectoryWelcomeController::build'
+  requirements:
+    _permission: 'access content'
+    _custom_access: 'Drupal\nlc_prototype\Controller\DirectoryWelcomeController::access'
 nlc_prototype.directory.token_access:
   path: '/directory/access'
   defaults:
-    _title: 'Request a link for access to senior leaders directory'
+    _title: 'Enter your work email address'
     _form: 'Drupal\nlc_prototype\Form\DirectoryTokenAccessForm'
   requirements:
     _permission: 'access content'
@@ -12,7 +20,7 @@ nlc_prototype.directory.token_access:
 nlc_prototype.directory.token_access.confirm:
   path: '/directory/access/confirm'
   defaults:
-    _title: 'Request a link for access to senior leaders directory'
+    _title: 'Thank you!'
     _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::build'
   requirements:
     _permission: 'access content'
@@ -32,7 +40,7 @@ nlc_prototype.directory.token_access.check:
 nlc_prototype.directory.token_access.login:
   path: '/directory/access/login/{uid}/{timestamp}/{hash}'
   defaults:
-    _title: 'Confirm use of one-time directory access'
+    _title: 'Access the Connect Directory'
     _controller: 'Drupal\nlc_prototype\Controller\DirectoryTokenAccessConfirmController::login'
   requirements:
     _access: 'TRUE'
