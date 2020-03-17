@@ -5,6 +5,16 @@ include .env
 default: up
 
 DRUPAL_ROOT ?= /var/www/html/web
+SHELL_ARG = php
+
+# If the first argument is "shell"...
+ifeq (shell,$(firstword $(MAKECMDGOALS)))
+# and there is a second argument
+ifneq ($(word 2, $(MAKECMDGOALS)),)
+	# use the second argument for the container for a shell
+	SHELL_ARG := $(word 2, $(MAKECMDGOALS))
+endif
+endif
 
 up:
 	@echo "Starting up containers for $(PROJECT_NAME)..."
@@ -26,7 +36,7 @@ ps:
 	@docker ps --filter name='$(PROJECT_NAME)*'
 
 shell:
-	docker exec -ti -e COLUMNS=$(shell tput cols) -e LINES=$(shell tput lines) $(shell docker ps --filter name='$(PROJECT_NAME)_php' --format "{{ .ID }}") sh
+	docker exec -ti -e COLUMNS=$(shell tput cols) -e LINES=$(shell tput lines) $(shell docker ps --filter name='$(PROJECT_NAME)_$(SHELL_ARG)' --format "{{ .ID }}") sh
 
 drush:
 	docker exec $(shell docker ps --filter name='$(PROJECT_NAME)_php' --format "{{ .ID }}") drush -r $(DRUPAL_ROOT) $(filter-out $@,$(MAKECMDGOALS))
