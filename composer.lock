@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36b97e2ac3679d0865ecf3d523d27f91",
+    "content-hash": "82c13d9d5ea975113bedeb3765f0d2ba",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3863,6 +3863,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Allow event arguments in page attachments to be altered before being encoded to JSON": "https://www.drupal.org/files/issues/2020-03-02/ga-alter-event-arguments-in-page-attachments-3117147-01.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4741,7 +4744,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Drush command to revoke and refresh authentication token": "https://www.drupal.org/files/issues/2019-12-20/3102133-6-drush-auth-tokens.patch"
+                    "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-16/sf-refresh-auth-token-get-identity-also-3120102-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
