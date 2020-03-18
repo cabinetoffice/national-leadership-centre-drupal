@@ -4,3 +4,8 @@ services:
     tags:
       - { name: service_collector, tag: graph_entity_model, call: addEntityModel }
 #  neo4j_db_entity.model.node:
+  neo4j_db_entity.model.user:
+    class: Drupal\neo4j_db_entity\Model\User\GraphEntityUserUserModel
+    arguments: ['@string_translation']
+    tags:
+      - { name: graph_entity_model }

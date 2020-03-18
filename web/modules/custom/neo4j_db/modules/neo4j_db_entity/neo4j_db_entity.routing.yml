@@ -1,0 +1,7 @@
+neo4j_db_entity.insights:
+  path: 'admin/reports/graph'
+  defaults:
+    _title: 'Neo4j insights'
+    _controller: 'Drupal\neo4j_db_entity\Controller\Neo4jEntityInsights::build'
+  requirements:
+    _permission: 'administer site configuration'

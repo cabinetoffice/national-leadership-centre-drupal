@@ -19,8 +19,15 @@ class GraphEntityModelManager implements GraphEntityModelManagerInterface {
    * {@inheritDoc}
    */
   public function addEntityModel(GraphEntityModelInterface $entityModel) {
-    $this->entityModels[$entityModel->entityType()][$entityModel->entityBundle()] = $entityModel;
+    $this->entityModels[$entityModel->entityType()][$entityModel->bundle()] = $entityModel;
     return $this;
+  }
+
+  /**
+   * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface[][]
+   */
+  public function getEntityModels(): array {
+    return $this->entityModels;
   }
 
   /**
