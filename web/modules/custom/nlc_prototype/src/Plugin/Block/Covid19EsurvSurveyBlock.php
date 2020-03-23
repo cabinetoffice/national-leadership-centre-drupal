@@ -57,6 +57,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
       '#context' => [
         'heading' => [
           '#theme' => 'nlc_alert_title',
+          '#type' => 'h2',
           '#title' => $this->t('COVID-19: Action Required'),
         ],
         'body_1' => $this->t("If we are to tackle this crisis effectively, it is essential that you provide us with an accurate and up-to-date picture of the situation on the ground in your area. Please take 5 minutes to answer some key questions that will help with the Government's planning process."),
