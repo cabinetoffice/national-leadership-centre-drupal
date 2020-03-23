@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36b97e2ac3679d0865ecf3d523d27f91",
+    "content-hash": "9887d68d5e4e5261184426414cee3ce6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3794,6 +3794,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Allow event arguments in page attachments to be altered before being encoded to JSON": "https://www.drupal.org/files/issues/2020-03-02/ga-alter-event-arguments-in-page-attachments-3117147-01.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4633,7 +4636,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "299d4dedd1eed9262c7d17b8d9b3e4f8ea9a5dea"
+                "reference": "dce96766731997b3e95f8ad9defe55e5105867a8"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0",
@@ -4660,7 +4663,7 @@
                 },
                 "drupal": {
                     "version": "8.x-4.x-dev",
-                    "datestamp": "1578334689",
+                    "datestamp": "1581694891",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4670,6 +4673,9 @@
                     "services": {
                         "drush.services.yml": "^9"
                     }
+                },
+                "patches_applied": {
+                    "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-16/sf-refresh-auth-token-get-identity-also-3120102-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4727,7 +4733,7 @@
                 "source": "http://cgit.drupalcode.org/salesforce",
                 "issues": "https://drupal.org/project/issues/salesforce"
             },
-            "time": "2020-01-06T18:12:35+00:00"
+            "time": "2020-02-14T15:58:17+00:00"
         },
         {
             "name": "drupal/search_api",
