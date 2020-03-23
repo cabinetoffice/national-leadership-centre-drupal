@@ -31,7 +31,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
         'nlc-banner-block',
       ],
     ];
-    $build['#prefix'] = '<div class="govuk-width-container" aria-live="polite">';
+    $build['#prefix'] = '<div class="govuk-width-container">';
     $build['#suffix'] = '</div>';
     $surveyUrl = Url::fromUri('https://esurv.org/online-survey.php?surveyID=MCHNLM_6d5277b4&UID=1860715171');
     $surveyLink = Link::fromTextAndUrl($this->t('Complete survey'), $surveyUrl)->toRenderable();
@@ -47,7 +47,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
     $build['body'] = [
       '#type' => 'inline_template',
       '#template' => '
-      <section aria-label="Register your interester for the Programme" id="nlc-register-interest">
+      <section aria-label="COVID-19 action required" id="nlc-covid-19-action-required">
         {{ heading }}
         <p>{{ body_1 }}</p>
         <p>{{ body_2 }}</p>
