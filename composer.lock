@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad48577691bd0978fccaefb785f0c08c",
+    "content-hash": "9887d68d5e4e5261184426414cee3ce6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3794,6 +3794,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Allow event arguments in page attachments to be altered before being encoded to JSON": "https://www.drupal.org/files/issues/2020-03-02/ga-alter-event-arguments-in-page-attachments-3117147-01.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3920,6 +3923,72 @@
             "support": {
                 "source": "https://cgit.drupalcode.org/health_check",
                 "issues": "https://drupal.org/project/issues/health_check"
+            }
+        },
+        {
+            "name": "drupal/htmlmail",
+            "version": "3.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/htmlmail.git",
+                "reference": "8.x-3.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/htmlmail-8.x-3.0-alpha2.zip",
+                "reference": "8.x-3.0-alpha2",
+                "shasum": "a94855bb7593a2ca874b97a7fbc344e78b0105fd"
+            },
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/mailsystem": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-alpha2",
+                    "datestamp": "1539817149",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "gaurav.kapoor",
+                    "homepage": "https://www.drupal.org/user/3495331",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Nafes",
+                    "homepage": "https://www.drupal.org/user/2489926",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "RenatoG",
+                    "homepage": "https://www.drupal.org/u/RenatoG",
+                    "email": "renatog@ciandt.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "salvis",
+                    "homepage": "https://www.drupal.org/u/salvis",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Enables HTML in system emails.",
+            "homepage": "https://www.drupal.org/project/htmlmail",
+            "support": {
+                "source": "https://cgit.drupalcode.org/htmlmail",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
@@ -4567,7 +4636,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/salesforce.git",
-                "reference": "299d4dedd1eed9262c7d17b8d9b3e4f8ea9a5dea"
+                "reference": "dce96766731997b3e95f8ad9defe55e5105867a8"
             },
             "require": {
                 "consolidation/output-formatters": "^3.2.0",
@@ -4594,7 +4663,7 @@
                 },
                 "drupal": {
                     "version": "8.x-4.x-dev",
-                    "datestamp": "1578334689",
+                    "datestamp": "1581694891",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -4604,6 +4673,9 @@
                     "services": {
                         "drush.services.yml": "^9"
                     }
+                },
+                "patches_applied": {
+                    "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-16/sf-refresh-auth-token-get-identity-also-3120102-2.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4661,7 +4733,7 @@
                 "source": "http://cgit.drupalcode.org/salesforce",
                 "issues": "https://drupal.org/project/issues/salesforce"
             },
-            "time": "2020-01-06T18:12:35+00:00"
+            "time": "2020-02-14T15:58:17+00:00"
         },
         {
             "name": "drupal/search_api",
@@ -12191,6 +12263,7 @@
         "drupal/email_registration": 5,
         "drupal/encrypt": 5,
         "drupal/govuk_design_system": 10,
+        "drupal/htmlmail": 15,
         "drupal/name": 5,
         "drupal/profile": 5,
         "drupal/remove_http_headers": 10,

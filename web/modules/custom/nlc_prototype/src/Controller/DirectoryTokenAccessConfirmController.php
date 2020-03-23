@@ -94,7 +94,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   protected $maxSessionCount = 1;
 
   /**
-   * Array of simple HTTP user agents known to do link previewing that may cause issues with one-time login links.
+   * Array of simple HTTP user agents known to do link previewing that may cause issues with single-use login links.
    *
    * @var array
    */
@@ -173,19 +173,17 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   public function build() {
 
     $build = [];
-    $format = filter_default_format();
+    $email = $this->store->get('email');
+    $url = Url::fromRoute('nlc_prototype.directory.token_access');
     $build['intro'] = [
-      '#type' => 'processed_text',
-      '#text' => $this->t('You will receive a secure link to your email address.'),
-      '#format' => $format,
+      '#type' => 'inline_template',
+      '#context' => [
+        'email' => $email,
+        'url' => $url,
+      ],
+      '#template' => '<p>{% trans %} We have sent a secure link to {{email}} to log you in. Check your email. {% endtrans %}</p><p>{% trans %}Haven’t received an email?{% endtrans %} <a href="{{url}}">{% trans %}Request access again.{% endtrans %}</a></p>',
     ];
 
-    $url = Url::fromRoute('nlc_prototype.directory.token_access');
-    $build['form_link'] = [
-      '#type' => 'link',
-      '#title' => $this->t('Go to form'),
-      '#url' => $url,
-    ];
     $this->deleteStore();
     return $build;
   }
@@ -200,7 +198,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   }
 
   /**
-   * Confirm that the user want to use one-time access URL.
+   * Confirm that the user want to use single-use access URL.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
@@ -226,9 +224,9 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       if ($active_sessions > 0) {
         $this->logger
           ->notice(
-            'User %name re-used one-time login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
+            'User %name re-used single-use login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
             $this->getOneTimeLoginLogMessageContext($request, $account, $current));
-        $this->messenger()->addStatus($this->t('You have just re-used your one-time directory access link.'));
+        $this->messenger()->addStatus($this->t('You have just re-used your single-use directory access link.'));
         return $this->redirect($this->routeName);
       }
     }
@@ -249,7 +247,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
   }
 
   /**
-   * Check that a one-time access URL is for a valid.
+   * Check that a single-use access URL is for a valid.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
@@ -282,9 +280,9 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       if ($active_sessions > 0) {
         $this->logger
           ->notice(
-            'User %name re-used one-time login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
+            'User %name re-used single-use login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
             $this->getOneTimeLoginLogMessageContext($request, $account, $current));
-        $this->messenger()->addStatus($this->t('You have just re-used your one-time directory access link.'));
+        $this->messenger()->addStatus($this->t('You have just re-used your single-use directory access link.'));
         return $this->redirect($this->routeName);
       }
     }
@@ -306,18 +304,26 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       $context = array_merge(['%request_timestamp' => $this->dateFormatter->format($timestamp, 'custom', 'r')] , $this->getOneTimeLoginLogMessageContext($request, $user, $current));
       $this->logger
         ->warning(
-          'User %name used expired one-time login link at time %timestamp. Link requested at %request_timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
+          'User %name used expired single-use login link at time %timestamp. Link requested at %request_timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
           $context);
-      $this->messenger()->addError($this->t('You have tried to use a one-time login link that has expired. Please request a new one using the form below.'));
+      $this->messenger()->addError($this->t('The secure link you have tried to use is no longer valid. This can happen if you have already used it or if it has expired. Please request a new link by entering your email below.'));
       return $this->redirect($this->routeNameAccessForm);
     }
     elseif ($user->isAuthenticated() && ($timestamp >= $user->getLastLoginTime()) && ($timestamp <= $current) && Crypt::hashEquals($hash, user_pass_rehash($user, $timestamp))) {
       user_login_finalize($user);
       $this->logger
         ->notice(
-          'User %name used one-time login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
+          'User %name used single-use login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
           $this->getOneTimeLoginLogMessageContext($request, $user, $current));
-      $this->messenger()->addStatus($this->t('You have just used your one-time directory access link.'));
+      $statusMessage = [
+        '#type' => 'inline_template',
+        '#context' => [
+          'first' => $this->t('Welcome. You have used your secure link. This will give you access to the Connect Directory for one month.'),
+          'second' => $this->t('You can use this service to find others within the National Leadership Centre Network.'),
+        ],
+        '#template' => '<p>{{ first }}</p><p>{{ second }}</p>'
+      ];
+      $this->messenger()->addStatus(render($statusMessage));
       // Let the user's password be changed without the current password
       // check.
       $token = Crypt::randomBytesBase64(55);
@@ -327,9 +333,9 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
 
     $this->logger
       ->warning(
-        'User %name used expired one-time login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
+        'User %name used expired single-use login link at time %timestamp. (User agent: %user_agent; user agent language: %user_agent_language)',
         $this->getOneTimeLoginLogMessageContext($request, $account, $current));
-    $this->messenger()->addError($this->t('You have tried to use a one-time directory access link that has either been used or is no longer valid. Please request a new one using the form below.'));
+    $this->messenger()->addError($this->t('The secure link you have tried to use is no longer valid. This can happen if you have already used it or if it has expired. Please request a new link by entering your email below.'));
     return $this->redirect($this->routeNameAccessForm);
   }
 
