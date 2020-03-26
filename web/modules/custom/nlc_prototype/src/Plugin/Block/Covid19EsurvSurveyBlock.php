@@ -33,7 +33,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
     ];
     $build['#prefix'] = '<div class="govuk-width-container">';
     $build['#suffix'] = '</div>';
-    $surveyUrl = Url::fromUri('https://esurv.org/online-survey.php?surveyID=MCHNLM_6d5277b4&UID=1860715171');
+    $surveyUrl = Url::fromUri('https://www.smartsurvey.co.uk/s/CV19Response_260320/');
     $surveyLink = Link::fromTextAndUrl($this->t('Complete survey'), $surveyUrl)->toRenderable();
     $surveyLink['#attributes'] = [
       'target' => '_blank',
