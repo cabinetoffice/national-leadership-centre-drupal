@@ -128,7 +128,7 @@
                 "Allow event arguments in page attachments to be altered before being encoded to JSON": "https://www.drupal.org/files/issues/2020-03-02/ga-alter-event-arguments-in-page-attachments-3117147-01.patch"
             },
             "drupal/salesforce": {
-                "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-25/sf-refresh-auth-token-get-identity-also-3120102-4.patch"
+                "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-30/sf-refresh-auth-token-get-identity-also-3120102-7.patch"
             }
         }
     }
