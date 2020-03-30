@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9887d68d5e4e5261184426414cee3ce6",
+    "content-hash": "63e6cf8f41f802228c63522aa726b0ae",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3822,17 +3822,17 @@
         },
         {
             "name": "drupal/govuk_design_system",
-            "version": "1.0.0-beta1",
+            "version": "1.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/govuk_design_system.git",
-                "reference": "8.x-1.0-beta1"
+                "reference": "8.x-1.0-beta2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/govuk_design_system-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "a07899f49fdedcaac9fbf5505f4c98c3755632cc"
+                "url": "https://ftp.drupal.org/files/projects/govuk_design_system-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "6396d0e8bc505b88f8aa3dcb588bcab3e16a0692"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3846,8 +3846,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1548341885",
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1584693194",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -4675,7 +4675,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-16/sf-refresh-auth-token-get-identity-also-3120102-2.patch"
+                    "Refresh SF auth token drush command should also store the identity on first token request": "https://www.drupal.org/files/issues/2020-03-30/sf-refresh-auth-token-get-identity-also-3120102-7.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
