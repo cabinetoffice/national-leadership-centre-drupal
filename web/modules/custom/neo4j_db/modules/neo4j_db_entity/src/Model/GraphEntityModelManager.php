@@ -24,7 +24,7 @@ class GraphEntityModelManager implements GraphEntityModelManagerInterface {
   }
 
   /**
-   * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface[][]
+   * {@inheritDoc}
    */
   public function getEntityModels(): array {
     return $this->entityModels;
@@ -40,6 +40,13 @@ class GraphEntityModelManager implements GraphEntityModelManagerInterface {
     else {
       throw new \InvalidArgumentException(sprintf('No graph entity model has been registered for %s: %s', $type, $bundle));
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getNewEntityModel ($type, $bundle) {
+    return clone $this->getEntityModel($type, $bundle);
   }
 
 }

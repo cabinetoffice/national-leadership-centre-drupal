@@ -6,6 +6,7 @@ namespace Drupal\neo4j_db_entity\Model;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
+use Drupal\neo4j_db\Database\Driver\bolt\Connection;
 use \InvalidArgumentException;
 use phpDocumentor\Reflection\Types\Boolean;
 
@@ -17,6 +18,11 @@ use phpDocumentor\Reflection\Types\Boolean;
 abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * @var \Drupal\neo4j_db\Database\Driver\bolt\Connection
+   */
+  protected $connection;
 
   /**
    * Entity object.
@@ -43,8 +49,10 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
    * Constructs a new AbstractGraphEntityModelBase object.
    *
    * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
+   * @param \Drupal\neo4j_db\Database\Driver\bolt\Connection $connection
    */
-  public function __construct(TranslationInterface $string_translation) {
+  public function __construct(TranslationInterface $string_translation, Connection $connection) {
+    $this->connection = $connection;
     $this->stringTranslation = $string_translation;
     if (!$this->entityType()) {
       $message = $this->t('Missing entity type for this entity model');
@@ -80,7 +88,7 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   /**
    * {@inheritDoc}
    */
-  public function entity(): \Drupal\Core\Entity\EntityInterface {
+  public function entity() {
     return $this->entity;
   }
 
@@ -89,6 +97,25 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
    */
   public function setEntity(\Drupal\Core\Entity\EntityInterface $entity): void {
     $this->entity = $entity;
+  }
+
+  /**
+   * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
+   *
+   * @throws \InvalidArgumentException
+   */
+  public function buildModel() {
+    if (!$this->hasEntity()) {
+      $message = $this->t('Entity is required to build the model object');
+      throw new InvalidArgumentException($message);
+    }
+    return $this;
+  }
+
+  public function modelPersist() {
+    $this->connection
+      ->persist($this)
+      ->execute();
   }
 
 }

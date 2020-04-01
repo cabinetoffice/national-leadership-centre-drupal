@@ -46,10 +46,8 @@ interface GraphEntityModelInterface extends GraphModelInterface {
   /**
    * Build a graph entity model object given a Drupal entity object
    *
-   * @param \Drupal\Core\Entity\EntityInterface $entity
-   *
    * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    */
-  public function buildModel(EntityInterface $entity);
+  public function buildModel();
 
 }

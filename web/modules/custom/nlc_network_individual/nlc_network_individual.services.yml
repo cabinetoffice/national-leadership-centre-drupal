@@ -1,6 +1,6 @@
 services:
   network_individual.event_subscriber.view:
     class: Drupal\nlc_network_individual\EventSubscriber\NetworkIndividualUserViewSubscriber
-    arguments: ['@current_user']
+    arguments: ['@current_user', '@neo4j_db_entity.model.manager']
     tags:
       - { name: event_subscriber }
