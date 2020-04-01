@@ -23,11 +23,25 @@ interface GraphEntityModelInterface extends GraphModelInterface {
   public function bundle();
 
   /**
+   * The entity model has an entity object attached.
+   *
+   * @return boolean
+   */
+  public function hasEntity();
+
+  /**
    * The entity this graph model handles.
    *
    * @return \Drupal\Core\Entity\EntityInterface
    */
   public function entity();
+
+  /**
+   * Set the entity attached object for the entity model.
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   */
+  public function setEntity(\Drupal\Core\Entity\EntityInterface $entity): void;
 
   /**
    * Build a graph entity model object given a Drupal entity object

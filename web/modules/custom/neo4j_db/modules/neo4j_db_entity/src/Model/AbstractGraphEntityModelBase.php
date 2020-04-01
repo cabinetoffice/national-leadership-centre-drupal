@@ -3,9 +3,11 @@
 
 namespace Drupal\neo4j_db_entity\Model;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use \InvalidArgumentException;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Provides a base entity model object for the knowledge graph.
@@ -55,28 +57,35 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   }
 
   /**
-   * @return string
+   * {@inheritDoc}
    */
   public function entityType(): string {
     return $this->entityType;
   }
 
   /**
-   * @return string
+   * {@inheritDoc}
    */
   public function bundle(): string {
     return $this->bundle;
   }
 
   /**
-   * @return \Drupal\Core\Entity\EntityInterface
+   * {@inheritDoc}
+   */
+  public function hasEntity(): bool {
+    return $this->entity !== null && $this->entity instanceof \Drupal\Core\Entity\EntityInterface;
+  }
+
+  /**
+   * {@inheritDoc}
    */
   public function entity(): \Drupal\Core\Entity\EntityInterface {
     return $this->entity;
   }
 
   /**
-   * @param \Drupal\Core\Entity\EntityInterface $entity
+   * {@inheritDoc}
    */
   public function setEntity(\Drupal\Core\Entity\EntityInterface $entity): void {
     $this->entity = $entity;
