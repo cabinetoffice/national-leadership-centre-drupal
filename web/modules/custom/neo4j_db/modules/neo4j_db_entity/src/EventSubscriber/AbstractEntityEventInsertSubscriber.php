@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Drupal\neo4j_db\EventSubscriber;
+namespace Drupal\neo4j_db_entity\EventSubscriber;
 
-use Composer\EventDispatcher\EventSubscriberInterface;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEventType;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Event subscriber for entity insert event.
@@ -16,6 +16,7 @@ abstract class AbstractEntityEventInsertSubscriber implements EventSubscriberInt
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events = [];
     $events[Neo4jDbEntityEventType::INSERT][] = ['onEntityInsert', 800];
     return $events;
   }

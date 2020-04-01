@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Drupal\neo4j_db\EventSubscriber;
+namespace Drupal\neo4j_db_entity\EventSubscriber;
 
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEventType;
@@ -16,6 +16,7 @@ abstract class AbstractEntityEventSubscriber implements EventSubscriberInterface
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events = [];
     $events[Neo4jDbEntityEventType::INSERT][] = ['onEntityInsert', 800];
     $events[Neo4jDbEntityEventType::UPDATE][] = ['onEntityUpdate', 800];
     $events[Neo4jDbEntityEventType::DELETE][] = ['onEntityDelete', 800];

@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Drupal\neo4j_db\EventSubscriber;
+namespace Drupal\neo4j_db_entity\EventSubscriber;
 
-use Composer\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEventType;
 
@@ -16,6 +16,7 @@ abstract class AbstractEntityEventLoadSubscriber implements EventSubscriberInter
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events = [];
     $events[Neo4jDbEntityEventType::LOAD][] = ['onEntityLoad', 800];
     return $events;
   }

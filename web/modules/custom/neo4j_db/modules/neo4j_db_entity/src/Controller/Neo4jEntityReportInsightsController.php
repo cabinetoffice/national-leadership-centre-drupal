@@ -7,7 +7,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\neo4j_db_entity\Model\GraphEntityModelManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class Neo4jEntityInsights extends ControllerBase {
+class Neo4jEntityReportInsightsController extends ControllerBase {
 
   /**
    * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelManagerInterface
@@ -32,10 +32,14 @@ class Neo4jEntityInsights extends ControllerBase {
     );
   }
 
-  public function build() {
-    $build = [];
+  public function reportPlugins() {
+    $build = $rows = [];
 
-    $build['entity_models'] = [];
+    $build['entity_models'] = [
+      '#type' => 'table',
+      '#header' => [t('Type'), t('Entity'), t('Bundle'), t('Class'), t('Has entity')],
+      '#empty' => t('There are no entity models.')
+    ];
 
     foreach ($this->graphEntityModelManager->getEntityModels() as $type => $entityModels) {
       $build[$type] = [
@@ -47,20 +51,15 @@ class Neo4jEntityInsights extends ControllerBase {
        */
       foreach ($entityModels as $bundle => $entityModel) {
         $itemName = "{$entityModel->entityType()}_{$entityModel->bundle()}";
-        $build[$type][$bundle] = [
-          '#type' => 'container',
-          $itemName => [
-            '#type' => 'inline_template',
-            '#template' => '
-            <h2>{{ title }}</h2>
-            <p>{{ description }}</p>',
-            '#context' => [
-              'title' => $itemName,
-              'description' => get_class($entityModel),
-            ]
-          ]
+        $rows["{$type}_{$bundle}"] = [
+          $itemName,
+          $entityModel->entityType(),
+          $entityModel->bundle(),
+          get_class($entityModel),
+          $entityModel->hasEntity(),
         ];
       }
+      $build['entity_models']['#rows'] = $rows;
     }
 
     return $build;

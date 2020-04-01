@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Drupal\neo4j_db\EventSubscriber;
+namespace Drupal\neo4j_db_entity\EventSubscriber;
 
-use Composer\EventDispatcher\EventSubscriberInterface;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEventType;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Event subscriber for entity view event.
@@ -16,6 +16,7 @@ abstract class AbstractEntityEventViewSubscriber implements EventSubscriberInter
    * {@inheritdoc}
    */
   public static function getSubscribedEvents() {
+    $events = [];
     $events[Neo4jDbEntityEventType::VIEW][] = ['onEntityView', 800];
     return $events;
   }
