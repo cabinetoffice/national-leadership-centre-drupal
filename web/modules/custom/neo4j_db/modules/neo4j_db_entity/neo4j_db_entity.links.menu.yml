@@ -1,0 +1,6 @@
+neo4j_db_entity.admin.report:
+  title: 'Neo4j Entity Insights'
+  description: 'View info about neo4j entity support'
+  parent: system.admin_reports
+  route_name: neo4j_db_entity.report_insights
+  weight: 50
