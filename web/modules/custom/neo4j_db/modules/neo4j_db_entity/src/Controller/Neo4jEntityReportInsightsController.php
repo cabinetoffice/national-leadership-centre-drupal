@@ -35,9 +35,10 @@ class Neo4jEntityReportInsightsController extends ControllerBase {
   public function reportPlugins() {
     $build = $rows = [];
 
+    // ENTITY MODELS
     $build['entity_models'] = [
       '#type' => 'table',
-      '#header' => [t('Type'), t('Entity'), t('Bundle'), t('Class'), t('Has entity')],
+      '#header' => [t('Type'), t('Entity'), t('Bundle'), t('Class')],
       '#empty' => t('There are no entity models.')
     ];
 
@@ -56,7 +57,6 @@ class Neo4jEntityReportInsightsController extends ControllerBase {
           $entityModel->entityType(),
           $entityModel->bundle(),
           get_class($entityModel),
-          $entityModel->hasEntity(),
         ];
       }
       $build['entity_models']['#rows'] = $rows;
