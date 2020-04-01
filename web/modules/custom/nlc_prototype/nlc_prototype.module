@@ -51,7 +51,13 @@ function nlc_prototype_theme($existing, $type, $theme, $path) {
         'link' => NULL,
         'post' => NULL,
       ]
-    ]
+    ],
+    'nlc_alert_title' => [
+      'variables' => [
+        'type' => 'h3',
+        'title' => NULL,
+      ]
+    ],
   ];
 }
 
