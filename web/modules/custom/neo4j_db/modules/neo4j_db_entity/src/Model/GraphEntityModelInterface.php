@@ -23,6 +23,13 @@ interface GraphEntityModelInterface extends GraphModelInterface {
   public function bundle();
 
   /**
+   * A type, to distinguish models with the same entityType and bundle.
+   *
+   * @var string
+   */
+  public function type();
+
+  /**
    * The entity model has an entity object attached.
    *
    * @return boolean
@@ -49,5 +56,39 @@ interface GraphEntityModelInterface extends GraphModelInterface {
    * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    */
   public function buildModel();
+
+  /**
+   * Define the criteria to FindOneBy in graph DB OGM.
+   *
+   * @return array
+   */
+  public function baseFindOneByCriteria();
+
+  /**
+   * Get the criteria to FindOneBy in the graph db OGM.
+   *
+   * @return array
+   */
+  public function findOneByCriteria();
+
+  /**
+   * Set the FindOneBy criteria array.
+   *
+   * @param array $criteria
+   *   Key-value array of criteria
+   *
+   * @return array
+   */
+  public function setFindOneByCriteria(array $criteria);
+
+  /**
+   * Add extra FindOneBy criteria.
+   *
+   * @param array $criteria
+   *   Key-value array of criteria
+   *
+   * @return array
+   */
+  public function addFindOneByCriteria(array $criteria);
 
 }

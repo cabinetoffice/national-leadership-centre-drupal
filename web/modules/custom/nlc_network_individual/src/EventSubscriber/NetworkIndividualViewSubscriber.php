@@ -2,6 +2,7 @@
 
 namespace Drupal\nlc_network_individual\EventSubscriber;
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\neo4j_db_entity\EventSubscriber\AbstractEntityEventViewSubscriber;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
@@ -9,7 +10,7 @@ use Drupal\neo4j_db_entity\Model\GraphEntityModelManagerInterface;
 use Drupal\typed_data\Exception\InvalidArgumentException;
 use Drupal\user\Entity\User;
 
-class NetworkIndividualUserViewSubscriber extends AbstractEntityEventViewSubscriber {
+class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber {
 
   /**
    * @var \Drupal\user\UserInterface
@@ -47,7 +48,7 @@ class NetworkIndividualUserViewSubscriber extends AbstractEntityEventViewSubscri
   public function __construct(AccountInterface $current_user, GraphEntityModelManagerInterface $model_manager) {
     $this->currentUser = User::load($current_user->id());
     $this->graphModelManager = $model_manager;
-    $this->currentUserGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user');
+    $this->currentUserGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user', 'User');
     $this->currentUserGraphModel->setEntity($this->currentUser);
   }
 
@@ -57,15 +58,28 @@ class NetworkIndividualUserViewSubscriber extends AbstractEntityEventViewSubscri
   public function onEntityView(Neo4jDbEntityEvent $event) {
     if ($event->getEntity()->getEntityTypeId() === 'user') {
       $this->account = $event->getEntity();
-      try {
-        $this->accountGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user');
-        $this->accountGraphModel->setEntity($this->account);
-          $this->accountGraphModel->buildModel();
+      $this->getGraphPerson($this->account);
+//      try {
+//        $this->accountGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user');
+//        $this->accountGraphModel->setEntity($this->account);
+//          $this->accountGraphModel->buildModel();
 //          $this->accountGraphModel->modelPersist();
-      }
-      catch (InvalidArgumentException $e) {
-        // Do something if there's no user model?
-      }
+//      }
+//      catch (InvalidArgumentException $e) {
+//        // Do something if there's no user model?
+//      }
+    }
+  }
+
+  protected function getGraphPerson(EntityInterface $entity) {
+    try {
+      $this->accountGraphModel = $this->graphModelManager->getEntityModel('user', 'user', 'NetworkIndividual');
+      $this->accountGraphModel->setEntity($entity);
+//      dpm($this->accountGraphModel->findOneByCriteria());
+      dpm($this->accountGraphModel->modelFindOneBy());
+    }
+    catch (InvalidArgumentException $e) {
+      // Do something?
     }
   }
 

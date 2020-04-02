@@ -8,7 +8,6 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\neo4j_db\Database\Driver\bolt\Connection;
 use \InvalidArgumentException;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * Provides a base entity model object for the knowledge graph.
@@ -32,6 +31,13 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   protected $entity;
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
    * The entity type.
    *
    * @var string
@@ -44,6 +50,18 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
    * @var string
    */
   protected $bundle;
+
+  /**
+   * A type, to distinguish models with the same entityType and bundle.
+   *
+   * @var string
+   */
+  protected $type;
+
+  /**
+   * @var array
+   */
+  protected $findOneByCriteria = [];
 
   /**
    * Constructs a new AbstractGraphEntityModelBase object.
@@ -59,6 +77,10 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
       throw new InvalidArgumentException($message);
     }
     if (!$this->bundle()) {
+      $message = $this->t('Missing bundle for this entity model');
+      throw new InvalidArgumentException($message);
+    }
+    if (!$this->type()) {
       $message = $this->t('Missing bundle for this entity model');
       throw new InvalidArgumentException($message);
     }
@@ -81,6 +103,13 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   /**
    * {@inheritDoc}
    */
+  public function type(): string {
+    return $this->type;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public function hasEntity(): bool {
     return $this->entity !== null && $this->entity instanceof \Drupal\Core\Entity\EntityInterface;
   }
@@ -94,12 +123,37 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
 
   /**
    * {@inheritDoc}
+   *
    */
-  public function setEntity(\Drupal\Core\Entity\EntityInterface $entity): void {
+  public function setEntity(EntityInterface $entity): void {
     $this->entity = $entity;
+    $this->setFindOneByCriteria($this->baseFindOneByCriteria());
   }
 
   /**
+   * {@inheritDoc}
+   */
+  public function findOneByCriteria() {
+    return $this->findOneByCriteria;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function setFindOneByCriteria(array $criteria): void {
+    $this->findOneByCriteria =  $criteria;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function addFindOneByCriteria(array $criteria): void {
+    $this->findOneByCriteria = array_merge($this->findOneByCriteria, $criteria);
+  }
+
+  /**
+   * Build the model object from the Drupal entity.
+   *
    * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
    * @throws \InvalidArgumentException
@@ -115,6 +169,15 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   public function modelPersist() {
     $this->connection
       ->persist($this)
+      ->execute();
+  }
+
+  /**
+   * @return object|null
+   */
+  public function modelFindOneBy() {
+    return $this->connection
+      ->findOneBy(get_class($this), $this->findOneByCriteria())
       ->execute();
   }
 

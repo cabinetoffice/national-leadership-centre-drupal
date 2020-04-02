@@ -17,36 +17,50 @@ interface GraphEntityModelManagerInterface {
   /**
    * Get all defined entity models.
    *
-   * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface[][]
+   * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface[][][]
    */
   public function getEntityModels();
 
   /**
+   * Get an array of model type names for a given entity type and bundle.
+   *
+   * @param $entityType string
+   * @param $bundle string
+   *
+   * @return array
+   */
+  public function getEntityModelTypes($entityType, $bundle);
+
+  /**
    * Get a specified entity model.
    *
-   * @param $type string
+   * @param $entityType string
    *   The name of an entity type.
    * @param $bundle string
    *   The name of a bundle type for the given entity type.
+   * @param $type string|null
+   *   The type of a model, in the case where multiple models exist with the same entity type and bundle.
    *
    * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
    * @throws \Drupal\typed_data\Exception\InvalidArgumentException
    */
-  public function getEntityModel($type, $bundle);
+  public function getEntityModel($entityType, $bundle, $type = null);
 
   /**
    * Get a new clone of a specified entity model.
    *
-   * @param $type string
+   * @param $entityType string
    *   The name of an entity type.
    * @param $bundle string
    *   The name of a bundle type for the given entity type.
+   * @param $type string|null
+   *   The type of a model, in the case where multiple models exist with the same entity type and bundle.
    *
    * @return \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
    * @throws \Drupal\typed_data\Exception\InvalidArgumentException
    */
-  public function getNewEntityModel($type, $bundle);
+  public function getNewEntityModel($entityType, $bundle, $type = null);
 
 }
