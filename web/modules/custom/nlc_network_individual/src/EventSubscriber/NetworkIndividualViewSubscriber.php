@@ -76,7 +76,8 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
       $this->accountGraphModel = $this->graphModelManager->getEntityModel('user', 'user', 'NetworkIndividual');
       $this->accountGraphModel->setEntity($entity);
 //      dpm($this->accountGraphModel->findOneByCriteria());
-      dpm($this->accountGraphModel->modelFindOneBy());
+      $this->accountGraphModel->modelFindOneBy();
+      dpm($this->accountGraphModel->getGraphNode());
     }
     catch (InvalidArgumentException $e) {
       // Do something?

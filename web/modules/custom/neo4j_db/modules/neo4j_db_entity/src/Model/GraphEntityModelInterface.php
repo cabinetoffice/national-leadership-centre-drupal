@@ -91,4 +91,25 @@ interface GraphEntityModelInterface extends GraphModelInterface {
    */
   public function addFindOneByCriteria(array $criteria);
 
+  /**
+   * Find a graph node by the model's criteria.
+   *
+   * @return \GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
+   */
+  public function modelFindOneBy();
+
+  /**
+   * Get the graph node attached to this entity model.
+   *
+   * @return \GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
+   */
+  public function getGraphNode();
+
+  /**
+   * Has this entity model got a graph node attached?
+   *
+   * @return bool
+   */
+  public function hasGraphNode();
+
 }

@@ -24,6 +24,62 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
   protected $type = 'NetworkIndividual';
 
   /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $firstName;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $lastName;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $fullName;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $sf_id;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $sf_record_id;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $title;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $twitter_account;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $linkedin_account;
+
+  /**
    * The Mapped Objects corresponding to the given entity.
    *
    * @var \Drupal\salesforce_mapping\Entity\MappedObject[]
@@ -55,21 +111,6 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
   public function baseFindOneByCriteria() {
     $ids = $this->getEntitySalesforceMappedObjectsIds();
     return ['sf_id' => current($ids)];
-  }
-
-  /**
-   * Returns the service container.
-   *
-   * This method is marked private to prevent sub-classes from retrieving
-   * services from the container through it. Instead,
-   * \Drupal\Core\DependencyInjection\ContainerInjectionInterface should be used
-   * for injecting services.
-   *
-   * @return \Symfony\Component\DependencyInjection\ContainerInterface
-   *   The service container.
-   */
-  private function container() {
-    return \Drupal::getContainer();
   }
 
   /**
@@ -124,5 +165,7 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
     }
     return $ids;
   }
+
+
 
 }

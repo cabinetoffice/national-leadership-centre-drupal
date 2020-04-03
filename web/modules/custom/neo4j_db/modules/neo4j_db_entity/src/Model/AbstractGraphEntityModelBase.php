@@ -59,6 +59,15 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   protected $type;
 
   /**
+   * A graph node
+   *
+   * @var \GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
+   */
+  protected $graphNode;
+
+  private $node;
+
+  /**
    * @var array
    */
   protected $findOneByCriteria = [];
@@ -84,6 +93,21 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
       $message = $this->t('Missing bundle for this entity model');
       throw new InvalidArgumentException($message);
     }
+  }
+
+  /**
+   * Returns the service container.
+   *
+   * This method is marked private to prevent sub-classes from retrieving
+   * services from the container through it. Instead,
+   * \Drupal\Core\DependencyInjection\ContainerInjectionInterface should be used
+   * for injecting services.
+   *
+   * @return \Symfony\Component\DependencyInjection\ContainerInterface
+   *   The service container.
+   */
+  protected function container() {
+    return \Drupal::getContainer();
   }
 
   /**
@@ -166,6 +190,9 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
     return $this;
   }
 
+  /**
+   * Persist this model to the graph DB.
+   */
   public function modelPersist() {
     $this->connection
       ->persist($this)
@@ -173,12 +200,28 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   }
 
   /**
-   * @return object|null
+   * {@inheritDoc}
    */
   public function modelFindOneBy() {
-    return $this->connection
+    $result = $this->connection
       ->findOneBy(get_class($this), $this->findOneByCriteria())
       ->execute();
+    $this->graphNode = $result;
+    return $this->getGraphNode();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getGraphNode() {
+    return $this->graphNode;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function hasGraphNode() {
+    return $this->getGraphNode() ? true : false;
   }
 
 }
