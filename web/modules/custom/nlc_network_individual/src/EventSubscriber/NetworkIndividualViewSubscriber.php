@@ -23,6 +23,11 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
   protected $currentUserGraphModel;
 
   /**
+   * @var \GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
+   */
+  protected $currentUserGraph;
+
+  /**
    * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelManagerInterface
    */
   protected $graphModelManager;
@@ -38,6 +43,11 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
   protected $accountGraphModel;
 
   /**
+   * @var \GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
+   */
+  protected $accountGraph;
+
+  /**
    * NetworkIndividualUserViewSubscriber constructor.
    *
    * @param \Drupal\Core\Session\AccountInterface $current_user
@@ -46,10 +56,12 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
    * @throws \Drupal\typed_data\Exception\InvalidArgumentException
    */
   public function __construct(AccountInterface $current_user, GraphEntityModelManagerInterface $model_manager) {
+    \Drupal::logger('nlc_network_individual')->debug('here');
     $this->currentUser = User::load($current_user->id());
     $this->graphModelManager = $model_manager;
     $this->currentUserGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user', 'User');
     $this->currentUserGraphModel->setEntity($this->currentUser);
+    $this->currentUserGraph = $this->currentUserGraphModel->getGraphNode();
   }
 
   /**
@@ -58,30 +70,48 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
   public function onEntityView(Neo4jDbEntityEvent $event) {
     if ($event->getEntity()->getEntityTypeId() === 'user') {
       $this->account = $event->getEntity();
-      $this->getGraphPerson($this->account);
-//      try {
-//        $this->accountGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user');
-//        $this->accountGraphModel->setEntity($this->account);
-//          $this->accountGraphModel->buildModel();
-//          $this->accountGraphModel->modelPersist();
-//      }
-//      catch (InvalidArgumentException $e) {
-//        // Do something if there's no user model?
-//      }
+      $this->accountGraph = $this->getGraphPerson($this->account);
+      $this->currentUserViewsAccount();
     }
   }
 
+  protected function currentUserViewsAccount() {
+    if ($this->hasCurrentUserGraph() && $this->hasAccountGraph()) {
+      // Do something?
+    }
+  }
+
+  /**
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *
+   * @return bool|\GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
+   */
   protected function getGraphPerson(EntityInterface $entity) {
+    $graphModel = FALSE;
     try {
       $this->accountGraphModel = $this->graphModelManager->getEntityModel('user', 'user', 'NetworkIndividual');
       $this->accountGraphModel->setEntity($entity);
-//      dpm($this->accountGraphModel->findOneByCriteria());
       $this->accountGraphModel->modelFindOneBy();
-      dpm($this->accountGraphModel->getGraphNode());
+      $graphModel = $this->accountGraphModel->getGraphNode();
     }
     catch (InvalidArgumentException $e) {
       // Do something?
     }
+    return $graphModel;
+  }
+
+  /**
+   * @return bool
+   */
+  private function hasCurrentUserGraph() {
+    return $this->currentUserGraph ? true : false;
+  }
+
+  /**
+   * @return bool
+   */
+  private function hasAccountGraph() {
+    return $this->accountGraph ? true : false;
   }
 
 }
