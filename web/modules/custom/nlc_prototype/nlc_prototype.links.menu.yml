@@ -1,0 +1,12 @@
+nlc_prototype.admin_config_connect:
+  title: 'Connect admin'
+  description: 'Administer the Connect configurations'
+  parent: system.admin_config
+  route_name: nlc_prototype.admin_config_connect
+  weight: 50
+
+nlc_prototype.admin_config_connect_covid19:
+  title: 'Connect COVID-19 response admin'
+  description: 'Administer the Connect COVID-19 response configurations'
+  parent: nlc_prototype.admin_config_connect
+  route_name: nlc_prototype.admin_config_connect_covid19

@@ -47,3 +47,20 @@ nlc_prototype.directory.token_access.login:
   options:
     _maintenance_access: TRUE
     no_cache: TRUE
+
+nlc_prototype.admin_config_connect:
+  path: '/admin/config/connect'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Connect'
+    _description: 'Manage settings for Connect.'
+  requirements:
+    _permission: 'administer connect config'
+
+nlc_prototype.admin_config_connect_covid19:
+  path: '/admin/config/connect/covid19'
+  defaults:
+    _title: 'COVID-19 response admin'
+    _form: 'Drupal\nlc_prototype\Form\Covid19ConfigAdminForm'
+  requirements:
+    _permission: 'administer connect covid19 config'

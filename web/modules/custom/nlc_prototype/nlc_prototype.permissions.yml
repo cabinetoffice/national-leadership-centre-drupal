@@ -1,0 +1,6 @@
+'administer connect config':
+  title: 'Administer Connect configurations'
+  description: 'Administer configurations specific to the Connect customisations'
+'administer connect covid19 config':
+  title: 'Administer Connect COVID-19 configurations'
+  description: 'Administer configurations specific to the COVID-19 response tools'
