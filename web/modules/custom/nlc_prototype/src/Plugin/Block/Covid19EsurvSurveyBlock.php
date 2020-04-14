@@ -24,6 +24,10 @@ class Covid19EsurvSurveyBlock extends BlockBase {
    * @return array
    */
   public function build() {
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
+    $config = \Drupal::config('nlc_prototype.config_covid19.settings');
+    $surveyUri = $config->get('covid19.survey_url') ?: 'https://www.smartsurvey.co.uk/s/CV19Response_060420/';
     $build = [];
     $build['#attributes'] = [
       'class' => [
@@ -33,7 +37,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
     ];
     $build['#prefix'] = '<div class="govuk-width-container">';
     $build['#suffix'] = '</div>';
-    $surveyUrl = Url::fromUri('https://www.smartsurvey.co.uk/s/CV19Response_060420/');
+    $surveyUrl = Url::fromUri($surveyUri);
     $surveyLink = Link::fromTextAndUrl($this->t('Complete survey'), $surveyUrl)->toRenderable();
     $surveyLink['#attributes'] = [
       'target' => '_blank',
@@ -66,6 +70,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
         'link' => $surveyLink,
       ],
     ];
+    $renderer->addCacheableDependency($build, $config);
 
     return $build;
   }

@@ -25,7 +25,7 @@
         "drupal/bootstrap_barrio": "^4.22",
         "drupal/coder": "^8.3",
         "drupal/collapsiblock": "^2.0",
-        "drupal/config_filter": "2.x-dev",
+        "drupal/config_ignore": "^2.2",
         "drupal/config_split": "^1.4",
         "drupal/console": "^1.0.2",
         "drupal/core-composer-scaffold": "^8.8",
