@@ -7,4 +7,4 @@ parameters:
 services:
   monolog.handler.stream:
     class: Monolog\Handler\StreamHandler
-    arguments: ['php://stdout', 'monolog.level.debug']
+    arguments: ['php://stdout', 'monolog.level.info']
