@@ -815,3 +815,13 @@ if (!empty($vcapServices['elasticsearch'])) {
 elseif (getenv('ELASTICSEARCH_URL')) {
   $config['elasticsearch_connector.cluster.live_cluster']['url'] = getenv('ELASTICSEARCH_URL');
 }
+
+/******************************
+ * Load Monolog services file *
+ ******************************/
+if (getenv('NLC_ENVIRONMENT') && file_exists(__DIR__ . '/monolog.' . getenv('NLC_ENVIRONMENT') . '.services.yml')) {
+  $settings['container_yamls'][] = __DIR__ . '/monolog.' . getenv('NLC_ENVIRONMENT') . '.services.yml';
+}
+else {
+  $settings['container_yamls'][] = $app_root . '/' . $site_path . '/monolog.services.yml';
+}

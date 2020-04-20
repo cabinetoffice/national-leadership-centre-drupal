@@ -1,0 +1,10 @@
+parameters:
+  monolog.channel_handlers:
+    default: ['stream']
+  monolog.processors: ['message_placeholder', 'current_user', 'request_uri', 'ip', 'referer']
+
+
+services:
+  monolog.handler.stream:
+    class: Monolog\Handler\StreamHandler
+    arguments: ['php://stdout', 'monolog.level.debug']
