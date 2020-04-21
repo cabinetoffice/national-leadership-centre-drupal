@@ -213,6 +213,10 @@ class DirectoryTokenAccessForm extends FormBase {
       // Add our own mail sending error message.
       $this->messenger()->addError(render($message));
     }
+    else {
+      $message = $this->t('Login link requested and email sent to @email', ['@email' => $form_state->getValue('email')]);
+      \Drupal::logger('nlc_prototype')->notice($message);
+    }
 //
 //    $rendered_message = Markup::create('You will receive a secure link to your email address.');
 //
