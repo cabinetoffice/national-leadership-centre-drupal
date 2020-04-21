@@ -1,0 +1,15 @@
+parameters:
+  monolog.channel_handlers:
+    default: ['stream']
+    # Send the php channel to web server's error log and the browser console:
+    php: ['browser_console']
+  monolog.processors: ['message_placeholder', 'current_user', 'request_uri', 'ip', 'referer', 'memory_usage']
+
+
+services:
+  monolog.handler.stream:
+    class: Monolog\Handler\StreamHandler
+    arguments: ['php://stdout', 'monolog.level.debug']
+  monolog.handler.browser_console:
+    class: Monolog\Handler\BrowserConsoleHandler
+    arguments: ['1', false]
