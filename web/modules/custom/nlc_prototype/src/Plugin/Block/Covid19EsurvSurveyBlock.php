@@ -31,7 +31,7 @@ class Covid19EsurvSurveyBlock extends BlockBase {
         'nlc-banner-block',
       ],
     ];
-    $build['#prefix'] = '<div class="govuk-width-container">';
+    $build['#prefix'] = '<div class="width-container">';
     $build['#suffix'] = '</div>';
     $surveyUrl = Url::fromUri('https://www.smartsurvey.co.uk/s/CV19_Response_140420/');
     $surveyLink = Link::fromTextAndUrl($this->t('Complete survey'), $surveyUrl)->toRenderable();

@@ -7,7 +7,7 @@
   border-bottom: 1px solid $govuk-border-colour;
 }
 .facets-widget-links {
-  margin-top: -13px;
+  margin-top: -6px;
 }
 .facets-widget-links ul {
   padding: 0;
@@ -84,7 +84,7 @@
         display: inline-block;
 
         &::after {
-          content: '';
+          content: "";
           background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path style="stroke-width: 2px; stroke: white;" d="m0,0l10,10M0,10L10,0"/></svg>');
           background-repeat: no-repeat;
           margin-left: 0.5rem;
