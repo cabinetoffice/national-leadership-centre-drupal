@@ -1,3 +1,11 @@
+.govuk-link,
+a {
+  text-decoration: underline;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
 a:hover,
 .govuk-link:hover {
   text-decoration: none;
