@@ -9,3 +9,8 @@ services:
     arguments: ['@string_translation', '@neo4j_db.connection']
     tags:
       - { name: graph_entity_model }
+  neo4j_db.model.entity_view:
+    class: Drupal\neo4j_db_entity\Model\Action\GraphEntityViewModel
+    arguments: ['@string_translation', '@neo4j_db.connection']
+    tags:
+      - { name: graph_model }
