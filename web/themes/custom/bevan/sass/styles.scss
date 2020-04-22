@@ -4,6 +4,7 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 
 // Override vairables for govuk_frontend components
 @import "settings/colours-applied";
+@import "settings/typography-font";
 
 // GovUK components
 @import "node_modules/govuk-frontend/all";
@@ -25,5 +26,7 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 @import "components/govuk-panel";
 @import "components/govuk-hint";
 @import "components/govuk-input";
+@import "components/govuk-phase-banner";
+@import "components/govuk-tag";
 @import "components/footer";
 @import "components/nlc-banner-block";

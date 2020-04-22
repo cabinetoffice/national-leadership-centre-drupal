@@ -4,8 +4,6 @@
 
 @import "colours";
 
-
-
 // =========================================================
 // Generic
 // =========================================================
@@ -95,7 +93,7 @@ $govuk-error-colour: $red;
 /// @type Colour
 /// @access public
 
-$govuk-border-colour: $grey;
+$govuk-border-colour: $another-grey;
 
 /// Input border colour
 ///
@@ -114,7 +112,6 @@ $govuk-input-border-colour: $grey;
 /// @access public
 
 $govuk-hover-colour: $light-grey;
-
 
 // =============================================================================
 // Links

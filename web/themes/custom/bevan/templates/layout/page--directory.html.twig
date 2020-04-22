@@ -1,6 +1,10 @@
-<header class="site-header govuk-width-container" role="banner" data-module="header">
-    {{ page.header }}
-    <div class="site-header__second-row">
+<header class="site-header" role="banner" data-module="header">
+    <div class="site-header__first-row">
+      <div class="width-container site-header__first-row-inner">
+        {{ page.header }}
+      </div>
+    </div>
+    <div class="site-header__second-row width-container">
       {% if phase_banner %}
         {{  phase_banner }}
       {% endif %}
