@@ -12,7 +12,6 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 // Add new components
 @import "settings/gradients";
 @import "settings/typography";
-
 @import "components/layout";
 @import "components/tabs";
 @import "components/facets-checkbox";
@@ -22,6 +21,7 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 @import "components/button";
 @import "components/cookies";
 @import "components/nlc-filter-title";
+@import "components/govuk-link";
 @import "components/govuk-accordion";
 @import "components/govuk-panel";
 @import "components/govuk-hint";
