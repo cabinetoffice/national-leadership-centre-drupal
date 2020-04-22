@@ -48,6 +48,11 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
   protected $accountGraph;
 
   /**
+   * @var \Drupal\neo4j_db_entity\Model\Action\GraphEntityViewModel
+   */
+  protected $entityView;
+
+  /**
    * NetworkIndividualUserViewSubscriber constructor.
    *
    * @param \Drupal\Core\Session\AccountInterface $current_user
@@ -56,7 +61,6 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
    * @throws \Drupal\typed_data\Exception\InvalidArgumentException
    */
   public function __construct(AccountInterface $current_user, GraphEntityModelManagerInterface $model_manager) {
-    \Drupal::logger('nlc_network_individual')->debug('here');
     $this->currentUser = User::load($current_user->id());
     $this->graphModelManager = $model_manager;
     $this->currentUserGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user', 'User');
@@ -77,7 +81,14 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
 
   protected function currentUserViewsAccount() {
     if ($this->hasCurrentUserGraph() && $this->hasAccountGraph()) {
-      // Do something?
+      $this->entityView = \Drupal::service('neo4j_db.model.entity_view');
+      $this->entityView->setVieweeEntity($this->accountGraph);
+      $this->entityView->setViewerEntityModel($this->currentUserGraph);
+      $ip = \Drupal::request()->getClientIp();
+      $this->entityView->setIp($ip);
+      $requestTime = \Drupal::time()->getRequestTime();
+      $this->entityView->setRequestTime($requestTime);
+//      $this->entityView->connection()
     }
   }
 
