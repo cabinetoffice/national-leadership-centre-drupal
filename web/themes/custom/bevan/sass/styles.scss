@@ -3,6 +3,7 @@ $govuk-global-styles: true;
 $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 
 // Override variables for govuk_frontend components
+@import "settings/measurements";
 @import "settings/colours-applied";
 @import "settings/typography-font";
 
@@ -18,6 +19,7 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 @import "components/govuk-input";
 @import "components/govuk-phase-banner";
 @import "components/govuk-tag";
+@import "components/govuk-table";
 
 // Add new components
 @import "settings/gradients";
