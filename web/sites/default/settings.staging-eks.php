@@ -39,5 +39,5 @@ $config['config_split.config_split.crm_stage']['status'] = TRUE;
 $settings['trusted_host_patterns'] = array('^staging\.connect\.nationalleadership\.gov\.uk$');
 
 // enable s3fs for css and js
-$config['system.performance']['css']['preprocess'] = getenv('PREPROCESS_CSS') ? getenv('PREPROCESS_CSS') : false;
-$config['system.performance']['js']['preprocess'] = getenv('PREPROCESS_JS') ? getenv('PREPROCESS_JS') : false;
+$config['system.performance']['css']['preprocess'] = getenv('PREPROCESS_CSS') ? getenv('PREPROCESS_CSS') : true;
+$config['system.performance']['js']['preprocess'] = getenv('PREPROCESS_JS') ? getenv('PREPROCESS_JS') : true;
