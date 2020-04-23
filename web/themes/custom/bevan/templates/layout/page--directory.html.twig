@@ -57,10 +57,23 @@
   </div>
 </div>
 
-<footer class="site-footer" role="contentinfo">
-  <div class="site-footer__inner govuk-width-container">
-    {% if page.footer %}{{ page.footer }}{% endif %}
-    <div class="site-footer__logo"><a href="/"><img src="{{ base_path ~ directory }}/assets/images/logos/ncl-star.png" alt="Go to the National Leadership Centre Homepage"></a></div>
-    <div class="site-footer__copyright"><a class="copyright" target="_blank" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">© Crown copyright</a></div>
+<footer class="footer-main" role="contentinfo">
+  <div class="govuk-width-container">
+    {% if page.footer_one %}
+    <div class="footer-main__nav">
+      {{ page.footer_one }}
+    </div>
+    {% endif %}
+    {% if page.footer_two %}
+    <div class="footer-main__social">
+      {{ page.footer_two }}
+    </div>
+    {% endif %}
+    <a class="footer-main__crest__wrapper" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/" target="_blank">
+    <div class="footer-main__crest">
+    <img src="https://www.nationalleadership.gov.uk/static/img/govuk-crest-2x.png" alt="Government crest">
+    <p><span>©</span>Crown copyright</p>
+    </div>
+    </a>
   </div>
-</div>
+</footer>

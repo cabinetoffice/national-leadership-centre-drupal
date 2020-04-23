@@ -12,7 +12,8 @@ regions:
   sidebar_first: "Sidebar first"
   sidebar_second: "Sidebar second"
   content: "Content"
-  footer: "Footer"
+  footer_one: "Footer one"
+  footer_two: "Footer two"
 libraries-override:
   govuk_design_system/global-styling: bevan/global-styling
   collapsiblock/core:

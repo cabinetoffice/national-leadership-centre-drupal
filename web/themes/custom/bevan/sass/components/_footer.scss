@@ -1,83 +1,159 @@
-.site-footer {
-    background-color: $very-light-grey;
-    font-size: 1.25rem;
-    padding: 40px 0;
+$tablet: 768px;
 
-    &__inner {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
+.footer-main {
+  background-color: $very-light-grey;
+  padding: govuk-px-to-rem(61px) 0;
+  margin-top: 110px;
+
+  a {
+    color: $grey;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
     }
-    a {
-        color: $grey;
-        &:hover, a:focus {
-            text-decoration: none;
-        }
-    }
+  }
 }
-#block-footer {
-	width: 100%;
-    margin-bottom: 20px;
-    ul {
-        padding: 0;
+.footer-main__nav {
+  display: inline-block;
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+      padding-right: 1em;
+    }
+  }
+}
+.footer-main__social {
+  display: inline-block;
+  .footer-main__social__heading {
+    font-family: $font-family-secondary;
+    font-size: govuk-px-to-rem(17px);
+    line-height: govuk-px-to-rem(25px);
+    font-weight: 400;
+    margin: 0;
+    margin-left: govuk-px-to-rem(115px);
+    padding-right: govuk-px-to-rem(15px);
+    display: inline-block;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+    display: inline-block;
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      padding-right: govuk-px-to-rem(15px);
+      font-size: govuk-px-to-rem(17px);
+      line-height: govuk-px-to-rem(25px);
+    }
+  }
+  a {
+    overflow: hidden;
+    text-indent: -9999px;
+    white-space: nowrap;
+    width: govuk-px-to-rem(26px);
+    height: govuk-px-to-rem(26px);
+    border-radius: govuk-px-to-rem(4px);
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    &:hover,
+    a:focus {
+      text-decoration: none;
+    }
+    &[href*="linkedin"] {
+      background-image: url(https://www.nationalleadership.gov.uk/static/img/linkedin.svg);
+    }
+    &[href*="twitter"] {
+      background-image: url(https://www.nationalleadership.gov.uk/static/img/twitter.svg);
+    }
+  }
+}
+
+.footer-main__crest__wrapper {
+  float: right;
+  display: block;
+}
+
+.footer-main__crest {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: govuk-px-to-rem(-34px);
+  text-align: center;
+
+  img {
+    width: govuk-px-to-rem(90px);
+    margin-bottom: govuk-px-to-rem(5px);
+  }
+
+  p {
+    font-size: govuk-px-to-rem(12px);
+    margin: 0;
+
+    @media only screen and (max-width: $tablet) {
+      font-size: govuk-px-to-rem(9px);
+    }
+
+    span {
+      margin-right: govuk-px-to-rem(3px);
+    }
+  }
+}
+
+@media only screen and (max-width: $tablet) {
+  .footer-main {
+    text-align: center;
+    padding: govuk-px-to-rem(36px) 0 govuk-px-to-rem(40px) 0;
+
+    .footer-main__nav {
+      display: block;
+      margin-bottom: govuk-px-to-rem(23px);
+
+      ul {
+        li {
+          a {
+            font-size: govuk-px-to-rem(15);
+            line-height: govuk-px-to-rem(22px);
+          }
+        }
+      }
+    }
+
+    .footer-main__social {
+      display: block;
+      margin-bottom: govuk-px-to-rem(22px);
+
+      ul {
         margin: 0;
-        list-style-type: none;
 
         li {
-            display: inline-block;
-            padding-right: 1em;
+          a {
+            font-size: govuk-px-to-rem(15);
+            line-height: govuk-px-to-rem(22px);
+          }
         }
+
+        img {
+          width: govuk-px-to-rem(20px);
+        }
+      }
     }
-}
-#block-social {
-	width: 100%;
-    margin-bottom: 20px;
-    ul {
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-         li {
-            padding-bottom: 5px;
-            display: block;
-        }
-        a {
-            vertical-align: middle;
-            display: inline-block;
-            text-decoration: underline;
-            &::before {
-                content: '';
-                width: 35px;
-                height: 35px;
-                padding-right: 10px;
-                display: inline-block;
-                vertical-align: middle;
-                background-repeat: no-repeat;
-            }
-            &:hover, a:focus {
-                text-decoration: none;
-            }
-            &[href*="linkedin"]::before {
-                background-image: url(../assets/images/linkedin.svg);
-            }
-            &[href*="twitter"]::before {
-                background-image: url(../assets/images/twitter.svg);
-            }
-        }
+
+    .footer-main__crest__wrapper {
+      float: unset;
     }
-}
-.copyright {
-	display: block;
-	background-image: url(../assets/images/govuk-crest.png);
-	background-repeat: no-repeat;
-	background-position: 50% 0%;
-	background-size: 115px auto;
-	text-align: center;
-	padding: 115px 0 0 0;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-	.copyright {
-		background-image: url(../assets/images/govuk-crest-2x.png);
-	}
+
+    .footer-main__crest {
+      margin-top: unset;
+
+      img {
+        width: govuk-px-to-rem(64px);
+      }
+    }
+  }
 }
