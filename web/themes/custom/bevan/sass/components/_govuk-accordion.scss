@@ -7,6 +7,10 @@
 .js-enabled .govuk-accordion__icon:after {
   content: none;
 }
+.js-enabled .govuk-accordion__icon:before,
+.js-enabled .govuk-accordion__icon:after {
+  background-color: $red;
+}
 .js-enabled .collapsiblockCollapsed .govuk-accordion__icon:after {
   content: "";
 }
