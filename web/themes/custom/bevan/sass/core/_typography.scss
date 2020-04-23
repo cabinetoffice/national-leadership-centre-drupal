@@ -1,0 +1,45 @@
+.govuk-heading-xl {
+  font-size: govuk-px-to-rem(23);
+  line-height: govuk-em(33, 23);
+  @media (max-width: 660) {
+    font-size: govuk-px-to-rem(23);
+    line-height: govuk-em(33, 23);
+  }
+}
+
+.govuk-heading-l {
+  font-size: govuk-px-to-rem(23);
+  line-height: govuk-em(33, 23);
+  font-weight: 400;
+  @media (max-width: 660) {
+    font-size: govuk-px-to-rem(23);
+    line-height: govuk-em(33, 23);
+  }
+}
+
+.govuk-heading-m {
+  font-size: govuk-px-to-rem(19);
+  line-height: govuk-em(28, 19);
+  font-weight: 400;
+  @media (max-width: govuk-px-to-rem(535)) {
+    font-size: govuk-px-to-rem(17);
+    // line-height: govuk-em(24, 17);
+  }
+}
+
+// Body (paragraphs)
+
+.govuk-body-l {
+  font-size: govuk-px-to-rem(23);
+  line-height: govuk-em(33, 23);
+}
+
+.govuk-body,
+.govuk-body-m {
+  font-family: $font-family-secondary;
+  font-size: govuk-px-to-rem(17);
+  line-height: govuk-em(25, 17);
+  @media (max-width: govuk-px-to-rem(535)) {
+    font-size: govuk-px-to-rem(16);
+  }
+}
