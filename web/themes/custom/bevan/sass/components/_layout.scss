@@ -9,11 +9,3 @@
   right: 50%;
   width: 100vw;
 }
-
-@media only screen and (max-width: 768px) {
-  .views-element-container {
-    width: 100%;
-    overflow: scroll;
-    display: block;
-  }
-}

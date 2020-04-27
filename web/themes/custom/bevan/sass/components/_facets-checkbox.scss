@@ -53,6 +53,9 @@
   &__count {
     font-size: 1.4em;
     margin-bottom: 1rem;
+    @media (max-width: govuk-px-to-rem(452)) {
+      margin-top: 40px;
+    }
   }
   &__applied {
     border-collapse: collapse;
