@@ -42,6 +42,14 @@
           }
         );
       }
+
+      if (typeof settings.path.currentPathIsSelfProfile !== 'undefined' && settings.path.currentPathIsSelfProfile === true) {
+        gtag('event', 'PageView', {
+          event_category: 'Own profile page',
+          event_label: '',
+          transport_type: 'beacon'
+        });
+      }
     }
   };
 
