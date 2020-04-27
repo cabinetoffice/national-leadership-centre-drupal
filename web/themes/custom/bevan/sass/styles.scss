@@ -24,6 +24,7 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 // Add new components
 @import "settings/gradients";
 @import "settings/typography";
+@import "components/back-to-search-link";
 @import "components/layout";
 @import "components/page-title";
 @import "components/tabs";
