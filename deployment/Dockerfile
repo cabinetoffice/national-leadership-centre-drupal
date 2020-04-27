@@ -1,13 +1,9 @@
 FROM nlcdigital/base-php-72-image 
 RUN mkdir -p /var/www/web/
-RUN mkdir -p /var/www/vendor/
 RUN mkdir -p /var/www/config/
-RUN mkdir -p /var/www/scripts/
 WORKDIR /var/www/
 COPY web/ /var/www/web/
-COPY vendor/ /var/www/vendor/
 COPY config/ /var/www/config/
-COPY scripts/ /var/www/scripts/
 # do we need this load env ?
 COPY load.environment.php /var/www/
 COPY composer.json /var/www/
