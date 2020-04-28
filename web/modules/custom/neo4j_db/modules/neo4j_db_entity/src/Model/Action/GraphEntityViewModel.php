@@ -8,7 +8,15 @@ use Drupal\neo4j_db\Database\Driver\bolt\Connection;
 use Drupal\neo4j_db\Model\AbstractModel;
 use Drupal\neo4j_db_entity\Model\GraphEntityModelInterface;
 use GraphAware\Neo4j\OGM\Proxy\EntityProxy;
+use GraphAware\Neo4j\OGM\Annotations as OGM;
 
+/**
+ * Class GraphEntityViewModel
+ *
+ * @package Drupal\neo4j_db_entity\Model\Action
+ *
+ * @OGM\Node(label="View")
+ */
 class GraphEntityViewModel extends AbstractModel {
 
   use StringTranslationTrait;
@@ -22,6 +30,7 @@ class GraphEntityViewModel extends AbstractModel {
    * Viewee entity model object.
    *
    * @var \GraphAware\Neo4j\OGM\Proxy\EntityProxy
+   * 
    */
   protected $vieweeEntityModel;
 
@@ -49,16 +58,14 @@ class GraphEntityViewModel extends AbstractModel {
   /**
    * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
-   * @OGM\Relationship(type="visit", direction="INCOMING", mappedBy="Visit", targetEntity="User")
-   */
-  protected $visit;
-
-  /**
-   * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
-   *
-   * @OGM\Relationship(type="visitOf", direction="OUTGOING", mappedBy="Visit", targetEntity="Person")
+   * @OGM\Relationship(type="visitOf", direction="OUTGOING", collection=false, mappedBy="view", targetEntity="Person")
    */
   protected $visitOf;
+
+  /**
+   * @var array
+   */
+  protected $findOneByCriteria = [];
 
 
   /**
@@ -108,5 +115,14 @@ class GraphEntityViewModel extends AbstractModel {
    */
   public function connection(): \Drupal\neo4j_db\Database\Driver\bolt\Connection {
     return $this->connection;
+  }
+
+  /**
+   * Persist this model to the graph DB.
+   */
+  public function modelPersist() {
+    $this->connection
+      ->persist($this)
+      ->execute();
   }
 }

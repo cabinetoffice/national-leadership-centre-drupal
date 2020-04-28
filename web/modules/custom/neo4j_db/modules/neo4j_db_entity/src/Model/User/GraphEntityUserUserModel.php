@@ -52,6 +52,8 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
    */
   protected $graphEntity;
 
+  protected $visit;
+
 
   /**
    * {@inheritDoc}
@@ -64,7 +66,7 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
   }
 
   public function getGraphEntity() {
-    $this->connection->findOneBy(__CLASS__, $this->fin);
+    return $this->connection->findOneBy(__CLASS__, $this->findOneByCriteria());
   }
 
   /**
@@ -80,7 +82,7 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
    * {@inheritDoc}
    */
   public function baseFindOneByCriteria() {
-    return ['entityId' => $this->entity()->id()];
+    return ['entityId' => intval($this->entity()->id())];
   }
 
   /**

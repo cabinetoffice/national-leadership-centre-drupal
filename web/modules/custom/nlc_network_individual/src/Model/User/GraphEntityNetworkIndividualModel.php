@@ -80,6 +80,12 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
   protected $linkedin_account;
 
   /**
+   * @OGM\Relationship(relationshipEntity="NetworkIndividualVisitOfRelationshipModel", type="visitOf", direction="INCOMING", mappedBy="person")
+   */
+  protected $visitOf;
+
+
+  /**
    * The Mapped Objects corresponding to the given entity.
    *
    * @var \Drupal\salesforce_mapping\Entity\MappedObject[]

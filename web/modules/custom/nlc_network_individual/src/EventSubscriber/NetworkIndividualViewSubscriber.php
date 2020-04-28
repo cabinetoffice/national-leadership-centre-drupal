@@ -7,6 +7,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\neo4j_db_entity\EventSubscriber\AbstractEntityEventViewSubscriber;
 use Drupal\neo4j_db_entity\Event\Neo4jDbEntityEvent;
 use Drupal\neo4j_db_entity\Model\GraphEntityModelManagerInterface;
+use Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel;
 use Drupal\typed_data\Exception\InvalidArgumentException;
 use Drupal\user\Entity\User;
 
@@ -18,7 +19,7 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
   protected $currentUser;
 
   /**
-   * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
+   * @var \Drupal\neo4j_db_entity\Model\User\GraphEntityUserUserModel
    */
   protected $currentUserGraphModel;
 
@@ -65,6 +66,7 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
     $this->graphModelManager = $model_manager;
     $this->currentUserGraphModel = $this->graphModelManager->getNewEntityModel('user', 'user', 'User');
     $this->currentUserGraphModel->setEntity($this->currentUser);
+    $this->currentUserGraphModel->modelFindOneBy();
     $this->currentUserGraph = $this->currentUserGraphModel->getGraphNode();
   }
 
@@ -80,6 +82,7 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
   }
 
   protected function currentUserViewsAccount() {
+//    dpm($this->currentUserGraphModel);
     if ($this->hasCurrentUserGraph() && $this->hasAccountGraph()) {
       $this->entityView = \Drupal::service('neo4j_db.model.entity_view');
       $this->entityView->setVieweeEntity($this->accountGraph);
@@ -88,7 +91,15 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
       $this->entityView->setIp($ip);
       $requestTime = \Drupal::time()->getRequestTime();
       $this->entityView->setRequestTime($requestTime);
-//      $this->entityView->connection()
+//      \Drupal::logger('nlc_debug')->debug('<pre>' . print_r($this->entityView, true) . '</pre>');
+      $this->entityView->modelPersist();
+      /** @var \Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel $visitOf */
+      $visitOf = \Drupal::service('network_individual.model_relationship.person_view');
+      $visitOf->setView($this->entityView);
+      $visitOf->setPerson($this->accountGraph);
+      $visitOf->setRequestTime($requestTime);
+      $visitOf->modelPersist();
+      dpm($visitOf);
     }
   }
 
