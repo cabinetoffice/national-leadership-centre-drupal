@@ -58,9 +58,16 @@ class GraphEntityViewModel extends AbstractModel {
   /**
    * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
-   * @OGM\Relationship(type="visitOf", direction="OUTGOING", collection=false, mappedBy="view", targetEntity="Person")
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel",type="visitOf", direction="OUTGOING", collection=false, mappedBy="view", targetEntity="Person")
    */
   protected $visitOf;
+
+  /**
+   * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
+   *
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitRelationshipModel",type="visit", direction="INCOMING", collection=false, mappedBy="view", targetEntity="User")
+   */
+  protected $visit;
 
   /**
    * @var array
@@ -124,5 +131,19 @@ class GraphEntityViewModel extends AbstractModel {
     $this->connection
       ->persist($this)
       ->execute();
+  }
+
+  /**
+   * @param \Drupal\neo4j_db\Model\Relationship\RelationshipModelInterface $visitOf
+   */
+  public function setVisitOf($visitOf): void {
+    $this->visitOf = $visitOf;
+  }
+
+  /**
+   * @param \Drupal\neo4j_db\Model\Relationship\RelationshipModelInterface $visit
+   */
+  public function setVisit($visit): void {
+    $this->visit = $visit;
   }
 }

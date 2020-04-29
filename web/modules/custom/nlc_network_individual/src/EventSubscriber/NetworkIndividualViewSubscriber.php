@@ -98,8 +98,16 @@ class NetworkIndividualViewSubscriber extends AbstractEntityEventViewSubscriber 
       $visitOf->setView($this->entityView);
       $visitOf->setPerson($this->accountGraph);
       $visitOf->setRequestTime($requestTime);
-      $visitOf->modelPersist();
-      dpm($visitOf);
+      $this->entityView->setVisitOf($visitOf);
+      $this->accountGraph->setVisitOf($visitOf);
+      /** @var \Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitRelationshipModel $visit */
+      $visit = \Drupal::service('network_individual.model_relationship.user_view');
+      $visit->setView($this->entityView);
+      $visit->setUser($this->currentUserGraph);
+      $visit->setRequestTime($requestTime);
+      $this->entityView->setVisit($visit);
+      $this->currentUserGraph->setVisit($visit);
+      $this->entityView->connection()->flush();
     }
   }
 

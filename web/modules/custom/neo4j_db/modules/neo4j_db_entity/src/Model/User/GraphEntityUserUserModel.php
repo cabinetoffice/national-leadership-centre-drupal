@@ -48,12 +48,9 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
   protected $entity;
 
   /**
-   * @var
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitRelationshipModel", type="visit", direction="OUTGOING", mappedBy="user")
    */
-  protected $graphEntity;
-
   protected $visit;
-
 
   /**
    * {@inheritDoc}
@@ -118,6 +115,13 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
    */
   public function getName(): string {
     return $this->name;
+  }
+
+  /**
+   * @param \Drupal\neo4j_db\Model\Relationship\RelationshipModelInterface $visit
+   */
+  public function setVisit($visit): void {
+    $this->visit = $visit;
   }
 
 }

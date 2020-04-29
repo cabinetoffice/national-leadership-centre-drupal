@@ -80,7 +80,7 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
   protected $linkedin_account;
 
   /**
-   * @OGM\Relationship(relationshipEntity="NetworkIndividualVisitOfRelationshipModel", type="visitOf", direction="INCOMING", mappedBy="person")
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel", type="visitOf", direction="INCOMING", mappedBy="person")
    */
   protected $visitOf;
 
@@ -172,6 +172,11 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
     return $ids;
   }
 
-
+  /**
+   * @param \Drupal\neo4j_db\Model\Relationship\RelationshipModelInterface $visitOf
+   */
+  public function setVisitOf($visitOf): void {
+    $this->visitOf = $visitOf;
+  }
 
 }
