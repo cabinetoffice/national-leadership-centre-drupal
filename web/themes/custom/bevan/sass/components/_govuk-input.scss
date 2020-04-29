@@ -1,5 +1,9 @@
+.govuk-input {
+  font-family: $font-family-secondary;
+  font-size: govuk-px-to-rem(17);
+}
 .govuk-input:focus {
-	outline: 6px solid $yellow;
-	outline-offset: 0;
-	border: 5px solid $grey;
+  outline: 6px solid $yellow;
+  outline-offset: 0;
+  border: 5px solid $grey;
 }
