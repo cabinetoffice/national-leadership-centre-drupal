@@ -11,10 +11,10 @@ dependencies:
     - search_api
     - user
 id: senior_leaders_directory_es
-label: "Senior Leaders Directory ES"
+label: 'Senior Leaders Directory ES'
 module: views
-description: "The main directory based on the Elastic Search index."
-tag: ""
+description: 'The main directory based on the Elastic Search index.'
+tag: ''
 base_table: search_api_index_individuals
 base_field: search_api_id
 display:
@@ -27,10 +27,10 @@ display:
       access:
         type: perm
         options:
-          perm: "access user profiles"
+          perm: 'access user profiles'
       cache:
         type: tag
-        options: {}
+        options: {  }
       query:
         type: views_query
         options:
@@ -43,7 +43,7 @@ display:
           submit_button: Search
           reset_button: true
           reset_button_label: Reset
-          exposed_sorts_label: "Sort by"
+          exposed_sorts_label: 'Sort by'
           expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
@@ -55,27 +55,27 @@ display:
           id: 0
           total_pages: null
           tags:
-            previous: "Previous page"
-            next: "Next page"
+            previous: 'Previous page'
+            next: 'Next page'
           expose:
             items_per_page: false
-            items_per_page_label: "Items per page"
-            items_per_page_options: "5, 10, 25, 50"
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
             items_per_page_options_all: false
-            items_per_page_options_all_label: "- All -"
+            items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
       style:
         type: table
         options:
-          grouping: {}
-          row_class: ""
+          grouping: {  }
+          row_class: ''
           default_row_class: true
           override: true
           sticky: false
-          caption: ""
-          summary: ""
-          description: ""
+          caption: ''
+          summary: ''
+          description: ''
           columns:
             field_name: field_name
             job_title: job_title
@@ -83,32 +83,32 @@ display:
             org_sector: org_sector
           info:
             field_name:
-              align: ""
-              separator: ""
+              align: ''
+              separator: ''
               empty_column: false
-              responsive: ""
+              responsive: ''
             job_title:
               sortable: false
               default_sort_order: asc
-              align: ""
-              separator: ""
+              align: ''
+              separator: ''
               empty_column: false
-              responsive: ""
+              responsive: ''
             org_name:
               sortable: false
               default_sort_order: asc
-              align: ""
-              separator: ""
+              align: ''
+              separator: ''
               empty_column: false
-              responsive: ""
+              responsive: ''
             org_sector:
               sortable: false
               default_sort_order: asc
-              align: ""
-              separator: ""
+              align: ''
+              separator: ''
               empty_column: false
-              responsive: ""
-          default: "-1"
+              responsive: ''
+          default: '-1'
           empty_table: false
       row:
         type: fields
@@ -119,45 +119,45 @@ display:
           field: field_name
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           label: Name
           exclude: false
           alter:
             alter_text: false
-            text: ""
+            text: ''
             make_link: false
-            path: ""
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ""
-            rel: ""
-            link_class: ""
-            prefix: ""
-            suffix: ""
-            target: ""
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ""
-            more_link_path: ""
+            more_link_text: ''
+            more_link_path: ''
             strip_tags: false
             trim: false
-            preserve_tags: ""
+            preserve_tags: ''
             html: false
-          element_type: ""
-          element_class: ""
-          element_label_type: ""
-          element_label_class: ""
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
           element_label_colon: true
-          element_wrapper_type: ""
-          element_wrapper_class: ""
+          element_wrapper_type: ''
+          element_wrapper_class: ''
           element_default_classes: true
-          empty: ""
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -165,22 +165,22 @@ display:
           type: name_default
           settings:
             format: default
-            list_format: ""
+            list_format: ''
             markup: none
             link_target: _self
-            preferred_field_reference: ""
-            preferred_field_reference_separator: ", "
-            alternative_field_reference: ""
-            alternative_field_reference_separator: ", "
-          group_column: ""
-          group_columns: {}
+            preferred_field_reference: ''
+            preferred_field_reference_separator: ', '
+            alternative_field_reference: ''
+            alternative_field_reference_separator: ', '
+          group_column: ''
+          group_columns: {  }
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ", "
+          separator: ', '
           field_api_classes: false
           field_rendering: true
           fallback_handler: search_api
@@ -188,7 +188,7 @@ display:
             link_to_item: false
             use_highlighting: false
             multi_type: separator
-            multi_separator: ", "
+            multi_separator: ', '
           entity_type: user
           plugin_id: search_api_field
         job_title:
@@ -197,45 +197,45 @@ display:
           field: job_title
           relationship: none
           group_type: group
-          admin_label: ""
-          label: "Job Title"
+          admin_label: ''
+          label: 'Job Title'
           exclude: false
           alter:
             alter_text: false
-            text: ""
+            text: ''
             make_link: false
-            path: ""
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ""
-            rel: ""
-            link_class: ""
-            prefix: ""
-            suffix: ""
-            target: ""
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ""
-            more_link_path: ""
+            more_link_text: ''
+            more_link_path: ''
             strip_tags: false
             trim: false
-            preserve_tags: ""
+            preserve_tags: ''
             html: false
-          element_type: ""
-          element_class: ""
-          element_label_type: ""
-          element_label_class: ""
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
           element_label_colon: true
-          element_wrapper_type: ""
-          element_wrapper_class: ""
+          element_wrapper_type: ''
+          element_wrapper_class: ''
           element_default_classes: true
-          empty: ""
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -244,14 +244,14 @@ display:
           settings:
             link_to_entity: false
           group_column: value
-          group_columns: {}
+          group_columns: {  }
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ", "
+          separator: ', '
           field_api_classes: false
           field_rendering: true
           fallback_handler: search_api
@@ -259,7 +259,7 @@ display:
             link_to_item: false
             use_highlighting: false
             multi_type: separator
-            multi_separator: ", "
+            multi_separator: ', '
           plugin_id: search_api_field
         org_name:
           id: org_name
@@ -267,45 +267,45 @@ display:
           field: org_name
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           label: Organisation
           exclude: false
           alter:
             alter_text: false
-            text: ""
+            text: ''
             make_link: false
-            path: ""
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ""
-            rel: ""
-            link_class: ""
-            prefix: ""
-            suffix: ""
-            target: ""
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ""
-            more_link_path: ""
+            more_link_text: ''
+            more_link_path: ''
             strip_tags: false
             trim: false
-            preserve_tags: ""
+            preserve_tags: ''
             html: false
-          element_type: ""
-          element_class: ""
-          element_label_type: ""
-          element_label_class: ""
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
           element_label_colon: true
-          element_wrapper_type: ""
-          element_wrapper_class: ""
+          element_wrapper_type: ''
+          element_wrapper_class: ''
           element_default_classes: true
-          empty: ""
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -314,14 +314,14 @@ display:
           settings:
             link_to_entity: false
           group_column: value
-          group_columns: {}
+          group_columns: {  }
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ", "
+          separator: ', '
           field_api_classes: false
           field_rendering: true
           fallback_handler: search_api
@@ -329,7 +329,7 @@ display:
             link_to_item: false
             use_highlighting: false
             multi_type: separator
-            multi_separator: ", "
+            multi_separator: ', '
           plugin_id: search_api_field
         org_sector:
           id: org_sector
@@ -337,45 +337,45 @@ display:
           field: org_sector
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           label: Sector
           exclude: false
           alter:
             alter_text: false
-            text: ""
+            text: ''
             make_link: false
-            path: ""
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ""
-            rel: ""
-            link_class: ""
-            prefix: ""
-            suffix: ""
-            target: ""
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
             nl2br: false
             max_length: 0
             word_boundary: true
             ellipsis: true
             more_link: false
-            more_link_text: ""
-            more_link_path: ""
+            more_link_text: ''
+            more_link_path: ''
             strip_tags: false
             trim: false
-            preserve_tags: ""
+            preserve_tags: ''
             html: false
-          element_type: ""
-          element_class: ""
-          element_label_type: ""
-          element_label_class: ""
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
           element_label_colon: true
-          element_wrapper_type: ""
-          element_wrapper_class: ""
+          element_wrapper_type: ''
+          element_wrapper_class: ''
           element_default_classes: true
-          empty: ""
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -384,14 +384,14 @@ display:
           settings:
             link_to_entity: false
           group_column: value
-          group_columns: {}
+          group_columns: {  }
           group_rows: true
           delta_limit: 0
           delta_offset: 0
           delta_reversed: false
           delta_first_last: false
           multi_type: separator
-          separator: ", "
+          separator: ', '
           field_api_classes: false
           field_rendering: true
           fallback_handler: search_api
@@ -399,7 +399,7 @@ display:
             link_to_item: false
             use_highlighting: false
             multi_type: separator
-            multi_separator: ", "
+            multi_separator: ', '
           plugin_id: search_api_field
       filters:
         search_api_fulltext:
@@ -408,44 +408,44 @@ display:
           field: search_api_fulltext
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           operator: or
-          value: ""
+          value: ''
           group: 1
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
             label: Search
-            description: "Search by name, job title, location or organisation."
+            description: 'Search by name, job title, location or organisation.'
             use_operator: false
             operator: search_api_fulltext_op
             operator_limit_selection: false
-            operator_list: {}
+            operator_list: {  }
             identifier: search
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-              anonymous: "0"
-              nlc_staff: "0"
-              admin: "0"
-            placeholder: ""
+              anonymous: '0'
+              nlc_staff: '0'
+              admin: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
-            label: ""
-            description: ""
-            identifier: ""
+            label: ''
+            description: ''
+            identifier: ''
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {}
-            group_items: {}
+            default_group_multiple: {  }
+            group_items: {  }
           parse_mode: terms
           min_length: null
-          fields: {}
+          fields: {  }
           plugin_id: search_api_fulltext
         uid:
           id: uid
@@ -453,43 +453,43 @@ display:
           field: uid
           relationship: none
           group_type: group
-          admin_label: ""
-          operator: ">"
+          admin_label: ''
+          operator: '>'
           value:
-            min: ""
-            max: ""
-            value: "1"
+            min: ''
+            max: ''
+            value: '1'
           group: 1
           exposed: false
           expose:
-            operator_id: ""
-            label: ""
-            description: ""
+            operator_id: ''
+            label: ''
+            description: ''
             use_operator: false
-            operator: ""
+            operator: ''
             operator_limit_selection: false
-            operator_list: {}
-            identifier: ""
+            operator_list: {  }
+            identifier: ''
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
-            placeholder: ""
-            min_placeholder: ""
-            max_placeholder: ""
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
-            label: ""
-            description: ""
-            identifier: ""
+            label: ''
+            description: ''
+            identifier: ''
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {}
-            group_items: {}
+            default_group_multiple: {  }
+            group_items: {  }
           plugin_id: search_api_numeric
       sorts:
         search_api_relevance:
@@ -498,11 +498,11 @@ display:
           field: search_api_relevance
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           order: DESC
           exposed: false
           expose:
-            label: ""
+            label: ''
           plugin_id: search_api
         family_name:
           id: family_name
@@ -510,13 +510,13 @@ display:
           field: family_name
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           order: ASC
           exposed: false
           expose:
-            label: ""
+            label: ''
           plugin_id: search_api
-      title: "Welcome. You can use this service to find others within the National Leadership Centre Network."
+      title: 'Senior Leaders Directory'
       header:
         result:
           id: result
@@ -524,11 +524,11 @@ display:
           field: result
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           empty: false
-          content: "Showing @start to @end"
+          content: 'Showing @start to @end'
           plugin_id: result
-      footer: {}
+      footer: {  }
       empty:
         area:
           id: area
@@ -536,35 +536,36 @@ display:
           field: area
           relationship: none
           group_type: group
-          admin_label: ""
+          admin_label: ''
           empty: true
           tokenize: false
           content:
             value: "<h2 class=\"search-no-results govuk-heading-m\">Sorry, there&apos;s no-one to match that search.</h2>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n<li>Details for Senior Leaders who have not attended the Programme are not currently available.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
             format: filtered_text
           plugin_id: text
-      relationships: {}
-      arguments: {}
-      display_extenders: {}
+      relationships: {  }
+      arguments: {  }
+      display_extenders: {  }
       use_ajax: true
+      css_class: nlc-responsive-table
     cache_metadata:
       max-age: -1
       contexts:
-        - "languages:language_content"
-        - "languages:language_interface"
+        - 'languages:language_content'
+        - 'languages:language_interface'
         - url
         - url.query_args
         - user.permissions
       tags:
-        - "config:field.storage.profile.field_job_title"
-        - "config:field.storage.user.field_name"
+        - 'config:field.storage.profile.field_job_title'
+        - 'config:field.storage.user.field_name'
   page:
     display_plugin: page
     id: page
     display_title: Page
     position: 1
     display_options:
-      display_extenders: {}
+      display_extenders: {  }
       path: directory
       exposed_block: true
       cache:
@@ -574,11 +575,11 @@ display:
     cache_metadata:
       max-age: -1
       contexts:
-        - "languages:language_content"
-        - "languages:language_interface"
+        - 'languages:language_content'
+        - 'languages:language_interface'
         - url
         - url.query_args
         - user.permissions
       tags:
-        - "config:field.storage.profile.field_job_title"
-        - "config:field.storage.user.field_name"
+        - 'config:field.storage.profile.field_job_title'
+        - 'config:field.storage.user.field_name'
