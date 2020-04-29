@@ -22,6 +22,9 @@
     max-width: govuk-px-to-rem(112);
     margin-right: govuk-px-to-rem(69);
   }
+  @media (max-width: 830px) {
+    margin-bottom: 13px;
+  }
 }
 .site-header__logo a {
   display: block;
