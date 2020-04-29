@@ -25,12 +25,12 @@ class NetworkIndividualVisitRelationshipModel extends AbstractRelationshipModel 
   protected $connection;
 
   /**
-   * @OGM\StartNode(targetEntity="Drupal\neo4j_db_entity\Model\Action\GraphEntityViewModel")
+   * @OGM\EndNode(targetEntity="Drupal\neo4j_db_entity\Model\Action\GraphEntityViewModel")
    */
   protected $view;
 
   /**
-   * @OGM\EndNode(targetEntity="Drupal\neo4j_db_entity\Model\User\GraphEntityUserUserModel")
+   * @OGM\StartNode(targetEntity="Drupal\neo4j_db_entity\Model\User\GraphEntityUserUserModel")
    */
   protected $user;
 
