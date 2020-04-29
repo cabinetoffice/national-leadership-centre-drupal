@@ -1,7 +1,9 @@
 <?php
 
+use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
-use Drupal\user\UserInterface;
+use Drupal\Core\Routing\StackedRouteMatchInterface;
+use Drupal\Core\Url;
 use Drupal\search_api\Query\QueryInterface;
 
 /**
@@ -43,20 +45,20 @@ function nlc_prototype_theme($existing, $type, $theme, $path) {
     'nlc_prototype_login_page' => [
       'variables' => [
         'check_url' => NULL,
-      ]
+      ],
     ],
     'nlc_connect_access_email_body' => [
       'variables' => [
         'pre' => NULL,
         'link' => NULL,
         'post' => NULL,
-      ]
+      ],
     ],
     'nlc_alert_title' => [
       'variables' => [
         'type' => 'h3',
         'title' => NULL,
-      ]
+      ],
     ],
   ];
 }
@@ -109,4 +111,31 @@ function nlc_prototype_google_analytics_event_arguments_alter(&$arguments, &$acc
       // Do nothing here.
     }
   }
+}
+
+/**
+ * Implements hook_js_settings_alter().
+ */
+function nlc_prototype_js_settings_alter(array &$settings, AttachedAssetsInterface $assets) {
+  $settings['path']['currentPathIsSelfProfile'] = _nlc_prototype_current_path_self_profile();
+}
+
+/**
+ * @return bool
+ */
+function _nlc_prototype_current_path_self_profile() {
+  $currentPathIsSelfProfile = FALSE;
+  $account = \Drupal::currentUser();
+  $route_match = \Drupal::routeMatch();
+  if ($route_match instanceof StackedRouteMatchInterface) {
+    $route_match = $route_match->getMasterRouteMatch();
+  }
+  if ($route_match->getRouteName()) {
+    $url = Url::fromRouteMatch($route_match);
+    $routeParams = $url->getRouteParameters();
+    if ($url->getRouteName() == 'entity.user.canonical' && $routeParams['user'] == $account->id()) {
+      $currentPathIsSelfProfile = TRUE;
+    }
+  }
+  return $currentPathIsSelfProfile;
 }
