@@ -9,3 +9,6 @@
   right: 50%;
   width: 100vw;
 }
+.govuk-width-container--narrow {
+  max-width: govuk-px-to-rem($govuk-narrow-page-width);
+}
