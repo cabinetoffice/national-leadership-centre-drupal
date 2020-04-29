@@ -56,18 +56,42 @@ class GraphEntityViewModel extends AbstractModel {
   protected $requestTime;
 
   /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $requestUri;
+
+  /**
+   * @var string
+   *
+   * @OGM\Property(type="string")
+   */
+  protected $method;
+
+  /**
    * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
-   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel",type="visitOf", direction="OUTGOING", collection=false, mappedBy="view", targetEntity="Person")
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel", type="visitOf", direction="OUTGOING", collection=false, mappedBy="view", targetEntity="Person")
    */
   protected $visitOf;
 
   /**
    * @var \Drupal\neo4j_db_entity\Model\GraphEntityModelInterface
    *
-   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitRelationshipModel",type="visit", direction="INCOMING", collection=false, mappedBy="view", targetEntity="User")
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitRelationshipModel", type="visit", direction="INCOMING", collection=false, mappedBy="view", targetEntity="User")
    */
   protected $visit;
+
+  /**
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualPreviousVisitRelationshipModel", type="previousVisit", direction="OUTGOING", collection=false, mappedBy="current")
+   */
+  protected $currentView;
+
+  /**
+   * @OGM\Relationship(relationshipEntity="Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualPreviousVisitRelationshipModel", type="previousVisit", direction="INCOMING", collection=false, mappedBy="previous")
+   */
+  protected $previousView;
 
   /**
    * @var array
@@ -118,6 +142,20 @@ class GraphEntityViewModel extends AbstractModel {
   }
 
   /**
+   * @param string $requestUri
+   */
+  public function setRequestUri(string $requestUri): void {
+    $this->requestUri = $requestUri;
+  }
+
+  /**
+   * @param string $method
+   */
+  public function setMethod(string $method): void {
+    $this->method = $method;
+  }
+
+  /**
    * @return \Drupal\neo4j_db\Database\Driver\bolt\Connection
    */
   public function connection(): \Drupal\neo4j_db\Database\Driver\bolt\Connection {
@@ -145,5 +183,18 @@ class GraphEntityViewModel extends AbstractModel {
    */
   public function setVisit($visit): void {
     $this->visit = $visit;
+  }
+
+  /**
+   */
+  public function setCurrentView($currentView): void {
+    $this->currentView = $currentView;
+  }
+
+  /**
+   *
+   */
+  public function setPreviousView($previousView): void {
+    $this->previousView = $previousView;
   }
 }
