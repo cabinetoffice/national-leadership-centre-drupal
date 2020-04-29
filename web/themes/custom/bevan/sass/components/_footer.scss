@@ -28,13 +28,13 @@ $tablet: 768px;
 }
 .footer-main__social {
   display: inline-block;
+  margin-left: 8.125%;
   .footer-main__social__heading {
     font-family: $font-family-secondary;
     font-size: govuk-px-to-rem(17px);
     line-height: govuk-px-to-rem(25px);
     font-weight: 400;
     margin: 0;
-    margin-left: govuk-px-to-rem(115px);
     padding-right: govuk-px-to-rem(15px);
     display: inline-block;
     @media only screen and (max-width: $tablet) {
@@ -76,8 +76,17 @@ $tablet: 768px;
     }
   }
 }
+.footer-main__go-to-website {
+  display: inline-block;
+  @media only screen and (min-width: $tablet) {
+    margin-left: 8.125%;
+  }
+  @media only screen and (max-width: $tablet) {
+    margin-bottom: 20px;
+  }
+}
 
-.footer-main__crest__wrapper {
+.footer-main .footer-main__crest__wrapper {
   float: right;
   display: block;
 }
@@ -129,7 +138,7 @@ $tablet: 768px;
 
     .footer-main__social {
       display: block;
-      margin-bottom: govuk-px-to-rem(22px);
+      margin-bottom: govuk-px-to-rem(10px);
 
       ul {
         margin: 0;

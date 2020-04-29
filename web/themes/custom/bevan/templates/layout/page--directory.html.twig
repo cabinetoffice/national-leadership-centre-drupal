@@ -1,16 +1,6 @@
-<header class="site-header" role="banner" data-module="header">
-    <div class="site-header__first-row">
-      <div class="govuk-width-container site-header__first-row-inner">
-        {{ page.header }}
-      </div>
-    </div>
-    <div class="site-header__second-row govuk-width-container">
-      {% if phase_banner %}
-        {{  phase_banner }}
-      {% endif %}
-    </div>
-</header>
+{% extends 'page.html.twig' %}
 
+{% block main %}
 <div class="govuk-width-container">
 
   <div>
@@ -56,24 +46,4 @@
 
   </div>
 </div>
-
-<footer class="footer-main" role="contentinfo">
-  <div class="govuk-width-container">
-    {% if page.footer_one %}
-    <div class="footer-main__nav">
-      {{ page.footer_one }}
-    </div>
-    {% endif %}
-    {% if page.footer_two %}
-    <div class="footer-main__social">
-      {{ page.footer_two }}
-    </div>
-    {% endif %}
-    <a class="footer-main__crest__wrapper" href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/" target="_blank">
-    <div class="footer-main__crest">
-    <img src="https://www.nationalleadership.gov.uk/static/img/govuk-crest-2x.png" alt="Government crest">
-    <p><span>©</span>Crown copyright</p>
-    </div>
-    </a>
-  </div>
-</footer>
+{% endblock %}
