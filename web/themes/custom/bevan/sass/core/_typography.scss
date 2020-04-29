@@ -35,7 +35,8 @@
 }
 
 .govuk-body,
-.govuk-body-m {
+.govuk-body-m,
+p {
   font-family: $font-family-secondary;
   font-size: govuk-px-to-rem(17);
   line-height: govuk-em(25, 17);
