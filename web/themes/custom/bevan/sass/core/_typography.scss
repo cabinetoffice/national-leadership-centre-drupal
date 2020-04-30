@@ -1,3 +1,6 @@
+.govuk-template__body {
+  font-family: $font-family-secondary;
+}
 .govuk-heading-xl {
   font-size: govuk-px-to-rem(23);
   line-height: govuk-em(33, 23);
