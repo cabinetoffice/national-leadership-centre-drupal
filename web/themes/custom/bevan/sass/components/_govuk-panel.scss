@@ -1,0 +1,20 @@
+.govuk-panel {
+  text-align: left;
+  background: $pale-yellow;
+  border: 0;
+  padding: 30px 25px 30px 20px;
+  margin: 0;
+}
+.govuk-panel__title {
+  font-size: govuk-px-to-rem(29);
+  line-height: govuk-em(40, 29);
+  font-weight: 400;
+  margin-bottom: govuk-px-to-rem(10);
+  @include govuk-media-query($until: tablet) {
+    font-size: govuk-px-to-rem(23);
+    line-height: govuk-em(31, 23);
+  }
+}
+.govuk-panel__body {
+  @include govuk-font($size: 24);
+}

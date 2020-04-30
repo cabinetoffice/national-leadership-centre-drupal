@@ -10,8 +10,8 @@ _core:
   default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
 id: bevan_messages
 theme: bevan
-region: pre_content
-weight: -10
+region: full_width
+weight: -11
 provider: null
 plugin: system_messages_block
 settings:

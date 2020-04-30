@@ -20,6 +20,8 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 @import "components/govuk-phase-banner";
 @import "components/govuk-tag";
 @import "components/govuk-table";
+@import "components/govuk-error-summary";
+@import "components/govuk-error-message";
 
 // Add new components
 @import "settings/gradients";

@@ -1,5 +1,13 @@
 {% extends 'page.html.twig' %}
 
+{% block panel %}
+  <section class="govuk-panel">
+    <div class="govuk-width-container">
+      {{ page.full_width }}
+    </div>
+  </section>
+{% endblock %}
+
 {% block main %}
 <div class="govuk-width-container">
 

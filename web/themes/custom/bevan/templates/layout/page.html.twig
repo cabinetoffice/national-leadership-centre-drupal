@@ -13,10 +13,18 @@
 </header>
 {% endblock %}
 
+{% block panel %}
+  <section class="govuk-panel">
+    <div class="govuk-width-container govuk-width-container--narrow">
+      {{ page.full_width }}
+    </div>
+  </section>
+{% endblock %}
+
 {% block main %}
 <div class="govuk-width-container govuk-width-container--narrow">
 
-  <div class="govuk-main-wrapper govuk-main-wrapper--l">
+  <div class="govuk-main-wrapper">
 
     <section>
       {{ page.pre_content }}

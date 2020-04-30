@@ -15,7 +15,7 @@ third_party_settings:
 id: esurvcovid19wellnesssurveyblock
 theme: bevan
 region: pre_content
-weight: 0
+weight: -5
 provider: null
 plugin: covid_19_esurv_survey_block
 settings:

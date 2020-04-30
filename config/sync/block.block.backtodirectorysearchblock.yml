@@ -14,7 +14,7 @@ third_party_settings:
 id: backtodirectorysearchblock
 theme: bevan
 region: pre_content
-weight: -9
+weight: -11
 provider: null
 plugin: back_to_diretory_search_block
 settings:
