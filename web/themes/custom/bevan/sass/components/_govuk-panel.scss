@@ -5,6 +5,9 @@
   padding: 30px 25px 30px 20px;
   margin: 0;
 }
+.govuk-panel:focus {
+  outline: none;
+}
 .govuk-panel__title {
   font-size: govuk-px-to-rem(29);
   line-height: govuk-em(40, 29);
