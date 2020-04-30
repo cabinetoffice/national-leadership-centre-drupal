@@ -34,6 +34,9 @@ $tablet: govuk-px-to-rem(1240);
 }
 .footer-main__social {
   display: inline-block;
+  @media only screen and (min-width: $tablet) {
+    width: govuk-px-to-rem(229);
+  }
   .footer-main__social__heading {
     font-family: $font-family-secondary;
     font-size: inherit;
