@@ -234,7 +234,7 @@ menus:
     description: null
     enabled: '1'
     expanded: '0'
-    weight: '0'
+    weight: '1'
     langcode: en
     uuid: 3f17ecee-0b0a-49dc-8394-4d6ac509975d
   -
@@ -258,7 +258,7 @@ menus:
     description: null
     enabled: '1'
     expanded: '0'
-    weight: '0'
+    weight: '1'
     langcode: en
     uuid: 331047cd-f18e-4a76-aca7-83dff2bf1e20
   -
@@ -270,7 +270,7 @@ menus:
     description: null
     enabled: '1'
     expanded: '0'
-    weight: '0'
+    weight: '3'
     langcode: en
     uuid: b30202c9-68cc-404f-a442-bab23d21ad0e
   -
@@ -282,6 +282,6 @@ menus:
     description: null
     enabled: '1'
     expanded: '0'
-    weight: '0'
+    weight: '2'
     langcode: en
     uuid: 5fc6c105-39e3-4297-97ea-51d9696c7684
