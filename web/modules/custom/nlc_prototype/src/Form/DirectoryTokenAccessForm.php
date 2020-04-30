@@ -92,7 +92,8 @@ class DirectoryTokenAccessForm extends FormBase {
       '#type' => 'email',
       '#title' => t('Email'),
       '#attributes' => array(
-        'autocomplete' => 'email'
+        'autocomplete' => 'email',
+        'class' => array('govuk-input--width-30')
       ),
       '#required' => TRUE,
     );
