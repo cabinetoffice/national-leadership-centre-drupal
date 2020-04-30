@@ -8,6 +8,8 @@ logo: assets/images/logos/nlc-connect.png
 # Regions
 regions:
   header: "Header"
+  header_one: "Header one"
+  header_two: "Header two"
   full_width: "Full width panel"
   pre_content: "Pre-content"
   sidebar_first: "Sidebar first"

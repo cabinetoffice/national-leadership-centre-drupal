@@ -2,11 +2,12 @@
   font-family: $font-family-secondary;
 }
 .govuk-heading-xl {
-  font-size: govuk-px-to-rem(23);
-  line-height: govuk-em(33, 23);
+  font-size: govuk-px-to-rem(35);
+  line-height: govuk-em(52, 35);
+  font-weight: 400;
   @media (max-width: 660) {
-    font-size: govuk-px-to-rem(23);
-    line-height: govuk-em(33, 23);
+    font-size: govuk-px-to-rem(32);
+    line-height: govuk-em(48, 32);
   }
 }
 

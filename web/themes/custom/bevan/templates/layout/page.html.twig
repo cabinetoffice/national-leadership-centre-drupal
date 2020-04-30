@@ -3,12 +3,14 @@
     <div class="site-header__first-row">
       <div class="govuk-width-container site-header__first-row-inner">
         {{ page.header }}
+        {{ page.header_one }}
       </div>
     </div>
     <div class="site-header__second-row govuk-width-container">
       {% if phase_banner %}
         {{  phase_banner }}
       {% endif %}
+      {{ page.header_two }}
     </div>
 </header>
 {% endblock %}
@@ -19,8 +21,6 @@
 
 {% block main %}
 <div class="govuk-width-container govuk-width-container--narrow">
-
-  <div class="govuk-main-wrapper">
 
     <section>
       {{ page.pre_content }}
@@ -55,8 +55,6 @@
       {% endif %}
 
     </div>
-
-  </div>
 </div>
 {% endblock %}
 
