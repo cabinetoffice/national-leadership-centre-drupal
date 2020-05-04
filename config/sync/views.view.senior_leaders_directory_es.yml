@@ -516,7 +516,7 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-      title: 'Senior Leaders Directory'
+      title: 'Welcome. You can use this service to find others within the National Leadership Centre Network.'
       header:
         result:
           id: result
