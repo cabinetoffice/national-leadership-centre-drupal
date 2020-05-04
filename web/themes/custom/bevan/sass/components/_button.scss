@@ -22,7 +22,8 @@
   border-color: $grey;
   color: $grey;
   background: $yellow;
-  outline: 6px solid $grey;
+  outline: none;
+  box-shadow: 0 0 0 4px $grey;
 }
 .button--link {
   background-color: transparent;
