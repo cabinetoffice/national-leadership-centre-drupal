@@ -1,0 +1,7 @@
+nlc_library.trello_import.admin:
+  path: 'admin/config/connect/library'
+  defaults:
+    _title: 'Connect library admin'
+    _form: 'Drupal\nlc_library\Form\TrelloImportAdminForm'
+  requirements:
+    _permission: 'administer site configuration'
