@@ -51,6 +51,7 @@
 .site-header__link--service-name {
   font-size: govuk-px-to-rem(29);
   line-height: govuk-em(40, 29);
+  font-family: $govuk-font-family;
   @media (max-width: govuk-px-to-rem(535)) {
     font-size: govuk-px-to-rem(22);
     line-height: govuk-em(31, 22);
