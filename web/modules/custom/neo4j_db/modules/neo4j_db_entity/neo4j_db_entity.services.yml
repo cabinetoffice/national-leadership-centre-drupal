@@ -1,0 +1,16 @@
+services:
+  neo4j_db_entity.model.manager:
+    class: Drupal\neo4j_db_entity\Model\GraphEntityModelManager
+    tags:
+      - { name: service_collector, tag: graph_entity_model, call: addEntityModel }
+#  neo4j_db_entity.model.node:
+  neo4j_db_entity.model.user:
+    class: Drupal\neo4j_db_entity\Model\User\GraphEntityUserUserModel
+    arguments: ['@string_translation', '@neo4j_db.connection']
+    tags:
+      - { name: graph_entity_model }
+  neo4j_db.model.entity_view:
+    class: Drupal\neo4j_db_entity\Model\Action\GraphEntityViewModel
+    arguments: ['@string_translation', '@neo4j_db.connection']
+    tags:
+      - { name: graph_model }

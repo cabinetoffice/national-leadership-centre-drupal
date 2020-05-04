@@ -1,0 +1,5 @@
+type: module
+name: Neo4j Database Layer
+description: 'A DB driver for a Neo4j graph database'
+package: Graph DB
+core: 8.x

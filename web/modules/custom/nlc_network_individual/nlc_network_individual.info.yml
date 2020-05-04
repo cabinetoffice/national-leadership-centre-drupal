@@ -1,0 +1,10 @@
+type: module
+name: 'NLC Network Individuals'
+description: 'Provides graph DB support to Network Individual entities.'
+package: NLC
+core: '8.x'
+dependencies:
+  - neo4j_db
+  - neo4j_db_entity
+  - nlc_salesforce
+  - salesforce_mapping
