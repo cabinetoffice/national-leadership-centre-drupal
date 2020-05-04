@@ -1,0 +1,19 @@
+uuid: 37be494c-c1aa-4c80-b88e-e5d270417bcc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author
+    - node.type.external_link
+id: node.external_link.field_author
+field_name: field_author
+entity_type: node
+bundle: external_link
+label: Author
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
