@@ -1,69 +1,54 @@
 <?php
 
-namespace Drupal\nlc_library\Form;
+namespace Drupal\nlc_library\Commands;
 
-use Drupal\Component\Utility\UrlHelper;
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Extension\ModuleHandler;
-use Drupal\Core\Form\FormBase;
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
+use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 use Drupal\nlc_library\Model\ModelInterface;
 use Drupal\nlc_library\Model\Trello\CardModel;
 use Drupal\nlc_library\Model\Trello\ListModel;
-use Drupal\taxonomy\Entity\Term;
-use GuzzleHttp\Exception\RequestException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drush\Commands\DrushCommands;
+use Symfony\Component\Console\Helper\TableCell;
 
-class TrelloImportAdminForm extends FormBase {
+/**
+ * A Drush commandfile.
+ *
+ * In addition to this file, you need a drush.services.yml
+ * in root of your module, and a composer.json file that provides the name
+ * of the services file to use.
+ *
+ * See these files for an example of injecting Drupal services:
+ *   - http://cgit.drupalcode.org/devel/tree/src/Commands/DevelCommands.php
+ *   - http://cgit.drupalcode.org/devel/tree/drush.services.yml
+ */
+class NlcLibraryCommands extends DrushCommands {
 
   private $trelloBoardId = 'X1OQEy5Q';
 
   private $trelloTopics = [];
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getFormId() {
-    return 'nlc_library_trello_import_admin_form';
-  }
-
-  protected function getEditableConfigNames() {
-    return [
-      'nlc_library.trello'
-    ];
+  public function __construct() {
   }
 
   /**
-   * {@inheritdoc}
+   * Import library items from a local Trello board export JSON file.
+   *
+   * @command nlc_library:trello_import
+   * @aliases nlcl-ti
+   * @field-labels
+   *   title: Title
+   *   nid: NID
+   *   topic: Topic
+   *
+   * @return \Consolidation\OutputFormatters\StructuredData\RowsOfFields
+   *   The objects.
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-
-    $form['parse_json'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Import Trello content from file'),
-    ];
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    $config = $this->configFactory()->getEditable('nlc_library.trello');
-    $config->set('last_import', \Drupal::time()->getRequestTime())
-      ->save();
-
-    $this->parseTrelloJson();
-  }
-
-  private function parseTrelloJson() {
+  public function importTrelloFromJson() {
     $moduleHandler = \Drupal::service('module_handler');
-    $base_path = $moduleHandler->getModule('nlc_library')->getPath();
+    $base_path = getcwd() . '/' . $moduleHandler->getModule('nlc_library')->getPath();
     $path = implode('/', [$base_path, 'resources', 'trello', $this->trelloBoardId]) . '.json';
     $json = file_get_contents($path);
     $data = json_decode($json);
+    $success = [];
     // Make sure we have all the topics in Connect.
     foreach ($data->lists as $list) {
       $listModel = new ListModel($list);
@@ -82,16 +67,22 @@ class TrelloImportAdminForm extends FormBase {
       $cardModel = new CardModel($card);
       if ($cardTerm = $this->getTrelloTopicById($cardModel->getListId())) {
         $cardModel->setTopicTerm($cardTerm);
-        $externalLink = $this->mergeExternalLinkNode($cardModel);
-        dpm("{$externalLink->id()} | {$externalLink->label()}");
+        /** @var \Drupal\Core\Entity\EntityInterface $externalLink */
+        if ($externalLink = $this->mergeExternalLinkNode($cardModel)) {
+//          $success[$externalLink->id()][] = $externalLink;
+          $success[$externalLink->id()]['title']  = new TableCell($externalLink->label());
+          $success[$externalLink->id()]['nid'] = new TableCell($externalLink->id());
+          $success[$externalLink->id()]['topic'] = new TableCell($cardTerm->getName());
+        }
       }
     }
+    return new RowsOfFields($success);
   }
 
   /**
    * @return array
    */
-  public function getTrelloTopics(): array {
+  private function getTrelloTopics(): array {
     return $this->trelloTopics;
   }
 
@@ -100,8 +91,8 @@ class TrelloImportAdminForm extends FormBase {
    *
    * @return \Drupal\taxonomy\TermInterface|bool
    */
-  public function getTrelloTopicById($id) {
-      return !empty($this->getTrelloTopics()[$id]) ? $this->getTrelloTopics()[$id] : false;
+  private function getTrelloTopicById($id) {
+    return !empty($this->getTrelloTopics()[$id]) ? $this->getTrelloTopics()[$id] : false;
   }
 
   /**
