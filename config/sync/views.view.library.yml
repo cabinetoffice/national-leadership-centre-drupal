@@ -14,7 +14,7 @@ dependencies:
   module:
     - link
     - search_api
-    - text
+    - smart_trim
     - user
 id: library
 label: Library
@@ -75,7 +75,7 @@ display:
         type: default
         options:
           grouping: {  }
-          row_class: govuk-grid-column-one-third
+          row_class: ''
           default_row_class: true
       row:
         type: fields
@@ -122,7 +122,7 @@ display:
           element_label_class: ''
           element_label_colon: false
           element_wrapper_type: ''
-          element_wrapper_class: 'topic topic-{{ field_topic_1| clean_class }}'
+          element_wrapper_class: ''
           element_default_classes: false
           empty: ''
           hide_empty: false
@@ -161,6 +161,7 @@ display:
                 view_mode: default
               topics:
                 display_method: label
+                view_mode: default
           plugin_id: search_api_field
         title_1:
           id: title_1
@@ -421,8 +422,20 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_default
-          settings: {  }
+          type: smart_trim
+          settings:
+            trim_length: 40
+            trim_type: words
+            trim_suffix: ''
+            wrap_output: false
+            wrap_class: trimmed
+            more_link: false
+            more_text: More
+            more_class: more-link
+            summary_handler: full
+            trim_options:
+              text: false
+              trim_zero: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -614,6 +627,19 @@ display:
           plugin_id: search_api
       title: Library
       header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: "<p class=\"govuk-body-l\">The NLC have put together this board to share some of the content they've uncovered during the COVID-19 pandemic.</p>\r\n\r\n<p>This is not designed to be a single source of truth, but simply a collection of interesting artefacts to read, listen and watch.</p>\r\n\r\n<p>If you would like to have anything added to the board, please email Morgan Frodsham on morgan.frodsham@cabinetoffice.gov.uk</p>"
+            format: filtered_text
+          plugin_id: text
         result:
           id: result
           table: views
@@ -622,7 +648,7 @@ display:
           group_type: group
           admin_label: ''
           empty: false
-          content: '<div class="govuk-grid-column-full">Showing @start to @end of @total</div>'
+          content: '<p>Showing @start to @end of @total</p>'
           plugin_id: result
       footer: {  }
       empty:
@@ -643,7 +669,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       use_ajax: true
-      css_class: govuk-grid-row
+      css_class: ''
     cache_metadata:
       max-age: -1
       contexts:

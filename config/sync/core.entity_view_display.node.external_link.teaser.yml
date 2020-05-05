@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.external_link.field_source
     - field.field.node.external_link.field_thumbnail
     - field.field.node.external_link.field_topic
+    - field.field.node.external_link.field_trello_id
     - field.field.node.external_link.field_url
     - node.type.external_link
   module:
@@ -41,5 +42,6 @@ hidden:
   field_source: true
   field_thumbnail: true
   field_topic: true
+  field_trello_id: true
   field_url: true
   search_api_excerpt: true

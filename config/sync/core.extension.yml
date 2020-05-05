@@ -40,6 +40,7 @@ module:
   menu_ui: 0
   monolog: 0
   name: 0
+  nlc_library: 0
   nlc_prototype: 0
   nlc_register_interest: 0
   nlc_salesforce: 0
@@ -65,6 +66,7 @@ module:
   select_or_other: 0
   sendgrid_integration: 0
   serialization: 0
+  smart_trim: 0
   structure_sync: 0
   syslog: 0
   system: 0

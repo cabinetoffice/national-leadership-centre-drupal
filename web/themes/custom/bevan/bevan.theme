@@ -2,6 +2,7 @@
 use \Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Drupal\Component\Utility\Html;
 
 /**
  * Preprocess page
@@ -51,7 +52,7 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
           '#plain_text' => $k,
           '#prefix' => '<span>',
           '#suffix' => '</span>',
-        ]
+        ],
       ];
     }
   }
@@ -124,6 +125,44 @@ function bevan_preprocess_status_messages(&$variables) {
     $haystack = $lastMessage->__toString();
     if ((strpos($haystack, '1 error has been found') > -1) && (strpos($haystack, 'Email') > 0)) {
       array_pop($variables['message_list']['error']);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_views_view() for the library view.
+ */
+function bevan_preprocess_views_view__library(&$variables) {
+  $variables['attributes']['class'][] = 'govuk-grid-row';
+}
+
+/**
+ * Implements hook_preprocess_views_view_unformatted() for the library view.
+ */
+function bevan_preprocess_views_view_unformatted__library(&$variables) {
+  foreach ($variables['rows'] as $id => $row) {
+    $variables['rows'][$id]['attributes']->addClass('govuk-grid-column-one-third');
+  }
+}
+
+function bevan_preprocess_views_view_fields(&$variables) {
+  /** @var \Drupal\views\ViewExecutable $view */
+  $view = $variables['view'];
+  $fields = $variables['fields'];
+  if ($view->id() == 'library') {
+    foreach ($fields as $id => $field) {
+      // Add topic classes to topic fields in the library view
+      if ($id == 'field_topic_1') {
+        $topic_name = sprintf('topic-%s', trim(strip_tags($field->content->__toString())));
+        $attributes = [
+          'class' => [
+            'topic',
+            Html::getClass($topic_name),
+          ],
+        ];
+        $field->wrapper_attributes = new \Drupal\Core\Template\Attribute($attributes);
+        $variable['fields'][$id] = $field;
+      }
     }
   }
 }

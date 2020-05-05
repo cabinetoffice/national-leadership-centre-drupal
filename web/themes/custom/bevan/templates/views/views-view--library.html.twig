@@ -43,7 +43,7 @@
   {{ title_suffix }}
 
   {% if header %}
-    <header>
+    <header class="govuk-grid-column-full">
       {{ header }}
     </header>
   {% endif %}
@@ -52,7 +52,9 @@
   {{ attachment_before }}
 
   {% if pager %}
+  <div class="govuk-grid-column-full">
   {{ pager }}
+  </div>
   {%  endif %}
 
   {% if rows -%}
@@ -60,13 +62,17 @@
   {% elseif empty -%}
     {{ empty }}
   {% endif %}
-  {{ pager }}
+  {% if pager %}
+    <div class="govuk-grid-column-full">
+      {{ pager }}
+    </div>
+  {%  endif %}
 
   {{ attachment_after }}
   {{ more }}
 
   {% if footer %}
-    <footer>
+    <footer class="govuk-grid-column-full">
       {{ footer }}
     </footer>
   {% endif %}

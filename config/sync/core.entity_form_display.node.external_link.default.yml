@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.external_link.field_source
     - field.field.node.external_link.field_thumbnail
     - field.field.node.external_link.field_topic
+    - field.field.node.external_link.field_trello_id
     - field.field.node.external_link.field_url
     - image.style.thumbnail
     - node.type.external_link
@@ -100,7 +101,7 @@ content:
     type: image_image
     region: content
   field_topic:
-    weight: 11
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -158,4 +159,5 @@ content:
       match_limit: 10
     region: content
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_trello_id: true
