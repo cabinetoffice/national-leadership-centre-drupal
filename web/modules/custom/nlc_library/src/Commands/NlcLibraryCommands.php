@@ -125,12 +125,12 @@ class NlcLibraryCommands extends DrushCommands {
     $properties = array_merge($baseProperties, ['field_trello_id' => $model->getId()]);
     $entities = $this->loadEntitiesFromModel($model, 'taxonomy_term', $properties);
     if (empty($entities)) {
-      $properties = array_merge($baseProperties, ['name' => $model->getName()]);
+      $properties = array_merge($baseProperties, ['name' => $this->topicTransformCase($model->getName())]);
       $entities = $this->loadEntitiesFromModel($model, 'taxonomy_term', $properties);
     }
     if (empty($entities)) {
       // There is not current term, so create one.
-      $properties = array_merge($baseProperties, ['name' => $model->getName(), 'field_trello_id' => $model->getId()]);
+      $properties = array_merge($baseProperties, ['name' => $this->topicTransformCase($model->getName()), 'field_trello_id' => $model->getId()]);
       $term = \Drupal::entityTypeManager()
         ->getStorage('taxonomy_term')
         ->create($properties);
@@ -140,7 +140,7 @@ class NlcLibraryCommands extends DrushCommands {
       // Make sure the current term is up-to-date with the Trello values — name and ID.
       /** @var \Drupal\taxonomy\Entity\Term $entity */
       $term = current($entities);
-      $term->setName($model->getName())
+      $term->setName($this->topicTransformCase($model->getName()))
         ->set('field_trello_id', $model->getId())
         ->save();
     }
@@ -197,6 +197,16 @@ class NlcLibraryCommands extends DrushCommands {
       $entity->save();
     }
     return $entity;
+  }
+
+  private function topicTransformCase($text) {
+    $words = explode(' ', $text);
+    foreach($words as $k => $word){
+      if(strtoupper($word) !== $word) {
+        $words[$k] = strtolower($word);
+      }
+    }
+    return implode(' ', $words);
   }
 
 }
