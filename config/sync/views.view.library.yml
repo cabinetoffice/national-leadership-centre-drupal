@@ -625,7 +625,7 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-      title: Library
+      title: 'The Connect Library'
       header:
         area:
           id: area
