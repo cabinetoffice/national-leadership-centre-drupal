@@ -3,12 +3,27 @@
   color: $white;
   padding: 2px 20px 2px 5px;
   font-size: 82.5%;
+  font-weight: 700;
 }
-
+.topic-ways-of-working {
+  background: $ways-of-working;
+}
 .topic-wellbeing {
-  background: $blue;
+  background: $wellbeing;
 }
-
+.topic-crisis-leadership {
+  background: $crisis-leadership;
+  color: inherit;
+}
+.topic-covid-19-response {
+  background: $covid-19-response;
+}
 .topic-covid-19-recovery {
-  background: $red;
+  background: $covid-19-recovery;
+}
+.topic-the-new-normal {
+  background: $the-new-normal;
+}
+.topic-systems-leadership {
+  background: $systems-leadership;
 }
