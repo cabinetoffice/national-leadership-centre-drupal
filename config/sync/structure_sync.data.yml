@@ -212,3 +212,76 @@ taxonomies:
       weight: '0'
       parent: '0'
       uuid: e8bb830d-d2c0-4108-9d3e-b1c4d1280958
+menus:
+  -
+    menu_name: social
+    title: 'Follow the NLC on Twitter'
+    parent: null
+    uri: 'https://twitter.com/NLC_HQ'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '0'
+    langcode: en
+    uuid: 4577e13b-34d1-46bf-88d5-213ae8488ebe
+  -
+    menu_name: social
+    title: 'Follow the NLC on Linkedin'
+    parent: null
+    uri: 'https://www.linkedin.com/company/national-leadership-centre/'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '1'
+    langcode: en
+    uuid: 3f17ecee-0b0a-49dc-8394-4d6ac509975d
+  -
+    menu_name: footer
+    title: About
+    parent: null
+    uri: 'https://www.nationalleadership.gov.uk/about/'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '0'
+    langcode: en
+    uuid: 0a6c004e-5610-43b6-8fcb-00828eef0843
+  -
+    menu_name: footer
+    title: Contact
+    parent: null
+    uri: 'https://www.nationalleadership.gov.uk/contact/'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '1'
+    langcode: en
+    uuid: 331047cd-f18e-4a76-aca7-83dff2bf1e20
+  -
+    menu_name: footer
+    title: Privacy
+    parent: null
+    uri: 'https://www.nationalleadership.gov.uk/privacy-for-connect/'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '3'
+    langcode: en
+    uuid: b30202c9-68cc-404f-a442-bab23d21ad0e
+  -
+    menu_name: footer
+    title: Accessibility
+    parent: null
+    uri: 'https://www.nationalleadership.gov.uk/accessibility/'
+    link_title: ''
+    description: null
+    enabled: '1'
+    expanded: '0'
+    weight: '2'
+    langcode: en
+    uuid: 5fc6c105-39e3-4297-97ea-51d9696c7684
