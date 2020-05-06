@@ -517,8 +517,21 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-      title: 'Welcome. You can use this service to find others within the National Leadership Centre Network.'
+      title: 'The Network Directory of Senior Leaders'
       header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<p class="govuk-body-l">The NLC have put together this board to share some of the content they''ve uncovered during the COVID-19 pandemic.</p>'
+            format: filtered_text
+          plugin_id: text
         result:
           id: result
           table: views
@@ -541,7 +554,7 @@ display:
           empty: true
           tokenize: false
           content:
-            value: "<h2 class=\"search-no-results govuk-heading-m\">Sorry, there&apos;s no-one to match that search.</h2>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n<li>Details for Senior Leaders who have not attended the Programme are not currently available.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
+            value: "<h2 class=\"search-no-results govuk-heading-m\">Sorry, there&apos;s no-one to match that search.</h2>\r\n<ul>\r\n<li>Try again by using the search box.</li>\r\n<li>Alternatively, use the filters to search by job title, region, sector or cohort.</li>\r\n</ul>\r\n<p>If you have any queries email nic@cabinetoffice.gov.uk</p>"
             format: filtered_text
           plugin_id: text
       relationships: {  }
@@ -560,6 +573,7 @@ display:
       tags:
         - 'config:field.storage.profile.field_job_title'
         - 'config:field.storage.user.field_name'
+        - 'config:search_api.index.individuals'
   page:
     display_plugin: page
     id: page
@@ -593,3 +607,4 @@ display:
       tags:
         - 'config:field.storage.profile.field_job_title'
         - 'config:field.storage.user.field_name'
+        - 'config:search_api.index.individuals'
