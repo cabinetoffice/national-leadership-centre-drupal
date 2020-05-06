@@ -54,7 +54,9 @@
   {{ attachment_before }}
 
   {% if pager %}
+    <div class="govuk-!-padding-bottom-7">
     {{ pager }}
+    </div>
   {%  endif %}
 
   {% if rows -%}
@@ -63,7 +65,9 @@
     {{ empty }}
   {% endif %}
   {% if pager %}
-    {{ pager }}
+    <div class="govuk-!-padding-top-7">
+      {{ pager }}
+    </div>
   {%  endif %}
 
   {{ attachment_after }}
