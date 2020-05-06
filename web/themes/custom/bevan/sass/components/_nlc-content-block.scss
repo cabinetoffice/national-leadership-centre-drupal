@@ -1,0 +1,111 @@
+// Content library block
+$mobile: 576px;
+$tablet: 768px;
+
+.nlc-content-block-wrapper {
+  background-color: $very-light-grey;
+  padding-top: govuk-px-to-rem(100px);
+
+  &.no-images {
+    padding-top: govuk-px-to-rem(40px);
+
+    .nlc-content-block__item {
+      @media only screen and (max-width: $tablet) {
+        margin-bottom: govuk-px-to-rem(20px);
+      }
+    }
+  }
+}
+
+.nlc-content-block {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+}
+.nlc-content-block__item {
+  width: 100%;
+  height: fit-content;
+  background-color: $white;
+  margin: 0 govuk-px-to-rem(18px) govuk-px-to-rem(30px) govuk-px-to-rem(18px);
+
+  @media only screen and (min-width: $mobile) {
+    flex: 30%;
+  }
+}
+
+.nlc-content-block__item__name {
+  margin: 0;
+  padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
+  font-family: $govuk-font-family;
+  font-size: govuk-px-to-rem(19);
+  line-height: govuk-em(25, 19);
+  font-weight: 700;
+
+  @media only screen and (min-width: $tablet) {
+    font-size: 19px;
+    line-height: 25px;
+  }
+}
+
+.nlc-content-block__item__bio {
+  padding: govuk-px-to-rem(10px);
+
+  @media only screen and (min-width: $tablet) {
+    padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
+  }
+
+  p {
+    margin: 0;
+
+    @media only screen and (max-width: $tablet) {
+      font-size: govuk-px-to-rem(14px);
+      line-height: govuk-px-to-rem(20px);
+    }
+  }
+}
+.nlc-content-block__item__link {
+  padding: govuk-px-to-rem(10px);
+  padding-top: 0;
+
+  @media only screen and (min-width: $tablet) {
+    padding: govuk-px-to-rem(20px) govuk-px-to-rem(20px);
+    padding-top: 0;
+  }
+}
+
+.nlc-content-block__item__readmore,
+.nlc-content-block__item__readmore__img {
+  display: none;
+}
+
+.nlc-content-block__topic {
+  background: $very-light-grey;
+  color: $white;
+  padding: 2px 20px 2px;
+  font-family: $govuk-font-family;
+  font-size: govuk-px-to-rem(14);
+  line-height: govuk-em(23, 14);
+  font-weight: 700;
+}
+.nlc-content-block__topic--ways-of-working {
+  background: $ways-of-working;
+}
+.nlc-content-block__topic--wellbeing {
+  background: $wellbeing;
+}
+.nlc-content-block__topic--crisis-leadership {
+  background: $crisis-leadership;
+  color: inherit;
+}
+.nlc-content-block__topic--covid-19-response {
+  background: $covid-19-response;
+}
+.nlc-content-block__topic--covid-19-recovery {
+  background: $covid-19-recovery;
+}
+.nlc-content-block__topic--the-new-normal {
+  background: $the-new-normal;
+}
+.nlc-content-block__topic--systems-leadership {
+  background: $systems-leadership;
+}

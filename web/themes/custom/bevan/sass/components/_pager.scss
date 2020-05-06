@@ -1,3 +1,6 @@
+.pager {
+  overflow: hidden;
+}
 .pager__items {
   margin: 0;
   padding: 0;
@@ -10,6 +13,7 @@
 }
 .pager__item a {
   display: block;
+  padding: 5px 0;
 }
 .pager__item--next {
   float: right;
