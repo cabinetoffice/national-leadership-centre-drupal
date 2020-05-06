@@ -1,7 +1,7 @@
 uuid: 6408c13a-ecac-4c06-80fe-46cad42e0939
-name: 'National Leadership Centre'
+name: 'NLC Connect'
 mail: nlc@cabinetoffice.gov.uk
-slogan: 'Connect with your peers'
+slogan: 'The Network Directory of Senior Leaders'
 page:
   403: /directory/welcome
   404: ''

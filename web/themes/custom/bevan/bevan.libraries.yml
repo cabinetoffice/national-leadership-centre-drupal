@@ -1,6 +1,7 @@
 global-styling:
   css:
     theme:
+      "https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700|Source+Sans+Pro:300,400&display=swap": { type: external, minified: true }
       css/styles.css: {}
   js:
     js/behaviours.js: {}

@@ -10,8 +10,8 @@ _core:
   default_config_hash: fRKXNB91UxDvEMkzCR8ZBsawfC6Fqbme2gtobei3gu4
 id: bevan_branding
 theme: bevan
-region: header
-weight: -5
+region: header_one
+weight: -10
 provider: null
 plugin: system_branding_block
 settings:

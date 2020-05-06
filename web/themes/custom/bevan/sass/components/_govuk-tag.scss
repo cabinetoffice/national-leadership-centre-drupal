@@ -1,0 +1,7 @@
+.govuk-tag {
+  background-color: $yellow;
+  color: $govuk-text-colour;
+  font-weight: 400;
+  font-size: govuk-px-to-rem(18);
+  line-height: govuk-em(25, 18);
+}
