@@ -22,7 +22,7 @@ use Symfony\Component\Console\Helper\TableCell;
  */
 class NlcLibraryCommands extends DrushCommands {
 
-  private $trelloBoardId = 'X1OQEy5Q';
+  private $trelloBoardId = 'X1OQEy5Q-200506';
 
   private $trelloTopics = [];
 
@@ -170,7 +170,7 @@ class NlcLibraryCommands extends DrushCommands {
         'title' => $model->getName(),
         'body' => [
           'value' => $model->getDescription(),
-          'format' => 'filtered_text',
+          'format' => 'markdown',
         ],
         'field_trello_id' => $model->getId(),
         'field_topic' => $model->getTopicTerm(),
@@ -187,7 +187,7 @@ class NlcLibraryCommands extends DrushCommands {
       /** @var \Drupal\node\Entity\Node $entity */
       $entity = current($entities);
       $entity->setTitle($model->getName())
-        ->set('body', ['value' => $model->getDescription(), 'format' => 'filtered_text'])
+        ->set('body', ['value' => $model->getDescription(), 'format' => 'markdown'])
         ->set('field_trello_id', $model->getId())
         ->set('field_topic', $model->getTopicTerm())
         ->set('field_url', $model->getFirstAttachment() ? $model->getFirstAttachment()->getUrl() : '');

@@ -37,6 +37,7 @@ module:
   key: 0
   link: 0
   mailsystem: 0
+  markdown: 0
   menu_ui: 0
   monolog: 0
   name: 0

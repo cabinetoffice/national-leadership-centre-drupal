@@ -56,7 +56,7 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 20
+          items_per_page: 24
           offset: 0
           id: 0
           total_pages: null
@@ -676,6 +676,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
@@ -684,6 +685,7 @@ display:
         - 'config:field.storage.node.field_source'
         - 'config:field.storage.node.field_topic'
         - 'config:field.storage.node.field_url'
+        - 'config:search_api.index.external_links'
   page:
     display_plugin: page
     id: page
@@ -702,6 +704,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:field.storage.node.body'
@@ -710,3 +713,4 @@ display:
         - 'config:field.storage.node.field_source'
         - 'config:field.storage.node.field_topic'
         - 'config:field.storage.node.field_url'
+        - 'config:search_api.index.external_links'
