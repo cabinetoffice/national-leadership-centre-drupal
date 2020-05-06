@@ -20,6 +20,7 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
+ <div class="govuk-grid-row">
 {% for row in rows %}
   {%
     set row_classes = [
@@ -30,3 +31,4 @@
     {{- row.content -}}
   </div>
 {% endfor %}
+ </div>

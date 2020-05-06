@@ -44,7 +44,7 @@
 
   {% if header %}
     <div class="govuk-width-container govuk-width-container--narrow">
-      <header class="govuk-grid-column-full">
+      <header>
         {{ header }}
       </header>
     </div>
@@ -54,9 +54,7 @@
   {{ attachment_before }}
 
   {% if pager %}
-  <div class="govuk-grid-column-full">
-  {{ pager }}
-  </div>
+    {{ pager }}
   {%  endif %}
 
   {% if rows -%}
@@ -65,16 +63,14 @@
     {{ empty }}
   {% endif %}
   {% if pager %}
-    <div class="govuk-grid-column-full">
-      {{ pager }}
-    </div>
+    {{ pager }}
   {%  endif %}
 
   {{ attachment_after }}
   {{ more }}
 
   {% if footer %}
-    <footer class="govuk-grid-column-full">
+    <footer>
       {{ footer }}
     </footer>
   {% endif %}
