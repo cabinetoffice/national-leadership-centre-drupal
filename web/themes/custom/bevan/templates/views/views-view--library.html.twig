@@ -43,9 +43,11 @@
   {{ title_suffix }}
 
   {% if header %}
-    <header class="govuk-grid-column-full">
-      {{ header }}
-    </header>
+    <div class="govuk-width-container govuk-width-container--narrow">
+      <header class="govuk-grid-column-full">
+        {{ header }}
+      </header>
+    </div>
   {% endif %}
 
   {{ exposed }}
