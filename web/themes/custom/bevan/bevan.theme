@@ -135,6 +135,7 @@ function bevan_preprocess_status_messages(&$variables) {
 function bevan_preprocess_views_view_unformatted__library(&$variables) {
   foreach ($variables['rows'] as $id => $row) {
     $variables['rows'][$id]['attributes']->addClass('govuk-grid-column-one-third');
+    $variables['rows'][$id]['index'] = $id + 1;
   }
 }
 
