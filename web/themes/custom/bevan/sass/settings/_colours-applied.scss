@@ -4,8 +4,6 @@
 
 @import "colours";
 
-
-
 // =========================================================
 // Generic
 // =========================================================
@@ -15,7 +13,7 @@
 /// @type Colour
 /// @access public
 
-$govuk-brand-colour: $orange;
+$govuk-brand-colour: $red;
 
 /// Text colour
 ///
@@ -57,7 +55,7 @@ $govuk-print-text-colour: #000000;
 /// @type Colour
 /// @access public
 
-$govuk-secondary-text-colour: $light-grey;
+$govuk-secondary-text-colour: $grey;
 
 /// Focus colour
 ///
@@ -95,7 +93,7 @@ $govuk-error-colour: $red;
 /// @type Colour
 /// @access public
 
-$govuk-border-colour: $grey;
+$govuk-border-colour: $support-grey;
 
 /// Input border colour
 ///
@@ -113,8 +111,7 @@ $govuk-input-border-colour: $grey;
 /// @type Colour
 /// @access public
 
-$govuk-hover-colour: $light-grey;
-
+$govuk-hover-colour: $grey;
 
 // =============================================================================
 // Links
@@ -139,11 +136,11 @@ $govuk-link-visited-colour: $red;
 /// @type Colour
 /// @access public
 
-$govuk-link-hover-colour: $orange-against-regular-white-text;
+$govuk-link-hover-colour: $red;
 
 /// Active link colour
 ///
 /// @type Colour
 /// @access public
 
-$govuk-link-active-colour: $grey;
+$govuk-link-active-colour: $red;

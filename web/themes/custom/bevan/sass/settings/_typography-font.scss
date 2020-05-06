@@ -1,0 +1,31 @@
+////
+/// @group settings/typography
+////
+
+/// Use 'legacy' fonts
+///
+/// Whether or not to use v1 nta font from GOV.UK Elements / Frontend
+/// Toolkit, for teams that are migrating to GOV.UK Frontend and may be using
+/// components from both places in a single application.
+///
+/// @type Boolean
+/// @access public
+
+// =========================================================
+// Font families
+// =========================================================
+
+/// Font families to use for all typography on screen media
+///
+/// @type List
+/// @access public
+
+$govuk-font-family: Nunito, sans-serif;
+$font-family-secondary: "Source Sans Pro", sans-serif;
+
+/// Font families to use for print media
+///
+/// @type List
+/// @access public
+
+$govuk-font-family-print: sans-serif !default;

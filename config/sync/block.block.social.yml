@@ -5,20 +5,24 @@ dependencies:
   config:
     - system.menu.social
   module:
+    - collapsiblock
     - system
   theme:
     - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
 id: social
 theme: bevan
-region: footer
-weight: 0
+region: footer_two
+weight: -11
 provider: null
 plugin: 'system_menu_block:social'
 settings:
   id: 'system_menu_block:social'
-  label: Social
+  label: 'Follow the NLC'
   provider: system
-  label_display: '0'
+  label_display: visible
   level: 1
   depth: 0
   expand_all_items: false

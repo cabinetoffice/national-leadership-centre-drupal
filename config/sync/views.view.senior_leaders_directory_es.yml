@@ -517,7 +517,7 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-      title: 'Senior Leaders Directory'
+      title: 'Welcome. You can use this service to find others within the National Leadership Centre Network.'
       header:
         result:
           id: result
@@ -548,6 +548,7 @@ display:
       arguments: {  }
       display_extenders: {  }
       use_ajax: true
+      css_class: nlc-responsive-table
     cache_metadata:
       max-age: -1
       contexts:

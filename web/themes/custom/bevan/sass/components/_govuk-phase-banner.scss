@@ -1,0 +1,13 @@
+.govuk-phase-banner {
+  padding-top: 18px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.govuk-phase-banner__text {
+  font-size: govuk-px-to-rem(18);
+  line-height: govuk-em(25, 18);
+  vertical-align: top;
+  @media (min-width: govuk-px-to-rem(625)) {
+    vertical-align: middle;
+  }
+}

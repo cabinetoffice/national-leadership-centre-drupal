@@ -92,7 +92,8 @@ class DirectoryTokenAccessForm extends FormBase {
       '#type' => 'email',
       '#title' => t('Email'),
       '#attributes' => array(
-        'autocomplete' => 'email'
+        'autocomplete' => 'email',
+        'class' => array('govuk-input--width-30')
       ),
       '#required' => TRUE,
     );
@@ -129,7 +130,7 @@ class DirectoryTokenAccessForm extends FormBase {
       $mailUrl = Url::fromUri('mailto:' . $email);
       $mailLink = Link::fromTextAndUrl($email, $mailUrl);
       $networkUrl = Url::fromUri('https://www.nationalleadership.gov.uk/the-network/');
-      $networkLink = Link::fromTextAndUrl($this->t('Network page'), $networkUrl);
+      $networkLink = Link::fromTextAndUrl($this->t('visit our Network page'), $networkUrl);
       $networkLink = $networkLink->toRenderable();
       $networkLink['#attributes'] = [
         'target' => '_blank',
@@ -139,7 +140,7 @@ class DirectoryTokenAccessForm extends FormBase {
         '#context' => [
           'first' => $this->t('Please check that you have used the correct email address.'),
           'second' => $this->t('In a few cases we may not have you on our records yet, please email us at @email with your name, role and organisation and we will be happy to register you.', ['@email' => $mailLink->toString()]),
-          'third' => $this->t('To check if you are eligible to join our Network, please visit our @network_page.', ['@network_page' => render($networkLink)]),
+          'third' => $this->t('To check if you are eligible to join our Network, please @network_page.', ['@network_page' => render($networkLink)]),
         ],
         '#template' => '<p>{{ first }}</p><p>{{ second }}</p><p>{{ third }}</p>',
       ];
