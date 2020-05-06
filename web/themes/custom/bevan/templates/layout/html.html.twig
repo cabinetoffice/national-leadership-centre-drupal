@@ -8,13 +8,17 @@
     <js-placeholder token="{{ placeholder_token|raw }}">
   </head>
 
-  <body class="govuk-template__body govuk-body">
+
+  {% block bodytag %}
+  <body class="govuk-template__body">
+  {% endblock %}
     <script>
       document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 
     </script>
-    <a href="#main-content" class="govuk-skip-link">{{ 'Skip to results'|t }}</a>
-    <a href="#search-region" class="govuk-skip-link">{{ 'Skip to search'|t }}</a>
+    {% block skiplinks %}
+    <a href="#main-content" class="govuk-skip-link">{{ 'Skip to main content'|t }}</a>
+    {% endblock %}
     {{ page_top }}
     {{ page }}
     {{ page_bottom }}

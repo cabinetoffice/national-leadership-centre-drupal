@@ -10,7 +10,7 @@ dependencies:
 id: mycohortblock
 theme: bevan
 region: pre_content
-weight: -5
+weight: -7
 provider: null
 plugin: my_cohort_block
 settings:

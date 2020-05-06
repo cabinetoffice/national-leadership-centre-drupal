@@ -1,17 +1,21 @@
 // Override the govuk styles
 .js-enabled .govuk-accordion__section-button {
-    font-size: inherit;
-    line-height: 1.52631579em;
-    padding: 14px 16px 13px 0;
+  font-size: inherit;
+  line-height: 1.52631579em;
+  padding: 14px 16px 13px 0;
 }
 .js-enabled .govuk-accordion__icon:after {
-    content: none;
+  content: none;
+}
+.js-enabled .govuk-accordion__icon:before,
+.js-enabled .govuk-accordion__icon:after {
+  background-color: $red;
 }
 .js-enabled .collapsiblockCollapsed .govuk-accordion__icon:after {
-    content: '';
+  content: "";
 }
 .js-enabled .govuk-accordion__section-button:focus {
-    outline: 3px solid $govuk-focus-colour;
-    outline-offset: 0;
-    background-color: $govuk-focus-colour
+  outline: 0;
+  outline-offset: 0;
+  background-color: $govuk-focus-colour;
 }

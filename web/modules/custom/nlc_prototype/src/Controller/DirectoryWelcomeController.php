@@ -44,14 +44,14 @@ class DirectoryWelcomeController extends ControllerBase {
         'heading_two' => $this->t('Before you start'),
         'text_two' => $this->t('You will need your work email address and access to your work email account to gain access to the directory.'),
       ],
-      '#template' => '<h2>{{heading_one}}</h2>
+      '#template' => '<h2 class="govuk-heading-m">{{heading_one}}</h2>
      <ul>
       <li>{{item_one}}</li>
       <li>{{item_two}}</li>
      </ul>
      <p>{{text_one}}</p>
      <p>{{ network_link }}</p>
-     <h2>{{heading_two}}</h2>
+     <h2 class="govuk-heading-m">{{heading_two}}</h2>
      <p>{{text_two}}</p>
      <p>{{ button }}</p>',
     ];
