@@ -1,32 +1,37 @@
 .button,
 .button:link,
 .button:visited {
-	font-size: 1em;
-	padding: .5em .8em;
-	border: 1px solid $red;
-	background-color: $red;
-	color: $white;
-	cursor: pointer;
-	width: auto;
-	text-decoration: none;
-	display: inline-block;
+  font-family: $govuk-font-family;
+  font-size: govuk-px-to-rem(18);
+  font-weight: 700;
+  line-height: 1em;
+  padding: 10px 15px;
+  border: 1px solid $red;
+  border-radius: 10px;
+  background-color: $red;
+  color: $white;
+  cursor: pointer;
+  width: auto;
+  text-decoration: none;
+  display: inline-block;
 }
 .button:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 .button:focus {
-	border-color: $grey;
-	color: $grey;
-	background: $yellow;
-	outline: 2px solid $grey;
+  border-color: $grey;
+  color: $grey;
+  background: $yellow;
+  outline: none;
+  box-shadow: 0 0 0 4px $grey;
 }
 .button--link {
-	background-color: transparent;
-	border-color: transparent;
-	color: inherit;
-	font-size: inherit;
-	text-decoration: underline;
-	&:hover {
-		text-decoration: none;
-	}
+  background-color: transparent;
+  border-color: transparent;
+  color: inherit;
+  font-size: inherit;
+  text-decoration: underline;
+  &:hover {
+    text-decoration: none;
+  }
 }
