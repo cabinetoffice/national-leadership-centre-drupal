@@ -2,13 +2,13 @@
 
 {% block main %}
 
+  {{ dump() }}
+
     <section class="govuk-width-container govuk-width-container--narrow">
       {{ page.pre_content }}
     </section>
 
     <div class="govuk-grid-row">
-
-      {% set content_class = 'govuk-grid-column-full' %}
 
       {% if page.sidebar_first or page.sidebar_second %}
         {% set content_class = 'govuk-grid-column-three-quarters' %}

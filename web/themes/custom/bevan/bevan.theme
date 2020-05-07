@@ -129,6 +129,12 @@ function bevan_preprocess_status_messages(&$variables) {
   }
 }
 
+
+function bevan_preprocess_page__library(&$variables) {
+  $current_user = \Drupal::currentUser();
+  $variables['content_class'] = $current_user->isAuthenticated() ? 'govuk-grid-column-full' : 'govuk-width-container govuk-width-container--narrow';
+}
+
 function bevan_preprocess_views_view__library(&$variables) {
   $variables['attributes']['class'][] = 'connect-library';
 }
