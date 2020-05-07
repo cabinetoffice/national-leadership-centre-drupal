@@ -1,47 +1,37 @@
 <?php
 
-
 namespace Drupal\nlc_library\Model\Trello;
 
-class ListModel extends AbstractTrelloTermModel {
+class LabelModel extends AbstractTrelloTermModel{
 
-  /**
-   * @var string[]
-   */
   protected $properties = [
     'name' => 'getName',
     'field_trello_id' => 'getId',
+    'field_trello_colour' => 'getColour',
   ];
 
-  protected $excludeIds = ['5e989536131c9f10c0d29f5e'];
+  /**
+   * @var string
+   */
+  private $colour;
 
   public function __construct($object) {
     parent::__construct($object);
-    $this->name = $this->topicTransformCase($object->name);
-  }
-
-  private function topicTransformCase($text) {
-    $words = explode(' ', $text);
-    foreach($words as $k => $word){
-      if(strtoupper($word) !== $word) {
-        $words[$k] = strtolower($word);
-      }
-    }
-    return implode(' ', $words);
+    $this->colour = $object->color;
   }
 
   /**
    * {@inheritDoc}
    */
   public function modelType(): string {
-    return 'list';
+    return 'label';
   }
 
   /**
    * {@inheritDoc}
    */
   public function vocabulary(): string {
-   return 'topics';
+    return 'library_labels';
   }
 
   /**
@@ -49,6 +39,13 @@ class ListModel extends AbstractTrelloTermModel {
    */
   public function getProperties(): array {
     return $this->properties;
+  }
+
+  /**
+   * @return string
+   */
+  public function getColour(): string {
+    return $this->colour;
   }
 
 }

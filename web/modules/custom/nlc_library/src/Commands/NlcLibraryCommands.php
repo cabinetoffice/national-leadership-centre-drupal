@@ -4,7 +4,9 @@ namespace Drupal\nlc_library\Commands;
 
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 use Drupal\nlc_library\Model\ModelInterface;
+use Drupal\nlc_library\Model\Trello\TrelloTermModelInterface;
 use Drupal\nlc_library\Model\Trello\CardModel;
+use Drupal\nlc_library\Model\Trello\LabelModel;
 use Drupal\nlc_library\Model\Trello\ListModel;
 use Drush\Commands\DrushCommands;
 use Symfony\Component\Console\Helper\TableCell;
@@ -24,7 +26,15 @@ class NlcLibraryCommands extends DrushCommands {
 
   private $trelloBoardId = 'X1OQEy5Q-200506';
 
+  /**
+   * @var array
+   */
   private $trelloTopics = [];
+
+  /**
+   * @var array
+   */
+  private $trelloLabels = [];
 
   public function __construct() {
   }
@@ -63,10 +73,28 @@ class NlcLibraryCommands extends DrushCommands {
         // Do something?
       }
     }
+    // Make sure we have all the Trello labels in Connect.
+    foreach ($data->labels as $label) {
+      $labelModel = new LabelModel($label);
+      try {
+        if ($labelTerm = $this->getLLabelItemLabel($labelModel)) {
+          $this->trelloLabels[$labelModel->getId()] = $labelTerm;
+        }
+      }
+      catch (\Exception $e) {
+        // Do something?
+      }
+    }
     foreach ($data->cards as $card) {
       $cardModel = new CardModel($card);
       if ($cardTerm = $this->getTrelloTopicById($cardModel->getListId())) {
         $cardModel->setTopicTerm($cardTerm);
+        if (!empty($cardModel->getLabelIds())) {
+          $labelId = current($cardModel->getLabelIds());
+          if ($labelTerm = $this->getTrelloLabelById($labelId)) {
+            $cardModel->setLabelTerm($labelTerm);
+          }
+        }
         /** @var \Drupal\Core\Entity\EntityInterface $externalLink */
         if ($externalLink = $this->mergeExternalLinkNode($cardModel)) {
 //          $success[$externalLink->id()][] = $externalLink;
@@ -87,12 +115,28 @@ class NlcLibraryCommands extends DrushCommands {
   }
 
   /**
+   * @return array
+   */
+  private function getTrelloLabels(): array {
+    return $this->trelloLabels;
+  }
+
+  /**
    * @param string $id
    *
    * @return \Drupal\taxonomy\TermInterface|bool
    */
   private function getTrelloTopicById($id) {
     return !empty($this->getTrelloTopics()[$id]) ? $this->getTrelloTopics()[$id] : false;
+  }
+
+  /**
+   * @param string $id
+   *
+   * @return \Drupal\taxonomy\TermInterface|bool
+   */
+  private function getTrelloLabelById($id) {
+    return !empty($this->getTrelloLabels()[$id]) ? $this->getTrelloLabels()[$id] : false;
   }
 
   /**
@@ -109,9 +153,34 @@ class NlcLibraryCommands extends DrushCommands {
   }
 
   /**
+   * @param \Drupal\nlc_library\Model\Trello\ListModel $model
+   *
+   * @return \Drupal\Core\Entity\EntityInterface
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  private function getListItemTopic(ListModel $model) {
+    return $this->getTermItem($model);
+  }
+
+  /**
+   * @param \Drupal\nlc_library\Model\Trello\LabelModel $model
+   *
+   * @return \Drupal\Core\Entity\EntityInterface|bool
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  private function getLLabelItemLabel(LabelModel $model) {
+     return $model->getName() ? $this->getTermItem($model) : false;
+  }
+
+  /**
    * Get the topic Term entity for a list item.
    *
-   * @param \Drupal\nlc_library\Model\Trello\ListModel $model
+   * @param \Drupal\nlc_library\Model\Trello\TrelloTermModelInterface $model
    *
    * @return \Drupal\Core\Entity\EntityInterface
    *
@@ -119,18 +188,21 @@ class NlcLibraryCommands extends DrushCommands {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  private function getListItemTopic(ListModel $model) {
+  private function getTermItem(TrelloTermModelInterface $model) {
     // Try to load by Trello ID
-    $baseProperties = ['vid' => 'topics'];
+    $baseProperties = ['vid' => $model->vocabulary()];
     $properties = array_merge($baseProperties, ['field_trello_id' => $model->getId()]);
     $entities = $this->loadEntitiesFromModel($model, 'taxonomy_term', $properties);
     if (empty($entities)) {
-      $properties = array_merge($baseProperties, ['name' => $this->topicTransformCase($model->getName())]);
+      $properties = array_merge($baseProperties, ['name' => $model->getName()]);
       $entities = $this->loadEntitiesFromModel($model, 'taxonomy_term', $properties);
     }
     if (empty($entities)) {
       // There is not current term, so create one.
-      $properties = array_merge($baseProperties, ['name' => $this->topicTransformCase($model->getName()), 'field_trello_id' => $model->getId()]);
+      foreach ($model->getProperties() as $field => $method) {
+        $properties[$field] = $model->$method();
+      }
+      $properties = array_merge($baseProperties, $properties);
       $term = \Drupal::entityTypeManager()
         ->getStorage('taxonomy_term')
         ->create($properties);
@@ -140,9 +212,11 @@ class NlcLibraryCommands extends DrushCommands {
       // Make sure the current term is up-to-date with the Trello values — name and ID.
       /** @var \Drupal\taxonomy\Entity\Term $entity */
       $term = current($entities);
-      $term->setName($this->topicTransformCase($model->getName()))
-        ->set('field_trello_id', $model->getId())
-        ->save();
+      $term->setName($model->getName());
+      foreach ($model->getProperties() as $field => $method) {
+        $term->set($field, $model->$method());
+      }
+      $term->save();
     }
     return $term;
   }
@@ -174,6 +248,7 @@ class NlcLibraryCommands extends DrushCommands {
         ],
         'field_trello_id' => $model->getId(),
         'field_topic' => $model->getTopicTerm(),
+        'field_label' => $model->getLabelTerm(),
         'field_url' => $model->getFirstAttachment()->getUrl(),
         'created' => $model->getLastActivityDateTime()->format('U'),
         'changed' => $model->getLastActivityDateTime()->format('U'),
@@ -190,6 +265,7 @@ class NlcLibraryCommands extends DrushCommands {
         ->set('body', ['value' => $model->getDescription(), 'format' => 'markdown'])
         ->set('field_trello_id', $model->getId())
         ->set('field_topic', $model->getTopicTerm())
+        ->set('field_label', $model->getLabelTerm())
         ->set('field_url', $model->getFirstAttachment() ? $model->getFirstAttachment()->getUrl() : '');
       if ($updated = $model->getLastActivityDateTime()) {
         $entity->set('changed', $updated->format('U'));
@@ -197,16 +273,6 @@ class NlcLibraryCommands extends DrushCommands {
       $entity->save();
     }
     return $entity;
-  }
-
-  private function topicTransformCase($text) {
-    $words = explode(' ', $text);
-    foreach($words as $k => $word){
-      if(strtoupper($word) !== $word) {
-        $words[$k] = strtolower($word);
-      }
-    }
-    return implode(' ', $words);
   }
 
 }

@@ -36,6 +36,11 @@ class CardModel extends AbstractTrelloModel {
   protected $listId;
 
   /**
+   * @var string[]
+   */
+  protected $labelIds = [];
+
+  /**
    * @var \Drupal\nlc_library\Model\Trello\CardAttachmentModel[]
    */
   protected $attachments;
@@ -44,6 +49,11 @@ class CardModel extends AbstractTrelloModel {
    * @var \Drupal\taxonomy\TermInterface
    */
   protected $topicTerm;
+
+  /**
+   * @var \Drupal\taxonomy\TermInterface
+   */
+  protected $labelTerm;
 
   /**
    * @var \DateTimeZone;
@@ -63,6 +73,7 @@ class CardModel extends AbstractTrelloModel {
     $this->shortUrl = $object->shortUrl;
     $this->dateLastActivity = $object->dateLastActivity;
     $this->listId = $object->idList;
+    $this->labelIds = $object->idLabels;
     $this->tz = new \DateTimeZone('Europe/London');
     $this->setAttachments($object->attachments ? $object->attachments : []);
   }
@@ -125,6 +136,13 @@ class CardModel extends AbstractTrelloModel {
   }
 
   /**
+   * @return string[]
+   */
+  public function getLabelIds(): array {
+    return $this->labelIds;
+  }
+
+  /**
    * @param \Drupal\taxonomy\TermInterface $topicTerm
    */
   public function setTopicTerm(\Drupal\taxonomy\TermInterface $topicTerm): void {
@@ -136,6 +154,20 @@ class CardModel extends AbstractTrelloModel {
    */
   public function getTopicTerm(): \Drupal\taxonomy\TermInterface {
     return $this->topicTerm;
+  }
+
+  /**
+   * @param \Drupal\taxonomy\TermInterface $labelTerm
+   */
+  public function setLabelTerm(\Drupal\taxonomy\TermInterface $labelTerm): void {
+    $this->labelTerm = $labelTerm;
+  }
+
+  /**
+   * @return \Drupal\taxonomy\TermInterface
+   */
+  public function getLabelTerm(): \Drupal\taxonomy\TermInterface {
+    return $this->labelTerm;
   }
 
   /**
