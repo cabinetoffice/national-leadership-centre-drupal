@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.external_link.body
     - field.field.node.external_link.field_author
+    - field.field.node.external_link.field_label
     - field.field.node.external_link.field_publication
     - field.field.node.external_link.field_read_time
     - field.field.node.external_link.field_source
@@ -68,6 +69,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
+  field_label:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_publication:
     weight: 11

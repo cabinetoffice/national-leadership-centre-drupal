@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.external_link.body
     - field.field.node.external_link.field_author
+    - field.field.node.external_link.field_label
     - field.field.node.external_link.field_publication
     - field.field.node.external_link.field_read_time
     - field.field.node.external_link.field_source
@@ -37,6 +38,7 @@ content:
     region: content
 hidden:
   field_author: true
+  field_label: true
   field_publication: true
   field_read_time: true
   field_source: true

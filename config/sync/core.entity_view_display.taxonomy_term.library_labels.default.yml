@@ -1,0 +1,40 @@
+uuid: d3672cd2-25fa-4cfa-98be-14ea54b42720
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.library_labels.field_trello_colour
+    - field.field.taxonomy_term.library_labels.field_trello_id
+    - taxonomy.vocabulary.library_labels
+  module:
+    - text
+id: taxonomy_term.library_labels.default
+targetEntityType: taxonomy_term
+bundle: library_labels
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_trello_colour:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_trello_id:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  search_api_excerpt: true
