@@ -1,0 +1,30 @@
+uuid: e09d744d-48ac-4967-86ae-707c2c71fa88
+langcode: en
+status: true
+dependencies:
+  module:
+    - collapsiblock
+    - nlc_prototype
+    - system
+  theme:
+    - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
+id: directoryintroblock
+theme: bevan
+region: pre_content
+weight: 0
+provider: null
+plugin: directory_intro_block
+settings:
+  id: directory_intro_block
+  label: 'Directory intro block'
+  provider: nlc_prototype
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /directory
+    negate: false
+    context_mapping: {  }

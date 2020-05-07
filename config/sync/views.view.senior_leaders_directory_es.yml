@@ -517,21 +517,8 @@ display:
           expose:
             label: ''
           plugin_id: search_api
-      title: 'The Network Directory of Senior Leaders'
+      title: 'The Network of Senior Leaders: the Connect Directory'
       header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<p class="govuk-body-l">You can use this service to find others within the National Leadership Centre Network.</p>'
-            format: filtered_text
-          plugin_id: text
         result:
           id: result
           table: views
