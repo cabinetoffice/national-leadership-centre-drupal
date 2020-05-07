@@ -17,8 +17,13 @@ class DirectoryWelcomeController extends ControllerBase {
   public function build() {
 
     $build = [];
+    $options = [];
+    $request = \Drupal::request();
+    if ($request->getPathInfo() === '/library') {
+      $options['query'] = ['login_destination' => $request->getPathInfo()];
+    }
 
-    $url = Url::fromRoute('nlc_prototype.directory.token_access');
+    $url = Url::fromRoute('nlc_prototype.directory.token_access', [], $options);
     $link = Link::fromTextAndUrl($this->t('Start now'), $url);
     $link = $link->toRenderable();
     $link['#attributes'] = [
@@ -31,7 +36,6 @@ class DirectoryWelcomeController extends ControllerBase {
     $networkLink['#attributes'] = [
       'target' => '_blank',
     ];
-
     $build['intro'] = [
       '#type' => 'inline_template',
       '#context' => [
