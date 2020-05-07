@@ -78,8 +78,9 @@ $tablet: 768px;
   display: none;
 }
 
-.nlc-content-block__topic {
-  background: $very-light-grey;
+.nlc-content-block__topic,
+.nlc-content-block__label {
+  background: $grey;
   color: $white;
   padding: 2px 20px 2px;
   font-family: $govuk-font-family;
@@ -108,4 +109,7 @@ $tablet: 768px;
 }
 .nlc-content-block__topic--systems-leadership {
   background: $systems-leadership;
+}
+.nlc-content-block__label {
+  text-transform: lowercase;
 }
