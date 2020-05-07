@@ -9,5 +9,4 @@ label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
-  - 'access content'
   - 'display eu cookie compliance popup'
