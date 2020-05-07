@@ -7,7 +7,6 @@ dependencies:
     - field.storage.node.field_author
     - field.storage.node.field_publication
     - field.storage.node.field_source
-    - field.storage.node.field_topic
     - field.storage.node.field_url
     - search_api.index.external_links
     - system.menu.main
@@ -80,17 +79,17 @@ display:
       row:
         type: fields
       fields:
-        field_topic_1:
-          id: field_topic_1
+        field_label_name:
+          id: field_label_name
           table: search_api_index_external_links
-          field: field_topic
+          field: field_label_name
           relationship: none
           group_type: group
           admin_label: ''
           label: ''
           exclude: false
           alter:
-            alter_text: true
+            alter_text: false
             text: ''
             make_link: false
             path: ''
@@ -123,16 +122,16 @@ display:
           element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
-          element_default_classes: false
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: target_id
-          type: entity_reference_label
+          click_sort_column: value
+          type: string
           settings:
-            link: false
-          group_column: target_id
+            link_to_entity: false
+          group_column: value
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -143,25 +142,12 @@ display:
           separator: ', '
           field_api_classes: false
           field_rendering: true
-          fallback_handler: search_api_entity
+          fallback_handler: search_api
           fallback_options:
             link_to_item: false
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
-            display_methods:
-              job_title:
-                display_method: label
-                view_mode: default
-              region:
-                display_method: label
-                view_mode: default
-              sector:
-                display_method: label
-                view_mode: default
-              topics:
-                display_method: label
-                view_mode: default
           plugin_id: search_api_field
         title_1:
           id: title_1
@@ -207,6 +193,76 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
+        field_topic_name:
+          id: field_topic_name
+          table: search_api_index_external_links
+          field: field_topic_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -683,7 +739,6 @@ display:
         - 'config:field.storage.node.field_author'
         - 'config:field.storage.node.field_publication'
         - 'config:field.storage.node.field_source'
-        - 'config:field.storage.node.field_topic'
         - 'config:field.storage.node.field_url'
         - 'config:search_api.index.external_links'
   page:
@@ -711,6 +766,5 @@ display:
         - 'config:field.storage.node.field_author'
         - 'config:field.storage.node.field_publication'
         - 'config:field.storage.node.field_source'
-        - 'config:field.storage.node.field_topic'
         - 'config:field.storage.node.field_url'
         - 'config:search_api.index.external_links'

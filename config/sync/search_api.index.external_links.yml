@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_author
+    - field.storage.node.field_label
     - field.storage.node.field_publication
     - field.storage.node.field_source
     - field.storage.node.body
@@ -11,6 +12,7 @@ dependencies:
     - search_api.server.elastic
   module:
     - node
+    - taxonomy
     - search_api
 id: external_links
 name: 'External links'
@@ -41,6 +43,24 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_author
+  field_label:
+    label: Label
+    datasource_id: 'entity:node'
+    property_path: field_label
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_label
+  field_label_name:
+    label: 'Label » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_label:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_label
+      module:
+        - taxonomy
   field_publication:
     label: Publication
     datasource_id: 'entity:node'
@@ -65,6 +85,16 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_topic
+  field_topic_name:
+    label: 'Topic » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_topic:entity:name'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_topic
+      module:
+        - taxonomy
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -136,8 +166,10 @@ processor_settings:
     fields:
       - body
       - field_author
+      - field_label_name
       - field_publication
       - field_source
+      - field_topic_name
       - title
     weights:
       preprocess_index: -20
@@ -149,8 +181,10 @@ processor_settings:
     fields:
       - body
       - field_author
+      - field_label_name
       - field_publication
       - field_source
+      - field_topic_name
       - title
     weights:
       preprocess_index: -20
