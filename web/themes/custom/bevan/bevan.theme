@@ -144,13 +144,17 @@ function bevan_preprocess_views_view_fields(&$variables) {
   $view = $variables['view'];
   $fields = $variables['fields'];
   if ($view->id() == 'library') {
+    $term_fields = [
+      'field_topic_name' => 'topic',
+      'field_label_name' => 'label',
+    ];
     foreach ($fields as $id => $field) {
-      // Add topic classes to topic fields in the library view
-      if ($id == 'field_topic_1') {
-        $topic_name = sprintf('nlc-content-block__topic--%s', trim(strip_tags($field->content->__toString())));
+      // Add classes to topic or label fields in the library view
+      if (in_array($id, array_keys($term_fields))) {
+        $topic_name = sprintf('nlc-content-block__%s--%s', $term_fields[$id], trim(strip_tags($field->content->__toString())));
         $attributes = [
           'class' => [
-            'nlc-content-block__topic',
+            sprintf('nlc-content-block__%s',$term_fields[$id]),
             Html::getClass($topic_name),
           ],
         ];
