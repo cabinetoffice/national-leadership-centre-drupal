@@ -33,7 +33,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'access content'
+          perm: 'access connect library'
       cache:
         type: none
         options: {  }
