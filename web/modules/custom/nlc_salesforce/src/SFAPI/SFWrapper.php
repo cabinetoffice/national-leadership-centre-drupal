@@ -1,6 +1,7 @@
 <?php
 namespace Drupal\nlc_salesforce\SFAPI;
 
+use Drupal\salesforce\SelectQuery;
 use Drupal\salesforce\SFID;
 
 /**
@@ -57,14 +58,21 @@ class SFWrapper {
    * @var \Drupal\salesforce\Rest\RestClient
    */
   private $client = NULL;
+
   /**
    * Salesforce map service.
    */
   private $mapService = NULL;
+
   /**
    * The submitted values.
    */
   private $submissions = [];
+
+  /**
+   * @var string
+   */
+  private $object_type;
 
   /**
    * Create a new class to wrap the salesforce service.
@@ -111,14 +119,15 @@ class SFWrapper {
   /**
    * Get a Salesforce object which matches the ID.
    *
-   * @param $sfIdValue
+   * @param string|\Drupal\salesforce\SFID $sfId
    *   The Salesforce id.
    * @return \Drupal\salesforce\SObject
    *   The Salesforce object.
    */
   public function getObject($sfId) {
     /* TODO: Add caching depending on $sfId */
-    $name = $this->client->getObjectTypeName(new SFID($sfId));
+    $sfId = is_string($sfId) ? new SFID($sfId) : $sfId;
+    $name = $this->client->getObjectTypeName($sfId);
     if ($object = $this->client->objectRead($name, $sfId)) {
       return $object;
     }
@@ -173,8 +182,41 @@ class SFWrapper {
     return $this->submissions;
   }
 
-  public function getSfProfileFromEmail() {
-
+  /**
+   * @param string $object_type
+   */
+  public function setQueryObjectType(string $object_type): void {
+    $this->object_type = $object_type;
   }
+
+  /**
+   * @return string
+   */
+  public function getQueryObjectType(): string {
+    return $this->object_type;
+  }
+
+  /**
+   * @param string $email
+   *
+   * @return bool|\Drupal\salesforce\SFID
+   */
+  public function getSfProfileFromEmail($email) {
+    $sf_field_name = $this::ROLE_FIELDS['nlc_role_email']['sf_field'];
+    $sfql_query = new SelectQuery($this->getQueryObjectType());
+    $sfql_query->fields[] = 'Id';
+    $sfql_query->addCondition($sf_field_name, "'{$email}'");
+    $sfql_query->addCondition('End_date__c', "null");
+    $results = $this->client->query($sfql_query);
+    $sfId = false;
+    foreach ($results->records() as $record) {
+       if ($sfId = $record->id()) {
+         break;
+       }
+    }
+    return $sfId;
+  }
+
+
 
 }
