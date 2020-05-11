@@ -3,3 +3,7 @@ type: module
 description: 'Provides additional tools for the Connect library.'
 package: NLC
 core: '8.x'
+dependencies:
+  - markdown
+  - pathauto
+  - smart_trim
