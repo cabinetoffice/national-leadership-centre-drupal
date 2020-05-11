@@ -122,8 +122,8 @@ class DirectoryTokenAccessForm extends FormBase {
    * {@inheritDoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    /** @var \Drupal\user\Entity\User $account */
-    $account = user_load_by_mail($form_state->getValue('email'));
+    $email = $form_state->getValue('email');
+    $account = $this->loadUserByAccountOrProfileEmail($email);
     if (empty($account)) {
       $form_state->setErrorByName('email', $this->t('Check your email address.'));
       $email = 'NLC@CabinetOffice.gov.uk';
@@ -250,6 +250,27 @@ class DirectoryTokenAccessForm extends FormBase {
         ->getLanguage($langCode),
     ])
       ->toString();
+  }
+
+  /**
+   * Try to load a valid user account, using either the account email or a current profile email address.
+   *
+   * @param string $email
+   *
+   * @return \Drupal\user\Entity\User|bool
+   */
+  private function loadUserByAccountOrProfileEmail($email) {
+    /** @var \Drupal\user\Entity\User $account */
+    $account = user_load_by_mail($email);
+    if (!$account) {
+      $properties = [
+        ''
+      ];
+      $account = \Drupal::entityTypeManager()
+        ->getStorage('profile')
+        ->loadByProperties($properties);
+    }
+    return $account;
   }
 
 }
