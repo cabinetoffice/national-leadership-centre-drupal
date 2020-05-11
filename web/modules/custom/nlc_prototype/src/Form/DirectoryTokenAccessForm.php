@@ -264,7 +264,9 @@ class DirectoryTokenAccessForm extends FormBase {
     $account = user_load_by_mail($email);
     if (!$account) {
       $properties = [
-        ''
+        'type' => 'role',
+        'field_finish_date' => '',
+        'nlc_role_email' => $email,
       ];
       $account = \Drupal::entityTypeManager()
         ->getStorage('profile')

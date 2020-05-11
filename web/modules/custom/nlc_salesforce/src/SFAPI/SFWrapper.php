@@ -53,6 +53,8 @@ class SFWrapper {
 
   /**
    * Salesforce client.
+   *
+   * @var \Drupal\salesforce\Rest\RestClient
    */
   private $client = NULL;
   /**
@@ -109,8 +111,10 @@ class SFWrapper {
   /**
    * Get a Salesforce object which matches the ID.
    *
-   * @param $sfIdValue The Salesforce id.
-   * @return SObject The Salesforce object
+   * @param $sfIdValue
+   *   The Salesforce id.
+   * @return \Drupal\salesforce\SObject
+   *   The Salesforce object.
    */
   public function getObject($sfId) {
     /* TODO: Add caching depending on $sfId */
@@ -136,8 +140,10 @@ class SFWrapper {
   /**
    * Get field values from the object with the passed ID.
    * 
-   * @param $sfIdValue The Salesforce id.
-   * @return [] Associatve array of field name and values from Salesforce.
+   * @param $sfIdValue
+   *   The Salesforce id.
+   * @return []
+   *   Associatve array of field name and values from Salesforce.
    */
   public function getDetails($sfId) {
     if ($obj = $this->getObject($sfId)) {
@@ -165,6 +171,10 @@ class SFWrapper {
    */
   public function getSubmissions() {
     return $this->submissions;
+  }
+
+  public function getSfProfileFromEmail() {
+
   }
 
 }
