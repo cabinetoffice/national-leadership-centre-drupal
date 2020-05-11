@@ -78,8 +78,7 @@ $tablet: 768px;
   display: none;
 }
 
-.nlc-content-block__topic,
-.nlc-content-block__label {
+.nlc-content-block__topic {
   background: $grey;
   color: $white;
   padding: 2px 20px 2px;
@@ -112,4 +111,16 @@ $tablet: 768px;
 }
 .nlc-content-block__label {
   text-transform: lowercase;
+}
+
+.nlc-content-block__label {
+  border: 1px solid $grey;
+  font-weight: 700;
+  font-size: govuk-px-to-rem(14);
+  line-height: govuk-em(19, 14);
+  vertical-align: middle;
+  display: inline-block;
+  padding: 0 10px;
+  margin-left: govuk-px-to-rem(20);
+  border-radius: 10px;
 }

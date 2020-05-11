@@ -79,10 +79,10 @@ display:
       row:
         type: fields
       fields:
-        field_label_name:
-          id: field_label_name
+        field_topic_name:
+          id: field_topic_name
           table: search_api_index_external_links
-          field: field_label_name
+          field: field_topic_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -219,10 +219,10 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        field_topic_name:
-          id: field_topic_name
+        field_label_name:
+          id: field_label_name
           table: search_api_index_external_links
-          field: field_topic_name
+          field: field_label_name
           relationship: none
           group_type: group
           admin_label: ''
