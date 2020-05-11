@@ -129,7 +129,7 @@ class DirectoryTokenAccessForm extends FormBase {
     $email = $form_state->getValue('email');
     $account = $this->loadUserByAccountOrProfileEmail($email);
     $form_state->setValue('account', $account);
-    if (empty($account)) {
+    if (empty($account) || $account->isBlocked()) {
       $form_state->setErrorByName('email', $this->t('Check your email address.'));
       $email = 'NLC@CabinetOffice.gov.uk';
       $mailUrl = Url::fromUri('mailto:' . $email);
