@@ -24,7 +24,7 @@ use Symfony\Component\Console\Helper\TableCell;
  */
 class NlcLibraryCommands extends DrushCommands {
 
-  private $trelloBoardId = 'X1OQEy5Q-200506';
+  private $trelloBoardId = 'X1OQEy5Q';
 
   /**
    * @var array
