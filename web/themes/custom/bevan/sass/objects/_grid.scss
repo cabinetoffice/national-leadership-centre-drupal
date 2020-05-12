@@ -1,0 +1,3 @@
+.govuk-grid-column-three-quarters-right {
+  @include govuk-grid-column(three-quarters, $float: right);
+}

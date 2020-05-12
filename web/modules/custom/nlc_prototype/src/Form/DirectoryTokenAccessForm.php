@@ -185,7 +185,7 @@ class DirectoryTokenAccessForm extends FormBase {
       '#pre' => [
         '#type' => 'inline_template',
         '#context' => [
-          'first' => $this->t('Thank you for requesting a secure link to the Network of Senior Leaders: the Connect Directory, provided by the National Leadership Centre.')
+          'first' => $this->t('Thank you for requesting a secure link to The Network Directory of Senior Leaders, provided by the National Leadership Centre.')
         ],
         '#template' => '<p>{{ first }}</p>',
       ],

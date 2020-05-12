@@ -8,10 +8,11 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 @import "settings/typography-font";
 
 // GovUK components
-@import "node_modules/govuk-frontend/all";
+@import "node_modules/govuk-frontend/govuk/all";
 
 // Override govuk components
 @import "core/typography";
+@import "objects/grid";
 @import "components/govuk-link";
 @import "components/govuk-accordion";
 @import "components/govuk-panel";

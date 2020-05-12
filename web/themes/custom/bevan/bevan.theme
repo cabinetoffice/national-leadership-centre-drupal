@@ -92,22 +92,18 @@ function bevan_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
     $reset_link = Link::fromTextAndUrl(t('Start new search'), $url);
     $reset_link = $reset_link->toRenderable();
     $reset_link['#attributes'] = array(
-      'class' => array('govuk-link'),
-      'id' => 'search-reset-link',
-      'aria-hidden' => 'false',
+      'class' => array('govuk-link', 'back-to-search-link'),
+      'id' => 'search-reset-link'
     );
 
     // Use the reset button to determine if we should show the reset link.
     if (isset($form['actions']['reset']['#access']) && !$form['actions']['reset']['#access']) {
-      $reset_link['#attributes']['class'][] = 'visually-hidden';
-      $reset_link['#attributes']['aria-hidden'] = 'true';
+      $reset_link['#attributes']['class'][] = 'hidden';
     }
     // Then get rid of the button since we don't really need it.
     unset($form['actions']['reset']);
 
     $form['reset_link'] = [
-      '#prefix' => '<div class="govuk-form-group">',
-      '#suffix' => '</div>',
       '#markup' => render($reset_link),
       '#weight' => -1,
     ];
