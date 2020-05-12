@@ -12,7 +12,7 @@ const sassConfig = {
 	}
 }
 
-const govukLibraryDirectory = './node_modules/govuk-frontend/';
+const govukLibraryDirectory = './node_modules/govuk-frontend/govuk/';
 
 const assetsConfig = {
 	inputDirectory: govukLibraryDirectory + 'assets/*/*',
