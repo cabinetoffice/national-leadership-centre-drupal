@@ -1,0 +1,10 @@
+.nlc-info-text::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 21px;
+  margin-right: 7px;
+  background-size: auto;
+  background: url(../assets/images/icon-important.svg) 0 0 no-repeat;
+}
