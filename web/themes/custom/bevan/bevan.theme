@@ -119,11 +119,12 @@ function bevan_form_views_exposed_form_alter(&$form, FormStateInterface $form_st
 function bevan_preprocess_status_messages(&$variables) {
   // Hide the unneeded trailing '1 error has been found: Email' error message from a problematic login.
   if (!empty($variables['message_list']['error']) && count($variables['message_list']['error']) > 0) {
-    /** @var \Drupal\Core\Render\Markup $lastMessage */
-    $lastMessage = end($variables['message_list']['error']);
-    $haystack = $lastMessage->__toString();
-    if ((strpos($haystack, '1 error has been found') > -1) && (strpos($haystack, 'Email') > 0)) {
-      array_pop($variables['message_list']['error']);
+    /** @var \Drupal\Core\Render\Markup|string $lastMessage */
+    if ($lastMessage = end($variables['message_list']['error'])) {
+      $haystack = is_string($lastMessage) ? $lastMessage : $lastMessage->__toString();
+      if ((strpos($haystack, '1 error has been found') > -1) && (strpos($haystack, 'Email') > 0)) {
+        array_pop($variables['message_list']['error']);
+      }
     }
   }
 }
