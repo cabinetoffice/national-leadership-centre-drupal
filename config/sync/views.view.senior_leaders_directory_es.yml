@@ -517,7 +517,7 @@ display:
           expose:
             label: ""
           plugin_id: search_api
-      title: "The Network Directory of Senior Leader"
+      title: "The Network Directory of Senior Leaders"
       header:
         result:
           id: result
