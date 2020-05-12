@@ -1,13 +1,11 @@
 {% extends 'page.html.twig' %}
 
 {% block main %}
+<div class="govuk-width-container govuk-width-container--narrow">
+  {{ page.pre_content }}
+</div>
+
 <div class="govuk-width-container">
-
-  <div>
-
-    <div>
-      {{ page.pre_content }}
-    </div>
 
     <div class="govuk-grid-row">
 
@@ -45,5 +43,4 @@
     </div>
 
   </div>
-</div>
 {% endblock %}
