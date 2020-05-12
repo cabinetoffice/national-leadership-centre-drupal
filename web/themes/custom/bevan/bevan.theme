@@ -121,9 +121,11 @@ function bevan_preprocess_status_messages(&$variables) {
   if (!empty($variables['message_list']['error']) && count($variables['message_list']['error']) > 0) {
     /** @var \Drupal\Core\Render\Markup $lastMessage */
     $lastMessage = end($variables['message_list']['error']);
-    $haystack = $lastMessage->__toString();
-    if ((strpos($haystack, '1 error has been found') > -1) && (strpos($haystack, 'Email') > 0)) {
-      array_pop($variables['message_list']['error']);
+    if (!isset($lastMessage)) {
+      $haystack = $lastMessage->__toString();
+      if ((strpos($haystack, '1 error has been found') > -1) && (strpos($haystack, 'Email') > 0)) {
+        array_pop($variables['message_list']['error']);
+      }
     }
   }
 }
