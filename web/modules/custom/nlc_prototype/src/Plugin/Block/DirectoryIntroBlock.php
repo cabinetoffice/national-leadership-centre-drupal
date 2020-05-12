@@ -22,7 +22,7 @@ class DirectoryIntroBlock extends BlockBase {
    */
   public function build() {
     return [
-      '#markup' => '<p class="govuk-body-l">' . $this->t('You can use this service to find others within the National Leadership Centre Network.') . '</p>',
+      '#markup' => '<p class="govuk-body-m">' . $this->t('You can use this service to find others within the National Leadership Centre Network.') . '</p>',
     ];
   }
 
