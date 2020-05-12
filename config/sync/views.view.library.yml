@@ -480,9 +480,9 @@ display:
           click_sort_column: value
           type: smart_trim
           settings:
-            trim_length: 40
+            trim_length: 50
             trim_type: words
-            trim_suffix: ''
+            trim_suffix: ' …'
             wrap_output: false
             wrap_class: trimmed
             more_link: false
