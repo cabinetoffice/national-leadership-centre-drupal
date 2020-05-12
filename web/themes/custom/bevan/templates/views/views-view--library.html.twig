@@ -27,7 +27,9 @@
     </div>
   </div>
   {% elseif empty -%}
-    {{ empty }}
+    <div class="govuk-width-container govuk-width-container--narrow">
+      {{ empty }}
+    </div>
   {% endif %}
   {% if pager %}
     <div class="govuk-width-container govuk-width-container--narrow">
