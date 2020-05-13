@@ -1,0 +1,17 @@
+uuid: c2fad5c3-72ed-4788-abe1-05e9e0ac5351
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'External link'
+type: external_link
+description: 'A link to an external content item that may be suitable for including in the Connect library feature.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

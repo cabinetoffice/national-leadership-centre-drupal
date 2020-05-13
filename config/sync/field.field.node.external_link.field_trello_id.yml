@@ -1,0 +1,19 @@
+uuid: e7868e5c-b676-4f17-b9c7-6dac739a748b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trello_id
+    - node.type.external_link
+id: node.external_link.field_trello_id
+field_name: field_trello_id
+entity_type: node
+bundle: external_link
+label: 'Trello ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

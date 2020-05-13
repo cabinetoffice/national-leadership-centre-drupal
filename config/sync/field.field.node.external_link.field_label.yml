@@ -1,0 +1,29 @@
+uuid: 7313c251-1a98-4b9b-b7fb-b6589eabf6f9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_label
+    - node.type.external_link
+    - taxonomy.vocabulary.library_labels
+id: node.external_link.field_label
+field_name: field_label
+entity_type: node
+bundle: external_link
+label: Label
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      library_labels: library_labels
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
