@@ -55,7 +55,7 @@ field_settings:
     label: 'Label » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_label:entity:name'
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_label
@@ -89,7 +89,7 @@ field_settings:
     label: 'Topic » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_topic:entity:name'
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_topic

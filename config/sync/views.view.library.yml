@@ -681,20 +681,7 @@ display:
             label: ''
           plugin_id: search_api
       title: 'The Connect Library'
-      header:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: "<p class=\"govuk-body-l\">The National Leadership Centre have created this library to share insights on leadership during the COVID-19 pandemic.</p>\r\n\r\n<p>This is a new service and we'll be making regular improvements to it based on your feedback.</p>\r\n\r\n<p>If you would like to recommend an interesting article, podcast or video, please email Morgan Frodsham on morgan.frodsham@cabinetoffice.gov.uk.</p>\r\n\r\n<p class=\"nlc-info-text\">The NLC is not responsible for the contents of any sites listed. The opinions and beliefs expressed by authors do not necessarily reflect the opinions and beliefs of the NLC.</p>"
-            format: filtered_text
-          plugin_id: text
+      header: {  }
       footer: {  }
       empty:
         area:
@@ -741,6 +728,10 @@ display:
         type: normal
         title: Library
         menu_name: main
+      cache:
+        type: none
+      defaults:
+        cache: false
     cache_metadata:
       max-age: -1
       contexts:
