@@ -1,0 +1,12 @@
+{
+  "name": "nlc_connect/nlc_library",
+  "description": "Provides additional tools for the Connect library.",
+  "license": "GPL-2.0-or-later",
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^9"
+      }
+    }
+  }
+}

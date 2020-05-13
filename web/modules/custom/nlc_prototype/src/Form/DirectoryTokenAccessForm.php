@@ -82,6 +82,11 @@ class DirectoryTokenAccessForm extends FormBase {
    * {@inheritDoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $request = \Drupal::request();
+    $form['login_destination'] = [
+      '#type' => 'value',
+      '#value' => $request->query->get('login_destination'),
+    ];
     $form['intro'] = [
       '#weight' => 0,
       '#type' => 'inline_template',
@@ -171,19 +176,23 @@ class DirectoryTokenAccessForm extends FormBase {
     $email = 'NLC@CabinetOffice.gov.uk';
     $mailUrl = Url::fromUri('mailto:' . $email);
     $mailLink = Link::fromTextAndUrl($email, $mailUrl);
+    $directoryUrlOptions = [];
+    $login_destination = $form_state->getValue('login_destination');
+    $directoryUrlOptions['login_destination'] = $login_destination;
+
     $message = [
       '#theme' => 'nlc_connect_access_email_body',
       '#pre' => [
         '#type' => 'inline_template',
         '#context' => [
-          'first' => $this->t('Thank you for requesting a secure link to the Network of Senior Leaders: the Connect Directory, provided by the National Leadership Centre.')
+          'first' => $this->t('Thank you for requesting a secure link to The Network Directory of Senior Leaders, provided by the National Leadership Centre.')
         ],
         '#template' => '<p>{{ first }}</p>',
       ],
       '#link' => [
         '#type' => 'link',
         '#title' => $this->t('Log into the Connect Directory'),
-        '#url' => Url::fromUri($this->directoryUrl($account)),
+        '#url' => Url::fromUri($this->directoryUrl($account, $directoryUrlOptions)),
         '#attributes' => [
           'class' => ['button'],
         ],
@@ -236,25 +245,30 @@ class DirectoryTokenAccessForm extends FormBase {
    * Create a directory URL with one-time access hash parameters.
    *
    * @param \Drupal\user\Entity\User $account
-   * @param array $options
+   * @param array $params
    *
    * @return \Drupal\Core\GeneratedUrl|string
    */
-  private function directoryUrl(User $account, $options = array()) {
+  private function directoryUrl(User $account, $params = array()) {
     $timestamp = \Drupal::time()->getRequestTime();
     $langCode = isset($options['langcode']) ? $options['langcode'] : $account
       ->getPreferredLangcode();
-
-    return Url::fromRoute($this->routeName, [
-      'uid' => $account
-        ->id(),
-      'timestamp' => $timestamp,
-      'hash' => user_pass_rehash($account, $timestamp),
-    ], [
+    $options = [
       'absolute' => TRUE,
       'language' => \Drupal::languageManager()
         ->getLanguage($langCode),
-    ])
+    ];
+    if (!empty($params['login_destination'])) {
+      $options['query'] = ['login_destination' => $params['login_destination']];
+    }
+
+    return Url::fromRoute($this->routeName, [
+        'uid' => $account
+          ->id(),
+        'timestamp' => $timestamp,
+        'hash' => user_pass_rehash($account, $timestamp),
+      ],
+      $options)
       ->toString();
   }
 

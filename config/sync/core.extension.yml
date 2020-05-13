@@ -13,6 +13,7 @@ module:
   config_filter: 0
   config_split: 0
   contextual: 0
+  ctools: 0
   datetime: 0
   dblog: 0
   dynamic_entity_reference: 0
@@ -36,9 +37,11 @@ module:
   key: 0
   link: 0
   mailsystem: 0
+  markdown: 0
   menu_ui: 0
   monolog: 0
   name: 0
+  nlc_library: 0
   nlc_prototype: 0
   nlc_register_interest: 0
   nlc_salesforce: 0
@@ -64,6 +67,7 @@ module:
   select_or_other: 0
   sendgrid_integration: 0
   serialization: 0
+  smart_trim: 0
   structure_sync: 0
   syslog: 0
   system: 0
@@ -77,6 +81,7 @@ module:
   user: 0
   userprotect: 0
   menu_link_content: 1
+  pathauto: 1
   views: 10
   views_ui: 10
   minimal: 1000
