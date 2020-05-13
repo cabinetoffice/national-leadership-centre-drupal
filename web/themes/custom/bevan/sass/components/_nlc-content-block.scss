@@ -29,7 +29,7 @@ $tablet: 768px;
   margin: 0 govuk-px-to-rem(18px) govuk-px-to-rem(30px) govuk-px-to-rem(18px);
 
   @media only screen and (min-width: $mobile) {
-    flex: 30%;
+    flex: 0 0 30%;
   }
 }
 
