@@ -1,3 +1,7 @@
 .back-to-search-link {
-  margin: 30px 0 20px;
+  margin: 0 0 20px;
+  display: block;
+}
+.back-to-search-link.hidden {
+  display: none;
 }

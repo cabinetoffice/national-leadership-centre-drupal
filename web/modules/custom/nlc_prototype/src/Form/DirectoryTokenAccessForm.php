@@ -15,6 +15,8 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\menu_test\Access\AccessCheck;
+use Drupal\nlc_salesforce\SFAPI\SFWrapper;
+use Drupal\salesforce\SFID;
 use Drupal\user\Entity\User;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,6 +32,8 @@ class DirectoryTokenAccessForm extends FormBase {
    * @var string
    */
   private $routeName = 'nlc_prototype.directory.token_access.login';
+
+  private $sfProfileObjectName = 'NetworkIndividualRole__c';
 
   /**
    * @var PrivateTempStoreFactory
@@ -127,9 +131,10 @@ class DirectoryTokenAccessForm extends FormBase {
    * {@inheritDoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    /** @var \Drupal\user\Entity\User $account */
-    $account = user_load_by_mail($form_state->getValue('email'));
-    if (empty($account)) {
+    $email = $form_state->getValue('email');
+    $account = $this->loadUserByAccountOrProfileEmail($email);
+    $form_state->setValue('account', $account);
+    if (empty($account) || $account->isBlocked()) {
       $form_state->setErrorByName('email', $this->t('Check your email address.'));
       $email = 'NLC@CabinetOffice.gov.uk';
       $mailUrl = Url::fromUri('mailto:' . $email);
@@ -159,14 +164,15 @@ class DirectoryTokenAccessForm extends FormBase {
    * {@inheritDoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    /** @var \Drupal\user\Entity\User $account */
-    $account = user_load_by_mail($form_state->getValue('email'));
-    $this->store->set('email', $account->getEmail());
+    $email = $form_state->getValue('email');
+    /** @var \Drupal\user\UserInterface $account */
+    $account = $form_state->getValue('account');
+    $this->store->set('email', $email);
     /** @var \Drupal\Core\Mail\MailManager $mailManager */
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'nlc_prototype';
     $key = 'directory_access_token';
-    $to = $account->getEmail();
+    $to = $email;
     $email = 'NLC@CabinetOffice.gov.uk';
     $mailUrl = Url::fromUri('mailto:' . $email);
     $mailLink = Link::fromTextAndUrl($email, $mailUrl);
@@ -179,7 +185,7 @@ class DirectoryTokenAccessForm extends FormBase {
       '#pre' => [
         '#type' => 'inline_template',
         '#context' => [
-          'first' => $this->t('Thank you for requesting a secure link to the Network of Senior Leaders: the Connect Directory, provided by the National Leadership Centre.')
+          'first' => $this->t('Thank you for requesting a secure link to The Network Directory of Senior Leaders, provided by the National Leadership Centre.')
         ],
         '#template' => '<p>{{ first }}</p>',
       ],
@@ -264,6 +270,54 @@ class DirectoryTokenAccessForm extends FormBase {
       ],
       $options)
       ->toString();
+  }
+
+  /**
+   * Try to load a valid user account, using either the account email or a current profile email address.
+   *
+   * @param string $email
+   *
+   * @return \Drupal\user\UserInterface|bool
+   */
+  private function loadUserByAccountOrProfileEmail($email) {
+    /** @var \Drupal\user\Entity\User $account */
+    $account = user_load_by_mail($email);
+    if (!$account) {
+      $sfClient = SFWrapper::getInstance();
+      $sfClient->setQueryObjectType($this->sfProfileObjectName);
+      if ($sfId = $sfClient->getSfProfileFromEmail($email)) {
+        $account = $this->loadRoleProfileFromSfId($sfId);
+      }
+    }
+    return $account;
+  }
+
+  /**
+   * @param \Drupal\salesforce\SFID $sfId
+   */
+  private function loadRoleProfileFromSfId(SFID $sfId) {
+    $etm = \Drupal::service('entity_type.manager');
+//    $mapped_obj_storage = $etm->getStorage('salesforce_mapped_object');
+    $mapped_obj_table = $etm
+      ->getDefinition('salesforce_mapped_object')
+      ->getBaseTable();
+
+    /** @var \Drupal\Core\Database\Connection $database */
+    $database = \Drupal::service('database');
+    $query = $database
+      ->select($mapped_obj_table, 'm');
+    $query->addJoin('LEFT','profile', 'et', "et.profile_id = m.drupal_entity__target_id_int");
+    $query->fields('m', ['salesforce_id', 'drupal_entity__target_id_int'])
+      ->fields('et', ['profile_id', 'type', 'uid', 'status'])
+      ->condition('salesforce_id', $sfId->__toString())
+      ->condition('drupal_entity__target_type', 'profile');
+    $mapped_objs = $query->execute()->fetchAll();
+    foreach ($mapped_objs as $obj) {
+      if ($uid = $obj->uid) {
+        return User::load($uid);
+      }
+    }
+    return false;
   }
 
 }

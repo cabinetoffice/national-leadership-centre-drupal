@@ -1,30 +1,32 @@
 {% extends 'page.html.twig' %}
 
 {% block main %}
+
+{% set content_class = 'govuk-grid-column-full' %}
+
+{% if page.sidebar_first or page.sidebar_second %}
+  {% set content_class = 'govuk-grid-column-three-quarters' %}
+{% endif %}
+
+{% if page.sidebar_first and page.sidebar_second %}
+  {% set content_class = 'govuk-grid-column-one-half' %}
+{% endif %}
+
+
 <div class="govuk-width-container">
 
-  <div>
-
-    <div>
+  <div class="govuk-grid-row">
+    <div class="{{content_class}}-right">
       {{ page.pre_content }}
     </div>
+  </div>
 
     <div class="govuk-grid-row">
 
-      {% set content_class = 'govuk-grid-column-full' %}
-
-      {% if page.sidebar_first or page.sidebar_second %}
-        {% set content_class = 'govuk-grid-column-three-quarters' %}
-      {% endif %}
-
-      {% if page.sidebar_first and page.sidebar_second %}
-        {% set content_class = 'govuk-grid-column-one-half' %}
-      {% endif %}
-
       {% if page.sidebar_first %}
         <div class="govuk-grid-column-one-quarter">
-          <section role="search" id="search-region">
-            <h2 class="govuk-heading-l">Find a senior leader</h2>
+          <section role="search" id="search-region" aria-labelled-by="find-leader-heading">
+            <h2 id="find-leader-heading" class="visually-hidden">Find a senior leader</h2>
             {{ page.sidebar_first }}
           </section>
         </div>
@@ -45,5 +47,4 @@
     </div>
 
   </div>
-</div>
 {% endblock %}
