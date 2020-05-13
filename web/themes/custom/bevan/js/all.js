@@ -1291,28 +1291,21 @@ if (detect) return
 })
 .call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
 
-/**
- * JavaScript 'shim' to trigger the click event of element(s) when the space key is pressed.
- *
- * Created since some Assistive Technologies (for example some Screenreaders)
- * will tell a user to press space on a 'button', so this functionality needs to be shimmed
- * See https://github.com/alphagov/govuk_elements/pull/272#issuecomment-233028270
- *
- * Usage instructions:
- * the 'shim' will be automatically initialised
- */
-
 var KEY_SPACE = 32;
 var DEBOUNCE_TIMEOUT_IN_SECONDS = 1;
-var debounceFormSubmitTimer = null;
 
 function Button ($module) {
   this.$module = $module;
+  this.debounceFormSubmitTimer = null;
 }
 
 /**
-* if the event target element has a role='button' and the event is key space pressed
-* then it prevents the default event and triggers a click event
+* JavaScript 'shim' to trigger the click event of element(s) when the space key is pressed.
+*
+* Created since some Assistive Technologies (for example some Screenreaders)
+* will tell a user to press space on a 'button', so this functionality needs to be shimmed
+* See https://github.com/alphagov/govuk_elements/pull/272#issuecomment-233028270
+*
 * @param {object} event event
 */
 Button.prototype.handleKeyDown = function (event) {
@@ -1339,14 +1332,14 @@ Button.prototype.debounce = function (event) {
   }
 
   // If the timer is still running then we want to prevent the click from submitting the form
-  if (debounceFormSubmitTimer) {
+  if (this.debounceFormSubmitTimer) {
     event.preventDefault();
     return false
   }
 
-  debounceFormSubmitTimer = setTimeout(function () {
-    debounceFormSubmitTimer = null;
-  }, DEBOUNCE_TIMEOUT_IN_SECONDS * 1000);
+  this.debounceFormSubmitTimer = setTimeout(function () {
+    this.debounceFormSubmitTimer = null;
+  }.bind(this), DEBOUNCE_TIMEOUT_IN_SECONDS * 1000);
 };
 
 /**
@@ -1363,27 +1356,112 @@ Button.prototype.init = function () {
  * and 'shim' to add accessiblity enhancements for all browsers
  *
  * http://caniuse.com/#feat=details
- *
- * Usage instructions:
- * the 'polyfill' will be automatically initialised
  */
 
 var KEY_ENTER = 13;
 var KEY_SPACE$1 = 32;
 
-// Create a flag to know if the browser supports navtive details
-var NATIVE_DETAILS = typeof document.createElement('details').open === 'boolean';
-
 function Details ($module) {
   this.$module = $module;
 }
+
+Details.prototype.init = function () {
+  if (!this.$module) {
+    return
+  }
+
+  // If there is native details support, we want to avoid running code to polyfill native behaviour.
+  var hasNativeDetails = typeof this.$module.open === 'boolean';
+
+  if (hasNativeDetails) {
+    return
+  }
+
+  this.polyfillDetails();
+};
+
+Details.prototype.polyfillDetails = function () {
+  var $module = this.$module;
+
+  // Save shortcuts to the inner summary and content elements
+  var $summary = this.$summary = $module.getElementsByTagName('summary').item(0);
+  var $content = this.$content = $module.getElementsByTagName('div').item(0);
+
+  // If <details> doesn't have a <summary> and a <div> representing the content
+  // it means the required HTML structure is not met so the script will stop
+  if (!$summary || !$content) {
+    return
+  }
+
+  // If the content doesn't have an ID, assign it one now
+  // which we'll need for the summary's aria-controls assignment
+  if (!$content.id) {
+    $content.id = 'details-content-' + generateUniqueID();
+  }
+
+  // Add ARIA role="group" to details
+  $module.setAttribute('role', 'group');
+
+  // Add role=button to summary
+  $summary.setAttribute('role', 'button');
+
+  // Add aria-controls
+  $summary.setAttribute('aria-controls', $content.id);
+
+  // Set tabIndex so the summary is keyboard accessible for non-native elements
+  //
+  // We have to use the camelcase `tabIndex` property as there is a bug in IE6/IE7 when we set the correct attribute lowercase:
+  // See http://web.archive.org/web/20170120194036/http://www.saliences.com/browserBugs/tabIndex.html for more information.
+  $summary.tabIndex = 0;
+
+  // Detect initial open state
+  var openAttr = $module.getAttribute('open') !== null;
+  if (openAttr === true) {
+    $summary.setAttribute('aria-expanded', 'true');
+    $content.setAttribute('aria-hidden', 'false');
+  } else {
+    $summary.setAttribute('aria-expanded', 'false');
+    $content.setAttribute('aria-hidden', 'true');
+    $content.style.display = 'none';
+  }
+
+  // Bind an event to handle summary elements
+  this.polyfillHandleInputs($summary, this.polyfillSetAttributes.bind(this));
+};
+
+/**
+* Define a statechange function that updates aria-expanded and style.display
+* @param {object} summary element
+*/
+Details.prototype.polyfillSetAttributes = function () {
+  var $module = this.$module;
+  var $summary = this.$summary;
+  var $content = this.$content;
+
+  var expanded = $summary.getAttribute('aria-expanded') === 'true';
+  var hidden = $content.getAttribute('aria-hidden') === 'true';
+
+  $summary.setAttribute('aria-expanded', (expanded ? 'false' : 'true'));
+  $content.setAttribute('aria-hidden', (hidden ? 'false' : 'true'));
+
+  $content.style.display = (expanded ? 'none' : '');
+
+  var hasOpenAttr = $module.getAttribute('open') !== null;
+  if (!hasOpenAttr) {
+    $module.setAttribute('open', 'open');
+  } else {
+    $module.removeAttribute('open');
+  }
+
+  return true
+};
 
 /**
 * Handle cross-modal click events
 * @param {object} node element
 * @param {function} callback function
 */
-Details.prototype.handleInputs = function (node, callback) {
+Details.prototype.polyfillHandleInputs = function (node, callback) {
   node.addEventListener('keypress', function (event) {
     var target = event.target;
     // When the key gets pressed - check if it is enter or space
@@ -1416,102 +1494,12 @@ Details.prototype.handleInputs = function (node, callback) {
   node.addEventListener('click', callback);
 };
 
-Details.prototype.init = function () {
-  var $module = this.$module;
-
-  if (!$module) {
-    return
-  }
-
-  // Save shortcuts to the inner summary and content elements
-  var $summary = this.$summary = $module.getElementsByTagName('summary').item(0);
-  var $content = this.$content = $module.getElementsByTagName('div').item(0);
-
-  // If <details> doesn't have a <summary> and a <div> representing the content
-  // it means the required HTML structure is not met so the script will stop
-  if (!$summary || !$content) {
-    return
-  }
-
-  // If the content doesn't have an ID, assign it one now
-  // which we'll need for the summary's aria-controls assignment
-  if (!$content.id) {
-    $content.id = 'details-content-' + generateUniqueID();
-  }
-
-  // Add ARIA role="group" to details
-  $module.setAttribute('role', 'group');
-
-  // Add role=button to summary
-  $summary.setAttribute('role', 'button');
-
-  // Add aria-controls
-  $summary.setAttribute('aria-controls', $content.id);
-
-  // Set tabIndex so the summary is keyboard accessible for non-native elements
-  // http://www.saliences.com/browserBugs/tabIndex.html
-  if (!NATIVE_DETAILS) {
-    $summary.tabIndex = 0;
-  }
-
-  // Detect initial open state
-  var openAttr = $module.getAttribute('open') !== null;
-  if (openAttr === true) {
-    $summary.setAttribute('aria-expanded', 'true');
-    $content.setAttribute('aria-hidden', 'false');
-  } else {
-    $summary.setAttribute('aria-expanded', 'false');
-    $content.setAttribute('aria-hidden', 'true');
-    if (!NATIVE_DETAILS) {
-      $content.style.display = 'none';
-    }
-  }
-
-  // Bind an event to handle summary elements
-  this.handleInputs($summary, this.setAttributes.bind(this));
-};
-
-/**
-* Define a statechange function that updates aria-expanded and style.display
-* @param {object} summary element
-*/
-Details.prototype.setAttributes = function () {
-  var $module = this.$module;
-  var $summary = this.$summary;
-  var $content = this.$content;
-
-  var expanded = $summary.getAttribute('aria-expanded') === 'true';
-  var hidden = $content.getAttribute('aria-hidden') === 'true';
-
-  $summary.setAttribute('aria-expanded', (expanded ? 'false' : 'true'));
-  $content.setAttribute('aria-hidden', (hidden ? 'false' : 'true'));
-
-  if (!NATIVE_DETAILS) {
-    $content.style.display = (expanded ? 'none' : '');
-
-    var hasOpenAttr = $module.getAttribute('open') !== null;
-    if (!hasOpenAttr) {
-      $module.setAttribute('open', 'open');
-    } else {
-      $module.removeAttribute('open');
-    }
-  }
-  return true
-};
-
-/**
-* Remove the click event from the node element
-* @param {object} node element
-*/
-Details.prototype.destroy = function (node) {
-  node.removeEventListener('keypress');
-  node.removeEventListener('keyup');
-  node.removeEventListener('click');
-};
-
 function CharacterCount ($module) {
   this.$module = $module;
-  this.$textarea = $module.querySelector('.js-character-count');
+  this.$textarea = $module.querySelector('.govuk-js-character-count');
+  if (this.$textarea) {
+    this.$countMessage = $module.querySelector('[id=' + this.$textarea.id + '-info]');
+  }
 }
 
 CharacterCount.prototype.defaults = {
@@ -1524,9 +1512,15 @@ CharacterCount.prototype.init = function () {
   // Check for module
   var $module = this.$module;
   var $textarea = this.$textarea;
-  if (!$textarea) {
+  var $countMessage = this.$countMessage;
+
+  if (!$textarea || !$countMessage) {
     return
   }
+
+  // We move count message right after the field
+  // Kept for backwards compatibility
+  $textarea.insertAdjacentElement('afterend', $countMessage);
 
   // Read options set using dataset ('data-' values)
   this.options = this.getDataset($module);
@@ -1545,23 +1539,16 @@ CharacterCount.prototype.init = function () {
     return
   }
 
-  // Generate and reference message
-  var boundCreateCountMessage = this.createCountMessage.bind(this);
-  this.countMessage = boundCreateCountMessage();
+  // Remove hard limit if set
+  $module.removeAttribute('maxlength');
 
-  // If there's a maximum length defined and the count message exists
-  if (this.countMessage) {
-    // Remove hard limit if set
-    $module.removeAttribute('maxlength');
+  // Bind event changes to the textarea
+  var boundChangeEvents = this.bindChangeEvents.bind(this);
+  boundChangeEvents();
 
-    // Bind event changes to the textarea
-    var boundChangeEvents = this.bindChangeEvents.bind(this);
-    boundChangeEvents();
-
-    // Update count message
-    var boundUpdateCountMessage = this.updateCountMessage.bind(this);
-    boundUpdateCountMessage();
-  }
+  // Update count message
+  var boundUpdateCountMessage = this.updateCountMessage.bind(this);
+  boundUpdateCountMessage();
 };
 
 // Read data attributes
@@ -1592,27 +1579,6 @@ CharacterCount.prototype.count = function (text) {
   return length
 };
 
-// Generate count message and bind it to the input
-// returns reference to the generated element
-CharacterCount.prototype.createCountMessage = function () {
-  var countElement = this.$textarea;
-  var elementId = countElement.id;
-  // Check for existing info count message
-  var countMessage = document.getElementById(elementId + '-info');
-  // If there is no existing info count message we add one right after the field
-  if (elementId && !countMessage) {
-    countElement.insertAdjacentHTML('afterend', '<span id="' + elementId + '-info" class="govuk-hint govuk-character-count__message" aria-live="polite"></span>');
-    this.describedBy = countElement.getAttribute('aria-describedby');
-    this.describedByInfo = this.describedBy + ' ' + elementId + '-info';
-    countElement.setAttribute('aria-describedby', this.describedByInfo);
-    countMessage = document.getElementById(elementId + '-info');
-  } else {
-  // If there is an existing info count message we move it right after the field
-    countElement.insertAdjacentElement('afterend', countMessage);
-  }
-  return countMessage
-};
-
 // Bind input propertychange to the elements and update based on the change
 CharacterCount.prototype.bindChangeEvents = function () {
   var $textarea = this.$textarea;
@@ -1639,7 +1605,7 @@ CharacterCount.prototype.checkIfValueChanged = function () {
 CharacterCount.prototype.updateCountMessage = function () {
   var countElement = this.$textarea;
   var options = this.options;
-  var countMessage = this.countMessage;
+  var countMessage = this.$countMessage;
 
   // Determine the remaining number of characters/words
   var currentLength = this.count(countElement.value);
@@ -1651,8 +1617,12 @@ CharacterCount.prototype.updateCountMessage = function () {
   var thresholdValue = maxLength * thresholdPercent / 100;
   if (thresholdValue > currentLength) {
     countMessage.classList.add('govuk-character-count__message--disabled');
+    // Ensure threshold is hidden for users of assistive technologies
+    countMessage.setAttribute('aria-hidden', true);
   } else {
     countMessage.classList.remove('govuk-character-count__message--disabled');
+    // Ensure threshold is visible for users of assistive technologies
+    countMessage.removeAttribute('aria-hidden');
   }
 
   // Update styles
@@ -1778,7 +1748,7 @@ Checkboxes.prototype.handleClick = function (event) {
 
   if (detect) return
 
-    // Polyfill from https://raw.githubusercontent.com/Financial-Times/polyfill-service/1f3c09b402f65bf6e393f933a15ba63f1b86ef1f/packages/polyfill-library/polyfills/Element/prototype/closest/polyfill.js
+  // Polyfill from https://raw.githubusercontent.com/Financial-Times/polyfill-service/1f3c09b402f65bf6e393f933a15ba63f1b86ef1f/packages/polyfill-library/polyfills/Element/prototype/closest/polyfill.js
   Element.prototype.closest = function closest(selector) {
     var node = this;
 
@@ -1853,16 +1823,6 @@ ErrorSummary.prototype.focusTarget = function ($target) {
     return false
   }
 
-  // Prefer using the history API where possible, as updating
-  // window.location.hash causes the viewport to jump to the input briefly
-  // before then scrolling to the label/legend in IE10, IE11 and Edge (as tested
-  // in Edge 17).
-  if (window.history.pushState) {
-    window.history.pushState(null, null, '#' + inputId);
-  } else {
-    window.location.hash = inputId;
-  }
-
   // Scroll the legend or label into view *before* calling focus on the input to
   // avoid extra scrolling in browsers that don't support `preventScroll` (which
   // at time of writing is most of them...)
@@ -1894,7 +1854,9 @@ ErrorSummary.prototype.getFragmentFromUrl = function (url) {
  *
  * Returns the first element that exists from this list:
  *
- * - The `<legend>` associated with the closest `<fieldset>` ancestor
+ * - The `<legend>` associated with the closest `<fieldset>` ancestor, as long
+ *   as the top of it is no more than half a viewport height away from the
+ *   bottom of the input
  * - The first `<label>` that is associated with the input using for="inputId"
  * - The closest parent `<label>`
  *
@@ -1909,7 +1871,32 @@ ErrorSummary.prototype.getAssociatedLegendOrLabel = function ($input) {
     var legends = $fieldset.getElementsByTagName('legend');
 
     if (legends.length) {
-      return legends[0]
+      var $candidateLegend = legends[0];
+
+      // If the input type is radio or checkbox, always use the legend if there
+      // is one.
+      if ($input.type === 'checkbox' || $input.type === 'radio') {
+        return $candidateLegend
+      }
+
+      // For other input types, only scroll to the fieldset’s legend (instead of
+      // the label associated with the input) if the input would end up in the
+      // top half of the screen.
+      //
+      // This should avoid situations where the input either ends up off the
+      // screen, or obscured by a software keyboard.
+      var legendTop = $candidateLegend.getBoundingClientRect().top;
+      var inputRect = $input.getBoundingClientRect();
+
+      // If the browser doesn't support Element.getBoundingClientRect().height
+      // or window.innerHeight (like IE8), bail and just link to the label.
+      if (inputRect.height && window.innerHeight) {
+        var inputBottom = inputRect.top + inputRect.height;
+
+        if (inputBottom - legendTop < window.innerHeight / 2) {
+          return $candidateLegend
+        }
+      }
     }
   }
 
@@ -1929,7 +1916,7 @@ Header.prototype.init = function () {
   }
 
   // Check for button
-  var $toggleButton = $module.querySelector('.js-header-toggle');
+  var $toggleButton = $module.querySelector('.govuk-js-header-toggle');
   if (!$toggleButton) {
     return
   }
@@ -1972,12 +1959,11 @@ Header.prototype.handleClick = function (event) {
 
 function Radios ($module) {
   this.$module = $module;
-  this.$inputs = $module.querySelectorAll('input[type="radio"]');
 }
 
 Radios.prototype.init = function () {
   var $module = this.$module;
-  var $inputs = this.$inputs;
+  var $inputs = $module.querySelectorAll('input[type="radio"]');
 
   /**
   * Loop over all items with [data-controls]
@@ -2004,25 +1990,79 @@ Radios.prototype.init = function () {
 };
 
 Radios.prototype.setAttributes = function ($input) {
-  var inputIsChecked = $input.checked;
-  $input.setAttribute('aria-expanded', inputIsChecked);
+  var $content = document.querySelector('#' + $input.getAttribute('aria-controls'));
 
-  var $content = this.$module.querySelector('#' + $input.getAttribute('aria-controls'));
-  if ($content) {
+  if ($content && $content.classList.contains('govuk-radios__conditional')) {
+    var inputIsChecked = $input.checked;
+
+    $input.setAttribute('aria-expanded', inputIsChecked);
+
     $content.classList.toggle('govuk-radios__conditional--hidden', !inputIsChecked);
   }
 };
 
 Radios.prototype.handleClick = function (event) {
-  nodeListForEach(this.$inputs, function ($input) {
-    // If a radio with aria-controls, handle click
-    var isRadio = $input.getAttribute('type') === 'radio';
-    var hasAriaControls = $input.getAttribute('aria-controls');
-    if (isRadio && hasAriaControls) {
+  var $clickedInput = event.target;
+  // We only want to handle clicks for radio inputs
+  if ($clickedInput.type !== 'radio') {
+    return
+  }
+  // Because checking one radio can uncheck a radio in another $module,
+  // we need to call set attributes on all radios in the same form, or document if they're not in a form.
+  //
+  // We also only want radios which have aria-controls, as they support conditional reveals.
+  var $allInputs = document.querySelectorAll('input[type="radio"][aria-controls]');
+  nodeListForEach($allInputs, function ($input) {
+    // Only inputs with the same form owner should change.
+    var hasSameFormOwner = ($input.form === $clickedInput.form);
+
+    // In radios, only radios with the same name will affect each other.
+    var hasSameName = ($input.name === $clickedInput.name);
+    if (hasSameName && hasSameFormOwner) {
       this.setAttributes($input);
     }
   }.bind(this));
 };
+
+(function(undefined) {
+
+    // Detection from https://raw.githubusercontent.com/Financial-Times/polyfill-library/master/polyfills/Element/prototype/nextElementSibling/detect.js
+    var detect = (
+      'document' in this && "nextElementSibling" in document.documentElement
+    );
+
+    if (detect) return
+
+    // Polyfill from https://raw.githubusercontent.com/Financial-Times/polyfill-library/master/polyfills/Element/prototype/nextElementSibling/polyfill.js
+    Object.defineProperty(Element.prototype, "nextElementSibling", {
+      get: function(){
+        var el = this.nextSibling;
+        while (el && el.nodeType !== 1) { el = el.nextSibling; }
+        return el;
+      }
+    });
+
+}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
+
+(function(undefined) {
+
+    // Detection from https://raw.githubusercontent.com/Financial-Times/polyfill-library/master/polyfills/Element/prototype/previousElementSibling/detect.js
+    var detect = (
+      'document' in this && "previousElementSibling" in document.documentElement
+    );
+
+    if (detect) return
+
+    // Polyfill from https://raw.githubusercontent.com/Financial-Times/polyfill-library/master/polyfills/Element/prototype/previousElementSibling/polyfill.js
+    Object.defineProperty(Element.prototype, 'previousElementSibling', {
+      get: function(){
+        var el = this.previousSibling;
+        while (el && el.nodeType !== 1) { el = el.previousSibling; }
+        return el;
+      }
+    });
+
+}).call('object' === typeof window && window || 'object' === typeof self && self || 'object' === typeof global && global || {});
 
 function Tabs ($module) {
   this.$module = $module;
@@ -2165,6 +2205,7 @@ Tabs.prototype.setAttributes = function ($tab) {
   $tab.setAttribute('id', 'tab_' + panelId);
   $tab.setAttribute('role', 'tab');
   $tab.setAttribute('aria-controls', panelId);
+  $tab.setAttribute('aria-selected', 'false');
   $tab.setAttribute('tabindex', '-1');
 
   // set panel attributes
@@ -2179,6 +2220,7 @@ Tabs.prototype.unsetAttributes = function ($tab) {
   $tab.removeAttribute('id');
   $tab.removeAttribute('role');
   $tab.removeAttribute('aria-controls');
+  $tab.removeAttribute('aria-selected');
   $tab.removeAttribute('tabindex');
 
   // unset panel attributes
@@ -2189,6 +2231,10 @@ Tabs.prototype.unsetAttributes = function ($tab) {
 };
 
 Tabs.prototype.onTabClick = function (e) {
+  if (!e.target.classList.contains('govuk-tabs__tab')) {
+  // Allow events on child DOM elements to bubble up to tab parent
+    return false
+  }
   e.preventDefault();
   var $newTab = e.target;
   var $currentTab = this.getCurrentTab();
@@ -2228,7 +2274,7 @@ Tabs.prototype.activateNextTab = function () {
   var currentTab = this.getCurrentTab();
   var nextTabListItem = currentTab.parentNode.nextElementSibling;
   if (nextTabListItem) {
-    var nextTab = nextTabListItem.firstElementChild;
+    var nextTab = nextTabListItem.querySelector('.govuk-tabs__tab');
   }
   if (nextTab) {
     this.hideTab(currentTab);
@@ -2242,7 +2288,7 @@ Tabs.prototype.activatePreviousTab = function () {
   var currentTab = this.getCurrentTab();
   var previousTabListItem = currentTab.parentNode.previousElementSibling;
   if (previousTabListItem) {
-    var previousTab = previousTabListItem.firstElementChild;
+    var previousTab = previousTabListItem.querySelector('.govuk-tabs__tab');
   }
   if (previousTab) {
     this.hideTab(currentTab);
@@ -2269,18 +2315,18 @@ Tabs.prototype.hidePanel = function (tab) {
 
 Tabs.prototype.unhighlightTab = function ($tab) {
   $tab.setAttribute('aria-selected', 'false');
-  $tab.classList.remove('govuk-tabs__tab--selected');
+  $tab.parentNode.classList.remove('govuk-tabs__list-item--selected');
   $tab.setAttribute('tabindex', '-1');
 };
 
 Tabs.prototype.highlightTab = function ($tab) {
   $tab.setAttribute('aria-selected', 'true');
-  $tab.classList.add('govuk-tabs__tab--selected');
+  $tab.parentNode.classList.add('govuk-tabs__list-item--selected');
   $tab.setAttribute('tabindex', '0');
 };
 
 Tabs.prototype.getCurrentTab = function () {
-  return this.$module.querySelector('.govuk-tabs__tab--selected')
+  return this.$module.querySelector('.govuk-tabs__list-item--selected .govuk-tabs__tab')
 };
 
 // this is because IE doesn't always return the actual value but a relative full path
@@ -2300,45 +2346,45 @@ function initAll (options) {
   // Defaults to the entire document if nothing is set.
   var scope = typeof options.scope !== 'undefined' ? options.scope : document;
 
-  // Find all buttons with [role=button] on the scope to enhance.
-  new Button(scope).init();
+  var $buttons = scope.querySelectorAll('[data-module="govuk-button"]');
+  nodeListForEach($buttons, function ($button) {
+    new Button($button).init();
+  });
 
-  // Find all global accordion components to enhance.
-  var $accordions = scope.querySelectorAll('[data-module="accordion"]');
+  var $accordions = scope.querySelectorAll('[data-module="govuk-accordion"]');
   nodeListForEach($accordions, function ($accordion) {
     new Accordion($accordion).init();
   });
 
-  // Find all global details elements to enhance.
-  var $details = scope.querySelectorAll('details');
+  var $details = scope.querySelectorAll('[data-module="govuk-details"]');
   nodeListForEach($details, function ($detail) {
     new Details($detail).init();
   });
 
-  var $characterCount = scope.querySelectorAll('[data-module="character-count"]');
-  nodeListForEach($characterCount, function ($characterCount) {
+  var $characterCounts = scope.querySelectorAll('[data-module="govuk-character-count"]');
+  nodeListForEach($characterCounts, function ($characterCount) {
     new CharacterCount($characterCount).init();
   });
 
-  var $checkboxes = scope.querySelectorAll('[data-module="checkboxes"]');
+  var $checkboxes = scope.querySelectorAll('[data-module="govuk-checkboxes"]');
   nodeListForEach($checkboxes, function ($checkbox) {
     new Checkboxes($checkbox).init();
   });
 
   // Find first error summary module to enhance.
-  var $errorSummary = scope.querySelector('[data-module="error-summary"]');
+  var $errorSummary = scope.querySelector('[data-module="govuk-error-summary"]');
   new ErrorSummary($errorSummary).init();
 
   // Find first header module to enhance.
-  var $toggleButton = scope.querySelector('[data-module="header"]');
+  var $toggleButton = scope.querySelector('[data-module="govuk-header"]');
   new Header($toggleButton).init();
 
-  var $radios = scope.querySelectorAll('[data-module="radios"]');
+  var $radios = scope.querySelectorAll('[data-module="govuk-radios"]');
   nodeListForEach($radios, function ($radio) {
     new Radios($radio).init();
   });
 
-  var $tabs = scope.querySelectorAll('[data-module="tabs"]');
+  var $tabs = scope.querySelectorAll('[data-module="govuk-tabs"]');
   nodeListForEach($tabs, function ($tabs) {
     new Tabs($tabs).init();
   });

@@ -1,0 +1,19 @@
+uuid: 95ac3127-382c-4fce-9ac2-9643b1b3b4cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_trello_id
+    - taxonomy.vocabulary.library_labels
+id: taxonomy_term.library_labels.field_trello_id
+field_name: field_trello_id
+entity_type: taxonomy_term
+bundle: library_labels
+label: 'Trello ID'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -3,8 +3,8 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.user.field_cohort
     - field.storage.node.field_acronym
+    - field.storage.user.field_cohort
     - field.storage.node.field_number
     - field.storage.user.field_name
     - field.storage.user.field_programme_year
@@ -25,8 +25,8 @@ field_settings:
     type: text
     dependencies:
       config:
-        - field.storage.user.field_cohort
         - field.storage.node.field_acronym
+        - field.storage.user.field_cohort
       module:
         - node
   cohort_name:
@@ -39,7 +39,6 @@ field_settings:
         - field.storage.user.field_cohort
       module:
         - node
-        - node
   cohort_number:
     label: 'Cohort » Content » Cohort number'
     datasource_id: 'entity:user'
@@ -47,8 +46,8 @@ field_settings:
     type: integer
     dependencies:
       config:
-        - field.storage.user.field_cohort
         - field.storage.node.field_number
+        - field.storage.user.field_cohort
       module:
         - node
   cohort_title:
@@ -60,7 +59,6 @@ field_settings:
       config:
         - field.storage.user.field_cohort
       module:
-        - node
         - node
   family:
     label: 'Full Name » Family'
@@ -162,8 +160,8 @@ field_settings:
     type: string
     dependencies:
       config:
-        - field.storage.user.field_programme_year
         - field.storage.node.field_acronym
+        - field.storage.user.field_programme_year
       module:
         - node
   programme_title:
@@ -175,7 +173,6 @@ field_settings:
       config:
         - field.storage.user.field_programme_year
       module:
-        - node
         - node
   region_name:
     label: 'Region Name'

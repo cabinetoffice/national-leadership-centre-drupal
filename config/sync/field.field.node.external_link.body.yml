@@ -1,0 +1,23 @@
+uuid: 5f2a464b-47e3-4ed2-b0ff-e4ab31326f87
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.external_link
+  module:
+    - text
+id: node.external_link.body
+field_name: body
+entity_type: node
+bundle: external_link
+label: Summary
+description: 'A short summary of the external link, such as the first few lines from the article.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+field_type: text_with_summary

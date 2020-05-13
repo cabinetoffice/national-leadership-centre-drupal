@@ -213,6 +213,7 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
    *   The form render array, or redirect response.
    */
   public function login(Request $request, $uid, $timestamp, $hash) {
+    $request = \Drupal::request();
 
     // The current user is not logged in, so check the parameters.
     $current = \Drupal::time()->getRequestTime();
@@ -231,14 +232,19 @@ class DirectoryTokenAccessConfirmController extends ControllerBase {
       }
     }
 
+    $url_options = [
+      'absolute' => TRUE,
+    ];
+    if ($login_destination = $request->query->get('login_destination')) {
+      $url_options['query'] = ['destination' => $login_destination];
+    }
+
       // Get the URL to the check route.
     $url = Url::fromRoute('nlc_prototype.directory.token_access.check', [
       'uid' => $uid,
       'timestamp' => $timestamp,
       'hash' => $hash,
-    ], [
-      'absolute' => TRUE,
-    ])->toString();
+    ], $url_options)->toString();
 
     return [
       '#theme' => 'nlc_prototype_login_page',

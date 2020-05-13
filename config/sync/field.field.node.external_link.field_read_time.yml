@@ -1,0 +1,23 @@
+uuid: 4675c5e4-342e-4920-9381-4d817de08e0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_read_time
+    - node.type.external_link
+id: node.external_link.field_read_time
+field_name: field_read_time
+entity_type: node
+bundle: external_link
+label: 'Read time'
+description: 'Estimated read time, in minutes'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: min
+field_type: integer

@@ -49,9 +49,9 @@
         );
         var resetLink = $("#search-reset-link");
         if (facetsCount == 0) {
-          resetLink.addClass("visually-hidden").attr("aria-hidden", "true");
+          resetLink.addClass("hidden");
         } else {
-          resetLink.removeClass("visually-hidden").attr("aria-hidden", "false");
+          resetLink.removeClass("hidden");
         }
         // Only update the count if the text has actually changed, prevent screeen readers reading it twice.
         var countText =
