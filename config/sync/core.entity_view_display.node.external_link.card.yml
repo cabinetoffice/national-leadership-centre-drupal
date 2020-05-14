@@ -1,8 +1,9 @@
-uuid: 480847df-d859-4da3-99dd-f4705f0f0c1b
+uuid: e6477b7b-83d0-492f-87ad-f352d43f36ea
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.card
     - field.field.node.external_link.body
     - field.field.node.external_link.field_author
     - field.field.node.external_link.field_label
@@ -15,104 +16,63 @@ dependencies:
     - field.field.node.external_link.field_url
     - node.type.external_link
   module:
-    - image
     - link
     - text
     - user
-id: node.external_link.default
+id: node.external_link.card
 targetEntityType: node
 bundle: external_link
-mode: default
+mode: card
 content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: content
-  field_author:
-    weight: 106
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_label:
-    weight: 110
-    label: above
+    weight: 1
+    label: visually_hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_publication:
-    weight: 108
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_read_time:
-    weight: 107
-    label: above
+    weight: 2
+    label: visually_hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
     region: content
-  field_source:
-    weight: 105
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_thumbnail:
-    weight: 103
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
   field_topic:
-    weight: 104
-    label: above
+    weight: 0
+    label: visually_hidden
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
     type: entity_reference_label
     region: content
-  field_trello_id:
-    weight: 109
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   field_url:
-    weight: 102
-    label: above
+    weight: 4
+    label: hidden
     settings:
       trim_length: 80
+      rel: nofollow
+      target: _blank
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
     third_party_settings: {  }
     type: link
     region: content
-  links:
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  field_author: true
+  field_publication: true
+  field_source: true
+  field_thumbnail: true
+  field_trello_id: true
+  links: true
   search_api_excerpt: true
