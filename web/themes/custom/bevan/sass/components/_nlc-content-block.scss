@@ -21,16 +21,25 @@ $tablet: 768px;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 .nlc-content-block__item {
   width: 100%;
   height: fit-content;
   background-color: $white;
   margin: 0 govuk-px-to-rem(18px) govuk-px-to-rem(30px) govuk-px-to-rem(18px);
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: $mobile) {
     flex: 0 0 30%;
   }
+}
+
+.nlc-content-block__item p {
+  margin: 0;
 }
 
 .nlc-content-block__item__name {
@@ -55,8 +64,6 @@ $tablet: 768px;
   }
 
   p {
-    margin: 0;
-
     @media only screen and (max-width: $tablet) {
       font-size: govuk-px-to-rem(14px);
       line-height: govuk-px-to-rem(20px);
@@ -86,6 +93,7 @@ $tablet: 768px;
   font-size: govuk-px-to-rem(14);
   line-height: govuk-em(23, 14);
   font-weight: 700;
+  order: -1;
 }
 .nlc-content-block__topic--ways-of-working {
   background: $ways-of-working;
@@ -123,4 +131,5 @@ $tablet: 768px;
   padding: 0 10px;
   margin-left: govuk-px-to-rem(20);
   border-radius: 10px;
+  align-self: flex-start;
 }

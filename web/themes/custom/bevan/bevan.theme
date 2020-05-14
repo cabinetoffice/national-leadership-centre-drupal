@@ -143,7 +143,7 @@ function bevan_preprocess_views_view_fields(&$variables) {
   if ($view->id() == 'library') {
     $term_fields = [
       'field_topic_name' => 'topic',
-      'field_label_name' => 'label',
+      // 'field_label_name' => 'label',
     ];
     foreach ($fields as $id => $field) {
       // Add classes to topic or label fields in the library view
