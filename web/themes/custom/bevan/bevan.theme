@@ -105,10 +105,15 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
  * Alter views search forms.
  */
 function bevan_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form['#id'] === 'views-exposed-form-senior-leaders-directory-es-page') {
+  // Start a new search link
+  $searchableForms = [
+    'views-exposed-form-senior-leaders-directory-es-page' => 'view.senior_leaders_directory_es.page',
+    'views-exposed-form-library-page' => 'view.library.page',
+  ];
+  if (array_key_exists($form['#id'], $searchableForms)) {
     // TODO: Work out proper caching settings.
     $form_state->disableCache();
-    $url = Url::fromRoute('view.senior_leaders_directory_es.page');
+    $url = Url::fromRoute($searchableForms[$form['#id']]);
     $reset_link = Link::fromTextAndUrl(t('Start new search'), $url);
     $reset_link = $reset_link->toRenderable();
     $reset_link['#attributes'] = array(
