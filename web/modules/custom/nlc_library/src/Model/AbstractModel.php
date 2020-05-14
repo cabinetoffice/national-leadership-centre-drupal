@@ -38,7 +38,7 @@ abstract class AbstractModel implements ModelInterface {
    * @param object $object
    */
   public function __construct($object) {
-    $this->boardId = $object->idBoard;
+    $this->boardId = $object->idBoard ?? null;
     $this->id = $object->id;
     $this->name = $object->name;
   }
