@@ -17,7 +17,7 @@ third_party_settings:
 id: facetsummary
 theme: bevan
 region: content
-weight: -11
+weight: -13
 provider: null
 plugin: 'facets_summary_block:facet_summary'
 settings:

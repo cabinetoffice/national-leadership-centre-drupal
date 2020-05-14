@@ -1,30 +1,30 @@
-uuid: 2ff04f92-4ae4-4172-bbb1-ae2090eaf897
+uuid: e87e6023-401b-4111-895e-91f555548f9e
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.filter_by_topic
+    - views.view.library
   module:
     - collapsiblock
-    - facets
     - system
+    - views
   theme:
     - bevan
 third_party_settings:
   collapsiblock:
-    collapse_action: '3'
-id: filterbytopic
+    collapse_action: '0'
+id: exposedformlibrarypage
 theme: bevan
 region: sidebar_first
-weight: -5
+weight: -12
 provider: null
-plugin: 'facet_block:filter_by_topic'
+plugin: 'views_exposed_filter_block:library-page'
 settings:
-  id: 'facet_block:filter_by_topic'
-  label: Topic
-  provider: facets
-  label_display: visible
-  block_id: filterbytopic
+  id: 'views_exposed_filter_block:library-page'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
 visibility:
   request_path:
     id: request_path

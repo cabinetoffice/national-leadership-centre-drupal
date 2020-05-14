@@ -8,18 +8,24 @@ dependencies:
   module:
     - search_api
 id: filter_by_type
-name: 'Filter by type of content'
+name: 'Type of content'
 url_alias: type
-weight: 0
-min_count: 1
-show_only_one_result: true
+weight: 1
+min_count: 0
+show_only_one_result: false
 field_identifier: field_label_name
 facet_source_id: 'search_api:views_page__library__page'
 widget:
-  type: dropdown
+  type: links
   config:
     show_numbers: false
-    default_option_label: 'All types of content'
+    soft_limit: 0
+    soft_limit_settings:
+      show_less_label: 'Show less'
+      show_more_label: 'Show more'
+    show_reset_link: false
+    reset_text: 'Show all'
+    hide_reset_when_no_selection: false
 query_operator: or
 use_hierarchy: false
 expand_hierarchy: false
@@ -28,22 +34,10 @@ hard_limit: 0
 exclude: false
 only_visible_when_facet_source_is_visible: true
 processor_configs:
-  active_widget_order:
-    processor_id: active_widget_order
+  raw_value_widget_order:
+    processor_id: raw_value_widget_order
     weights:
-      sort: 20
-    settings:
-      sort: DESC
-  count_widget_order:
-    processor_id: count_widget_order
-    weights:
-      sort: 30
-    settings:
-      sort: DESC
-  display_value_widget_order:
-    processor_id: display_value_widget_order
-    weights:
-      sort: 40
+      sort: 50
     settings:
       sort: ASC
   url_processor_handler:
@@ -54,4 +48,4 @@ processor_configs:
     settings: {  }
 empty_behavior:
   behavior: none
-show_title: true
+show_title: false
