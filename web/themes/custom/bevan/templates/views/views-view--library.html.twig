@@ -9,7 +9,7 @@
   {{ title_suffix }}
 
   {% if header or pager %}
-    <div class="govuk-width-container govuk-width-container--narrow">
+    <div class="govuk-width-container">
       <header>
         {{ header }}
         {{ pager }}
@@ -21,11 +21,9 @@
   {{ attachment_before }}
 
   {% if rows -%}
-  <div class="nlc-content-block-wrapper">
     <div class="govuk-width-container">
       {{ rows }}
     </div>
-  </div>
   {% elseif empty -%}
     <div class="govuk-width-container govuk-width-container--narrow">
       {{ empty }}
