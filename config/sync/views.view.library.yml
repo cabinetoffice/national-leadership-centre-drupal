@@ -581,7 +581,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="{{ field_url__uri }}" target="_blank">Open link</a>'
+            text: '<a href="{{ field_url__uri }}" target="_blank">Open link<span class="visually-hidden">: {{ title_1 }}</a>'
             make_link: false
             path: ''
             absolute: false
