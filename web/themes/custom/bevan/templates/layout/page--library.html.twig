@@ -6,18 +6,10 @@
       {{ page.pre_content }}
     </section>
 
-    <div class="govuk-grid-row">
-
-      {% if page.sidebar_first or page.sidebar_second %}
-        {% set content_class = 'govuk-grid-column-three-quarters' %}
-      {% endif %}
-
-      {% if page.sidebar_first and page.sidebar_second %}
-        {% set content_class = 'govuk-grid-column-one-half' %}
-      {% endif %}
+      {% set content_class = '' %}
 
       {% if page.sidebar_first %}
-        <aside class="govuk-grid-column-one-quarter">
+        <aside>
           {{ page.sidebar_first }}
         </aside>
       {% endif %}
@@ -27,10 +19,8 @@
       </main>
 
       {% if page.sidebar_second %}
-        <aside class="govuk-grid-column-one-quarter">
+        <aside>
           {{ page.sidebar_second }}
         </aside>
       {% endif %}
-
-    </div>
 {% endblock %}
