@@ -1,0 +1,5 @@
+{% extends 'block--system-menu-block.html.twig' %}
+
+{% block nav %}
+<nav role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').addClass('site-header__navigation') }}>
+{% endblock %}
