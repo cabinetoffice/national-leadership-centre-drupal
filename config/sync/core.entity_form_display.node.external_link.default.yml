@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.external_link.field_author
     - field.field.node.external_link.field_label
     - field.field.node.external_link.field_publication
+    - field.field.node.external_link.field_published_on
     - field.field.node.external_link.field_read_time
     - field.field.node.external_link.field_source
     - field.field.node.external_link.field_thumbnail
@@ -16,6 +17,7 @@ dependencies:
     - image.style.thumbnail
     - node.type.external_link
   module:
+    - datetime
     - field_group
     - image
     - link
@@ -29,6 +31,7 @@ third_party_settings:
         - field_thumbnail
         - field_publication
         - field_author
+        - field_published_on
         - field_source
         - field_read_time
       parent_name: ''
@@ -84,15 +87,21 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_published_on:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_read_time:
-    weight: 14
+    weight: 15
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_source:
-    weight: 13
+    weight: 14
     settings:
       size: 60
       placeholder: ''
