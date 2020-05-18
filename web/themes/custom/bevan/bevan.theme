@@ -99,6 +99,7 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
       $vars['applied'][$facet->id()]['items'][] = $item;
     }
   }
+  $vars['list_class'] = $vars['facets_count'] > 0 ? 'facet-summary__applied' : 'facet-summary__applied visually-hidden';
 }
 
 /**
