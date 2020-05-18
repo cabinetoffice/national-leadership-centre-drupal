@@ -1,0 +1,4 @@
+defaults:
+  formatter: htmlmail
+  sender: sendgrid_integration
+theme: default
