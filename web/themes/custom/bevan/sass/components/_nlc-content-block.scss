@@ -50,7 +50,7 @@ $tablet: 768px;
 
 .nlc-content-block__item__name {
   margin: 0;
-  padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
+  padding: govuk-px-to-rem(10px);
   font-family: $govuk-font-family;
   font-size: govuk-px-to-rem(19);
   line-height: govuk-em(28, 19);
@@ -69,10 +69,6 @@ $tablet: 768px;
   font-size: govuk-px-to-rem(17);
   line-height: govuk-em(25, 17);
   font-family: $font-family-secondary;
-
-  @media only screen and (min-width: $tablet) {
-    padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
-  }
 
   p {
     @media only screen and (max-width: $tablet) {
@@ -125,7 +121,7 @@ $tablet: 768px;
   vertical-align: middle;
   display: inline-block;
   padding: 0 10px;
-  margin-left: govuk-px-to-rem(20);
+  margin-left: govuk-px-to-rem(10);
   border-radius: 10px;
   align-self: flex-start;
 }
