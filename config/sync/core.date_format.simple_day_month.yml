@@ -1,0 +1,8 @@
+uuid: d9441d4f-7580-4b32-aaac-dd60c175ef09
+langcode: en
+status: true
+dependencies: {  }
+id: simple_day_month
+label: 'Simple day-month'
+locked: false
+pattern: 'j M'

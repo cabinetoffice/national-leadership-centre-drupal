@@ -61,11 +61,22 @@ class CardModel extends AbstractTrelloModel {
   protected $tz;
 
   /**
+   * @var \Drupal\nlc_library\Model\Trello\CustomFieldModel[]
+   */
+  protected $customFieldModels;
+
+  /**
+   * @var \Drupal\nlc_library\Model\Trello\CustomFieldItemModel[]
+   */
+  protected $customFieldItems;
+
+  /**
    * CardModel constructor.
    *
    * @param $object
+   * @param \Drupal\nlc_library\Model\Trello\CustomFieldModel[] $customFields
    */
-  public function __construct($object) {
+  public function __construct($object, array $customFields) {
     parent::__construct($object);
 
     $this->description = $object->desc;
@@ -76,6 +87,10 @@ class CardModel extends AbstractTrelloModel {
     $this->labelIds = $object->idLabels;
     $this->tz = new \DateTimeZone('Europe/London');
     $this->setAttachments($object->attachments ? $object->attachments : []);
+    foreach ($customFields as $customField) {
+      $this->setCustomField($customField);
+    }
+    $this->setCustomFieldItems($object->customFieldItems ? $object->customFieldItems : []);
   }
 
   /**
@@ -177,6 +192,41 @@ class CardModel extends AbstractTrelloModel {
     foreach ($attachments as $attachment) {
       $this->attachments[] = new CardAttachmentModel($attachment);
     }
+  }
+
+  /**
+   * @param \Drupal\nlc_library\Model\Trello\CustomFieldModel $model
+   */
+  protected function setCustomField(CustomFieldModel $model) {
+    $this->customFieldModels[$model->getId()] = $model;
+  }
+
+  /**
+   * @param array $customFieldItems
+   */
+  protected function setCustomFieldItems(array $customFieldItems): void {
+    foreach ($customFieldItems as $customFieldItem) {
+      $customFieldItem = new CustomFieldItemModel($customFieldItem);
+      $customFieldModel = $this->customFieldModels[$customFieldItem->getIdCustomField()];
+      $customFieldItem->setCustomFieldModel($customFieldModel);
+      $this->customFieldItems[$customFieldItem->getCustomFieldModel()->getConnectFieldName()] = $customFieldItem;
+    }
+  }
+
+  /**
+   * @param $fieldName
+   *
+   * @return \Drupal\nlc_library\Model\Trello\CustomFieldItemModel|null
+   */
+  public function getCustomFieldItem($fieldName) {
+    return $this->customFieldItems[$fieldName] ? $this->customFieldItems[$fieldName] : null;
+  }
+
+  /**
+   * @return \Drupal\nlc_library\Model\Trello\CustomFieldItemModel[]
+   */
+  public function getCustomFieldItems() {
+    return $this->customFieldItems;
   }
 
   /**

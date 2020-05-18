@@ -1,0 +1,21 @@
+uuid: 86c945f1-a05a-4fce-a5d4-608d960cd576
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_published_on
+    - node.type.external_link
+  module:
+    - datetime
+id: node.external_link.field_published_on
+field_name: field_published_on
+entity_type: node
+bundle: external_link
+label: 'Published on'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
