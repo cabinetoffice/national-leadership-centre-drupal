@@ -1,0 +1,4 @@
+defaults:
+  formatter: sendgrid_integration
+  sender: sendgrid_integration
+theme: bevan
