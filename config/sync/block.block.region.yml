@@ -17,7 +17,7 @@ third_party_settings:
 id: region
 theme: bevan
 region: sidebar_first
-weight: -6
+weight: -9
 provider: null
 plugin: 'facet_block:region'
 settings:

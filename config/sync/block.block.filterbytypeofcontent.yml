@@ -1,41 +1,33 @@
-uuid: a1ebc581-bd8c-4026-800c-977719786a1c
+uuid: fba8dc1e-2b5d-4e31-a645-304d6ec97095
 langcode: en
 status: true
 dependencies:
   config:
-    - facets.facet.sector
+    - facets.facet.filter_by_type
   module:
     - collapsiblock
     - facets
     - system
-    - user
   theme:
     - bevan
 third_party_settings:
   collapsiblock:
     collapse_action: '3'
-id: sector
+id: filterbytypeofcontent
 theme: bevan
 region: sidebar_first
-weight: -8
+weight: -6
 provider: null
-plugin: 'facet_block:sector'
+plugin: 'facet_block:filter_by_type'
 settings:
-  id: 'facet_block:sector'
-  label: Sector
+  id: 'facet_block:filter_by_type'
+  label: 'Type of content'
   provider: facets
   label_display: visible
-  block_id: sector
+  block_id: filterbytypeofcontent
 visibility:
   request_path:
     id: request_path
-    pages: /directory
+    pages: /library
     negate: false
     context_mapping: {  }
-  user_role:
-    id: user_role
-    roles:
-      authenticated: authenticated
-    negate: false
-    context_mapping:
-      user: '@user.current_user_context:current_user'

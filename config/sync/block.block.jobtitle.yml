@@ -17,7 +17,7 @@ third_party_settings:
 id: jobtitle
 theme: bevan
 region: sidebar_first
-weight: -7
+weight: -10
 provider: null
 plugin: 'facet_block:job_title'
 settings:

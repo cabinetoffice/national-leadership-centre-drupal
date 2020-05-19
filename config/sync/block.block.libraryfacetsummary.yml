@@ -1,0 +1,32 @@
+uuid: 747930ae-d95e-4863-b916-b44b645e8ddd
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets_summary.facets_summary.library_facet_summary
+  module:
+    - collapsiblock
+    - facets_summary
+    - system
+  theme:
+    - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
+id: libraryfacetsummary
+theme: bevan
+region: content
+weight: -12
+provider: null
+plugin: 'facets_summary_block:library_facet_summary'
+settings:
+  id: 'facets_summary_block:library_facet_summary'
+  label: 'Library facet summary'
+  provider: facets_summary
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /library
+    negate: false
+    context_mapping: {  }

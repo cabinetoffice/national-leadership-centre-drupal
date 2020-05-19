@@ -12,12 +12,21 @@ function bevan_preprocess_page(&$vars) {
   // This works because AJAX requests don't trigger this hook.
   // Using $_SESSION here because the D8 Request->getSession() returns NULL in an AJAX call.
   $req = \Drupal::request();
-  if (\Drupal::routeMatch()->getRouteName() === 'view.senior_leaders_directory_es.page') {
+  $routeName = \Drupal::routeMatch()->getRouteName();
+  if ($routeName === 'view.senior_leaders_directory_es.page') {
     if ($req->query->get('search')) {
       $_SESSION['directory_search'] = $req->query->get('search');
     }
     else {
       unset($_SESSION['directory_search']);
+    }
+  }
+  elseif ($routeName === 'view.library.page') {
+    if ($req->query->get('search')) {
+      $_SESSION['library_search'] = $req->query->get('search');
+    }
+    else {
+      unset($_SESSION['library_search']);
     }
   }
 }
@@ -34,11 +43,22 @@ function bevan_preprocess_block(&$vars) {
  * Preprocess the facets summary item list.
  */
 function bevan_preprocess_facets_summary_item_list(array &$vars) {
-
   // Add any search string to the list of applied facets.
   $vars['applied'] = [];
   $vars['facets_count'] = 0;
-  $search = $_SESSION['directory_search'] ?? FALSE;
+  $routeName = \Drupal::routeMatch()->getRouteName();
+  switch ($routeName) {
+    case 'view.senior_leaders_directory_es.page':
+      $search = $_SESSION['directory_search'] ?? FALSE;
+      break;
+
+    case 'view.library.page':
+      $search = $_SESSION['library_search'] ?? FALSE;
+      break;
+
+    default:
+      $search = FALSE;
+  }
   if (!empty($search)) {
     $vars['applied']['keywords'] = [
       'title' => 'Keywords',
@@ -79,16 +99,22 @@ function bevan_preprocess_facets_summary_item_list(array &$vars) {
       $vars['applied'][$facet->id()]['items'][] = $item;
     }
   }
+  $vars['list_class'] = $vars['facets_count'] > 0 ? 'facet-summary__applied' : 'facet-summary__applied visually-hidden';
 }
 
 /**
  * Alter views search forms.
  */
 function bevan_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form['#id'] === 'views-exposed-form-senior-leaders-directory-es-page') {
+  // Start a new search link
+  $searchableForms = [
+    'views-exposed-form-senior-leaders-directory-es-page' => 'view.senior_leaders_directory_es.page',
+    'views-exposed-form-library-page' => 'view.library.page',
+  ];
+  if (array_key_exists($form['#id'], $searchableForms)) {
     // TODO: Work out proper caching settings.
     $form_state->disableCache();
-    $url = Url::fromRoute('view.senior_leaders_directory_es.page');
+    $url = Url::fromRoute($searchableForms[$form['#id']]);
     $reset_link = Link::fromTextAndUrl(t('Start new search'), $url);
     $reset_link = $reset_link->toRenderable();
     $reset_link['#attributes'] = array(
@@ -123,6 +149,20 @@ function bevan_preprocess_status_messages(&$variables) {
         array_pop($variables['message_list']['error']);
       }
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block() for facets blocks.
+ */
+function bevan_preprocess_block__facets(&$variables) {
+  $variables['attributes']['class'][] = 'facet-container';
+  $library_block_ids = [
+    'facet_block:filter_by_topic',
+    'facet_block:filter_by_type',
+  ];
+  if (in_array($variables['plugin_id'], $library_block_ids )) {
+    $variables['attributes']['class'][] = 'facet-container__library';
   }
 }
 

@@ -3,7 +3,7 @@ $mobile: 576px;
 $tablet: 768px;
 
 .nlc-content-block-wrapper {
-  background-color: $very-light-grey;
+  //background-color: $very-light-grey;
   padding-top: govuk-px-to-rem(100px);
 
   &.no-images {
@@ -22,7 +22,7 @@ $tablet: 768px;
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  margin: 0;
+  margin: 0 govuk-px-to-rem(-15px);
   padding: 0;
 }
 .nlc-content-block__item {
@@ -30,13 +30,19 @@ $tablet: 768px;
   padding: 0 govuk-px-to-rem(10px) govuk-px-to-rem(30px);
 
   @media only screen and (min-width: $mobile) {
-    flex: 0 0 31%;
+    flex: 1 0 30%;
+    min-width: 210px;
   }
 }
 .nlc-content-block__card {
   background-color: $white;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media only screen and (min-width: $mobile) {
+    flex: 0 0 30%;
+  }
 }
 
 .nlc-content-block__item p {
