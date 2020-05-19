@@ -1,5 +1,6 @@
 module:
   address: 0
+  aria_current: 0
   auto_entitylabel: 0
   better_exposed_filters: 0
   big_pipe: 0
