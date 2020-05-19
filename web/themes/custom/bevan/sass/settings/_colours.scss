@@ -1,15 +1,16 @@
 $white: white;
-$grey: #323E48;
+$grey: #323e48;
 // This grey is accessible for text on white https://webaim.org/resources/contrastchecker/?fcolor=5A7A81&bcolor=FFFFFF
-$light-grey: #5A7A81;
+$light-grey: #5a7a81;
 // This grey is accessible as a background color behind $grey https://webaim.org/resources/contrastchecker/?fcolor=323E48&bcolor=EAEDF0
-$very-light-grey: #EAEDF0;
-$orange: #ED6B1C;
-/* This orange has sufficient color contrast against white. Large text only. https://webaim.org/resources/contrastchecker/?fcolor=FFFFFF&bcolor=EE701C */
-$orange-against-large-white-text: #EE701C;
-/* This orange has sufficient color contrast against white with all text sizes */
-$orange-against-regular-white-text: #C2570F;
-$pale-yellow: #FDFAE6;
-$yellow: #FFDB03;
-$red: #CE132D;
-$blue: blue;
+$very-light-grey: #f3f6f9;
+// This is used in the header
+$support-grey: #b3babf;
+$orange: #ed6b1c;
+$orange-on-white: #ee701c;
+$red: #ce132d;
+$yellow: #ffdb03;
+$pale-yellow: #fdfae6;
+$purple: #8844aa;
+$green: #0f847f;
+$blue: #286dc7;

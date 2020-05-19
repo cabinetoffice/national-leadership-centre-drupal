@@ -1,0 +1,206 @@
+uuid: d65dfd5e-a107-4f61-994a-360e91e468c7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - field.storage.node.field_author
+    - field.storage.node.field_label
+    - field.storage.node.field_publication
+    - field.storage.node.field_source
+    - field.storage.node.field_topic
+    - search_api.server.elastic
+  module:
+    - node
+    - taxonomy
+    - search_api
+id: external_links
+name: 'External links'
+description: 'An index for external links in the Connect library'
+read_only: false
+field_settings:
+  body:
+    label: Summary
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  created:
+    label: 'Authored on'
+    datasource_id: 'entity:node'
+    property_path: created
+    type: date
+    dependencies:
+      module:
+        - node
+  field_author:
+    label: Author
+    datasource_id: 'entity:node'
+    property_path: field_author
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_author
+  field_label:
+    label: Label
+    datasource_id: 'entity:node'
+    property_path: field_label
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_label
+  field_label_name:
+    label: 'Label » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_label:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_label
+      module:
+        - taxonomy
+  field_publication:
+    label: Publication
+    datasource_id: 'entity:node'
+    property_path: field_publication
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_publication
+  field_source:
+    label: Source
+    datasource_id: 'entity:node'
+    property_path: field_source
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_source
+  field_topic:
+    label: Topic
+    datasource_id: 'entity:node'
+    property_path: field_topic
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_topic
+  field_topic_name:
+    label: 'Topic » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_topic:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_topic
+      module:
+        - taxonomy
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  promote:
+    label: 'Promoted to front page'
+    datasource_id: 'entity:node'
+    property_path: promote
+    type: boolean
+    dependencies:
+      module:
+        - node
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 2
+    dependencies:
+      module:
+        - node
+  uid:
+    label: 'Authored by'
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+    dependencies:
+      module:
+        - node
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: false
+      selected:
+        - external_link
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
+  hierarchy:
+    fields:
+      field_label: taxonomy_term-parent
+      field_topic: taxonomy_term-parent
+    weights:
+      preprocess_index: -45
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  ignorecase:
+    all_fields: false
+    fields:
+      - body
+      - field_author
+      - field_publication
+      - field_source
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+  language_with_fallback: {  }
+  rendered_item: {  }
+  transliteration:
+    all_fields: true
+    fields:
+      - body
+      - field_author
+      - field_label_name
+      - field_publication
+      - field_source
+      - field_topic_name
+      - title
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 50
+server: elastic

@@ -1,0 +1,15 @@
+.govuk-link,
+a {
+  font-family: inherit;
+  text-decoration: underline;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  &:hover {
+    text-decoration: none;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}

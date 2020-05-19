@@ -1,0 +1,41 @@
+.nlc-responsive-table {
+  @media (max-width: govuk-px-to-rem(452)) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+    header {
+      font-size: govuk-px-to-rem(17);
+      line-height: govuk-px-to-em(25, 17);
+      margin-bottom: 10px;
+    }
+    table {
+      border-top: 1px solid $govuk-border-colour;
+    }
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    tr {
+      border-bottom: 1px solid $govuk-border-colour;
+      padding: 10px 0;
+    }
+    td {
+      border: none;
+      padding: 0;
+      position: relative;
+      font-size: govuk-px-to-rem(17);
+      line-height: govuk-px-to-em(25, 17);
+    }
+    .views-field-field-name {
+      padding-bottom: 10px;
+      font-size: govuk-px-to-rem(23);
+      line-height: govuk-px-to-em(33, 23);
+    }
+  }
+}

@@ -1,35 +1,35 @@
-.sliding-popup-top {
-    width: 100%;
+.sliding-popup-bottom {
+  width: 100%;
 }
 .eu-cookie-compliance-banner {
-    background-color: $very-light-grey;
-    font-size: 1.25rem;
-    .eu-cookie-compliance__close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 25px;
-        height: 25px;
-        padding: 0;
-        background-color: transparent;
-        border: none;
-        padding: none;
-        cursor: pointer;
-        path {
-            stroke: black;
-            stroke-width: 4px;
-            stroke-linecap: round;
-        }
-        &:focus {
-            background-color: $yellow;
-        }
+  background-color: $yellow;
+  text-align: center;
+  padding: govuk-px-to-rem(19) govuk-px-to-rem(20) govuk-px-to-rem(21);
+  font-family: $font-family-secondary;
+  font-size: govuk-px-to-rem(15);
+  line-height: govuk-em(22, 15);
+  @media (min-width: govuk-px-to-rem(880)) {
+    font-size: govuk-px-to-rem(17);
+    line-height: govuk-em(25, 17);
+    padding: govuk-px-to-rem(14) 0;
+  }
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    @media (min-width: govuk-px-to-rem(880)) {
+      display: inline;
     }
+  }
+  a,
+  .govuk-link {
+    color: $grey;
+    font-size: inherit;
+    line-height: inherit;
+  }
 }
-.eu-cookie-compliance__container {
-    padding: 20px 0;
-    text-align: left;
-}
-.eu-cookie-compliance__content {
-    position: relative;
-    padding-right: 27px;
+.eu-cookie-compliance-secondary-button {
+  font-family: $font-family-secondary;
+  @media (min-width: govuk-px-to-rem(880)) {
+    float: right;
+  }
 }

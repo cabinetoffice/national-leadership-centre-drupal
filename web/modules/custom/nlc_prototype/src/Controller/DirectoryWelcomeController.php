@@ -17,8 +17,13 @@ class DirectoryWelcomeController extends ControllerBase {
   public function build() {
 
     $build = [];
+    $options = [];
+    $request = \Drupal::request();
+    if ($request->getPathInfo() === '/library') {
+      $options['query'] = ['login_destination' => $request->getPathInfo()];
+    }
 
-    $url = Url::fromRoute('nlc_prototype.directory.token_access');
+    $url = Url::fromRoute('nlc_prototype.directory.token_access', [], $options);
     $link = Link::fromTextAndUrl($this->t('Start now'), $url);
     $link = $link->toRenderable();
     $link['#attributes'] = [
@@ -31,7 +36,6 @@ class DirectoryWelcomeController extends ControllerBase {
     $networkLink['#attributes'] = [
       'target' => '_blank',
     ];
-
     $build['intro'] = [
       '#type' => 'inline_template',
       '#context' => [
@@ -44,14 +48,14 @@ class DirectoryWelcomeController extends ControllerBase {
         'heading_two' => $this->t('Before you start'),
         'text_two' => $this->t('You will need your work email address and access to your work email account to gain access to the directory.'),
       ],
-      '#template' => '<h2>{{heading_one}}</h2>
+      '#template' => '<h2 class="govuk-heading-m">{{heading_one}}</h2>
      <ul>
       <li>{{item_one}}</li>
       <li>{{item_two}}</li>
      </ul>
      <p>{{text_one}}</p>
      <p>{{ network_link }}</p>
-     <h2>{{heading_two}}</h2>
+     <h2 class="govuk-heading-m">{{heading_two}}</h2>
      <p>{{text_two}}</p>
      <p>{{ button }}</p>',
     ];

@@ -42,6 +42,17 @@
           }
         );
       }
+
+      $('body').once('narcissus').each(function() {
+        if (typeof settings.path.currentPathIsSelfProfile !== 'undefined' && settings.path.currentPathIsSelfProfile === true) {
+          gtag('event', 'PageView', {
+            event_category: 'Own profile page',
+            non_interaction: true,
+            page_location: '/user/XXX',
+            page_title: 'User profile page'
+          });
+        }
+      });
     }
   };
 

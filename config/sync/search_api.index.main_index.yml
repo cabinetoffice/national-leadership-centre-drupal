@@ -42,7 +42,6 @@ field_settings:
         - field.storage.user.field_cohort
       module:
         - node
-        - node
   country_code:
     label: 'Location » The two-letter country code.'
     datasource_id: 'entity:profile'
@@ -73,11 +72,10 @@ field_settings:
     property_path: 'role_profiles:entity:field_job_title_term'
     type: integer
     dependencies:
-      module:
-        - profile
-        - profile
       config:
         - field.storage.profile.field_job_title_term
+      module:
+        - profile
   field_region:
     label: Region
     datasource_id: 'entity:node'
@@ -111,7 +109,6 @@ field_settings:
       config:
         - field.storage.profile.field_job_title_term
       module:
-        - taxonomy
         - taxonomy
   lastname:
     label: 'Name » Family'
@@ -155,7 +152,6 @@ field_settings:
         - field.storage.user.field_programme_year
       module:
         - node
-        - node
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -169,48 +165,42 @@ field_settings:
     property_path: 'role_profiles:entity:field_job_title'
     type: text
     dependencies:
-      module:
-        - profile
-        - profile
       config:
         - field.storage.profile.field_job_title
+      module:
+        - profile
   org_job_title:
     label: 'Role profiles » Profile » Job Title'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_job_title'
     type: text
     dependencies:
-      module:
-        - profile
-        - profile
       config:
         - field.storage.profile.field_job_title
+      module:
+        - profile
   org_job_title_term:
     label: 'Role profiles » Profile » Job Title » Taxonomy term » Name'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_job_title_term:entity:name'
     type: text
     dependencies:
-      module:
-        - profile
-        - profile
-        - taxonomy
-        - taxonomy
       config:
         - field.storage.profile.field_job_title_term
+      module:
+        - profile
+        - taxonomy
   org_name_user:
     label: 'Role profiles » Profile » Organisation » Content » Title'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_organisation:entity:title'
     type: text
     dependencies:
-      module:
-        - profile
-        - profile
-        - node
-        - node
       config:
         - field.storage.profile.field_organisation
+      module:
+        - node
+        - profile
   org_nid_profile:
     label: 'Organisation » Content » ID'
     datasource_id: 'entity:profile'
@@ -221,7 +211,6 @@ field_settings:
         - field.storage.profile.field_organisation
       module:
         - node
-        - node
   org_region_name_profile:
     label: 'Organisation » Content » Region » Taxonomy term » Name'
     datasource_id: 'entity:profile'
@@ -229,11 +218,10 @@ field_settings:
     type: string
     dependencies:
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_region
+        - field.storage.profile.field_organisation
       module:
         - node
-        - taxonomy
         - taxonomy
   org_region_name_user:
     label: 'Role profiles » Profile » Organisation » Content » Region » Taxonomy term » Name'
@@ -241,15 +229,13 @@ field_settings:
     property_path: 'role_profiles:entity:field_organisation:entity:field_region:entity:name'
     type: text
     dependencies:
-      module:
-        - profile
-        - profile
-        - node
-        - taxonomy
-        - taxonomy
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_region
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - profile
+        - taxonomy
   org_region_profile:
     label: 'Organisation » Content » Region'
     datasource_id: 'entity:profile'
@@ -257,8 +243,8 @@ field_settings:
     type: integer
     dependencies:
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_region
+        - field.storage.profile.field_organisation
       module:
         - node
   org_region_user:
@@ -267,13 +253,12 @@ field_settings:
     property_path: 'role_profiles:entity:field_organisation:entity:field_region'
     type: integer
     dependencies:
-      module:
-        - profile
-        - profile
-        - node
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_region
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - profile
   org_sector_name_profile:
     label: 'Organisation » Content » Sector » Taxonomy term » Name'
     datasource_id: 'entity:profile'
@@ -281,11 +266,10 @@ field_settings:
     type: string
     dependencies:
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_sector
+        - field.storage.profile.field_organisation
       module:
         - node
-        - taxonomy
         - taxonomy
   org_sector_name_user:
     label: 'Role profiles » Profile » Organisation » Content » Sector » Taxonomy term » Name'
@@ -293,28 +277,25 @@ field_settings:
     property_path: 'role_profiles:entity:field_organisation:entity:field_sector:entity:name'
     type: text
     dependencies:
-      module:
-        - profile
-        - profile
-        - node
-        - taxonomy
-        - taxonomy
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_sector
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - profile
+        - taxonomy
   org_sector_user:
     label: 'Role profiles » Profile » Organisation » Content » Sector'
     datasource_id: 'entity:user'
     property_path: 'role_profiles:entity:field_organisation:entity:field_sector'
     type: integer
     dependencies:
-      module:
-        - profile
-        - profile
-        - node
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_sector
+        - field.storage.profile.field_organisation
+      module:
+        - node
+        - profile
   organisation:
     label: Organisation
     datasource_id: 'entity:profile'
@@ -356,11 +337,10 @@ field_settings:
     type: integer
     dependencies:
       config:
-        - field.storage.profile.field_organisation
         - field.storage.node.field_sector
+        - field.storage.profile.field_organisation
       module:
         - node
-        - taxonomy
         - taxonomy
   title:
     label: 'Name » Title'

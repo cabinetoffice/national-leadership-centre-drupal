@@ -4,15 +4,18 @@ type: theme
 package: Other
 core: 8.x
 base theme: govuk_design_system
-logo: assets/images/logos/nlc-full-logoX600.png
+logo: assets/images/logos/nlc-connect.png
 # Regions
 regions:
-  header: 'Header'
-  pre_content: 'Pre-content'
-  sidebar_first: 'Sidebar first'
-  sidebar_second: 'Sidebar second'
-  content: 'Content'
-  footer: 'Footer'
+  header_one: "Header one"
+  header_two: "Header two"
+  full_width: "Full width panel"
+  pre_content: "Pre-content"
+  sidebar_first: "Sidebar first"
+  sidebar_second: "Sidebar second"
+  content: "Content"
+  footer_one: "Footer one"
+  footer_two: "Footer two"
 libraries-override:
   govuk_design_system/global-styling: bevan/global-styling
   collapsiblock/core:

@@ -1,0 +1,129 @@
+uuid: 480847df-d859-4da3-99dd-f4705f0f0c1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.external_link.body
+    - field.field.node.external_link.field_author
+    - field.field.node.external_link.field_label
+    - field.field.node.external_link.field_publication
+    - field.field.node.external_link.field_published_on
+    - field.field.node.external_link.field_read_time
+    - field.field.node.external_link.field_source
+    - field.field.node.external_link.field_thumbnail
+    - field.field.node.external_link.field_topic
+    - field.field.node.external_link.field_trello_id
+    - field.field.node.external_link.field_url
+    - node.type.external_link
+  module:
+    - datetime
+    - image
+    - link
+    - text
+    - user
+id: node.external_link.default
+targetEntityType: node
+bundle: external_link
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_author:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_label:
+    weight: 110
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_publication:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_published_on:
+    weight: 111
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: simple_day_month
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_read_time:
+    weight: 107
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_source:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_thumbnail:
+    weight: 103
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_topic:
+    weight: 104
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_trello_id:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_url:
+    weight: 102
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  search_api_excerpt: true

@@ -10,8 +10,8 @@ dependencies:
     - bevan
 id: footer
 theme: bevan
-region: footer
-weight: 0
+region: footer_one
+weight: -11
 provider: null
 plugin: 'system_menu_block:footer'
 settings:

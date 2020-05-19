@@ -1,5 +1,5 @@
 uuid: ''
-cookie_lifetime: 100
+cookie_lifetime: 1000
 domain: ''
 domains_option: 1
 domains_list: ''
@@ -16,7 +16,7 @@ popup_agreed_enabled: false
 popup_bg_hex: ''
 popup_clicking_confirmation: false
 popup_scrolling_confirmation: false
-popup_delay: 1000
+popup_delay: 0
 show_disagree_button: true
 popup_disagree_button_message: 'Read our privacy policy.'
 popup_enabled: true
@@ -25,7 +25,7 @@ popup_height: null
 popup_hide_agreed: false
 popup_hide_button_message: Hide
 popup_info:
-  value: "<p>The National Leadership Centre uses <a href=\"https://www.nationalleadership.gov.uk/cookies\">cookies</a> to make this site simpler.</p>\r\n"
+  value: "<p>The National Leadership Centre uses cookies to make this site simpler. <a href=\"https://www.nationalleadership.gov.uk/cookies\">Find out more about cookies.</a></p>\r\n"
   format: filtered_text
 mobile_popup_info:
   value: ''
@@ -33,9 +33,9 @@ mobile_popup_info:
 popup_info_template: new
 mobile_breakpoint: 768
 popup_link: 'https://www.nationalleadership.gov.uk/privacy/'
-popup_link_new_window: true
-popup_position: true
-fixed_top_position: true
+popup_link_new_window: false
+popup_position: false
+fixed_top_position: false
 popup_text_hex: ''
 popup_width: ''
 use_bare_css: true
@@ -43,7 +43,7 @@ disagree_do_not_show_popup: false
 reload_page: false
 cookie_name: ''
 exclude_uid_1: false
-better_support_for_screen_readers: false
+better_support_for_screen_readers: true
 use_mobile_message: false
 method: opt_in
 disagree_button_label: 'No, thanks'

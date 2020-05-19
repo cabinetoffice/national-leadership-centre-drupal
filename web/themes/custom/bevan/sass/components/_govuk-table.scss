@@ -1,0 +1,22 @@
+.govuk-table {
+  font-family: $font-family-secondary;
+  font-size: govuk-px-to-rem(20);
+  line-height: govuk-em(33, 23);
+  font-weight: 400;
+  table-layout: fixed;
+  @media (max-width: 660) {
+    font-size: govuk-px-to-rem(20);
+    line-height: govuk-em(33, 23);
+  }
+}
+
+.govuk-table__header {
+  font-size: govuk-px-to-rem(19);
+  line-height: govuk-em(28, 19);
+  font-weight: 700;
+  font-family: $govuk-font-family;
+  @media (max-width: govuk-px-to-rem(535)) {
+    font-size: govuk-px-to-rem(17);
+    // line-height: govuk-em(24, 17);
+  }
+}

@@ -9,7 +9,7 @@ dependencies:
 id: bevan_breadcrumbs
 theme: bevan
 region: pre_content
-weight: -3
+weight: -4
 provider: null
 plugin: system_breadcrumb_block
 settings:

@@ -1,0 +1,8 @@
+uuid: 5915a793-2dd8-43a7-8619-2f0a86faee93
+langcode: en
+status: true
+dependencies: {  }
+name: 'Library labels'
+vid: library_labels
+description: ''
+weight: 0

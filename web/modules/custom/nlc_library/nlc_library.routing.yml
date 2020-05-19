@@ -1,0 +1,7 @@
+nlc_library.admin:
+  path: 'admin/config/connect/library'
+  defaults:
+    _title: 'Connect Library admin'
+    _form: '\Drupal\nlc_library\Form\LibraryConfigForm'
+  requirements:
+    _permission: 'administer connect library'

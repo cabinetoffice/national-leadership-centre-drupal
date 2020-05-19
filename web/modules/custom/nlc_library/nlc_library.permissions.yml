@@ -1,0 +1,6 @@
+access connect library:
+  description: 'Access external links and more in the Connect library feature'
+  title: 'Access Connect library'
+administer connect library:
+  description: 'Adminster the configurations for the Connect library'
+  title: 'Administer Connect library'
