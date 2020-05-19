@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_author
     - field.storage.node.field_publication
+    - field.storage.node.field_read_time
     - field.storage.node.field_source
     - field.storage.node.field_url
     - search_api.index.external_links
@@ -58,84 +59,21 @@ display:
           items_per_page: 24
           offset: 0
       style:
-        type: default
+        type: html_list
         options:
           grouping: {  }
-          row_class: ''
-          default_row_class: true
+          row_class: nlc-content-block__item
+          default_row_class: false
+          type: ul
+          wrapper_class: ''
+          class: nlc-content-block
       row:
-        type: fields
+        type: search_api
+        options:
+          view_modes:
+            'entity:node':
+              external_link: card
       fields:
-        field_topic_name:
-          id: field_topic_name
-          table: search_api_index_external_links
-          field: field_topic_name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          field_rendering: true
-          fallback_handler: search_api
-          fallback_options:
-            link_to_item: false
-            use_highlighting: false
-            multi_type: separator
-            multi_separator: ', '
-          plugin_id: search_api_field
         title_1:
           id: title_1
           table: search_api_index_external_links
@@ -206,14 +144,14 @@ display:
             multi_type: separator
             multi_separator: ', '
           plugin_id: search_api_field
-        field_label_name:
-          id: field_label_name
+        field_topic_name:
+          id: field_topic_name
           table: search_api_index_external_links
-          field: field_label_name
+          field: field_topic_name
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: Topic
           exclude: false
           alter:
             alter_text: false
@@ -244,12 +182,82 @@ display:
             html: false
           element_type: ''
           element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
+          element_label_type: strong
+          element_label_class: visually-hidden
+          element_label_colon: true
+          element_wrapper_type: p
           element_wrapper_class: ''
-          element_default_classes: true
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+          plugin_id: search_api_field
+        field_label_name:
+          id: field_label_name
+          table: search_api_index_external_links
+          field: field_label_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Medium
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: nlc-content-block__label
+          element_label_type: strong
+          element_label_class: visually-hidden
+          element_label_colon: true
+          element_wrapper_type: p
+          element_wrapper_class: ''
+          element_default_classes: false
           empty: ''
           hide_empty: false
           empty_zero: false
@@ -578,7 +586,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="{{ field_url__uri }}" target="_blank">Open link</a>'
+            text: '<a href="{{ field_url__uri }}" target="_blank">Open link<span class="visually-hidden">: {{ title_1 }}</a>'
             make_link: false
             path: ''
             absolute: false
@@ -603,7 +611,7 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: div
+          element_type: p
           element_class: nlc-content-block__item__link
           element_label_type: ''
           element_label_class: ''
@@ -640,6 +648,89 @@ display:
             use_highlighting: false
             multi_type: separator
             multi_separator: ', '
+          entity_type: node
+          plugin_id: search_api_field
+        field_read_time:
+          id: field_read_time
+          table: search_api_datasource_external_links_entity_node
+          field: field_read_time
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Read time'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: strong
+          element_label_class: visually-hidden
+          element_label_colon: true
+          element_wrapper_type: p
+          element_wrapper_class: nlc-content-block__minor-details
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_integer
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_numeric
+          fallback_options:
+            set_precision: false
+            precision: 0
+            decimal: .
+            separator: ','
+            format_plural: false
+            format_plural_string: !!binary MQNAY291bnQ=
+            prefix: ''
+            suffix: ''
+            link_to_item: false
+            use_highlighting: false
+            multi_type: separator
+            multi_separator: ', '
+            format_plural_values:
+              - '1'
+              - '@count'
           entity_type: node
           plugin_id: search_api_field
       filters: {  }
@@ -726,6 +817,7 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_author'
         - 'config:field.storage.node.field_publication'
+        - 'config:field.storage.node.field_read_time'
         - 'config:field.storage.node.field_source'
         - 'config:field.storage.node.field_url'
         - 'config:search_api.index.external_links'
@@ -752,6 +844,7 @@ display:
         - 'config:field.storage.node.body'
         - 'config:field.storage.node.field_author'
         - 'config:field.storage.node.field_publication'
+        - 'config:field.storage.node.field_read_time'
         - 'config:field.storage.node.field_source'
         - 'config:field.storage.node.field_url'
         - 'config:search_api.index.external_links'
