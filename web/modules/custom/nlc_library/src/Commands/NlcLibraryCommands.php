@@ -4,6 +4,8 @@ namespace Drupal\nlc_library\Commands;
 
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 use Drupal\nlc_library\Model\ModelInterface;
+use Drupal\nlc_library\Model\Trello\CustomFieldItemModel;
+use Drupal\nlc_library\Model\Trello\CustomFieldModel;
 use Drupal\nlc_library\Model\Trello\TrelloTermModelInterface;
 use Drupal\nlc_library\Model\Trello\CardModel;
 use Drupal\nlc_library\Model\Trello\LabelModel;
@@ -35,6 +37,11 @@ class NlcLibraryCommands extends DrushCommands {
    * @var array
    */
   private $trelloLabels = [];
+
+  /**
+   * @var \Drupal\nlc_library\Model\Trello\CustomFieldModel[]
+   */
+  private $trelloCustomFields;
 
   public function __construct() {
   }
@@ -85,8 +92,13 @@ class NlcLibraryCommands extends DrushCommands {
         // Do something?
       }
     }
+    // Make sure we have a model for all the Trello custom fields
+    foreach ($data->customFields as $customField) {
+      $customField = new CustomFieldModel($customField);
+      $this->trelloCustomFields[$customField->getId()] = $customField;
+    }
     foreach ($data->cards as $card) {
-      $cardModel = new CardModel($card);
+      $cardModel = new CardModel($card, $this->trelloCustomFields);
       if ($cardTerm = $this->getTrelloTopicById($cardModel->getListId())) {
         $cardModel->setTopicTerm($cardTerm);
         if (!empty($cardModel->getLabelIds())) {
@@ -230,6 +242,10 @@ class NlcLibraryCommands extends DrushCommands {
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   private function mergeExternalLinkNode(CardModel $model) {
+    $customFields = [
+      'field_read_time',
+      'field_published_on',
+    ];
     $baseProperties = ['type' => 'external_link'];
     $properties = array_merge($baseProperties, ['field_trello_id' => $model->getId()]);
     $entities = $this->loadEntitiesFromModel($model, 'node', $properties);
@@ -253,6 +269,11 @@ class NlcLibraryCommands extends DrushCommands {
         'created' => $model->getLastActivityDateTime()->format('U'),
         'changed' => $model->getLastActivityDateTime()->format('U'),
       ]);
+      foreach ($customFields as $customField) {
+        if ($model->getCustomFieldItem($customField) instanceof CustomFieldItemModel) {
+          $properties[$customField] = $model->getCustomFieldItem($customField)->getValue();
+        }
+      }
       $entity = \Drupal::entityTypeManager()
         ->getStorage('node')
         ->create($properties);
@@ -267,6 +288,12 @@ class NlcLibraryCommands extends DrushCommands {
         ->set('field_topic', $model->getTopicTerm())
         ->set('field_label', $model->getLabelTerm())
         ->set('field_url', $model->getFirstAttachment() ? $model->getFirstAttachment()->getUrl() : '');
+      foreach ($customFields as $customField) {
+        if ($model->getCustomFieldItem($customField) instanceof CustomFieldItemModel) {
+          $entity->set($customField, $model->getCustomFieldItem($customField)
+            ->getValue());
+        }
+      }
       if ($updated = $model->getLastActivityDateTime()) {
         $entity->set('changed', $updated->format('U'));
       }
