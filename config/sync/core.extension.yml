@@ -42,6 +42,7 @@ module:
   menu_ui: 0
   monolog: 0
   name: 0
+  nlc_emails: 0
   nlc_library: 0
   nlc_prototype: 0
   nlc_register_interest: 0
