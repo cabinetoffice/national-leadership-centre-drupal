@@ -59,4 +59,11 @@ class CommandHelper implements LoggerAwareInterface {
     $this->translationFunction = $translation_function;
   }
 
+  public function listHandlersCommand() {
+    /** @var \Drupal\nlc_emails\Emails\NlcEmailManager $handlersManager */
+    $handlersManager = \Drupal::service('nlc_emails.email_manager');
+
+    return  $handlersManager->getEmailHandlersSummary();
+  }
+
 }
