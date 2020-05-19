@@ -4,7 +4,7 @@ namespace Drupal\nlc_emails\Commands;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\search_api\Utility\CommandHelper;
+use Drupal\nlc_emails\Utility\CommandHelper;
 use Drush\Commands\DrushCommands;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -25,7 +25,7 @@ class NlcEmailsCommands extends DrushCommands {
 
 
   /**
-   * Constructs a SearchApiCommands object.
+   * Constructs a NlcEmailsCommand object.
    *
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
