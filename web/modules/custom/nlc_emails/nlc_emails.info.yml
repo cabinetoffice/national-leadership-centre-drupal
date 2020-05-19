@@ -1,0 +1,7 @@
+type: module
+name: NLC Email
+description: 'Send marketing and other emails from Connect.'
+package: NLC
+core: 8.x
+dependencies:
+  - htmlmail
