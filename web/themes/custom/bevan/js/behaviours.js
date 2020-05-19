@@ -35,10 +35,23 @@
 
       // Track facet clicks so we can restore focus.
       $(".facet-item a").click(function (ev) {
-        Drupal.behaviors.bevantheme.focusFacetId = $(ev.target).data(
+        Drupal.behaviors.bevantheme.focusFacetId = $(this).data(
           "drupal-facet-item-id"
         );
       });
+
+      if (Drupal.behaviors.bevantheme.focusFacetId) {
+        var el = $(context).find(
+          '[data-drupal-facet-item-id="' +
+            Drupal.behaviors.bevantheme.focusFacetId +
+            '"]'
+        );
+        if (el.length > 0) {
+          el.focus();
+          // Clean up so we don't trigger this in unexpected AJAX calls.
+          Drupal.behaviors.bevantheme.focusFacetId = null;
+        }
+      }
 
       // The summary block loads last so if it's the current AJAX context the check boxes exist.
       // If we set the focus earlier, it gets reset on the next load.
@@ -58,19 +71,6 @@
           $("#facet-summary-wrapper").data("facets-summary-count") + " results";
         if (countText != $("#result-count").text()) {
           $("#result-count").text(countText);
-        }
-
-        if (Drupal.behaviors.bevantheme.focusFacetId) {
-          var el = document.querySelector(
-            '[data-drupal-facet-item-id="' +
-              Drupal.behaviors.bevantheme.focusFacetId +
-              '"]'
-          );
-          if (el) {
-            el.focus();
-            // Clean up so we don't trigger this in unexpected AJAX calls.
-            Drupal.behaviors.bevantheme.focusFacetId = null;
-          }
         }
       }
     },
