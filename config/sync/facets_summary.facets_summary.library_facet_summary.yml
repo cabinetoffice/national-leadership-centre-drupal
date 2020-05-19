@@ -1,0 +1,36 @@
+uuid: 61645577-9a37-4d7e-8a6b-3f9dbbc241bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - search_api.index.external_links
+    - views.view.library
+  module:
+    - search_api
+id: library_facet_summary
+name: 'Library facet summary'
+facets:
+  filter_by_topic:
+    checked: true
+    label: Topic
+    separator: ', '
+    weight: 0
+    show_count: false
+  filter_by_type:
+    checked: true
+    label: 'Type of content'
+    separator: ', '
+    weight: 0
+    show_count: false
+facet_source_id: 'search_api:views_page__library__page'
+processor_configs:
+  hide_when_not_rendered:
+    processor_id: hide_when_not_rendered
+    weights:
+      build: '45'
+    settings: {  }
+  show_count:
+    processor_id: show_count
+    weights:
+      build: '5'
+    settings: {  }
