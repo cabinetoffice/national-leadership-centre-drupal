@@ -1,6 +1,7 @@
 {#
   See bevan_preprocess_facets_summary_item_list() in bevan.theme
 #}
+{% if applied %}
 <h2 class="visually-hidden">Applied filters</h2>
 <ul class="{{ list_class }}" id="facet-summary-wrapper" data-facets-summary-count="{{ result_count }}" data-facets-facets-count="{{ facets_count }}" role="region">
   {% for facet in applied %}
@@ -12,3 +13,4 @@
   </li>
   {% endfor %}
 </ul>
+{% endif %}
