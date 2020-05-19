@@ -30,7 +30,8 @@ $tablet: 768px;
   padding: 0 govuk-px-to-rem(10px) govuk-px-to-rem(30px);
 
   @media only screen and (min-width: $mobile) {
-    flex: 0 0 31%;
+    flex: 1 0 30%;
+    min-width: 210px;
   }
 }
 .nlc-content-block__card {
