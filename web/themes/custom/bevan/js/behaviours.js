@@ -54,12 +54,9 @@
       }
 
       // The summary block loads last so if it's the current AJAX context the check boxes exist.
-      // If we set the focus earlier, it gets reset on the next load.
       if ($(context).data("drupal-facets-summary-id") == "facet_summary") {
         // If we have any applied facets, we want to show the reset link.
-        var facetsCount = $("#facet-summary-wrapper").data(
-          "facets-facets-count"
-        );
+        var facetsCount = $("#facet-summary-info").data("facets-facets-count");
         var resetLink = $("#search-reset-link");
         if (facetsCount == 0) {
           resetLink.addClass("hidden");
@@ -67,11 +64,30 @@
           resetLink.removeClass("hidden");
         }
         // Only update the count if the text has actually changed, prevent screeen readers reading it twice.
-        var countText =
-          $("#facet-summary-wrapper").data("facets-summary-count") + " results";
+        var count = 0;
+        var updatedCount = $("#facet-summary-info").data(
+          "facets-summary-count"
+        );
+        if (updatedCount) {
+          count = updatedCount;
+        }
+        var countText = count + " results";
         if (countText != $("#result-count").text()) {
           $("#result-count").text(countText);
         }
+      }
+
+      // Annouce the number of items on the library page
+      if ($(context).hasClass("connect-library")) {
+        var message = "";
+        var $itemCount = $(context).find(".nlc-item-count");
+        var $noResults = $(context).find(".search-no-results");
+        if ($itemCount.length > 0) {
+          message = $itemCount.text();
+        } else if ($noResults.length > 0) {
+          message = $noResults.text();
+        }
+        Drupal.announce(Drupal.t(message));
       }
     },
   };
