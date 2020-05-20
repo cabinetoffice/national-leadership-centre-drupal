@@ -1,5 +1,5 @@
 services:
-  nlc_library.commands:
+  nlc_emails.commands:
     class: Drupal\nlc_emails\Commands\NlcEmailsCommands
     arguments: ['@entity_type.manager', '@module_handler', '@event_dispatcher']
     tags:

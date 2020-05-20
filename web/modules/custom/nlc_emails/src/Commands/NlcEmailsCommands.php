@@ -3,6 +3,7 @@
 namespace Drupal\nlc_emails\Commands;
 
 use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
+use Consolidation\OutputFormatters\StructuredData\UnstructuredData;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\nlc_emails\Utility\CommandHelper;
@@ -66,6 +67,16 @@ class NlcEmailsCommands extends DrushCommands {
   public function listHandlersCommand() {
     $rows = $this->commandHelper->listHandlersCommand();
     return new RowsOfFields($rows);
+  }
+
+  /**
+   * @command nlc-emails:hello
+   * @aliases nlce-h
+   *
+   * @return \Consolidation\OutputFormatters\StructuredData\UnstructuredData
+   */
+  public function sayHello() {
+    return new UnstructuredData(['Hello world']);
   }
 
 
