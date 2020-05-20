@@ -1,0 +1,30 @@
+uuid: e850561c-f6d0-4336-9f77-ed44a4689f9b
+langcode: en
+status: true
+dependencies:
+  module:
+    - collapsiblock
+    - nlc_library
+    - system
+  theme:
+    - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '0'
+id: libraryintrocopyblock
+theme: bevan
+region: pre_content
+weight: 0
+provider: null
+plugin: library_intro_block
+settings:
+  id: library_intro_block
+  label: 'Library intro copy block'
+  provider: nlc_library
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: /library
+    negate: false
+    context_mapping: {  }

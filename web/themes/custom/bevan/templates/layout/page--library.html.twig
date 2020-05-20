@@ -2,35 +2,49 @@
 
 {% block main %}
 
-    <section class="govuk-width-container govuk-width-container--narrow">
-      {{ page.pre_content }}
-    </section>
+  {% set content_class = 'govuk-grid-column-full' %}
+
+  {% if page.sidebar_first or page.sidebar_second %}
+    {% set content_class = 'govuk-grid-column-three-quarters' %}
+  {% endif %}
+
+  {% if page.sidebar_first and page.sidebar_second %}
+    {% set content_class = 'govuk-grid-column-one-half' %}
+  {% endif %}
+
+
+  <div class="govuk-width-container">
+
+    <div class="govuk-grid-row">
+      <div class="{{content_class}}-right govuk-!-padding-bottom-7">
+        {{ page.pre_content }}
+      </div>
+    </div>
 
     <div class="govuk-grid-row">
 
-      {% if page.sidebar_first or page.sidebar_second %}
-        {% set content_class = 'govuk-grid-column-three-quarters' %}
-      {% endif %}
+        {% if page.sidebar_first %}
+          <div class="govuk-grid-column-one-quarter">
+            <section role="search" id="search-region" aria-labelled-by="find-leader-heading">
+              <h2 id="find-leader-heading" class="visually-hidden">Find a senior leader</h2>
+              {{ page.sidebar_first }}
+            </section>
+          </div>
+        {% endif %}
 
-      {% if page.sidebar_first and page.sidebar_second %}
-        {% set content_class = 'govuk-grid-column-one-half' %}
-      {% endif %}
+        <main class="{{content_class}}" id="main-content"  role="main">
+          {{ page.content }}
+        </main>
 
-      {% if page.sidebar_first %}
-        <aside class="govuk-grid-column-one-quarter">
-          {{ page.sidebar_first }}
-        </aside>
-      {% endif %}
+        {% if page.sidebar_second %}
+          <div class="govuk-grid-column-one-quarter">
+            <aside role="complementary">
+              {{ page.sidebar_second }}
+            </aside>
+          </div>
+        {% endif %}
 
-      <main class="{{content_class}}" id="main-content"  role="main">
-      {{ page.content }}
-      </main>
+      </div>
 
-      {% if page.sidebar_second %}
-        <aside class="govuk-grid-column-one-quarter">
-          {{ page.sidebar_second }}
-        </aside>
-      {% endif %}
-
-    </div>
+  </div>
 {% endblock %}

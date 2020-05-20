@@ -71,6 +71,7 @@ content:
 hidden:
   field_author: true
   field_publication: true
+  field_published_on: true
   field_source: true
   field_thumbnail: true
   field_trello_id: true

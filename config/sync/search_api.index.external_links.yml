@@ -3,11 +3,11 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.storage.node.body
     - field.storage.node.field_author
     - field.storage.node.field_label
     - field.storage.node.field_publication
     - field.storage.node.field_source
-    - field.storage.node.body
     - field.storage.node.field_topic
     - search_api.server.elastic
   module:
@@ -55,7 +55,7 @@ field_settings:
     label: 'Label » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_label:entity:name'
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_label
@@ -89,7 +89,7 @@ field_settings:
     label: 'Topic » Taxonomy term » Name'
     datasource_id: 'entity:node'
     property_path: 'field_topic:entity:name'
-    type: text
+    type: string
     dependencies:
       config:
         - field.storage.node.field_topic
@@ -125,6 +125,7 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: title
     type: text
+    boost: !!float 2
     dependencies:
       module:
         - node
@@ -156,6 +157,7 @@ processor_settings:
   entity_status: {  }
   hierarchy:
     fields:
+      field_label: taxonomy_term-parent
       field_topic: taxonomy_term-parent
     weights:
       preprocess_index: -45
@@ -170,14 +172,12 @@ processor_settings:
     weights:
       postprocess_query: 0
   ignorecase:
-    all_fields: true
+    all_fields: false
     fields:
       - body
       - field_author
-      - field_label_name
       - field_publication
       - field_source
-      - field_topic_name
       - title
     weights:
       preprocess_index: -20
