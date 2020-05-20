@@ -6,6 +6,7 @@ $govuk-assets-path: "../../../contrib/govuk_design_system/assets/";
 @import "settings/measurements";
 @import "settings/colours-applied";
 @import "settings/typography-font";
+@import "settings/media-queries";
 
 // GovUK components
 @import "node_modules/govuk-frontend/govuk/all";

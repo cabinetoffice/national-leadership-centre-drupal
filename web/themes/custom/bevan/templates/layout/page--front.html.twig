@@ -24,7 +24,7 @@
     <div class="govuk-grid-row">
 
       {% if page.sidebar_first %}
-        <div class="govuk-grid-column-one-quarter-from-desktop">
+        <div class="govuk-grid-column-one-quarter-from-tablet">
           <section role="search" id="search-region" aria-labelled-by="find-leader-heading">
             <h2 id="find-leader-heading" class="visually-hidden">Find a senior leader</h2>
             {{ page.sidebar_first }}
@@ -32,12 +32,12 @@
         </div>
       {% endif %}
 
-      <main class="{{content_class}}-from-desktop" id="main-content"  role="main">
+      <main class="{{content_class}}-from-tablet" id="main-content"  role="main">
       {{ page.content }}
       </main>
 
       {% if page.sidebar_second %}
-        <div class="govuk-grid-column-one-quarter-from-desktop">
+        <div class="govuk-grid-column-one-quarter-from-tablet">
           <aside role="complementary">
             {{ page.sidebar_second }}
           </aside>
