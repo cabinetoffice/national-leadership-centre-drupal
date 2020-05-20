@@ -19,9 +19,6 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
    * Constructor for the AbstractNlcEmailHandlerHandler.
    */
   public function __construct() {
-    $trackerClass = $this->handlerTracker();
-    $tracker = new $trackerClass;
-    $this->setTracker($tracker);
   }
 
 

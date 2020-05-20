@@ -2,6 +2,7 @@
 
 namespace Drupal\nlc_emails\Emails\Handlers;
 
+use Drupal\Core\Render\RendererInterface;
 use Drupal\nlc_emails\Emails\AbstractNlcEmailHandlerHandler;
 
 /**
@@ -47,14 +48,34 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
   /**
    * {@inheritDoc}
    */
-  public function handlerTracker(): string {
+  public function handlerTrackerName(): string {
     return '\Drupal\nlc_emails\Tracker\NlcLibraryIntroEmailTracker';
   }
 
   /**
    * {@inheritDoc}
    */
-  public function sendEmails() {
+  public function emailSubject(): string {
+    return $this->t('Check out the Connect Library');
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function emailBody(array $context): RendererInterface {
+    $body = [
+      '#type' => 'inline_template',
+      '#template' => '<p>Hello {{ name }}</p>',
+      '#context' => $context,
+    ];
+
+    return render($body);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function sendEmails($limit): int {
     // TODO: Implement sendEmails() method.
   }
 

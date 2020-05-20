@@ -4,9 +4,26 @@
 namespace Drupal\nlc_emails\Emails;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Render\RenderableInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\nlc_emails\Tracker\TrackerInterface;
 
 interface NlcEmailHandlerInterface {
+
+  /**
+   * String used to separate a datasource prefix from the rest of an identifier.
+   *
+   * Internal field identifiers of datasource-dependent fields in the Search API
+   * consist of two parts: the ID of the datasource to which the field belongs;
+   * and the property path to the field, with properties separated by colons.
+   * The two parts are concatenated using this character as a separator to form
+   * the complete field identifier. (In the case of datasource-independent
+   * fields, the identifier doesn't contain the separator.)
+   *
+   * Likewise, internal item IDs consist of the datasource ID and the item ID
+   * within that datasource, separated by this character.
+   */
+  const DATASOURCE_ID_SEPARATOR = '/';
 
   /**
    * Get the entity type manager.
@@ -133,7 +150,24 @@ interface NlcEmailHandlerInterface {
    *
    * @return string
    */
-  public function handlerTracker(): string;
+  public function handlerTrackerName(): string;
+
+  /**
+   * The email subject line.
+   *
+   * @return string
+   */
+  public function emailSubject(): string;
+
+  /**
+   * The email body.
+   *
+   * @param array $context
+   *   A context array for an email template.
+   *
+   * @return \Drupal\Core\Render\RendererInterface
+   */
+  public function emailBody(array $context): RendererInterface;
 
   /**
    * Determines whether the tracker is valid.

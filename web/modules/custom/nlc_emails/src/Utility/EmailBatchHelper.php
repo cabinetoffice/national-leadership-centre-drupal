@@ -70,6 +70,11 @@ class EmailBatchHelper {
 
     // Check if indexing items is allowed.
     if ($batch_size !== 0 && $limit !== 0) {
+      // Create a tracker for the email handler, and add it to the handler.
+      $handlerTrackerName = $handler->handlerTrackerName();
+      $handlerTracker = new $handlerTrackerName($handler);
+      $handler->setTracker($handlerTracker);
+      // Set the batch definition.
       $batch_definition = [
         'operations' => [
           [[__CLASS__, 'process'], [$handler, $batch_size, $limit]],
