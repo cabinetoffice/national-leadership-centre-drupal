@@ -28,21 +28,15 @@ $tablet: 768px;
 .nlc-content-block__item {
   height: fit-content;
   padding: 0 govuk-px-to-rem(10px) govuk-px-to-rem(30px);
-
-  @media only screen and (min-width: $mobile) {
-    flex: 1 0 30%;
-    min-width: 210px;
-  }
+  flex: 1 0 30%;
+  min-width: govuk-px-to-rem(210);
+  max-width: govuk-px-to-rem(437);
 }
 .nlc-content-block__card {
   background-color: $white;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-  @media only screen and (min-width: $mobile) {
-    flex: 0 0 30%;
-  }
 }
 
 .nlc-content-block__item p {
@@ -87,7 +81,7 @@ $tablet: 768px;
 .nlc-content-block__topic {
   background: $grey;
   color: $white;
-  padding: 2px 20px 2px;
+  padding: govuk-px-to-rem(2) govuk-px-to-rem(10);
   font-family: $govuk-font-family;
   font-weight: 700;
   font-size: govuk-px-to-rem(17);
