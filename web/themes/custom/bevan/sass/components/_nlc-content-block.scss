@@ -27,10 +27,13 @@ $tablet: 768px;
 }
 .nlc-content-block__item {
   height: fit-content;
-  padding: 0 govuk-px-to-rem(10px) govuk-px-to-rem(30px);
-  flex: 1 0 30%;
-  min-width: govuk-px-to-rem(210);
-  max-width: govuk-px-to-rem(437);
+  padding-bottom: 20px;
+  @media only screen and (min-width: $mobile) {
+    padding: 0 govuk-px-to-rem(10px) govuk-px-to-rem(30px);
+    flex: 1 0 30%;
+    min-width: govuk-px-to-rem(210);
+    max-width: govuk-px-to-rem(437);
+  }
 }
 .nlc-content-block__card {
   background-color: $white;
