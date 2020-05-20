@@ -6,6 +6,7 @@ use Consolidation\OutputFormatters\StructuredData\RowsOfFields;
 use Consolidation\OutputFormatters\StructuredData\UnstructuredData;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\nlc_emails\Emails\NlcEmailManagerInterface;
 use Drupal\nlc_emails\Utility\CommandHelper;
 use Drush\Commands\DrushCommands;
 use Psr\Log\LoggerInterface;
@@ -26,17 +27,17 @@ class NlcEmailsCommands extends DrushCommands {
   /**
    * Constructs a NlcEmailsCommands object.
    *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *   The entity type manager.
+   * @param \Drupal\nlc_emails\Emails\NlcEmailManagerInterface $emailManager
+   *   The email handler manager.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
    *   The module handler.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
    *   The event dispatcher.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager, ModuleHandlerInterface $moduleHandler, EventDispatcherInterface $eventDispatcher) {
+  public function __construct(NlcEmailManagerInterface $emailManager, ModuleHandlerInterface $moduleHandler, EventDispatcherInterface $eventDispatcher) {
     parent::__construct();
 
-    $this->commandHelper = new CommandHelper($entityTypeManager, $moduleHandler, $eventDispatcher, 'dt');
+    $this->commandHelper = new CommandHelper($emailManager, $moduleHandler, $eventDispatcher, 'dt');
   }
 
   /**
@@ -59,26 +60,66 @@ class NlcEmailsCommands extends DrushCommands {
    *   machine_name: Machine name
    *   name: Name
    *
-   * @aliases nlce-l
+   * @aliases nlce-l,nlc-emails-list
    *
    * @return \Consolidation\OutputFormatters\StructuredData\RowsOfFields
    *   The table rows.
    */
-  public function listHandlersCommand() {
+  public function listHandlers() {
     $rows = $this->commandHelper->listHandlersCommand();
     return new RowsOfFields($rows);
   }
 
   /**
-   * @command nlc-emails:hello
-   * @aliases nlce-h
+   * @param string $handlerId
+   *   The machine name of an email handler.
    *
-   * @return \Consolidation\OutputFormatters\StructuredData\UnstructuredData
+   * @param array $options
+   *   (optional) An array of options.
+   *
+   * @command nlc-emails:send
+   *
+   * @option limit
+   *   The maximum number of emails to send. Set to 0 to send all emails.
+   *   Defaults to 0 (send all).
+   * @option batch-size
+   *   The maximum number of emails to send per batch run. Set to 0 to send all
+   *   emails at once. Defaults to the "Cron batch size" setting of the sender.
+   *
+   * @usage drush nlc-emails:send machine_name
+   *   Send all all emails for the handler with the ID machine_name.
+   * @usage drush nlce-s machine_name
+   *   Alias to send all all emails for the handler with the ID machine_name.
+   * @usage drush nlce-s machine_name 100
+   *   Send a maximum number of 100 emails for the handler with the ID machine_name.
+   * @usage drush nlce-s machine_name 100 10
+   *   Send a maximum number of 100 emails (10 items per batch run) for the
+   *   handler with the ID machine_name.
+   *
+   * @aliases nlce-s,nlc-emails-send
+   *
+   * @field-labels
+   *   uid: User ID
+   *   name: Name
+   *   email: Email address
+   *
+   * @return \Consolidation\OutputFormatters\StructuredData\RowsOfFields
+   *   The table rows.
+   *
+   * @throws \Exception
+   *   If a batch process could not be created.
    */
-  public function sayHello() {
-    return new UnstructuredData(['Hello world']);
-  }
+  public function sendHandlerEmail($handlerId, array $options = ['limit' => NULL, 'batch-size' => NULL]) {
+    $limit = $options['limit'];
+    $batch_size = $options['batch-size'];
+    $process_batch = $this->commandHelper->sendHandlerEmailCommand($handlerId, $limit, $batch_size);
+//    print_r($process_batch);
+    return new RowsOfFields($process_batch);
 
+//    if ($process_batch === TRUE) {
+//      drush_backend_batch_process();
+//    }
+  }
 
 
 }

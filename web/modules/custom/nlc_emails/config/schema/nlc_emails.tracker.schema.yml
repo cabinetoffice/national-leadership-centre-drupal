@@ -1,0 +1,7 @@
+nlc_emails_tracker.default:
+  type: mapping
+  label: 'Email sending tracker configuration'
+  mapping:
+    indexing_order:
+      type: string
+      label: 'Indexing order'

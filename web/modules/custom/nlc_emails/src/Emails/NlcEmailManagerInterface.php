@@ -7,11 +7,11 @@ interface NlcEmailManagerInterface {
   /**
    * Appends an NLC email handler to the handler list.
    *
-   * @param \Drupal\nlc_emails\Emails\NlcEmailHandlerInterface $emailHandler
+   * @param \Drupal\nlc_emails\Emails\AbstractNlcEmailHandlerHandler $emailHandler
    *
    * @return \Drupal\nlc_emails\Emails\NlcEmailManager
    */
-  public function addNlcEmailHandler(NlcEmailHandlerInterface $emailHandler): NlcEmailManager ;
+  public function addNlcEmailHandler(AbstractNlcEmailHandlerHandler $emailHandler): NlcEmailManager ;
 
   /**
    * Get the list of email handlers.

@@ -1,6 +1,6 @@
 services:
   nlc_emails.commands:
     class: Drupal\nlc_emails\Commands\NlcEmailsCommands
-    arguments: ['@entity_type.manager', '@module_handler', '@event_dispatcher']
+    arguments: ['@nlc_emails.email_manager', '@module_handler', '@event_dispatcher']
     tags:
       - { name: drush.command }
