@@ -7,7 +7,7 @@ interface TrackerInterface {
   /**
    * Inserts new items into the tracking system for this handler.
    *
-   * @param string[] $ids
+   * @param array $ids
    *   The item IDs of the new email handler items.
    */
   public function trackEmailsInserted(array $ids);

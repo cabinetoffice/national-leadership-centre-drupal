@@ -5,17 +5,6 @@ namespace Drupal\nlc_emails\Tracker;
 
 class NlcLibraryIntroEmailTracker extends AbstractTrackerBase {
 
-  public function trackEmailsInserted(array $ids) {
-    // TODO: Implement trackEmailsInserted() method.
-  }
-
-  public function trackEmailsSent(array $ids) {
-    // TODO: Implement trackEmailsSent() method.
-  }
-
-  public function getRemainingItems($limit = -1, $machine_name = NULL) {
-    // TODO: Implement getRemainingItems() method.
-  }
 
   /**
    * @inheritDoc

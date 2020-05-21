@@ -4,6 +4,7 @@ namespace Drupal\nlc_emails\Emails\Handlers;
 
 use Drupal\Core\Render\RendererInterface;
 use Drupal\nlc_emails\Emails\AbstractNlcEmailHandlerHandler;
+use Drupal\nlc_emails\Emails\Email;
 
 /**
  * An email handler for sending an email intro to the Library.
@@ -33,8 +34,8 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
     $recipients = [];
     $criteria = [
       'contains' => [
-        'mail' => '@weareconvivio',
-      ]
+        'mail' => 'joe.baker@weareconvivio.com',
+      ],
     ];
     try {
       $recipients = $this->getUsersByCriteria($criteria);
@@ -43,6 +44,27 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
       // Do something?
     }
     return $recipients;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function recipientEmailsTracker(): array {
+    $emails = [];
+    $recipients = $this->recipients();
+    foreach ($recipients as $recipient) {
+      $datasource = "{$recipient->getEntityType()->id()}:{$recipient->bundle()}";
+      $item_id = implode(self::DATASOURCE_ID_SEPARATOR, [$datasource, $recipient->id()]);
+      $email_context = [
+        'machine_name' => $this->emailHandlerMachineName(),
+        'datasource' => $datasource,
+        'item_id' => $item_id,
+        'uid' => $recipient->id(),
+        'email' => $recipient->getEmail(),
+      ];
+      $emails[$item_id] = new Email($email_context);
+    }
+    return $emails;
   }
 
   /**

@@ -98,14 +98,6 @@ class NlcEmailsCommands extends DrushCommands {
    *
    * @aliases nlce-s,nlc-emails-send
    *
-   * @field-labels
-   *   uid: User ID
-   *   name: Name
-   *   email: Email address
-   *
-   * @return \Consolidation\OutputFormatters\StructuredData\RowsOfFields
-   *   The table rows.
-   *
    * @throws \Exception
    *   If a batch process could not be created.
    */
@@ -114,11 +106,10 @@ class NlcEmailsCommands extends DrushCommands {
     $batch_size = $options['batch-size'];
     $process_batch = $this->commandHelper->sendHandlerEmailCommand($handlerId, $limit, $batch_size);
 //    print_r($process_batch);
-    return new RowsOfFields($process_batch);
 
-//    if ($process_batch === TRUE) {
-//      drush_backend_batch_process();
-//    }
+    if ($process_batch === TRUE) {
+      drush_backend_batch_process();
+    }
   }
 
 

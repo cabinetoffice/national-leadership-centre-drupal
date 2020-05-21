@@ -74,6 +74,8 @@ class EmailBatchHelper {
       $handlerTrackerName = $handler->handlerTrackerName();
       $handlerTracker = new $handlerTrackerName($handler);
       $handler->setTracker($handlerTracker);
+      $emails = $handler->recipientEmailsTracker();
+      $handler->getTrackerInstance()->trackEmailsInserted($emails);
       // Set the batch definition.
       $batch_definition = [
         'operations' => [
@@ -150,6 +152,7 @@ class EmailBatchHelper {
 
     // Catch any exception that may occur whilst sending emails.
     try {
+      print_r($to_send_limit);
       $sent = $handler->sendEmails($to_send_limit);
       // Increment the sent result and progress.
       $context['results']['sent'] += $sent;

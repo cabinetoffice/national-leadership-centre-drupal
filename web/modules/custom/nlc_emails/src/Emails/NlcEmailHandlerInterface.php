@@ -57,9 +57,16 @@ interface NlcEmailHandlerInterface {
   /**
    * An associative array of email recipients.
    *
-   * @return array
+   * @return \Drupal\user\UserInterface[]
    */
   public function recipients(): array;
+
+  /**
+   * An associative array of emails to be inserted into the email tracker.
+   *
+   * @return array
+   */
+  public function recipientEmailsTracker(): array;
 
   /**
    * Sends a set amount of emails.

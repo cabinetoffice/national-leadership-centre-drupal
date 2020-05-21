@@ -13,10 +13,22 @@ function nlc_emails_schema() {
         'length' => 50,
         'not null' => TRUE,
       ],
+      'datasource' => [
+        'description' => 'The datasource this item belongs to',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
       'item_id' => [
         'description' => 'The unique identifier of this item',
         'type' => 'varchar',
         'length' => 150,
+        'not null' => TRUE,
+      ],
+      'changed' => [
+        'description' => 'A timestamp indicating when the item was changed',
+        'type' => 'int',
+        'unsigned' => TRUE,
         'not null' => TRUE,
       ],
       'sent' => [
@@ -45,7 +57,7 @@ function nlc_emails_schema() {
     'indexes' => [
       'indexing' => ['machine_name', 'status', 'sent', 'item_id'],
     ],
-    'primary key' => ['machine_name'],
+    'primary key' => ['machine_name', 'item_id'],
   ];
 
   return $schema;

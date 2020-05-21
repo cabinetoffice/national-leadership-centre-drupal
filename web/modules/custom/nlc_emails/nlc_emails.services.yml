@@ -1,4 +1,7 @@
 services:
+  logger.channel.nlc_emails:
+    parent: logger.channel_base
+    arguments: ['nlc_emails']
   nlc_emails.email_manager:
     class: Drupal\nlc_emails\Emails\NlcEmailManager
     arguments: [ '@entity_type.manager', '@logger.factory', '@string_translation' ]

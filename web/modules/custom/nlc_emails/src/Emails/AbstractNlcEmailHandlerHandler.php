@@ -8,6 +8,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\nlc_emails\LoggerTrait;
 use Drupal\nlc_emails\NlcEmailsException;
 use Drupal\nlc_emails\Tracker\TrackerInterface;
+use Drupal\nlc_emails\Utility\Utility;
 use Drupal\user\Entity\User;
 
 abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterface {
@@ -149,9 +150,11 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
   }
 
   public function sendEmails($limit): int {
+    print_r($limit);
     if ($this->hasValidTracker()) {
       $tracker = $this->getTrackerInstance();
       $next_set = $tracker->getRemainingItems($limit, $this->emailHandlerMachineName());
+      print_r($next_set);
       if (!$next_set) {
         return 0;
       }
@@ -171,23 +174,35 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
   }
 
   /**
+   * {@inheritDoc}
+   */
+  public function sendSpecificEmails(array $email_objects) {
+    if (!$email_objects) {
+      return [];
+    }
+    /** @var \Drupal\nlc_emails\Emails\Email[] $emails */
+    $emails = [];
+//    foreach ($email_objects)
+
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function loadEmailsMultiple(array $item_ids) {
     // Group the requested items by datasource. This will also later be used to
     // determine whether all items were loaded successfully.
-    $items_by_machine_name = [];
+    $items_by_datasource = [];
     foreach ($item_ids as $item_id) {
-      list($machine_name, $raw_id) = Utility::splitCombinedId($item_id);
-      $items_by_machine_name[$machine_name][$raw_id] = $item_id;
+      [$datasource, $raw_id] = Utility::splitCombinedId($item_id);
+      $items_by_datasource[$datasource][$raw_id] = $item_id;
     }
 
     // Load the items from the datasources and keep track of which were
     // successfully retrieved.
     $items = [];
-    foreach ($items_by_machine_name as $machine_name => $raw_ids) {
+    foreach ($items_by_datasource as $datasource => $raw_ids) {
       try {
-        $datasource = $this->getDatasource($machine_name);
         $datasource_items = $datasource->loadMultiple(array_keys($raw_ids));
         foreach ($datasource_items as $raw_id => $item) {
           $id = $raw_ids[$raw_id];
