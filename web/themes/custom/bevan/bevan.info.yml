@@ -7,7 +7,6 @@ base theme: govuk_design_system
 logo: assets/images/logos/nlc-connect.png
 # Regions
 regions:
-  header: "Header"
   header_one: "Header one"
   header_two: "Header two"
   full_width: "Full width panel"

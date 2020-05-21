@@ -9,9 +9,13 @@
   {{ title_suffix }}
 
   {% if header or pager %}
-    <div class="govuk-width-container govuk-width-container--narrow">
+    <div class="govuk-width-container">
       <header>
+    {% if header %}
+      <div class="nlc-item-count">
         {{ header }}
+      </div>
+    {% endif %}
         {{ pager }}
       </header>
     </div>
@@ -21,18 +25,16 @@
   {{ attachment_before }}
 
   {% if rows -%}
-  <div class="nlc-content-block-wrapper">
     <div class="govuk-width-container">
       {{ rows }}
     </div>
-  </div>
   {% elseif empty -%}
     <div class="govuk-width-container govuk-width-container--narrow">
       {{ empty }}
     </div>
   {% endif %}
   {% if pager %}
-    <div class="govuk-width-container govuk-width-container--narrow">
+    <div class="govuk-width-container">
       {{ pager }}
     </div>
   {%  endif %}

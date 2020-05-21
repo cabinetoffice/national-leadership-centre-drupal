@@ -3,7 +3,7 @@ $mobile: 576px;
 $tablet: 768px;
 
 .nlc-content-block-wrapper {
-  background-color: $very-light-grey;
+  //background-color: $very-light-grey;
   padding-top: govuk-px-to-rem(100px);
 
   &.no-images {
@@ -21,61 +21,67 @@ $tablet: 768px;
   flex-wrap: wrap;
   display: flex;
   justify-content: space-between;
+  list-style-type: none;
+  margin: 0 govuk-px-to-rem(-15px);
+  padding: 0;
 }
 .nlc-content-block__item {
-  width: 100%;
   height: fit-content;
-  background-color: $white;
-  margin: 0 govuk-px-to-rem(18px) govuk-px-to-rem(30px) govuk-px-to-rem(18px);
+  padding: 0 govuk-px-to-rem(10px) govuk-px-to-rem(30px);
 
   @media only screen and (min-width: $mobile) {
-    flex: 30%;
+    flex: 1 0 30%;
+    min-width: 210px;
   }
+}
+.nlc-content-block__card {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  @media only screen and (min-width: $mobile) {
+    flex: 0 0 30%;
+  }
+}
+
+.nlc-content-block__item p {
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-weight: inherit;
 }
 
 .nlc-content-block__item__name {
   margin: 0;
-  padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
+  padding: govuk-px-to-rem(10px);
   font-family: $govuk-font-family;
   font-size: govuk-px-to-rem(19);
-  line-height: govuk-em(25, 19);
+  line-height: govuk-em(28, 19);
   font-weight: 700;
-
+  a {
+    color: $grey;
+  }
   @media only screen and (min-width: $tablet) {
-    font-size: 19px;
-    line-height: 25px;
+    font-size: govuk-px-to-rem(19);
+    line-height: govuk-em(28, 19);
   }
 }
 
 .nlc-content-block__item__bio {
   padding: govuk-px-to-rem(10px);
-
-  @media only screen and (min-width: $tablet) {
-    padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
-  }
+  font-size: govuk-px-to-rem(17);
+  line-height: govuk-em(25, 17);
+  font-family: $font-family-secondary;
 
   p {
-    margin: 0;
-
     @media only screen and (max-width: $tablet) {
       font-size: govuk-px-to-rem(14px);
       line-height: govuk-px-to-rem(20px);
     }
   }
-}
-.nlc-content-block__item__link {
-  padding: govuk-px-to-rem(10px);
-  padding-top: 0;
-
-  @media only screen and (min-width: $tablet) {
-    padding: govuk-px-to-rem(20px) govuk-px-to-rem(20px);
-    padding-top: 0;
-  }
-}
-
-.nlc-content-block__item__readmore,
-.nlc-content-block__item__readmore__img {
-  display: none;
 }
 
 .nlc-content-block__topic {
@@ -83,9 +89,10 @@ $tablet: 768px;
   color: $white;
   padding: 2px 20px 2px;
   font-family: $govuk-font-family;
-  font-size: govuk-px-to-rem(14);
-  line-height: govuk-em(23, 14);
   font-weight: 700;
+  font-size: govuk-px-to-rem(17);
+  line-height: govuk-em(25, 17);
+  order: -1;
 }
 .nlc-content-block__topic--ways-of-working {
   background: $ways-of-working;
@@ -109,18 +116,31 @@ $tablet: 768px;
 .nlc-content-block__topic--systems-leadership {
   background: $systems-leadership;
 }
-.nlc-content-block__label {
-  text-transform: lowercase;
-}
 
 .nlc-content-block__label {
+  text-transform: lowercase;
   border: 1px solid $grey;
+  font-family: $govuk-font-family;
   font-weight: 700;
-  font-size: govuk-px-to-rem(14);
-  line-height: govuk-em(19, 14);
+  font-size: govuk-px-to-rem(16);
+  line-height: govuk-em(22, 16);
   vertical-align: middle;
   display: inline-block;
   padding: 0 10px;
-  margin-left: govuk-px-to-rem(20);
+  margin-left: govuk-px-to-rem(10);
   border-radius: 10px;
+  align-self: flex-start;
+}
+.nlc-content-block__read-time {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: govuk-px-to-rem(14);
+  line-height: govuk-em(20, 14);
+}
+.nlc-content-block__minor-details {
+  padding: govuk-px-to-rem(10px);
+
+  @media only screen and (min-width: $tablet) {
+    padding: govuk-px-to-rem(10px) govuk-px-to-rem(20px);
+  }
 }

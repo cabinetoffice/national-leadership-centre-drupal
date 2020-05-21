@@ -1,6 +1,6 @@
 uuid: 10ff6ef1-df46-478c-9cdb-5e3d2dcf6e39
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.external_link.field_author
     - field.field.node.external_link.field_label
     - field.field.node.external_link.field_publication
+    - field.field.node.external_link.field_published_on
     - field.field.node.external_link.field_read_time
     - field.field.node.external_link.field_source
     - field.field.node.external_link.field_thumbnail
@@ -40,6 +41,7 @@ hidden:
   field_author: true
   field_label: true
   field_publication: true
+  field_published_on: true
   field_read_time: true
   field_source: true
   field_thumbnail: true

@@ -15,7 +15,7 @@ third_party_settings:
 id: filterstitle
 theme: bevan
 region: sidebar_first
-weight: -8
+weight: -11
 provider: null
 plugin: filters_title_block
 settings:
@@ -26,7 +26,7 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: /directory
+    pages: "/directory\r\n/library"
     negate: false
     context_mapping: {  }
   user_role:

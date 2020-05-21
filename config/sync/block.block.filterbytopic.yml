@@ -1,0 +1,33 @@
+uuid: 2ff04f92-4ae4-4172-bbb1-ae2090eaf897
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.filter_by_topic
+  module:
+    - collapsiblock
+    - facets
+    - system
+  theme:
+    - bevan
+third_party_settings:
+  collapsiblock:
+    collapse_action: '3'
+id: filterbytopic
+theme: bevan
+region: sidebar_first
+weight: -5
+provider: null
+plugin: 'facet_block:filter_by_topic'
+settings:
+  id: 'facet_block:filter_by_topic'
+  label: Topic
+  provider: facets
+  label_display: visible
+  block_id: filterbytopic
+visibility:
+  request_path:
+    id: request_path
+    pages: /library
+    negate: false
+    context_mapping: {  }

@@ -7,3 +7,4 @@ global-styling:
     js/behaviours.js: {}
   dependencies:
     - eu_cookie_compliance/eu_cookie_compliance_bare
+    - core/drupal.announce
