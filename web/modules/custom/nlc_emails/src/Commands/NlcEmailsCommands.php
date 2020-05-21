@@ -105,7 +105,6 @@ class NlcEmailsCommands extends DrushCommands {
     $limit = $options['limit'];
     $batch_size = $options['batch-size'];
     $process_batch = $this->commandHelper->sendHandlerEmailCommand($handlerId, $limit, $batch_size);
-//    print_r($process_batch);
 
     if ($process_batch === TRUE) {
       drush_backend_batch_process();

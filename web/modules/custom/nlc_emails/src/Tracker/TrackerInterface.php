@@ -61,12 +61,12 @@ interface TrackerInterface {
   /**
    * Retrieves the total number of pending items for this email handler.
    *
-   * @param string|null $machine_name
+   * @param string|null $datasource
    *   (optional) The datasource to filter the total number of pending items by.
    *
    * @return int
    *   The total number of emails that still need to be sent for this handler.
    */
-  public function getRemainingItemsCount(?string $machine_name = NULL);
+  public function getRemainingItemsCount(?string $datasource = NULL);
 
 }

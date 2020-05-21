@@ -152,7 +152,6 @@ class EmailBatchHelper {
 
     // Catch any exception that may occur whilst sending emails.
     try {
-      print_r($to_send_limit);
       $sent = $handler->sendEmails($to_send_limit);
       // Increment the sent result and progress.
       $context['results']['sent'] += $sent;

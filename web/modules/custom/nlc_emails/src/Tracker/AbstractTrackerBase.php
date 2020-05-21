@@ -197,7 +197,7 @@ abstract class AbstractTrackerBase implements TrackerInterface {
    */
   public function trackEmailsInserted(array $emails) {
     $transaction = $this->getDatabaseConnection()->startTransaction();
-    print_r(array_keys($emails));
+//    print_r(array_keys($emails));
     try {
       $machine_name = $this->getHandler()->emailHandlerMachineName();
       // Process the IDs in chunks so we don't create an overly large INSERT
@@ -331,6 +331,23 @@ abstract class AbstractTrackerBase implements TrackerInterface {
     catch (\Exception $e) {
       $this->logException($e);
       return [];
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getRemainingItemsCount(?string $datasource_id = NULL) {
+    try {
+      $select = $this->createRemainingItemsStatement();
+      if ($datasource_id) {
+        $select->condition('datasource', $datasource_id);
+      }
+      return (int) $select->countQuery()->execute()->fetchField();
+    }
+    catch (\Exception $e) {
+      $this->logException($e);
+      return 0;
     }
   }
 

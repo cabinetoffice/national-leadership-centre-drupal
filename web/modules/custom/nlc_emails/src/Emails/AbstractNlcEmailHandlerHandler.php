@@ -3,6 +3,7 @@
 
 namespace Drupal\nlc_emails\Emails;
 
+use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\nlc_emails\LoggerTrait;
@@ -15,6 +16,10 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
 
   use StringTranslationTrait;
   use LoggerTrait;
+
+  use DependencySerializationTrait {
+    __sleep as traitSleep;
+  }
 
   /**
    * Constructor for the AbstractNlcEmailHandlerHandler.
@@ -149,12 +154,13 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
     return $this;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public function sendEmails($limit): int {
-    print_r($limit);
     if ($this->hasValidTracker()) {
       $tracker = $this->getTrackerInstance();
       $next_set = $tracker->getRemainingItems($limit, $this->emailHandlerMachineName());
-      print_r($next_set);
       if (!$next_set) {
         return 0;
       }

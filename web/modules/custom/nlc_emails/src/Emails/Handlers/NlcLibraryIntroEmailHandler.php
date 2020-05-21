@@ -94,18 +94,4 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
     return render($body);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function sendEmails($limit): int {
-    // TODO: Implement sendEmails() method.
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public function sendSpecificEmails(array $emails) {
-    // TODO: Implement sendSpecificEmails() method.
-  }
-
 }

@@ -20,11 +20,4 @@ class NlcLibraryIntroEmailTracker extends AbstractTrackerBase {
     // TODO: Implement getSentItemsCount() method.
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function getRemainingItemsCount(?string $machine_name = NULL) {
-    // TODO: Implement getRemainingItemsCount() method.
-  }
-
 }
