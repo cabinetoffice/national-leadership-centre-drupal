@@ -41,6 +41,7 @@ services:
       SIMPLETEST_BASE_URL: $SIMPLETEST_BASE_URL
       SIMPLETEST_DB: $SIMPLETEST_DB
       ELASTICSEARCH_URL: $ELASTICSEARCH_URL
+      NLC_ENVIRONMENT: $NLC_ENVIRONMENT
     volumes:
       # - ./:/var/www/html
       # For macOS users (https://wodby.com/stacks/drupal/docs/local/docker-for-mac/)
