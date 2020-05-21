@@ -77,18 +77,35 @@
           }
         });
 
-      $(".connect-library").on("mousedown keyup touchstart", "a", function (
-        event
-      ) {
-        var $link = event.target.closest("a");
-        if ($link.href.match(/^\w+:\/\//i)) {
-          gtag("event", "Click", {
-            event_category: "Library links",
-            event_label: $link.href,
-            transport_type: "beacon",
-          });
+      $(".connect-library").on(
+        "mousedown keyup touchstart",
+        ".js-library-link",
+        function (event) {
+          var link = event.target.closest("a");
+          if (link.href.match(/^\w+:\/\//i)) {
+            gtag("event", "Click", {
+              event_category: "Library links",
+              event_label: link.href,
+              transport_type: "beacon",
+            });
+            gtag("event", "Click", {
+              event_category: "Library topics",
+              event_label: link.dataset.topic,
+              transport_type: "beacon",
+            });
+            gtag("event", "Click", {
+              event_category: "Library types",
+              event_label: link.dataset.label,
+              transport_type: "beacon",
+            });
+            gtag("event", "Click", {
+              event_category: "Library read times",
+              event_label: link.dataset.readTime,
+              transport_type: "beacon",
+            });
+          }
         }
-      });
+      );
     },
   };
 })(jQuery, Drupal, drupalSettings);
