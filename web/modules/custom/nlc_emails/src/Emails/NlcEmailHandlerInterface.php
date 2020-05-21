@@ -189,9 +189,9 @@ interface NlcEmailHandlerInterface {
    * @param array $context
    *   A context array for an email template.
    *
-   * @return \Drupal\Component\Render\MarkupInterface
+   * @return string
    */
-  public function emailBody(array $context): MarkupInterface;
+  public function emailBody(array $context): string;
 
   /**
    * Determines whether the tracker is valid.

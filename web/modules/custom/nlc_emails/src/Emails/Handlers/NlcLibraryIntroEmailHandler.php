@@ -42,7 +42,8 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
     $recipients = [];
     $criteria = [
       'contains' => [
-        'mail' => 'joe.baker@weareconvivio.com',
+//        'mail' => 'joe.baker@weareconvivio.com',
+        'mail' => '@weareconvivio.com',
       ],
     ];
     try {
@@ -92,16 +93,17 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
   /**
    * {@inheritDoc}
    */
-  public function emailBody(array $context): MarkupInterface {
-    $body = [
-      '#type' => 'inline_template',
-      '#template' => '<p>Hello {{ name }}</p>',
-      '#context' => $context,
-    ];
-    /** @var RendererInterface $renderer */
-    $renderer = \Drupal::service('renderer');
-
-    return $renderer->render($body);
+  public function emailBody(array $context): string {
+    $body = sprintf('<p>Hello %s</p>', $context['name']);
+    return $body;
+//    $body = [
+//      '#type' => 'inline_template',
+//      '#template' => '<p>Hello {{ name }}</p>',
+//      '#context' => $context,
+//    ];
+//    $build = render($body);
+//    return \Drupal::service('renderer')
+//      ->renderRoot($build);
   }
 
 }
