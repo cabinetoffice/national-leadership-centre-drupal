@@ -3,6 +3,7 @@
 
 namespace Drupal\nlc_emails\Emails;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RenderableInterface;
 use Drupal\Core\Render\RendererInterface;
@@ -24,6 +25,22 @@ interface NlcEmailHandlerInterface {
    * within that datasource, separated by this character.
    */
   const DATASOURCE_ID_SEPARATOR = '/';
+
+  /**
+   * Get the mail manager instance.
+   *
+   * @return \Drupal\Core\Mail\MailManager
+   */
+  public function getMailManager(): \Drupal\Core\Mail\MailManager;
+
+  /**
+   * Get the Drupal mail key.
+   *
+   * @return string
+   *
+   * @see \Drupal\Core\Mail\MailManagerInterface::mail()
+   */
+  public function getMailKey(): string;
 
   /**
    * Get the entity type manager.
@@ -172,9 +189,9 @@ interface NlcEmailHandlerInterface {
    * @param array $context
    *   A context array for an email template.
    *
-   * @return \Drupal\Core\Render\RendererInterface
+   * @return \Drupal\Component\Render\MarkupInterface
    */
-  public function emailBody(array $context): RendererInterface;
+  public function emailBody(array $context): MarkupInterface;
 
   /**
    * Determines whether the tracker is valid.

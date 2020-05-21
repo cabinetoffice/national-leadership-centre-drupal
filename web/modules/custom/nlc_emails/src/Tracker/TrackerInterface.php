@@ -5,6 +5,16 @@ namespace Drupal\nlc_emails\Tracker;
 interface TrackerInterface {
 
   /**
+   * Status value that represents emails that have been sent in their latest form.
+   */
+  const STATUS_SENT = 0;
+
+  /**
+   * Status value that represents emails that still need to be sent.
+   */
+  const STATUS_NOT_SENT = 1;
+
+  /**
    * Inserts new items into the tracking system for this handler.
    *
    * @param array $ids
@@ -61,12 +71,12 @@ interface TrackerInterface {
   /**
    * Retrieves the total number of pending items for this email handler.
    *
-   * @param string|null $datasource
-   *   (optional) The datasource to filter the total number of pending items by.
+   * @param string|null $machine_name
+   *   (optional) The machine name to filter the total number of pending items by.
    *
    * @return int
    *   The total number of emails that still need to be sent for this handler.
    */
-  public function getRemainingItemsCount(?string $datasource = NULL);
+  public function getRemainingItemsCount(?string $machine_name = NULL);
 
 }

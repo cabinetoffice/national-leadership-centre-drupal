@@ -134,6 +134,18 @@ interface EmailInterface {
   public function setSent(string $timestamp): void;
 
   /**
+   * @return int
+   */
+  public function getStatus(): int;
+
+  /**
+   * Get the email status.
+   *
+   * @param int $status
+   */
+  public function setStatus(int $status): void;
+
+  /**
    * Get the Drupal user for this email.
    *
    * @return \Drupal\user\UserInterface

@@ -4,6 +4,7 @@ namespace Drupal\nlc_emails\Tracker;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\nlc_emails\Emails\Email;
 use Drupal\nlc_emails\Emails\NlcEmailHandlerInterface;
 use Drupal\nlc_emails\LoggerTrait;
 use Drupal\nlc_emails\Utility\Utility;
@@ -12,16 +13,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class AbstractTrackerBase implements TrackerInterface {
 
   use LoggerTrait;
-
-  /**
-   * Status value that represents emails that have been sent in their latest form.
-   */
-  const STATUS_SENT = 0;
-
-  /**
-   * Status value that represents emails that still need to be sent.
-   */
-  const STATUS_NOT_SENT = 1;
 
   /**
    * The database connection used by this plugin.
@@ -178,7 +169,7 @@ abstract class AbstractTrackerBase implements TrackerInterface {
    */
   protected function createRemainingItemsStatement($datasource_id = NULL) {
     $select = $this->createSelectStatement();
-    $select->fields('nei', ['item_id']);
+    $select->fields('nei', ['machine_name', 'datasource', 'item_id', 'changed', 'sent', 'status', 'uid', 'email']);
     if ($datasource_id) {
       $select->condition('datasource', $datasource_id);
     }
@@ -326,7 +317,7 @@ abstract class AbstractTrackerBase implements TrackerInterface {
       if ($limit >= 0) {
         $select->range(0, $limit);
       }
-      return $select->execute()->fetchCol();
+      return $select->execute()->fetchAll();
     }
     catch (\Exception $e) {
       $this->logException($e);
@@ -337,11 +328,11 @@ abstract class AbstractTrackerBase implements TrackerInterface {
   /**
    * {@inheritdoc}
    */
-  public function getRemainingItemsCount(?string $datasource_id = NULL) {
+  public function getRemainingItemsCount(?string $datasource = NULL) {
     try {
       $select = $this->createRemainingItemsStatement();
-      if ($datasource_id) {
-        $select->condition('datasource', $datasource_id);
+      if ($datasource) {
+        $select->condition('datasource', $datasource);
       }
       return (int) $select->countQuery()->execute()->fetchField();
     }

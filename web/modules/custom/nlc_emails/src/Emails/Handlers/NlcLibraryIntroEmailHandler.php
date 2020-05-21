@@ -2,6 +2,7 @@
 
 namespace Drupal\nlc_emails\Emails\Handlers;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\nlc_emails\Emails\AbstractNlcEmailHandlerHandler;
 use Drupal\nlc_emails\Emails\Email;
@@ -25,6 +26,13 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
    */
   public function emailHandlerName(): string {
     return 'NLC Library introduction email';
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getMailKey(): string {
+    return $this->emailHandlerMachineName();
   }
 
   /**
@@ -84,14 +92,16 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
   /**
    * {@inheritDoc}
    */
-  public function emailBody(array $context): RendererInterface {
+  public function emailBody(array $context): MarkupInterface {
     $body = [
       '#type' => 'inline_template',
       '#template' => '<p>Hello {{ name }}</p>',
       '#context' => $context,
     ];
+    /** @var RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
 
-    return render($body);
+    return $renderer->render($body);
   }
 
 }

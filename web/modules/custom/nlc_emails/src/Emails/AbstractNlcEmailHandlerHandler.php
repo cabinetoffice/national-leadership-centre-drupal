@@ -22,11 +22,10 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
   }
 
   /**
-   * Constructor for the AbstractNlcEmailHandlerHandler.
+   * @var \Drupal\Core\Mail\MailManager
    */
-  public function __construct() {
-  }
 
+  protected $mailManager;
 
   /**
    * The entity type manager
@@ -54,12 +53,25 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
   protected $trackerInstance;
 
   /**
+   * Constructor for the AbstractNlcEmailHandlerHandler.
+   */
+  public function __construct() {
+    $this->mailManager = \Drupal::service('plugin.manager.mail');
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getMailManager(): \Drupal\Core\Mail\MailManager {
+    return $this->mailManager;
+  }
+
+  /**
    * {@inheritDoc}
    */
   public function getEntityTypeManager(): EntityTypeManagerInterface {
     return $this->entityTypeManager;
   }
-
 
   /**
    * {@inheritDoc}
@@ -160,7 +172,7 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
   public function sendEmails($limit): int {
     if ($this->hasValidTracker()) {
       $tracker = $this->getTrackerInstance();
-      $next_set = $tracker->getRemainingItems($limit, $this->emailHandlerMachineName());
+      $next_set = $tracker->getRemainingItems();
       if (!$next_set) {
         return 0;
       }
@@ -186,11 +198,50 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
     if (!$email_objects) {
       return [];
     }
+    // Remember the items that were initially passed, to be able to determine
+    // the items rejected by alter hooks and processors afterwards.
+    $rejected_ids = array_keys($email_objects);
+    $rejected_ids = array_combine($rejected_ids, $rejected_ids);
+    $sent_ids = [];
+
     /** @var \Drupal\nlc_emails\Emails\Email[] $emails */
     $emails = [];
-//    foreach ($email_objects)
+    foreach ($email_objects as $item_id => $email) {
+      $email = (array) $email;
+      $emails[$item_id] = new Email($email);
+    }
 
+    foreach ($emails as $id => $email) {
+      $result = $this->sendSpecificEmail($email);
+      if ($result['result'] === true) {
+        unset($rejected_ids[$id]);
+        $email->setStatus($this->getTrackerInstance()::STATUS_SENT);
+        $sent_ids[$id] = $email;
+      }
+    }
+    $processed_ids = array_merge(array_values($rejected_ids), array_values($sent_ids));
+
+    return $processed_ids;
   }
+
+  /**
+   * @param \Drupal\nlc_emails\Emails\Email $email
+   *
+   * @return array|mixed
+   */
+  public function sendSpecificEmail(Email $email) {
+    $user = $email->getEmailUser();
+    $bodyContext = [
+      'name' => $user->getDisplayName(),
+    ];
+    $params = [
+      'subject' => $this->emailSubject(),
+      'body' => $this->emailBody($bodyContext),
+    ];
+
+    return $this->getMailManager()->mail('nlc_emails', $this->getMailKey(), $email->getEmail(), 'en', $params);
+  }
+
 
   /**
    * {@inheritdoc}
@@ -200,7 +251,7 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
     // determine whether all items were loaded successfully.
     $items_by_datasource = [];
     foreach ($item_ids as $item_id) {
-      [$datasource, $raw_id] = Utility::splitCombinedId($item_id);
+      [$datasource, $raw_id] = Utility::splitCombinedId($item_id->item_id);
       $items_by_datasource[$datasource][$raw_id] = $item_id;
     }
 
@@ -209,31 +260,31 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
     $items = [];
     foreach ($items_by_datasource as $datasource => $raw_ids) {
       try {
-        $datasource_items = $datasource->loadMultiple(array_keys($raw_ids));
-        foreach ($datasource_items as $raw_id => $item) {
-          $id = $raw_ids[$raw_id];
+        foreach ($raw_ids as $raw_id => $item) {
+//          $email = new Email($item);
+          $id = $item->item_id;
           $items[$id] = $item;
           // Remember that we successfully loaded this item.
-          unset($items_by_machine_name[$machine_name][$raw_id]);
+          unset($items_by_datasource[$datasource][$raw_id]);
         }
       }
       catch (NlcEmailsException $e) {
         $this->logException($e);
         // If the complete datasource could not be loaded, don't report all its
         // individual requested items as missing.
-        unset($items_by_machine_name[$machine_name]);
+        unset($items_by_datasource[$datasource]);
       }
     }
 
     // Check whether there are requested items that couldn't be loaded.
-    $items_by_machine_name = array_filter($items_by_machine_name);
+    $items_by_machine_name = array_filter($items_by_datasource);
     if ($items_by_machine_name) {
       // Extract the second-level values of the two-dimensional array (that is,
       // the combined item IDs) and log a warning reporting their absence.
       $missing_ids = array_reduce(array_map('array_values', $items_by_machine_name), 'array_merge', []);
-      $args['%index'] = $this->label();
+      $args['%handler'] = $this->emailHandlerMachineName();
       $args['@items'] = '"' . implode('", "', $missing_ids) . '"';
-      $this->getLogger()->warning('Could not load the following items on index %index: @items.', $args);
+      $this->getLogger()->warning('Could not load the following items on email handler %handler: @items.', $args);
       // Also remove those items from tracking so we don't keep trying to load
       // them.
       foreach ($items_by_machine_name as $machine_name => $raw_ids) {

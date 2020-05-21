@@ -57,6 +57,11 @@ class Email implements EmailInterface {
   protected $sent;
 
   /**
+   * @var int
+   */
+  protected $status;
+
+  /**
    * Email constructor.
    *
    * @param array $context
@@ -212,6 +217,20 @@ class Email implements EmailInterface {
     return $this->dateFormat === DateTimeItemInterface::DATE_STORAGE_FORMAT
       ? DateTimeItemInterface::STORAGE_TIMEZONE
       : date_default_timezone_get();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getStatus(): int {
+    return $this->status;
+  }
+
+  /**
+   * @param int $status
+   */
+  public function setStatus(int $status): void {
+    $this->status = $status;
   }
 
   /**
