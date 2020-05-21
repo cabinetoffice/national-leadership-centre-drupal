@@ -11,9 +11,11 @@
   {% if header or pager %}
     <div class="govuk-width-container">
       <header>
+    {% if header %}
       <div class="nlc-item-count">
         {{ header }}
       </div>
+    {% endif %}
         {{ pager }}
       </header>
     </div>
