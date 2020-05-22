@@ -4,8 +4,10 @@ namespace Drupal\nlc_emails\Emails\Handlers;
 
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\Url;
 use Drupal\nlc_emails\Emails\AbstractNlcEmailHandlerHandler;
 use Drupal\nlc_emails\Emails\Email;
+use Drupal\nlc_prototype\Utility\DirectoryAccessUtility;
 
 /**
  * An email handler for sending an email intro to the Library.
@@ -86,24 +88,60 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
   /**
    * {@inheritDoc}
    */
-  public function emailSubject(): string {
-    return $this->t('Check out the Connect Library');
+  public function getEmailSubject(Email $email): string {
+    return $this->emailSubject();
   }
 
   /**
    * {@inheritDoc}
    */
-  public function emailBody(array $context): string {
-    $body = sprintf('<p>Hello %s</p>', $context['name']);
+  public function emailSubject(): string {
+    return $this->t('Check out the Connect Library');
+  }
+
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getEmailBody(Email $email) {
+    $body = [];
+    $user = $email->getEmailUser();
+    $params['login_destination'] = '/library';
+    $loginUrl = DirectoryAccessUtility::directoryUrl($user, null, $params);
+    $bodyContext = [
+      'name' => $user->getDisplayName(),
+      'login_url' => $loginUrl,
+    ];
+    $body = $this->emailBody($bodyContext);
     return $body;
-//    $body = [
-//      '#type' => 'inline_template',
-//      '#template' => '<p>Hello {{ name }}</p>',
-//      '#context' => $context,
-//    ];
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function emailBody(array $context): MarkupInterface {
+//    $body = sprintf('<p>Hello %s</p>', $context['name']);
+//    return $body;
+    $body = [
+      'intro' => [
+        '#type' => 'inline_template',
+        '#template' => '<p>Hello {{ name }}</p>
+  <p>How are you today?</p>',
+        '#context' => $context,
+      ],
+      'link' => [
+        '#type' => 'link',
+        '#title' => $this->t('Log into the Connect Directory'),
+        '#url' => Url::fromUri($context['login_url'], ['absolute' => true]),
+        '#attributes' => [
+          'class' => ['button'],
+        ],
+      ],
+    ];
 //    $build = render($body);
-//    return \Drupal::service('renderer')
-//      ->renderRoot($build);
+    /** @var RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
+    return $renderer->renderRoot($body);
   }
 
 }

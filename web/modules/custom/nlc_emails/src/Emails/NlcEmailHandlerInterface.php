@@ -177,6 +177,15 @@ interface NlcEmailHandlerInterface {
   public function handlerTrackerName(): string;
 
   /**
+   * Get the email body, populated with any tokens or with any other alterations made.
+   *
+   * @param \Drupal\nlc_emails\Emails\Email $email
+   *
+   * @return string
+   */
+  public function getEmailSubject(Email $email): string;
+
+  /**
    * The email subject line.
    *
    * @return string
@@ -184,14 +193,23 @@ interface NlcEmailHandlerInterface {
   public function emailSubject(): string;
 
   /**
+   * Get the email body, populated with any tokens or with any other alterations made.
+   *
+   * @param \Drupal\nlc_emails\Emails\Email $email
+   *
+   * @return string|string[]
+   */
+  public function getEmailBody(Email $email) ;
+
+  /**
    * The email body.
    *
    * @param array $context
    *   A context array for an email template.
    *
-   * @return string
+   * @return \Drupal\Component\Render\MarkupInterface
    */
-  public function emailBody(array $context): string;
+  public function emailBody(array $context): MarkupInterface;
 
   /**
    * Determines whether the tracker is valid.

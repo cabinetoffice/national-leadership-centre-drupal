@@ -187,15 +187,15 @@ class EmailBatchHelper {
     // Check if the batch job was successful.
     if ($success) {
       // Display the number of items indexed.
-      if (!empty($results['indexed'])) {
+      if (!empty($results['sent'])) {
         // Build the indexed message.
-        $indexed_message = static::formatPlural($results['indexed'], 'Successfully sent 1 email.', 'Successfully sent @count emails.');
+        $indexed_message = static::formatPlural($results['sent'], 'Successfully sent 1 email.', 'Successfully sent @count emails.');
         // Notify user about indexed items.
         \Drupal::messenger()->addStatus($indexed_message);
         // Display the number of items not indexed.
-        if (!empty($results['not indexed'])) {
+        if (!empty($results['not sent'])) {
           // Build the not indexed message.
-          $not_indexed_message = static::formatPlural($results['not indexed'], '1 email could not be sent. Check the logs for details.', '@count emails could not be sent. Check the logs for details.');
+          $not_indexed_message = static::formatPlural($results['not sent'], '1 email could not be sent. Check the logs for details.', '@count emails could not be sent. Check the logs for details.');
           // Notify user about not indexed items.
           \Drupal::messenger()->addWarning($not_indexed_message);
         }

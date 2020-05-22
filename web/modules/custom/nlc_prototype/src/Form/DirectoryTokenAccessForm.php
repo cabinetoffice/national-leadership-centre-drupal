@@ -15,6 +15,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\menu_test\Access\AccessCheck;
+use Drupal\nlc_prototype\Utility\DirectoryAccessUtility;
 use Drupal\nlc_salesforce\SFAPI\SFWrapper;
 use Drupal\salesforce\SFID;
 use Drupal\user\Entity\User;
@@ -192,7 +193,7 @@ class DirectoryTokenAccessForm extends FormBase {
       '#link' => [
         '#type' => 'link',
         '#title' => $this->t('Log into the Connect Directory'),
-        '#url' => Url::fromUri($this->directoryUrl($account, $directoryUrlOptions)),
+        '#url' => Url::fromUri(DirectoryAccessUtility::directoryUrl($account, $this->routeName, $directoryUrlOptions)),
         '#attributes' => [
           'class' => ['button'],
         ],
@@ -239,37 +240,6 @@ class DirectoryTokenAccessForm extends FormBase {
 //    $this->messenger()->addStatus($rendered_message);
     $form_state->setRedirect('nlc_prototype.directory.token_access.confirm');
 
-  }
-
-  /**
-   * Create a directory URL with one-time access hash parameters.
-   *
-   * @param \Drupal\user\Entity\User $account
-   * @param array $params
-   *
-   * @return \Drupal\Core\GeneratedUrl|string
-   */
-  private function directoryUrl(User $account, $params = array()) {
-    $timestamp = \Drupal::time()->getRequestTime();
-    $langCode = isset($options['langcode']) ? $options['langcode'] : $account
-      ->getPreferredLangcode();
-    $options = [
-      'absolute' => TRUE,
-      'language' => \Drupal::languageManager()
-        ->getLanguage($langCode),
-    ];
-    if (!empty($params['login_destination'])) {
-      $options['query'] = ['login_destination' => $params['login_destination']];
-    }
-
-    return Url::fromRoute($this->routeName, [
-        'uid' => $account
-          ->id(),
-        'timestamp' => $timestamp,
-        'hash' => user_pass_rehash($account, $timestamp),
-      ],
-      $options)
-      ->toString();
   }
 
   /**

@@ -215,11 +215,13 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
       $result = $this->sendSpecificEmail($email);
       if ($result['result'] === true) {
         unset($rejected_ids[$id]);
-        $email->setStatus($this->getTrackerInstance()::STATUS_SENT);
-        $sent_ids[$id] = $email;
+        $sent_ids[$id] = $id;
       }
     }
     $processed_ids = array_merge(array_values($rejected_ids), array_values($sent_ids));
+    if ($processed_ids) {
+      $this->getTrackerInstance()->trackEmailsSent($processed_ids);
+    }
 
     return $processed_ids;
   }
@@ -230,13 +232,9 @@ abstract class AbstractNlcEmailHandlerHandler implements NlcEmailHandlerInterfac
    * @return array|mixed
    */
   public function sendSpecificEmail(Email $email) {
-    $user = $email->getEmailUser();
-    $bodyContext = [
-      'name' => $user->getDisplayName(),
-    ];
     $params = [
-      'subject' => $this->emailSubject(),
-      'body' => $this->emailBody($bodyContext),
+      'subject' => $this->getEmailSubject($email),
+      'body' => $this->getEmailBody($email),
     ];
 
     return $this->getMailManager()->mail('nlc_emails', $this->getMailKey(), $email->getEmail(), 'en', $params);
