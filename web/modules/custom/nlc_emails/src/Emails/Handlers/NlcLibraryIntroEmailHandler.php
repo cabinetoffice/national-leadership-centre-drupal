@@ -120,8 +120,6 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
    * {@inheritDoc}
    */
   public function emailBody(array $context): MarkupInterface {
-//    $body = sprintf('<p>Hello %s</p>', $context['name']);
-//    return $body;
     $body = [
       'intro' => [
         '#type' => 'inline_template',
@@ -138,7 +136,7 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
         ],
       ],
     ];
-//    $build = render($body);
+    
     /** @var RendererInterface $renderer */
     $renderer = \Drupal::service('renderer');
     return $renderer->renderRoot($body);

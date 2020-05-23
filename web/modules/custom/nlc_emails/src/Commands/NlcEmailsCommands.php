@@ -71,13 +71,16 @@ class NlcEmailsCommands extends DrushCommands {
   }
 
   /**
+   * Send emails with a specific email handler.
+   *
+   * @command nlc-emails:send
+   *   Send emails with a specific email handler.
+   *
    * @param string $handlerId
    *   The machine name of an email handler.
    *
    * @param array $options
    *   (optional) An array of options.
-   *
-   * @command nlc-emails:send
    *
    * @option limit
    *   The maximum number of emails to send. Set to 0 to send all emails.
