@@ -108,9 +108,19 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
     $user = $email->getEmailUser();
     $params['login_destination'] = '/library';
     $loginUrl = DirectoryAccessUtility::directoryUrl($user, null, $params);
+    $link = [
+      '#type' => 'link',
+      '#title' => $this->t('Take me to the Connect Library'),
+      '#url' => Url::fromUri($loginUrl, ['absolute' => true]),
+      '#attributes' => [
+        'class' => ['button'],
+      ]
+    ];
+    /** @var RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
     $bodyContext = [
       'name' => $user->getDisplayName(),
-      'login_url' => $loginUrl,
+      'login_link' => $renderer->renderRoot($link),
     ];
     $body = $this->emailBody($bodyContext);
     return $body;
@@ -123,20 +133,14 @@ class NlcLibraryIntroEmailHandler extends AbstractNlcEmailHandlerHandler {
     $body = [
       'intro' => [
         '#type' => 'inline_template',
-        '#template' => '<p>Hello {{ name }}</p>
-  <p>How are you today?</p>',
+        '#template' => '
+  <p>Hello {{ name }}</p>
+  <p>How are you today?</p>
+  <p>{{ login_link }}</p>',
         '#context' => $context,
       ],
-      'link' => [
-        '#type' => 'link',
-        '#title' => $this->t('Log into the Connect Directory'),
-        '#url' => Url::fromUri($context['login_url'], ['absolute' => true]),
-        '#attributes' => [
-          'class' => ['button'],
-        ],
-      ],
     ];
-    
+
     /** @var RendererInterface $renderer */
     $renderer = \Drupal::service('renderer');
     return $renderer->renderRoot($body);
