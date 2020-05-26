@@ -9,8 +9,8 @@ id: node.external_link.field_read_time
 field_name: field_read_time
 entity_type: node
 bundle: external_link
-label: 'Read time'
-description: 'Estimated read time, in minutes'
+label: 'Length in minutes'
+description: 'Estimated length, in minutes'
 required: false
 translatable: false
 default_value:
