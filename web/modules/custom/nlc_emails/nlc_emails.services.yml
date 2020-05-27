@@ -1,0 +1,13 @@
+services:
+  logger.channel.nlc_emails:
+    parent: logger.channel_base
+    arguments: ['nlc_emails']
+  nlc_emails.email_manager:
+    class: Drupal\nlc_emails\Emails\NlcEmailManager
+    arguments: [ '@entity_type.manager', '@logger.factory', '@string_translation' ]
+    tags:
+      - { name: service_collector, tag: ncl_email_handler, call: addNlcEmailHandler }
+  nlc_emails.handler.library_intro:
+    class: Drupal\nlc_emails\Emails\Handlers\NlcLibraryIntroEmailHandler
+    tags:
+      - { name: ncl_email_handler }

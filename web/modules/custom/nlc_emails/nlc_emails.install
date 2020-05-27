@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function nlc_emails_schema() {
+  $schema['nlc_emails_item'] = [
+    'description' => 'Stores the email items which should be sent for each handler, and their state.',
+    'fields' => [
+      'machine_name' => [
+        'description' => 'The machine_name of the handler this item belongs to',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
+      'datasource' => [
+        'description' => 'The datasource this item belongs to',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ],
+      'item_id' => [
+        'description' => 'The unique identifier of this item',
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+      ],
+      'changed' => [
+        'description' => 'A timestamp indicating when the item was changed',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'sent' => [
+        'description' => 'A timestamp indicating when the item was sent',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+      ],
+      'status' => [
+        'description' => 'Boolean indicating the re-send status, "1" when we need to re-send, "0" otherwise',
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'description' => 'User ID of the recipient',
+        'type' => 'int',
+        'not null' => FALSE,
+      ],
+      'email' => [
+        'description' => 'Email address of the recipient',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+    ],
+    'indexes' => [
+      'indexing' => ['machine_name', 'status', 'sent', 'item_id'],
+    ],
+    'primary key' => ['machine_name', 'item_id'],
+  ];
+
+  return $schema;
+}

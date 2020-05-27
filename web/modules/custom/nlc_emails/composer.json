@@ -1,0 +1,12 @@
+{
+  "name": "nlc_connect/nlc_emails",
+  "description": "Send marketing and other emails from Connect.",
+  "license": "GPL-2.0-or-later",
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^9 || ^10"
+      }
+    }
+  }
+}
