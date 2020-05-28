@@ -1,5 +1,5 @@
-.govuk-grid-column-three-quarters-right-from-desktop {
-  @include govuk-grid-column(three-quarters, $at: desktop, $float: right);
+.govuk-grid-column-three-quarters-right-from-tablet {
+  @include govuk-grid-column(three-quarters, $at: tablet, $float: right);
 }
 .govuk-grid-column-one-quarter-from-tablet {
   @include govuk-grid-column(one-quarter, $at: tablet);
