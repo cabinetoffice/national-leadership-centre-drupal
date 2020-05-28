@@ -1,5 +1,5 @@
 .nlc-responsive-table {
-  @include govuk-media-query($from: mobile) {
+  @include govuk-media-query($until: mobile) {
     table,
     thead,
     tbody,
