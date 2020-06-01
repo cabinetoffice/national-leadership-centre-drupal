@@ -16,7 +16,7 @@
   <div class="govuk-width-container">
 
     <div class="govuk-grid-row">
-      <div class="{{content_class}}-right govuk-!-padding-bottom-7">
+      <div class="{{content_class}}-right-from-tablet govuk-!-padding-bottom-7">
         {{ page.pre_content }}
       </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="govuk-grid-row">
 
         {% if page.sidebar_first %}
-          <div class="govuk-grid-column-one-quarter">
+          <div class="govuk-grid-column-one-quarter-from-tablet govuk-!-margin-bottom-6">
             <section role="search" id="search-region" aria-labelled-by="search-heading">
               <h2 id="search-heading" class="visually-hidden">Find articles, videos and podcasts</h2>
               {{ page.sidebar_first }}
@@ -32,12 +32,12 @@
           </div>
         {% endif %}
 
-        <main class="{{content_class}}" id="main-content"  role="main">
+        <main class="{{content_class}}-from-tablet" id="main-content"  role="main">
           {{ page.content }}
         </main>
 
         {% if page.sidebar_second %}
-          <div class="govuk-grid-column-one-quarter">
+          <div class="govuk-grid-column-one-quarter-from-tablet">
             <aside role="complementary">
               {{ page.sidebar_second }}
             </aside>

@@ -1,5 +1,5 @@
 .nlc-responsive-table {
-  @media (max-width: govuk-px-to-rem(452)) {
+  @include govuk-media-query($until: mobile) {
     table,
     thead,
     tbody,
