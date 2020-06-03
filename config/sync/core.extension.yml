@@ -49,6 +49,7 @@ module:
   nlc_prototype: 0
   nlc_register_interest: 0
   nlc_salesforce: 0
+  nlc_topics: 0
   node: 0
   options: 0
   page_cache: 0
