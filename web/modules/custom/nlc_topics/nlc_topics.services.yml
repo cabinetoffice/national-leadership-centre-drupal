@@ -4,11 +4,6 @@ services:
     arguments: ['@neo4j_db_entity.model.manager']
     tags:
       - { name: event_subscriber }
-#  nlc_topics.event_subscriber.topic.load:
-#    class: Drupal\nlc_topics\EventSubscriber\TopicLoadSubscriber
-#    arguments: ['@neo4j_db_entity.model.manager']
-#    tags:
-#      - { name: event_subscriber }
   nlc_topics.event_subscriber.topic.update:
     class: Drupal\nlc_topics\EventSubscriber\TopicUpdateSubscriber
     arguments: ['@neo4j_db_entity.model.manager']
@@ -19,8 +14,28 @@ services:
     arguments: ['@neo4j_db_entity.model.manager']
     tags:
       - { name: event_subscriber }
+  nlc_topics.event_subscriber.library_label.insert:
+    class: Drupal\nlc_topics\EventSubscriber\LibraryLabelInsertSubscriber
+    arguments: ['@neo4j_db_entity.model.manager']
+    tags:
+      - { name: event_subscriber }
+  nlc_topics.event_subscriber.library_label.update:
+    class: Drupal\nlc_topics\EventSubscriber\LibraryLabelUpdateSubscriber
+    arguments: ['@neo4j_db_entity.model.manager']
+    tags:
+      - { name: event_subscriber }
+  nlc_topics.event_subscriber.library_label.delete:
+    class: Drupal\nlc_topics\EventSubscriber\LibraryLabelDeleteSubscriber
+    arguments: ['@neo4j_db_entity.model.manager']
+    tags:
+      - { name: event_subscriber }
   nlc_topics.model.taxonomy_term.topics:
     class: Drupal\nlc_topics\Model\TaxonomyTerm\GraphEntityTopicModel
+    arguments: ['@string_translation', '@neo4j_db.connection']
+    tags:
+      - { name: graph_entity_model }
+  nlc_topics.model.taxonomy_term.library_labels:
+    class: Drupal\nlc_topics\Model\TaxonomyTerm\GraphEntityLibraryLabelModel
     arguments: ['@string_translation', '@neo4j_db.connection']
     tags:
       - { name: graph_entity_model }
