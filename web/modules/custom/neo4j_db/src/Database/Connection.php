@@ -314,6 +314,21 @@ abstract class Connection {
     return new $class($this, $object);
   }
 
+  /**
+   * Prepares and returns and OGM Merge query object.
+   *
+   * @param object $object
+   *   The object to merge in the DB.
+   *
+   * @see \Drupal\neo4j_db\Database\Query\Merge
+   * @see \Drupal\neo4j_db\Database\Connection::defaultOptions()
+   *
+   * @return \Drupal\neo4j_db\Database\Query\Merge
+   */
+  public function merge($object) {
+    $class = $this->getDriverClass('Merge');
+    return new $class($this, $object);
+  }
 
 }
 /**

@@ -54,7 +54,6 @@ class Neo4jDbEntityEvent extends Event {
     $this->eventType = $eventType;
     $this->entity = $entity;
     $this->entityTypeId = $entityTypeId;
-
   }
 
   /**

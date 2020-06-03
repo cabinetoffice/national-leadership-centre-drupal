@@ -41,19 +41,21 @@ class Delete extends Query {
   /**
    * Set the flag to detach relationships when deleting.
    *
-   * @return void
+   * @return \Drupal\neo4j_db\Database\Query\Delete
    */
   public function detachRelationships() {
     $this->detachRelationships = true;
+    return $this;
   }
 
   /**
    * Remove the object from the current Unit of Work.
    *
-   * @return void
+   * @return \Drupal\neo4j_db\Database\Query\Delete
    */
-  private function remove() {
+  public function remove() {
     $this->connection->getOgmConnection()->remove($this->object, $this->detachRelationships);
+    return $this;
   }
 
   /**
@@ -61,9 +63,8 @@ class Delete extends Query {
    *
    * @return void
    */
-  protected function execute() {
-    $this->remove();
-    $this->connection->flush();;
+  public function execute() {
+    $this->connection->flush();
   }
 
 }

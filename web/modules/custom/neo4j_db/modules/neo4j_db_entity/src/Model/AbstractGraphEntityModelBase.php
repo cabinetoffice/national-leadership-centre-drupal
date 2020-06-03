@@ -8,6 +8,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslationInterface;
 use Drupal\neo4j_db\Database\Driver\bolt\Connection;
 use \InvalidArgumentException;
+use phpDocumentor\Reflection\Types\Void_;
 
 /**
  * Provides a base entity model object for the knowledge graph.
@@ -191,12 +192,19 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
   }
 
   /**
-   * Persist this model to the graph DB.
+   * {@inheritDoc}
    */
-  public function modelPersist() {
+  public function modelPersist(): void {
     $this->connection
       ->persist($this)
       ->execute();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function modelFlush(): void {
+    $this->connection->flush();
   }
 
   /**
@@ -208,6 +216,24 @@ abstract class AbstractGraphEntityModelBase implements GraphEntityModelInterface
       ->execute();
     $this->graphNode = $result;
     return $this->getGraphNode();
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function modelDelete(): void {
+    $this->connection
+      ->delete($this)
+      ->detachRelationships()
+      ->remove()
+      ->execute();
+    unset($this->graphNode);
+  }
+
+  public function modelMerge(): void {
+    $this->connection
+      ->merge($this)
+      ->execute();
   }
 
   /**

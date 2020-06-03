@@ -61,6 +61,6 @@ abstract class Query {
   /**
    * Runs the query against the database.
    */
-  abstract protected function execute();
+  abstract public function execute();
 
 }

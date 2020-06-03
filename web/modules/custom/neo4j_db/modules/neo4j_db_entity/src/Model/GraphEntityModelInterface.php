@@ -99,6 +99,16 @@ interface GraphEntityModelInterface extends GraphModelInterface {
   public function modelFindOneBy();
 
   /**
+   * Persist this model entity to the graph DB.
+   */
+  public function modelPersist(): void ;
+
+  /**
+   * Delete this model entity from the graph DB.
+   */
+  public function modelDelete(): void ;
+
+  /**
    * Get the graph node attached to this entity model.
    *
    * @return \GraphAware\Neo4j\OGM\Proxy\EntityProxy|null
