@@ -24,6 +24,11 @@ services:
     arguments: ['@string_translation', '@neo4j_db.connection']
     tags:
       - { name: graph_entity_model }
+  network_individual.model.programme_year:
+    class: Drupal\nlc_network_individual\Model\Node\GraphEntityProgrammeYearModel
+    arguments: ['@string_translation', '@neo4j_db.connection']
+    tags:
+      - { name: graph_entity_model }
   network_individual.model_relationship.person_view:
     class: Drupal\nlc_network_individual\Model\Relationship\NetworkIndividualVisitOfRelationshipModel
     arguments: ['@string_translation', '@neo4j_db.connection']
