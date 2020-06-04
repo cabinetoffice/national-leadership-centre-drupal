@@ -35,11 +35,11 @@ abstract class AbstractTaxonomyTermInsertSubscriber extends AbstractEntityEventI
   public function onEntityInsert(Neo4jDbEntityEvent $event) {
     if ($event->getEntity()->getEntityTypeId() === 'taxonomy_term' && $event->getEntity()->bundle() === $this->subscriberBundle()) {
       $this->taxonomyTerm = $event->getEntity();
-      $this->insertGraphTopicNode();
+      $this->insertGraphTermNode();
     }
   }
 
-  protected function insertGraphTopicNode() {
+  protected function insertGraphTermNode() {
     /** @var \Drupal\neo4j_db_entity\Model\TaxonomyTerm\AbstractGraphEntityTaxonomyTermModel $term */
     $term = \Drupal::service($this->subscriberModelService());
     $term->setEntity($this->taxonomyTerm);

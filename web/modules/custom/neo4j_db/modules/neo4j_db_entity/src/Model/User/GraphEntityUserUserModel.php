@@ -62,6 +62,15 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
     return $this;
   }
 
+  /**
+   * {@inheritDoc}
+   */
+  public function setEntity(EntityInterface $entity): void {
+    $this->entity = $entity;
+    $this->setEntityId($entity->id());
+    $this->setFindOneByCriteria($this->baseFindOneByCriteria());
+  }
+
   public function getGraphEntity() {
     return $this->connection->findOneBy(__CLASS__, $this->findOneByCriteria());
   }
@@ -87,6 +96,13 @@ class GraphEntityUserUserModel extends AbstractGraphEntityModelBase implements G
    */
   public function getId(): int {
     return $this->id;
+  }
+
+  /**
+   * @param int $id
+   */
+  public function setId(int $id): void {
+    $this->id = $id;
   }
 
   /**
