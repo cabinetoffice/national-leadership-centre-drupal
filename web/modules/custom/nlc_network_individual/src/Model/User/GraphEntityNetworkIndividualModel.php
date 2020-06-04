@@ -102,8 +102,12 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
    */
   public function setEntity(EntityInterface $entity): void {
     $this->entity = $entity;
+    $this->setEntityId($entity->id());
     try {
       $this->entitySalesforceMappedObjects = $this->getSalesforceMappedObjects($this->entity);
+      if (!empty($this->getEntitySalesforceMappedObjectsIds())) {
+        $this->setSfId(current($this->getEntitySalesforceMappedObjectsIds()));
+      }
       $this->setFindOneByCriteria($this->baseFindOneByCriteria());
     }
     catch (InvalidPluginDefinitionException | PluginNotFoundException $e) {
@@ -116,7 +120,7 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
    */
   public function baseFindOneByCriteria() {
     $ids = $this->getEntitySalesforceMappedObjectsIds();
-    return ['sf_id' => current($ids)];
+    return empty($ids) ? ['entityId' => $this->getEntityId()] : ['sf_id' => current($ids)];
   }
 
   /**
@@ -177,6 +181,118 @@ class GraphEntityNetworkIndividualModel extends GraphEntityUserUserModel {
    */
   public function setVisitOf($visitOf): void {
     $this->visitOf = $visitOf;
+  }
+
+  /**
+   * @return string
+   */
+  public function getFirstName(): string {
+    return $this->firstName;
+  }
+
+  /**
+   * @param string $firstName
+   */
+  public function setFirstName(string $firstName): void {
+    $this->firstName = $firstName;
+  }
+
+  /**
+   * @return string
+   */
+  public function getLastName(): string {
+    return $this->lastName;
+  }
+
+  /**
+   * @param string $lastName
+   */
+  public function setLastName(string $lastName): void {
+    $this->lastName = $lastName;
+  }
+
+  /**
+   * @return string
+   */
+  public function getFullName(): string {
+    return $this->fullName;
+  }
+
+  /**
+   * @param string $fullName
+   */
+  public function setFullName(string $fullName): void {
+    $this->fullName = $fullName;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTitle(): string {
+    return $this->title;
+  }
+
+  /**
+   * @param string $title
+   */
+  public function setTitle(string $title): void {
+    $this->title = $title;
+  }
+
+  /**
+   * @return string
+   */
+  public function getTwitterAccount(): string {
+    return $this->twitter_account;
+  }
+
+  /**
+   * @param string $twitter_account
+   */
+  public function setTwitterAccount(string $twitter_account): void {
+    $this->twitter_account = $twitter_account;
+  }
+
+  /**
+   * @return string
+   */
+  public function getLinkedinAccount(): string {
+    return $this->linkedin_account;
+  }
+
+  /**
+   * @param string $linkedin_account
+   */
+  public function setLinkedinAccount(string $linkedin_account): void {
+    $this->linkedin_account = $linkedin_account;
+  }
+
+  /**
+   * @return string
+   */
+  public function getSfId(): string {
+    return $this->sf_id;
+  }
+
+  /**
+   * @param string $sf_id
+   */
+  public function setSfId(string $sf_id): void {
+    $this->sf_id = $sf_id;
+  }
+
+  /**
+   * @return string
+   */
+  public function getSfRecordId(): string {
+    return $this->sf_record_id;
+  }
+
+  /**
+   * @param string $sf_record_id
+   */
+  public function setSfRecordId(string $sf_record_id): void {
+    $this->sf_record_id = $sf_record_id;
   }
 
 }

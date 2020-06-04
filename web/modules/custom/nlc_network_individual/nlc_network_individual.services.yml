@@ -4,6 +4,21 @@ services:
     arguments: ['@current_user', '@neo4j_db_entity.model.manager']
     tags:
       - { name: event_subscriber }
+  network_individual.event_subscriber.insert:
+    class: Drupal\nlc_network_individual\EventSubscriber\NetworkIndividualInsertSubscriber
+    arguments: ['@neo4j_db_entity.model.manager']
+    tags:
+      - { name: event_subscriber }
+  network_individual.event_subscriber.update:
+    class: Drupal\nlc_network_individual\EventSubscriber\NetworkIndividualUpdateSubscriber
+    arguments: ['@neo4j_db_entity.model.manager']
+    tags:
+      - { name: event_subscriber }
+  network_individual.event_subscriber.delete:
+    class: Drupal\nlc_network_individual\EventSubscriber\NetworkIndividualDeleteSubscriber
+    arguments: ['@neo4j_db_entity.model.manager']
+    tags:
+      - { name: event_subscriber }
   network_individual.model.user:
     class: Drupal\nlc_network_individual\Model\User\GraphEntityNetworkIndividualModel
     arguments: ['@string_translation', '@neo4j_db.connection']
